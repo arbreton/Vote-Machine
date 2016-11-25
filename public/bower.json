@@ -1,0 +1,12 @@
+{
+  "name": "Keep",
+  "authors": [
+    "Paulo Menezes"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "less": "~2.0.0",
+    "angular": "~1.4.8",
+    "angular-material": "~1.0.1"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "keep",
+  "version": "1.0.0",
+  "description": "Create a To Do app with MEAN",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "mongoose": "^4.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulomenezes/mean-todo.git"
+  },
+  "author": "Paulo Menezes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paulomenezes/mean-todo/issues"
+  },
+  "homepage": "https://github.com/paulomenezes/mean-todo#readme"
+}
