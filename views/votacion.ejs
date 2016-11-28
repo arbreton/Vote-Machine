@@ -3,21 +3,7 @@
 
 <head>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-<script src="/js/voting.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="/css/landingUser.css">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-	 $(document).ready(function (){
-            $("#senScroll").click(function (){
-                $('html, body').animate({
-                    scrollTop: $("#senadores").offset().top
-                }, 2000);
-            });
-        });
-</script>
+
 <TITLE>Votar</TITLE>
 </head>
 
@@ -37,7 +23,7 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li ng-controller="VoteCtrl" ng-hide="votingavailable"><a href="#presidencial">Presidencial</a></li>
-          <li ng-controller="VoteCtrlsen" ng-hide="votingavailable"><a id="senScroll">Senadores</a></li>
+          <li ng-controller="VoteCtrlsen" ng-hide="votingavailable"><a href=#senadores>Senadores</a></li>
           <li ng-controller="VoteCtrldip" ng-hide="votingavailable"><a href="#diputados">Diputados</a></li>
           <li><a href="#finalizar">Finalizar</a></li>
           </ul>
@@ -579,7 +565,13 @@
 	</div>
 </div>
 
-	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="/js/voting.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/css/landingUser.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 
 </body>
