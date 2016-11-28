@@ -22,12 +22,20 @@ app.use(express.static(__dirname + '/public'));
 // Rutas de las API
 
 
-
+// Inicio
+app.get('/', function (req, res) {
+	res.render('navar');
+});
 
 // Rutas de las vistas
 app.get('/votacion', function (req, res) {
 	res.render('votacion');
 });
+
+app.get('/admin/candidatos', function (req, res) {
+	res.render('registrocandidatosview');
+});
+
 
 
 // Inicializar servidor

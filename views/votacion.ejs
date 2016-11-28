@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="/css/navbar.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap-css/css/bootstrap.css">
 <script>
 	 $(document).ready(function (){
             $("#senScroll").click(function (){
@@ -29,7 +31,7 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
+          <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#">votingApp</a>
     </div>
@@ -46,7 +48,7 @@
       </div>
     </div>
   </div>
-</nav>    
+</nav>
 
 <div  class="row">
 	<!-- Barra lateral de usuario-->
@@ -55,11 +57,11 @@
     			<img id=Foto src=https://avatars0.githubusercontent.com/u/139426?v=3&s=400 height="200">
     			<p class="blocktext"> Nombre Apellido Apellido</p>
     			<p class="blocktext"> Dato1</p>
-    			<p class="blocktext"> Dato2</p>	
+    			<p class="blocktext"> Dato2</p>
     			<p class="blocktext"> Dato extremadamente largo con muchas palabras como direccion o alguna cosa asi</p>
 
     		</div>
- 
+
 		</div>
 </div>
 
@@ -72,7 +74,7 @@
 		</div>
 		<!-- Datos primer candidato  presidencial-->
  		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres1">
 			<img class="candidato" src={{cand1img}} height="200">
     		<p class="CenterName" ng-bind="nomcandpres1"></p>
@@ -89,7 +91,7 @@
         	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 
 		<!-- Datos segundo candidato presidencial -->
@@ -139,7 +141,7 @@
 
 		<!-- Datos cuarto candidato presidencial -->
 		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres4">
 				<img class="candidato" src={{cand4img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres4"></p>
@@ -156,12 +158,12 @@
 	        	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 
 		<!-- Datos quinto candidato presidencial -->
 		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres5">
 				<img class="candidato" src={{cand5img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres5"></p>
@@ -178,12 +180,12 @@
 	        	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 
 		<!-- Datos sexto candidato presidencial -->
 		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres6">
 				<img class="candidato" src={{cand6img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres6"></p>
@@ -200,7 +202,7 @@
 	        	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 	</div>
 
@@ -210,7 +212,7 @@
 		<div class="col-md-3">
 
 		</div>
-		
+
 		<!-- Espacio Otro-->
 		<div class="col-md-6">
 		<img ng-click="showother()" src="{{imageUrlother}}" width="200">
@@ -234,12 +236,12 @@
 	<center class="tipoEleccion">Elecciones de senadores</center>
 		<!-- Barra lateral de usuario-->
 		<div class="col-md-3">
- 			
- 
+
+
 		</div>
 		<!-- Datos primer candidato  presidencial-->
  		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres1">
 			<img class="candidato" src={{cand1img}} height="200">
     		<p class="CenterName" ng-bind="nomcandpres1"></p>
@@ -256,7 +258,7 @@
         	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 
 		<!-- Datos segundo candidato presidencial -->
@@ -306,7 +308,7 @@
 
 		<!-- Datos cuarto candidato presidencial -->
 		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres4">
 				<img class="candidato" src={{cand4img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres4"></p>
@@ -323,12 +325,12 @@
 	        	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 
 		<!-- Datos quinto candidato presidencial -->
 		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres5">
 				<img class="candidato" src={{cand5img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres5"></p>
@@ -345,12 +347,12 @@
 	        	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 
 		<!-- Datos sexto candidato presidencial -->
 		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres6">
 				<img class="candidato" src={{cand6img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres6"></p>
@@ -367,7 +369,7 @@
 	        	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 	</div>
 
@@ -377,7 +379,7 @@
 		<div class="col-md-3">
 
 		</div>
-		
+
 		<!-- Espacio Otro-->
 		<div class="col-md-6">
 		<img ng-click="showother()" src="{{imageUrlother}}" width="200">
@@ -401,12 +403,12 @@
 	<center class="tipoEleccion">Elecciones de diputados</center>
 		<!-- Barra lateral de usuario-->
 		<div class="col-md-3">
- 			
- 
+
+
 		</div>
 		<!-- Datos primer candidato  presidencial-->
  		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres1">
 			<img class="candidato" src={{cand1img}} height="200">
     		<p class="CenterName" ng-bind="nomcandpres1"></p>
@@ -423,7 +425,7 @@
         	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 
 		<!-- Datos segundo candidato presidencial -->
@@ -473,7 +475,7 @@
 
 		<!-- Datos cuarto candidato presidencial -->
 		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres4">
 				<img class="candidato" src={{cand4img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres4"></p>
@@ -490,12 +492,12 @@
 	        	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 
 		<!-- Datos quinto candidato presidencial -->
 		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres5">
 				<img class="candidato" src={{cand5img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres5"></p>
@@ -512,12 +514,12 @@
 	        	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 
 		<!-- Datos sexto candidato presidencial -->
 		<div class="col-md-3">
- 		 	
+
 			<div ng-show="candpres6">
 				<img class="candidato" src={{cand6img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres6"></p>
@@ -534,7 +536,7 @@
 	        	</div>
         	</div>
         	<br>
-        	
+
 		</div>
 	</div>
 
@@ -544,7 +546,7 @@
 		<div class="col-md-3">
 
 		</div>
-		
+
 		<!-- Espacio Otro-->
 		<div class="col-md-6">
 		<img ng-click="showother()" src="{{imageUrlother}}" width="200">
@@ -579,7 +581,6 @@
 	</div>
 </div>
 
-	
 
 
 </body>
