@@ -1,7 +1,7 @@
-var ngToggle = angular.module('VotingApp', []);
+var ngToggle = angular.module('VotingApp', ['admin']);
 
-	
-    
+
+
     ngToggle.controller('VoteCtrl',['$scope', function($scope){
 
         $scope.cand1 = true;
@@ -24,7 +24,7 @@ var ngToggle = angular.module('VotingApp', []);
         $scope.prop1candpres1="Haremos del país un mejor país";
         $scope.prop2candpres1="Haremos del país un mejor país";
         $scope.prop3candpres1="Haremos del país un mejor país";
-        
+
         $scope.nomcandpres2="Andre Breton";
         $scope.partidocand2="Partido2";
         $scope.prop1candpres2="Voy a poner la mejor maquina de cafe";
@@ -80,7 +80,7 @@ var ngToggle = angular.module('VotingApp', []);
         		break;
         	}
         };
-        
+
         $scope.imageUrlpres1="/images/votar.png";
         $scope.imageUrlpres2="/images/votar.png";
         $scope.imageUrlpres3="/images/votar.png";
@@ -94,10 +94,10 @@ var ngToggle = angular.module('VotingApp', []);
         $scope.cand4img="http://images.clipartpanda.com/number-four-clipart-bcyp4xRcL.png";
         $scope.cand5img="http://www.clipartbay.com/cliparts/number-5-clip-art-vykjeqo.png";
         $scope.cand6img="http://www.clker.com/cliparts/F/N/O/w/x/2/number-6-hi.png";
-        
+
         $scope.imageUrlnull="/images/anularvoto.png";
         $scope.imageUrlother="/images/otro.png";
-        
+
         $scope.showother=function(){
         	$scope.othercand = true;
         	$scope.imageUrlpres1="/images/cambiarvoto.png";
@@ -122,7 +122,7 @@ var ngToggle = angular.module('VotingApp', []);
 
 
         $scope.votepres = function(number) {
-        	
+
         	switch(number){
         		case 1:
         			$scope.imageUrlpres1="/images/seleccionado.png";
@@ -186,13 +186,13 @@ var ngToggle = angular.module('VotingApp', []);
         		default:
         		break;
         	}
-            
-            
+
+
         }
 }]);
 
     ngToggle.controller('VoteCtrlsen',['$scope', function($scope){
-        
+
         $scope.cand1 = true;
         $scope.cand2 = true;
         $scope.cand3 = true;
@@ -213,7 +213,7 @@ var ngToggle = angular.module('VotingApp', []);
         $scope.prop1candpres1="Haremos del país un mejor país";
         $scope.prop2candpres1="Haremos del país un mejor país";
         $scope.prop3candpres1="Haremos del país un mejor país";
-        
+
         $scope.nomcandpres2="Andre Breton";
         $scope.partidocand2="Partido2";
         $scope.prop1candpres2="Voy a poner la mejor maquina de cafe";
@@ -269,7 +269,7 @@ var ngToggle = angular.module('VotingApp', []);
         		break;
         	}
         };
-        
+
         $scope.imageUrlpres1="/images/votar.png";
         $scope.imageUrlpres2="/images/votar.png";
         $scope.imageUrlpres3="/images/votar.png";
@@ -282,10 +282,10 @@ var ngToggle = angular.module('VotingApp', []);
         $scope.cand4img="http://images.clipartpanda.com/number-four-clipart-bcyp4xRcL.png";
         $scope.cand5img="http://www.clipartbay.com/cliparts/number-5-clip-art-vykjeqo.png";
         $scope.cand6img="http://www.clker.com/cliparts/F/N/O/w/x/2/number-6-hi.png";
-        
+
         $scope.imageUrlnull="/images/anularvoto.png";
         $scope.imageUrlother="/images/otro.png";
-        
+
         $scope.showother=function(){
         	$scope.othercand = true;
         	$scope.imageUrlpres1="/images/cambiarvoto.png";
@@ -394,7 +394,7 @@ var ngToggle = angular.module('VotingApp', []);
         $scope.prop1candpres1="Haremos del país un mejor país";
         $scope.prop2candpres1="Haremos del país un mejor país";
         $scope.prop3candpres1="Haremos del país un mejor país";
-        
+
         $scope.nomcandpres2="Andre Breton";
         $scope.partidocand2="Partido2";
         $scope.prop1candpres2="Voy a poner la mejor maquina de cafe";
@@ -450,7 +450,7 @@ var ngToggle = angular.module('VotingApp', []);
         		break;
         	}
         };
-        
+
         $scope.imageUrlpres1="/images/votar.png";
         $scope.imageUrlpres2="/images/votar.png";
         $scope.imageUrlpres3="/images/votar.png";
@@ -463,10 +463,10 @@ var ngToggle = angular.module('VotingApp', []);
         $scope.cand4img="http://images.clipartpanda.com/number-four-clipart-bcyp4xRcL.png";
         $scope.cand5img="http://www.clipartbay.com/cliparts/number-5-clip-art-vykjeqo.png";
         $scope.cand6img="http://www.clker.com/cliparts/F/N/O/w/x/2/number-6-hi.png";
-        
+
         $scope.imageUrlnull="/images/anularvoto.png";
         $scope.imageUrlother="/images/otro.png";
-        
+
         $scope.showother=function(){
         	$scope.othercand = true;
         	$scope.imageUrlpres1="/images/cambiarvoto.png";
