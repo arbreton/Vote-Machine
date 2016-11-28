@@ -1,4 +1,4 @@
-var app = angular.module('admin', ['dashboard.candidatos', 'ngRoute');
+var app = angular.module('admin', ['dashboard.candidatos', 'ngRoute']);
 
 app.config(['$routeProvider', function ($routeProvider)
 {

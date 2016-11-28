@@ -1,4 +1,4 @@
-var ngToggle = angular.module('VotingApp', ['admin']);
+var ngToggle = angular.module('VotingApp', []);
 
 
 
