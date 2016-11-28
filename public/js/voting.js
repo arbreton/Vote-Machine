@@ -1,70 +1,7 @@
 var ngToggle = angular.module('VotingApp', []);
+
 	
-	ngToggle.service('sharedData',function(){
-		
-		var votoPresPosible=true;
-		var votoSenPosible=true;
-		var votoDipPosible=true;
-		var votoPres=0;
-		var votoSen=0;
-		var votoDip=0;
-
-		return {
-            getvotopres: function () {
-                return votoPres;
-            },
-            setvotopres: function(value) {
-                votoPres = value;
-            }
-        };
-
-        return {
-            getvotosen: function () {
-                return votoSen;
-            },
-            setvotosen: function(value) {
-                votoSen = value;
-            }
-        };
-
-        return {
-            getvotodip: function () {
-                return votoDip;
-            },
-            setvotodip: function(value) {
-                votoDip = value;
-            }
-        };
-
-        return {
-            getvotoprespos: function () {
-                return votoPresPosible;
-            },
-            setvotoprespos: function(value) {
-                votoPresPosible = value;
-            }
-        };
-
-        return {
-            getvotosenpos: function () {
-                return votoSenPosible;
-            },
-            setvotosenpos: function(value) {
-                votoSenPosible = value;
-            }
-        };
-
-        return {
-            getvotodippos: function () {
-                return votoDipPosible;
-            },
-            setvotodippos: function(value) {
-                votoDipPosible = value;
-            }
-        };
-	});
-	
-
+    
     ngToggle.controller('VoteCtrl',['$scope', function($scope){
 
         $scope.cand1 = true;
@@ -150,6 +87,7 @@ var ngToggle = angular.module('VotingApp', []);
         $scope.imageUrlpres4="/images/votar.png";
         $scope.imageUrlpres5="/images/votar.png";
         $scope.imageUrlpres6="/images/votar.png";
+        $scope.imageUrlprop="/images/verPropuestas.png";
         $scope.cand1img="https://avatars.slack-edge.com/2016-11-07/101403588675_f83de57d74677077e415_512.jpg";
         $scope.cand2img="https://avatars2.githubusercontent.com/u/12836187?v=3&s=400";
         $scope.cand3img="https://avatars.slack-edge.com/2016-11-07/102152287238_e348cb1542eddd0335b0_192.jpg";
@@ -180,6 +118,9 @@ var ngToggle = angular.module('VotingApp', []);
         $scope.imageUrlpres6="/images/votar.png";
         $scope.imageUrlnull="/images/votoanulado.png";
         }
+
+
+
         $scope.votepres = function(number) {
         	
         	switch(number){
@@ -245,11 +186,13 @@ var ngToggle = angular.module('VotingApp', []);
         		default:
         		break;
         	}
+            
+            
         }
 }]);
 
     ngToggle.controller('VoteCtrlsen',['$scope', function($scope){
-
+        
         $scope.cand1 = true;
         $scope.cand2 = true;
         $scope.cand3 = true;

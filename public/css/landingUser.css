@@ -1,7 +1,12 @@
+#PersonInfo{
+	background-color: #e9ebee
+}
+
 #FixedImage{
 	position: fixed;
 	top: 80;
 	left: 20;
+	background-color: #e9ebee;
 }
 
 p.blocktext{
@@ -33,7 +38,11 @@ body {
 .tipoEleccion{
 	font-size: 24px;
  }
-#presidencial {padding-top:50px;height: auto; background-color: #efecea;}
-#senadores {padding-top:50px;height:auto; background-color: #cee8dd;}
-#diputados {padding-top:50px;height:auto; background-color: #a6efa2;}
-#finalizar {padding-top:50px;height:auto; background-color: #a6efa2;}
+ .btn-info{
+ 	border-radius: 20px;
+ 	width: 200px;
+ }
+#presidencial {padding-top:50px;height: auto; background-color: #ffffff;}
+#senadores {padding-top:50px;height:auto; background-color: #ffffff;}
+#diputados {padding-top:50px;height:auto; background-color: #ffffff;}
+#finalizar {padding-top:50px;height:auto; background-color: #ffffff;}
