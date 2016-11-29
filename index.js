@@ -24,7 +24,7 @@ app.use(express.static(__dirname + '/public'));
 
 // Inicio
 app.get('/', function (req, res) {
-	res.render('navar');
+	res.render('navbar');
 });
 
 // Rutas de las vistas
