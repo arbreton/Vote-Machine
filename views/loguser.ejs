@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> VotingApp</title>
+	<link rel="stylesheet" type="text/css" href="css/icss.css">
+	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<link href = "css/bootstrap.css" rel = "stylesheet"/>
+	<!-- libreria jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script scr = "js/angular.min.js"></script>
+</head>
+<body>
+<h1> Bienvenido </h1>
+
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR FOTO DEL USUARIO AQUI -->
+				<div class="profile-userpic">
+					<img src="" class="img-responsive">
+				</div>
+				<!--EL GLYPHICON ES POR MIENTRAS-->
+				<h1 span class = "glyphicon glyphicon-user" style = "color:	#990000"></h1></span>
+				<!--QUITA EL GLYPHI!!!!-->
+				<!-- FINALIZA SIDEBAR DE LA FOTO -->
+				<!-- SIDEBAR NOMBRE DEL USUARIO -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						<h3>{{NOMBRE AQUI}}</h3>
+					</div>
+				</div>
+				<br>
+				<!-- FINALIZA SIDEBAR NOMBRE -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+							<i class="glyphicon glyphicon-home"></i>
+							{{DIRECCION AQUI}}
+						</li>
+						<br>
+						<li>
+							<i class="glyphicon glyphicon-info-sign"></i>
+							{{FECHA DE NACIMIENTO}}
+							<br>
+							{{MAS INFORMACION}}
+						</li>
+					</ul>
+				</div>
+				<!-- FINALIZA EL MENU -->
+			</div>
+		</div>
+		<div class = "col-md-15">
+			<div class = "profile-content">
+				{{CANDIDATOS DDDD:}}
+			</div>
+		</div>
+	</div>
+</div>
+</center>
+</body>
+</html>

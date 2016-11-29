@@ -29,6 +29,9 @@ app.get('/votacion', function (req, res) {
 	res.render('votacion');
 });
 
+app.get('/loguser', function (req, res) {
+	res.render('loguser');
+});
 
 // Inicializar servidor
 var server = app.listen(3000, function () {
