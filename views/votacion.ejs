@@ -34,16 +34,35 @@
   </div>
 </nav>    
 
-<div  class="row">
+<div  class="row" ng-controller="dataLoadCtrl">
 	<!-- Barra lateral de usuario-->
 		<div class="col-md-3">
  			<div id="FixedImage">
-    			<img id=Foto src=https://avatars0.githubusercontent.com/u/139426?v=3&s=400 height="200">
-    			<p class="blocktext"> Nombre Apellido Apellido</p>
-    			<p class="blocktext"> Dato1</p>
-    			<p class="blocktext"> Dato2</p>	
-    			<p class="blocktext"> Dato extremadamente largo con muchas palabras como direccion o alguna cosa asi</p>
-
+    			<img id=Foto src={{fotoUsuario}} height="200">
+    			<!-- SIDEBAR NOMBRE DEL USUARIO -->
+    			<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						<center><h3 ng-bind="nombreUsuario"></h3></center>
+					</div>
+				</div>
+				<!-- FINALIZA SIDEBAR NOMBRE -->
+    			<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+							<i class="glyphicon glyphicon-home"></i>
+							<p class="blocktext" ng-bind="direccionUsuario"></p>
+						</li>
+						<br>
+						<li>
+							<i class="glyphicon glyphicon-info-sign"></i>
+							<p class="blocktext" ng-bind="nacimientoUsuario"></p>
+							<br>
+							<p class="blocktext" ng-bind="masInfoUsuario"></p>
+						</li>
+					</ul>
+				</div>
+				<!-- FINALIZA EL MENU -->
     		</div>
  
 		</div>
@@ -62,7 +81,7 @@
 			<div ng-show="candpres1">
 			<img class="candidato" src={{cand1img}} height="200">
     		<p class="CenterName" ng-bind="nomcandpres1"></p>
-    		<p class="CenterName" ng-bind="partidocand1"></p>
+    		<p class="CenterParty" ng-bind="partidocand1"></p>
         	<img width="200" src={{imageUrlprop}} ng-click="show(1)">
         	<div>
         		<span ng-hide="cand1">
@@ -71,7 +90,7 @@
         		<p ng-bind="prop3candpres1"></p>
         		</span>
         		<span ng-show="cand1"></span>
-        		<a href="#senadores" ><img  ng-click ="votepres(1)" src="{{imageUrlpres1}}" width="200"></a>
+        		<a href="#senadores" ><button class="btn btn-info" class= "botoncandidato" ng-click ="votepres(1)">Votar</button></a>
         	</div>
         	</div>
         	<br>
@@ -83,8 +102,8 @@
  			<div ng-show="candpres2">
 				<img class="candidato" src={{cand2img}} width="200">
     			<p class="CenterName" ng-bind="nomcandpres2"></p>
-    			<p class="CenterName" ng-bind="partidocand2"></p>
-        		<button class="btn-info" ng-click="show(2)">Mostrar propuestas <span ng-bind="nomcandpres2"></span></button>
+    			<p class="CenterParty" ng-bind="partidocand2"></p>
+        		<img width="200" src={{imageUrlprop}} ng-click="show(2)">
         		<div>
         			<span ng-hide="cand2">
         			<p ng-bind="prop1candpres2"></p>
@@ -102,8 +121,8 @@
 			<div ng-show="candpres3">
 				<img class="candidato" src={{cand3img}} width="200">
 	    		<p class="CenterName" ng-bind="nomcandpres3"></p>
-	    		<p class="CenterName" ng-bind="partidocand3"></p>
-	        	<button class="botoncandidato" ng-click="show(3)">Mostrar propuestas <span ng-bind="nomcandpres3"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand3"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(3)">
 	        	<div>
 	        		<span ng-hide="cand3">
 	        		<p ng-bind="prop1candpres3"></p>
@@ -129,8 +148,8 @@
 			<div ng-show="candpres4">
 				<img class="candidato" src={{cand4img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres4"></p>
-	    		<p class="CenterName" ng-bind="partidocand4"></p>
-	        	<button class="btn-info" ng-click="show(4)">Mostrar propuestas <span ng-bind="nomcandpres4"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand4"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(4)">
 	        	<div>
 	        		<span ng-hide="cand4">
 	        		<p ng-bind="prop1candpres4"></p>
@@ -151,8 +170,8 @@
 			<div ng-show="candpres5">
 				<img class="candidato" src={{cand5img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres5"></p>
-	    		<p class="CenterName" ng-bind="partidocand5"></p>
-	        	<button class="btn-info" ng-click="show(5)">Mostrar propuestas <span ng-bind="nomcandpres5"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand5"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(5)">
 	        	<div>
 	        		<span ng-hide="cand5">
 	        		<p ng-bind="prop1candpres5"></p>
@@ -173,8 +192,8 @@
 			<div ng-show="candpres6">
 				<img class="candidato" src={{cand6img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres6"></p>
-	    		<p class="CenterName" ng-bind="partidocand6"></p>
-	        	<button class="btn-info" ng-click="show(6)">Mostrar propuestas <span ng-bind="nomcandpres6"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand6"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(6)">
 	        	<div>
 	        		<span ng-hide="cand6">
 	        		<p ng-bind="prop1candpres6"></p>
@@ -229,8 +248,8 @@
 			<div ng-show="candpres1">
 			<img class="candidato" src={{cand1img}} height="200">
     		<p class="CenterName" ng-bind="nomcandpres1"></p>
-    		<p class="CenterName" ng-bind="partidocand1"></p>
-        	<button class="botoncandidato" ng-click="show(1)">Mostrar propuestas <span ng-bind="nomcandpres1"></span></button>
+    		<p class="CenterParty" ng-bind="partidocand1"></p>
+        	<img width="200" src={{imageUrlprop}} ng-click="show(1)">
         	<div>
         		<span ng-hide="cand1">
         		<p ng-bind="prop1candpres1"></p>
@@ -250,8 +269,8 @@
  			<div ng-show="candpres2">
 				<img class="candidato" src={{cand2img}} width="200">
     			<p class="CenterName" ng-bind="nomcandpres2"></p>
-    			<p class="CenterName" ng-bind="partidocand2"></p>
-        		<button class="botoncandidato" ng-click="show(2)">Mostrar propuestas <span ng-bind="nomcandpres2"></span></button>
+    			<p class="CenterParty" ng-bind="partidocand2"></p>
+        		<img width="200" src={{imageUrlprop}} ng-click="show(2)">
         		<div>
         			<span ng-hide="cand2">
         			<p ng-bind="prop1candpres2"></p>
@@ -269,8 +288,8 @@
 			<div ng-show="candpres3">
 				<img class="candidato" src={{cand3img}} width="200">
 	    		<p class="CenterName" ng-bind="nomcandpres3"></p>
-	    		<p class="CenterName" ng-bind="partidocand3"></p>
-	        	<button class="botoncandidato" ng-click="show(3)">Mostrar propuestas <span ng-bind="nomcandpres3"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand3"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(3)">
 	        	<div>
 	        		<span ng-hide="cand3">
 	        		<p ng-bind="prop1candpres3"></p>
@@ -296,8 +315,8 @@
 			<div ng-show="candpres4">
 				<img class="candidato" src={{cand4img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres4"></p>
-	    		<p class="CenterName" ng-bind="partidocand4"></p>
-	        	<button class="botoncandidato" ng-click="show(4)">Mostrar propuestas <span ng-bind="nomcandpres4"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand4"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(4)">
 	        	<div>
 	        		<span ng-hide="cand4">
 	        		<p ng-bind="prop1candpres4"></p>
@@ -318,8 +337,8 @@
 			<div ng-show="candpres5">
 				<img class="candidato" src={{cand5img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres5"></p>
-	    		<p class="CenterName" ng-bind="partidocand5"></p>
-	        	<button class="botoncandidato" ng-click="show(5)">Mostrar propuestas <span ng-bind="nomcandpres5"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand5"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(5)">
 	        	<div>
 	        		<span ng-hide="cand5">
 	        		<p ng-bind="prop1candpres5"></p>
@@ -340,8 +359,8 @@
 			<div ng-show="candpres6">
 				<img class="candidato" src={{cand6img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres6"></p>
-	    		<p class="CenterName" ng-bind="partidocand6"></p>
-	        	<button class="botoncandidato" ng-click="show(6)">Mostrar propuestas <span ng-bind="nomcandpres6"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand6"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(6)">
 	        	<div>
 	        		<span ng-hide="cand6">
 	        		<p ng-bind="prop1candpres6"></p>
@@ -396,8 +415,8 @@
 			<div ng-show="candpres1">
 			<img class="candidato" src={{cand1img}} height="200">
     		<p class="CenterName" ng-bind="nomcandpres1"></p>
-    		<p class="CenterName" ng-bind="partidocand1"></p>
-        	<button class="botoncandidato" ng-click="show(1)">Mostrar propuestas <span ng-bind="nomcandpres1"></span></button>
+    		<p class="CenterParty" ng-bind="partidocand1"></p>
+        	<img width="200" src={{imageUrlprop}} ng-click="show(1)">
         	<div>
         		<span ng-hide="cand1">
         		<p ng-bind="prop1candpres1"></p>
@@ -417,8 +436,8 @@
  			<div ng-show="candpres2">
 				<img class="candidato" src={{cand2img}} width="200">
     			<p class="CenterName" ng-bind="nomcandpres2"></p>
-    			<p class="CenterName" ng-bind="partidocand2"></p>
-        		<button class="botoncandidato" ng-click="show(2)">Mostrar propuestas <span ng-bind="nomcandpres2"></span></button>
+    			<p class="CenterParty" ng-bind="partidocand2"></p>
+        		<img width="200" src={{imageUrlprop}} ng-click="show(2)">
         		<div>
         			<span ng-hide="cand2">
         			<p ng-bind="prop1candpres2"></p>
@@ -436,8 +455,8 @@
 			<div ng-show="candpres3">
 				<img class="candidato" src={{cand3img}} width="200">
 	    		<p class="CenterName" ng-bind="nomcandpres3"></p>
-	    		<p class="CenterName" ng-bind="partidocand3"></p>
-	        	<button class="botoncandidato" ng-click="show(3)">Mostrar propuestas <span ng-bind="nomcandpres3"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand3"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(3)">
 	        	<div>
 	        		<span ng-hide="cand3">
 	        		<p ng-bind="prop1candpres3"></p>
@@ -463,8 +482,8 @@
 			<div ng-show="candpres4">
 				<img class="candidato" src={{cand4img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres4"></p>
-	    		<p class="CenterName" ng-bind="partidocand4"></p>
-	        	<button class="botoncandidato" ng-click="show(4)">Mostrar propuestas <span ng-bind="nomcandpres4"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand4"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(4)">
 	        	<div>
 	        		<span ng-hide="cand4">
 	        		<p ng-bind="prop1candpres4"></p>
@@ -485,8 +504,8 @@
 			<div ng-show="candpres5">
 				<img class="candidato" src={{cand5img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres5"></p>
-	    		<p class="CenterName" ng-bind="partidocand5"></p>
-	        	<button class="botoncandidato" ng-click="show(5)">Mostrar propuestas <span ng-bind="nomcandpres5"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand5"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(5)">
 	        	<div>
 	        		<span ng-hide="cand5">
 	        		<p ng-bind="prop1candpres5"></p>
@@ -507,8 +526,8 @@
 			<div ng-show="candpres6">
 				<img class="candidato" src={{cand6img}} height="200">
 	    		<p class="CenterName" ng-bind="nomcandpres6"></p>
-	    		<p class="CenterName" ng-bind="partidocand6"></p>
-	        	<button class="botoncandidato" ng-click="show(6)">Mostrar propuestas <span ng-bind="nomcandpres6"></span></button>
+	    		<p class="CenterParty" ng-bind="partidocand6"></p>
+	        	<img width="200" src={{imageUrlprop}} ng-click="show(6)">
 	        	<div>
 	        		<span ng-hide="cand6">
 	        		<p ng-bind="prop1candpres6"></p>

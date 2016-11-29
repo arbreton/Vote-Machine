@@ -10,32 +10,46 @@ background-attachment: fixed;
 }
 
 #FixedImage{
+	margin-left: 20px;
 	position: fixed;
 	top: 80;
 	left: 20;}
 
 p.blocktext{
-	margin-left: auto;
+	margin-left: 0;
     margin-right: auto;
     width: 12em
 }
 
+
+
 button.botoncandidato{
 	margin-right: auto;
 	margin-left: auto;
-	width: 200px
+	width: 200px;
 }
 p.CenterName{
 	font-size: 20px;
-	margin-left: auto;
+	margin-left: 0;
     margin-right: auto;
-    width: 280px
+    width: 200px
+}
+p.CenterParty{
+	font-size: 15px;
+	margin-left: 0;
+    margin-right: auto;
+    width: 200px
 }
 #Foto{
 	margin-top: 65px;
+	margin-left: 20px;
+	margin-right: auto;
+
 }
 img.candidato{
 	margin-top: 20px;
+	width: 200px;
+	height: 200px;
 }
 body {
       position: relative; 
