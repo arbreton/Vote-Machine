@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
-<link href="/css/navbar.css" type="text/css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+<link href="/css/adminDash.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <nav class="navbar navbar-inverse">
@@ -67,11 +70,15 @@
       </div>
       <div class="info-people-container">
           <div class="info-poeple">
-            <h3>Nombre:</h3>
-            <h4>Jose Perez Garcia</h4>
-            <h3>Informacion Personal</h3>
-            <h4>Dirección: Felipe Angeles, El Refugio</h4>
+            <h3>Jose Perez Garcia</h3>
+            <hr width="170px">
+            <h4>Canton: Felipe Angeles</h4>
+            <hr width="170px">
+            <h4>Distrito: El Refugio<h4>
+            <hr width="170px">
             <h4>Provincia: San Jose<h4>
+            <hr width="170px">
+            <h4>Edad: 43 Años<h4>
         </div>
       </div>
       </div>
@@ -79,17 +86,20 @@
       <!--Nav bar -->
 
       <!-- Page Content -->
+       <div class="title">Herramientas</div>
+       <hr>
+
       <div id="page-content-wrapper" ng-view>
           <div class="container-fluid">
             <div class="header">
 
             <div class="btncenter">
-           	<button type="button" class="btn btn-default bigbutton">Nueva Eleccion</button>
-            <button type="button" class="btn btn-default bigbutton">Graficas</button>
-            <button type="button" class="btn btn-default bigbutton">Editar Elecciones</button>
+           	<button type="button" class="btn btn-default bigbutton"><i class="fa fa-commenting-o" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default bigbutton"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default bigbutton"><i class="fa fa-pencil" aria-hidden="true"></i></button>
             </div>
 
-              <h4></h4>
+             
             </div>
           </div>
       </div>
