@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="icss.css">
+<title>PRUEBA CHARTS</title>
+</head>
+
+<body>
+	<h1> MUESTRA DE GRAFICAS </h1>
+<!--aqui le estamos diciendo a la grafica que respete el espacio. si lo omitimos tomara la pantalla completa, 
+si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
+	<div style = "width: 20%;" id = "div1">
+		<canvas id = "barChart" height = "800" width = "800"></canvas>
+	</div>
+
+<!--aqui le estamos diciendo a la grafica que respete el espacio. si lo omitimos tomara la pantalla completa, 
+si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
+	<div style = "width: 20%;" id = "div2">
+		<canvas id = "lineChart" height = "800" width = "800"></canvas>
+	</div>
+<!-- 3er chart-->
+	<div style = "width: 20%;" id = "div3">
+		<canvas id = "barChart1" height = "800" width = "800"></canvas>
+	</div>
+<!-- 4to chart-->
+	<div style = "width: 20%;" id = "div4">
+		<canvas id = "lineChart1" height = "800" width = "800"></canvas>
+	</div>
+<!-- 5to chart-->
+	<div style = "width: 20%;" id = "div5">
+		<canvas id = "barChart2" height = "800" width = "800"></canvas>
+	</div>
+<!-- 6to chart-->
+	<div style = "width: 20%;" id = "div6">
+		<canvas id = "barChart3" height = "800" width = "800"></canvas>
+	</div>
+<!--Libreria externa para tomar el Chart -->
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js"></script>
+<!-- Mandamos llamar a nuestro javascript para que tome los datos de la grafica --> 
+<script src = "js/main.js"></script>
+</body>
+</html>
