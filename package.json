@@ -6,9 +6,11 @@
   "dependencies": {
     "angular-scrollto": "^0.1.4",
     "body-parser": "^1.14.2",
+    "consolidate": "^0.14.5",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "mongoose": "^4.3.5"
+    "mongoose": "^4.3.5",
+    "swig": "^1.4.2"
   },
   "devDependencies": {},
   "scripts": {
