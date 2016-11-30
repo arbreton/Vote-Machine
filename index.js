@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 
 // Conexión a base de datos
-mongoose.connect('mongodb://admin:root@ds153667.mlab.com:53667/mean-database');
+//mongoose.connect('mongodb://admin:root@ds153667.mlab.com:53667/mean-database');
 
 
 // Inicializar Express
