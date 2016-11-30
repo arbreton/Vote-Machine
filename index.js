@@ -34,12 +34,12 @@ app.use(bodyParser.json());
 
 
 // Inicio
-<<<<<<< HEAD
+
 /*app.get('/', function (req, res) {
 	res.render('navar');
 });*/
 
-=======
+
 app.get('/votingapp', function (req, res) {
 	res.render('index', {page: 'index'});
 });
