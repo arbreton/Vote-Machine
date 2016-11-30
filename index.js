@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 
 // Conexión a base de datos
-mongoose.connect('mongodb://admin:root@ds153667.mlab.com:53667/mean-database');
+//mongoose.connect('mongodb://admin:root@ds153667.mlab.com:53667/mean-database');
 
 
 // Inicializar Express
@@ -37,10 +37,10 @@ app.get('/votacion', function (req, res) {
 	res.render('votacion');
 });
 
-app.get('/admin/candidatos', function (req, res) {
-	res.render('registrocandidatosview');
-});
 
+app.get('/loguser', function (req, res) {
+	res.render('loguser');
+});
 
 
 // Inicializar servidor
