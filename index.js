@@ -23,9 +23,9 @@ app.use(express.static(__dirname + '/public'));
 
 
 // Inicio
-app.get('/', function (req, res) {
+/*app.get('/', function (req, res) {
 	res.render('navar');
-});
+});*/
 
 // Rutas de las vistas
 
@@ -36,6 +36,11 @@ app.get('/admin/dashboard', function (req, res) {
 app.get('/votacion', function (req, res) {
 	res.render('votacion');
 });
+
+app.get('/admin/candidatos', function (req, res) {
+	res.render('registrocandidatosview');
+});
+
 
 
 app.get('/loguser', function (req, res) {
