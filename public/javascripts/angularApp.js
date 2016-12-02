@@ -1,4 +1,4 @@
-var app = angular.module('flapperNews', ['ui.router']);
+var app = angular.module('flapperNews', ['ui.router', 'adminCandidate']);
 
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
@@ -50,7 +50,7 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('admin', {
 		url : '/admin',
 		templateUrl : '/admin.html',
-		controller : 'Null',
+		controller : 'Null'
 		/*resolve : {
 			post : ['$stateParams', 'posts',
 			function($stateParams, posts) {
@@ -58,6 +58,11 @@ function($stateProvider, $urlRouterProvider) {
 			}]
 
 		}*/
+	}).state('candidate',
+	{
+		url: '/admin/candidate',
+		templateUrl: 'views/adminCandidate/registerCandidateView.html',
+		controller: 'registerCandidateController'
 	});
 
 	$urlRouterProvider.otherwise('home');
