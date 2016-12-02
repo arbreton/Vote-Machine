@@ -5,7 +5,7 @@ function($stateProvider, $urlRouterProvider) {
 
 	$stateProvider.state('home', {
 		url : '/home',
-		templateUrl : 'views/home.html',
+		templateUrl : '/home.html',
 		controller : 'MainCtrl',
 		resolve : {
 			postPromise : ['posts',
@@ -50,7 +50,7 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('admin', {
 		url : '/admin',
 		templateUrl : '/admin.html',
-		controller : 'Null',
+		/*controller : 'Null',*/
 		/*resolve : {
 			post : ['$stateParams', 'posts',
 			function($stateParams, posts) {
