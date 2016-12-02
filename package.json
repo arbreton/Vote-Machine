@@ -1,29 +1,22 @@
 {
-  "name": "keep",
-  "version": "1.0.0",
-  "description": "Create a To Do app with MEAN",
-  "main": "index.js",
-  "dependencies": {
-    "angular-scrollto": "^0.1.4",
-    "body-parser": "^1.14.2",
-    "consolidate": "^0.14.5",
-    "ejs": "^2.3.4",
-    "express": "^4.13.3",
-    "mongoose": "^4.3.5",
-    "swig": "^1.4.2"
-  },
-  "devDependencies": {},
+  "name": "flapper-news",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/paulomenezes/mean-todo.git"
-  },
-  "author": "Paulo Menezes",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/paulomenezes/mean-todo/issues"
-  },
-  "homepage": "https://github.com/paulomenezes/mean-todo#readme"
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.3.2",
+    "ejs": "~2.5.2",
+    "express": "~4.14.0",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.1.9",
+    "mongoose": "^4.6.7",
+    "morgan": "~1.7.0",
+    "passport": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "~2.3.0"
+  }
 }
