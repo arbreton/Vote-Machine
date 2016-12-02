@@ -1,5 +1,5 @@
- MEAN Stack Application
+VoteMachine.IO MEAN Stack Application
 =======================
 
-It is a Hackernews clone made with a MEAN stack including Comment voting that's extra from the tutorial. 
-Recoded Structure by Andre Breton
+It is a voting app designed by devcodenexus, with beautiful interface and the ability to display charts and statistics on the administrator side.
+Coded by DevCodeNexus/ArkusNexus BootCampG4
