@@ -58,6 +58,17 @@ function($stateProvider, $urlRouterProvider) {
 			}]
 
 		}*/
+	}).state('charts', {
+		url : '/charts',
+		templateUrl : '/charts.html',
+		/*controller : 'Null',
+		/*resolve : {
+			post : ['$stateParams', 'posts',
+			function($stateParams, posts) {
+				return posts.get($stateParams.id);
+			}]
+
+		}*/
 	});
 
 	$urlRouterProvider.otherwise('home');
