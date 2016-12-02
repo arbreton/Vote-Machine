@@ -5,7 +5,7 @@ function($stateProvider, $urlRouterProvider) {
 
 	$stateProvider.state('home', {
 		url : '/home',
-		templateUrl : '/home.html',
+		templateUrl : 'views/home.html',
 		controller : 'MainCtrl',
 		resolve : {
 			postPromise : ['posts',
@@ -68,11 +68,11 @@ function($http, $window) {
 	var auth = {};
 
 	auth.saveToken = function(token) {
-		$window.localStorage['flapper-news-token'] = token;
+		$window.localStorage['votinapp-token'] = token;
 	};
 
 	auth.getToken = function() {
-		return $window.localStorage['flapper-news-token'];
+		return $window.localStorage['votinapp-token'];
 	}
 
 	auth.isLoggedIn = function() {
@@ -109,7 +109,7 @@ function($http, $window) {
 	};
 
 	auth.logOut = function() {
-		$window.localStorage.removeItem('flapper-news-token');
+		$window.localStorage.removeItem('votinapp-token');
 	};
 
 	return auth;
@@ -138,7 +138,7 @@ function($http, auth) {
 	    o.posts.push(data);
 	  });
 	};
-	
+
 	o.upvote = function(post) {
 	  return $http.put('/posts/' + post._id + '/upvote', null, {
 	    headers: {Authorization: 'Bearer '+auth.getToken()}
@@ -170,14 +170,14 @@ function($http, auth) {
 	    headers: {Authorization: 'Bearer '+auth.getToken()}
 	  });
 	};
-	
+
 	o.upvoteComment = function(post, comment) {
 	  return $http.put('/posts/' + post._id + '/comments/'+ comment._id + '/upvote', null, {
 	    headers: {Authorization: 'Bearer '+auth.getToken()}
 	  }).success(function(data){
 	    comment.upvotes += 1;
 	  });
-	};	
+	};
 	//downvote comments
 	//I should really consolidate these into one voteHandler function
 	o.downvoteComment = function(post, comment) {
@@ -186,7 +186,7 @@ function($http, auth) {
 	  }).success(function(data){
 	    comment.upvotes -= 1;
 	  });
-	};	
+	};
 	return o;
 }]);
 
@@ -277,4 +277,3 @@ function($scope, auth) {
 	$scope.currentUser = auth.currentUser;
 	$scope.logOut = auth.logOut;
 }]);
-

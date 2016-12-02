@@ -10,8 +10,8 @@ var app = express();
 var mongoose = require('mongoose');
 var passport = require('passport');
 
-// connect MongoDB
-mongoose.connect('mongodb://localhost/news', function(err,db){
+// connect MongoDB+
+mongoose.connect('mongodb://admin:root@ds153667.mlab.com:53667/mean-database', function(err,db){
     if (!err){
         console.log('Connected to /news!');
     } else{
@@ -76,5 +76,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-
-
