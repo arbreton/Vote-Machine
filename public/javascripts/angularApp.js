@@ -1,4 +1,6 @@
-var app = angular.module('votingApp', ['ui.router']);
+
+var app = angular.module('votingApp', ['ui.router',  'adminCandidate', 'adminListCandidate']);
+
 
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
@@ -60,7 +62,7 @@ function($stateProvider, $urlRouterProvider) {
 
 	}).state('admin', {
 		url : '/admin',
-		templateUrl : '/admin.html',
+		templateUrl : '/admin.html'
 		/*controller : 'Null',*/
 		/*resolve : {
 			post : ['$stateParams', 'posts',
@@ -69,6 +71,19 @@ function($stateProvider, $urlRouterProvider) {
 			}]
 
 		}*/
+
+	}).state('candidate',
+	{
+		url: '/admin/candidate',
+		templateUrl: 'views/adminCandidate/registerCandidateView.html',
+		controller: 'registerCandidateController'
+	})
+	.state('listCandidate',
+	{
+		url: '/admin/list-candidate',
+		templateUrl: 'views/adminCandidate/listCandidateView.html',
+		controller: 'listCandidateController'
+
 	}).state('charts', {
 		url : '/charts',
 		templateUrl : '/charts.html',
@@ -80,6 +95,7 @@ function($stateProvider, $urlRouterProvider) {
 			}]
 
 		}*/
+
 	});
 
 	$urlRouterProvider.otherwise('home');
@@ -332,7 +348,7 @@ app.controller('votingController',['$scope', function($scope){
         $scope.prop1candpres1="Iniciativa sociedades de convivencia";
         $scope.prop2candpres1="Respeto a los derechos de los animales";
         $scope.prop3candpres1="Reelección consecutiva única";
-        
+
         $scope.nomcandpres2="Johnny Araya Monge";
         $scope.partidocand2="Partido Liberación Nacional";
 
@@ -390,14 +406,14 @@ app.controller('votingController',['$scope', function($scope){
         	}
         };
 
-        
+
         $scope.part1img="https://pac.cr/wp-content/uploads/2015/05/pac15_y1.png";
         $scope.part2img="http://alwaght.com/upload/logo/201629_6/20162935839245.jpg";
         $scope.part3img="http://4.bp.blogspot.com/-A3wXqdiplpw/Vc04v_vxECI/AAAAAAAAAMI/EeEMHCkaJcY/s1600/FRENTE%2BAMPLIO%2Blogo%2Bflor.jpg";
         $scope.part4img="http://2.bp.blogspot.com/-Bsjb-8D54f4/UEqPvGPlFLI/AAAAAAAABO4/PreBVEsTt5U/s1600/48820_100000625261389_313_n.jpg";
         $scope.part5img="https://radiosantaclara.org/media/uploads/logo_partido_unidad_social_cristiana_big.jpg";
         $scope.part6img="http://www.crwflags.com/fotw/images/c/cr%7Dpn.gif";
-        
+
 
         $scope.cand1img="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Luis_Guillermo_Sol%C3%ADs%2C_Costa_Rica_03.JPG/800px-Luis_Guillermo_Sol%C3%ADs%2C_Costa_Rica_03.JPG";
         $scope.cand2img="https://upload.wikimedia.org/wikipedia/commons/c/c9/Johnny_Araya_en_el_festival_Chepe_Joven_2011_cropped.png";
@@ -405,50 +421,49 @@ app.controller('votingController',['$scope', function($scope){
         $scope.cand4img="https://upload.wikimedia.org/wikipedia/commons/b/b7/Otto_Guevara.jpg";
         $scope.cand5img="https://upload.wikimedia.org/wikipedia/commons/4/4e/Photo_of_Mr._Rodolfo_Piza_and_company_in_PUSC_cropped.png";
         $scope.cand6img="https://upload.wikimedia.org/wikipedia/commons/7/72/Jose_Miguel_Corrales_cropped.jpg";
-        
+
         $scope.showother=function(){
-        
+
         }
 
         $scope.nullvote=function(){
-        
+
         }
 
 
 
 
         $scope.votepres = function(number) {
-        	
+
         	switch(number){
         		case 1:
-        			
+
         			$scope.othercand=false;
         		break;
         		case 2:
-        			
+
         			$scope.othercand=false;
         		break;
         		case 3:
-        			
+
         			$scope.othercand=false;
         		break;
         		case 4:
-        			
+
         			$scope.othercand=false;
         		break;
         		case 5:
-        			
+
         			$scope.othercand=false;
         		break;
         		case 6:
-        			
+
         			$scope.othercand=false;
         		break;
         		default:
         		break;
         	}
-            
-            
+
+
         }
 }]);
-
