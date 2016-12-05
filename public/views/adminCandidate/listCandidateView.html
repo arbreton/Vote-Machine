@@ -1,79 +1,43 @@
+<table datatable="" class="row-border hover">
+    <thead>
+    <tr>
+        <th>FullName</th>
+        <th>Provincia</th>
+        <th>Canton</th>
+        <th>Distrito</th>
+        <th>Partido</th>
+        <th>Fecha Eleccion</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Pepe Gomez</td>
+        <td>San Jose</td>
+        <td>Central</td>
+        <td>Merida</td>
+        <td>Partido A</td>
+        <td>2000-2005</td>
+        <td><button class="btn btn-success">Edit</button> </td>
+    </tr>
+    <tr>
+      <td>Adrina Gomez</td>
+      <td>San Jose</td>
+      <td>oeste</td>
+      <td>Merida</td>
+      <td>Partido A</td>
+      <td>2000-2005</td>
+      <td><button class="btn btn-success">Edit</button> </td>
+    </tr>
+    <tr>
+      <td>Carlos Gomez</td>
+      <td>San Jose</td>
+      <td>Central</td>
+      <td>Merida</td>
+      <td>Partido A</td>
+      <td>2000-2005</td>
+      <td><button class="btn btn-success">Edit</button> </td>
+    </tr>
 
-<div class="header-title">
-  <h4>Candidatos</h4>
-</div>
-<form class="form-inline row-magin buttons">
-  <!--home row -->
-  <div class="row form-group-block-full">
-    <div class="col-md-12">
-        <div class="form-group">
-          <label for="fecha-eleccion">Fecha de Elección: </label>
-          <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_elecciones" ng-model="eleccion.fecha_eleccion"></select>
-        </div>
-    </div>
-  </div><!--end row -->
-
-  <!--home row -->
-  <div class="row form-group-block">
-    <div class="col-md-12">
-        <div class="form-group">
-          <label for="label-provincia">Provincia: </label>
-          <select class="form-control" ng-options="provincia.descripcion for provincia in provincias" ng-model="eleccion.provincia" ng-change="showCantones($index)"></select>
-        </div>
-        <div class="form-group">
-          <label for="label-canton">Cantón: </label>
-          <select class="form-control" ng-options="canton.descripcion for canton in provincias.cantones" ng-model="eleccion.canton"></select>
-        </div>
-        <div class="form-group">
-          <label for="label-distritos">Distritos: </label>
-          <select class="form-control"></select>
-        </div>
-    </div><!--end row -->
-  </div>
-
-  <!--home row -->
-  <div class="row form-group-block">
-    <div class="col-md-12">
-        <div class="form-group">
-          <label for="label-partido">Partido: </label>
-          <select class="form-control"></select>
-        </div>
-        <div class="form-group">
-          <label for="label-imagen">Selccionar imágen: </label>
-          <button class="btn btn-grey">Examinar...</button>
-        </div>
-    </div>
-  </div><!--end row -->
-
-  <!--home row -->
-  <div class="row no-margin form-group-block">
-    <div class="col-md-12">
-        <div class="form-group">
-          <label for="label-nombre">Nombre: </label>
-          <input type="text" class="form-control" placeholder="Nombre"/>
-        </div>
-        <div class="form-group">
-          <label for="label-nombre">Apellido Parterno: </label>
-          <input type="text" class="form-control" placeholder="Apellido Paterno"/>
-        </div>
-        <div class="form-group">
-          <label for="label-nombre">Apellido Materno: </label>
-          <input type="text" class="form-control" placeholder="Apellido Materno" />
-        </div>
-    </div>
-  </div><!--end row -->
-
-  <!--home row -->
-  <div class="row form-group-block">
-    <div class="col-md-12">
-      <textarea class="form-control" placeholder="Propuestas" rows="6" cols="160"></textarea>
-    </div>
-  </div><!--end row -->
-
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <button class="btn btn-success">Guardar</button>
-      <button class="btn btn-danger">Cancelar</button>
-    </div>
-  </div>
-</form>
+    </tbody>
+</table>
