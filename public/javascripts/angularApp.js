@@ -1,7 +1,6 @@
 
 var app = angular.module('votingApp', ['ui.router',  'adminCandidate', 'adminListCandidate']);
 
-
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
 
@@ -77,13 +76,6 @@ function($stateProvider, $urlRouterProvider) {
 		url: '/admin/candidate',
 		templateUrl: 'views/adminCandidate/registerCandidateView.html',
 		controller: 'registerCandidateController'
-	})
-	.state('listCandidate',
-	{
-		url: '/admin/list-candidate',
-		templateUrl: 'views/adminCandidate/listCandidateView.html',
-		controller: 'listCandidateController'
-
 	}).state('charts', {
 		url : '/charts',
 		templateUrl : '/charts.html',
@@ -96,7 +88,13 @@ function($stateProvider, $urlRouterProvider) {
 
 		}*/
 
-	});
+	}).state('candidates', {
+		url: '/admin/candidates',
+		templateUrl: 'views/adminCandidate/listCandidateView.html',
+		controller: 'listCandidateController'
+	})
+	;
+
 
 	$urlRouterProvider.otherwise('home');
 }]);

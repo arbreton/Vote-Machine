@@ -17,8 +17,4 @@ app.controller('listCandidateController', [ '$scope', '$http', function($scope, 
     {id:7, descripcion: "Limon"},
   ];
 
-$scope.showCantones = function ($index)
-{
-  console.log($index);
-};
 }]);

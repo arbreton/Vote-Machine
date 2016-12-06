@@ -21,15 +21,15 @@
     <div class="col-md-12">
         <div class="form-group">
           <label for="label-provincia">Provincia: </label>
-          <select class="form-control" ng-options="provincia.descripcion for provincia in provincias" ng-model="eleccion.provincia" ng-change="showCantones($index)"></select>
+          <select class="form-control" ng-options="provincia.descripcion for provincia in provincias" ng-model="eleccion.provincia" ng-change="showCantones(eleccion.provincia.cantones)"></select>
         </div>
         <div class="form-group">
           <label for="label-canton">Cantón: </label>
-          <select class="form-control" ng-options="canton.descripcion for canton in provincias.cantones" ng-model="eleccion.canton"></select>
+          <select class="form-control" ng-options="canton.descripcion for canton in cantones" ng-model="eleccion.provincia.canton" ng-change="showDistritos(eleccion.provincia.distritos)"></select>
         </div>
         <div class="form-group">
           <label for="label-distritos">Distritos: </label>
-          <select class="form-control"></select>
+          <select class="form-control" ng-options="distrito.descripcion for distrito in distritos" ng-model="eleccion.distritos"></select>
         </div>
     </div><!--end row -->
   </div>
@@ -39,11 +39,11 @@
     <div class="col-md-12">
         <div class="form-group">
           <label for="label-partido">Partido: </label>
-          <select class="form-control"></select>
+          <select class="form-control" ng-model="eleccion.partido" ng-options="partido.descripcion for partido in partidos"></select>
         </div>
         <div class="form-group">
           <label for="label-imagen">Selccionar imágen: </label>
-          <button class="btn btn-grey">Examinar...</button>
+          <button class="btn btn-grey" ngf-select ng-model="files" ngf-multiple="true">Examinar...</button>
         </div>
     </div>
   </div><!--end row -->
