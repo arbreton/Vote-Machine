@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
-var CiudadanosSchema = new mongoose.Schema({
+var CitizensSchema = new mongoose.Schema({
   clave_electoral: String,
-  provincia: { codigo: String, descripcion: String, canton: String, distrito: String, }
+  provincia: { codigo: String, descripcion: String, canton: String, distrito: String }
   genero: String,
   fecha_caducidad: String,
   estatus: String,
@@ -11,8 +11,8 @@ var CiudadanosSchema = new mongoose.Schema({
   ap_materno: String,
   edad: String,
   pass: String,
-  rol: { id: String, descripcion: String, }
+  rol: { id: String, descripcion: String }
 });
 
 
-mongoose.model('Ciudadanos', CiudadanosSchema);
+mongoose.model('Citizens', CitizensSchema);
