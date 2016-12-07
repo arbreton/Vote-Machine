@@ -23,9 +23,11 @@ require('./models/Posts');
 require('./models/Comments');
 require('./models/Users');
 require('./config/passport');
+require('./models/candidate');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var candidates = require('./routes/candidates');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +44,7 @@ app.use(passport.initialize());
 
 app.use('/', routes);
 app.use('/users', users);
-
+app.use('/api', candidates);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

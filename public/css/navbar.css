@@ -18,3 +18,5 @@
 .buttons .btn-success{margin-right: 10px;}
 .form-group-block input {width: 64% !important;}
 .form-group-block textarea { width: 100% !important;}
+.navbar-inverse { position: fixed !important;}
+.navbar {margin-bottom:  0px;}
