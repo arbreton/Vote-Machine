@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var CiudadanosSchema = new mongoose.Schema({
   clave_electoral: String,
-  provincia: { type: mongoose.Schema.Types.ObjectId, ref: 'Provincia' }
+  provincia: { codigo: String, descripcion: String, canton: String, distrito: String, }
   genero: String,
   fecha_caducidad: String,
   estatus: String,
@@ -11,18 +11,8 @@ var CiudadanosSchema = new mongoose.Schema({
   ap_materno: String,
   edad: String,
   pass: String,
-  //upvotes: {type: Number, default: 0},
-  rol: { type: mongoose.Schema.Types.ObjectId, ref: 'Rol' }
+  rol: { id: String, descripcion: String, }
 });
 
-/*CiudadanosSchema.methods.upvote = function(cb) {
-  this.upvotes += 1;
-  this.save(cb);
-};
-
-CiudadanosSchema.methods.downvote = function (cb) {
-  this.upvotes -= 1;
-  this.save(cb);
-};*/
 
 mongoose.model('Ciudadanos', CiudadanosSchema);
