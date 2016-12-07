@@ -17,4 +17,8 @@ app.controller('listCandidateController', [ '$scope', '$http', function($scope, 
     {id:7, descripcion: "Limon"},
   ];
 
+  $http.get('localhost:3000/api/canditates', function (data)
+  {
+      console.log(data);
+  });
 }]);

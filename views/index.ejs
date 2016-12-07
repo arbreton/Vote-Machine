@@ -10,7 +10,6 @@
     <link href="/css/adminDash.css" type="text/css" rel="stylesheet">
     <link href="/css/navbar.css" type="text/css" rel="stylesheet">
     <!-- script del chart-->
-    <script src = "js/main.js"></script>
       <style> .glyphicon-thumbs-up { cursor:pointer } </style>
   </head>
 
@@ -49,12 +48,6 @@
           </ul>
         </li>
       </ul>
-      <!--<form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-info">Submit</button>
-      </form>-->
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Settings</a></li>
         <li class="dropdown">
@@ -71,22 +64,16 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<!--
-  <nav class="navbar navbar-default pull-right" ng-controller="NavCtrl">
-    <ul class="nav navbar-nav">
-      <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
-      <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
-      <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
-      <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
-    </ul>
-  </nav>
--->
-   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+<div id="wrapper">
+  <div id="sidebar-wrapper"> </div>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <ui-view>
 
+        </ui-view>
+      </div>
     </div>
-  </div>
-  <ui-view></ui-view>
+</div>
 
 <script type="text/ng-template" id="/home.html">
 
@@ -377,6 +364,7 @@ si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
     <!--Librerias -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src ="js/Chart.min.js"></script>
+    <script src = "js/main.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
     <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>

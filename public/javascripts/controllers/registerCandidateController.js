@@ -27,6 +27,11 @@ app.controller('registerCandidateController', [ '$scope', '$http', function($sco
   ];
 
 
+  $scope.showProvincias = function ()
+  {
+    
+    return that.provincias;
+  };
 
   $scope.showCantones = function (cantones)
   {
