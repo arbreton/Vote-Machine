@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 // connect MongoDB+
-mongoose.connect('mongodb://admin:root@ds153667.mlab.com:53667/mean-database', function(err,db){
+mongoose.connect('mongodb:localhost/mean-database', function(err,db){
     if (!err){
         console.log('Connected to /news!');
     } else{
@@ -23,14 +23,14 @@ require('./models/Posts');
 require('./models/Comments');
 require('./models/Users');
 require('./config/passport');
-require('./models/candidate');
-require('./models/province');
+//require('./models/candidate');
+//require('./models/Provinces');
 
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var candidates = require('./routes/candidates');
-var provinces = require('./route/provinces');
+//var candidates = require('./routes/candidates');
+//var provinces = require('./route/provinces');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,8 +47,8 @@ app.use(passport.initialize());
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/api', candidates);
-app.use('/api', provinces);
+//app.use('/api', candidates);
+//app.use('/api', provinces);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

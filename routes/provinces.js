@@ -10,3 +10,5 @@ app.get('/provinces', function (req, res)
     res.json(province);
   });
 });
+
+module.exports = app;

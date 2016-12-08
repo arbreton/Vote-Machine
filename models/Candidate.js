@@ -14,4 +14,3 @@ var candidateSchema = new Schema({ //Propiedades de mi schema
 
 //exportar el modelo
 module.exports = mongoose.model('Candidate', candidateSchema);
-.
