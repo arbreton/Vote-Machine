@@ -24,10 +24,13 @@ require('./models/Comments');
 require('./models/Users');
 require('./config/passport');
 require('./models/candidate');
+require('./models/province');
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var candidates = require('./routes/candidates');
+var provinces = require('./route/provinces');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,6 +48,7 @@ app.use(passport.initialize());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', candidates);
+app.use('/api', provinces);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
