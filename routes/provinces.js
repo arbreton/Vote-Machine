@@ -1,5 +1,5 @@
-var express = import('express');
-var mongoose = import('mongoose');
+var express = require('express');
+var mongoose = require('mongoose');
 var Province = mongoose.model('Province');
 var app = express();
 
