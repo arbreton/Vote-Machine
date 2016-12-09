@@ -1,78 +1,99 @@
-<div class="header-title">
-  <h4>Registro de Candidatos</h4>
+<div id="wrapper" ng-app="dashboard.candidatos">
+  <div id="sidebar-wrapper"> <div class="header-logo"><img src="/images/perfil.jpg"></div>
+    <div class="info-people-container">
+        <div class="info-poeple">
+          <h3>Jose Perez Garcia</h3>
+          <hr width="170px">
+          <h4>Canton: Felipe Angeles</h4>
+          <hr width="170px">
+          <h4>Distrito: El Refugio</h4>
+          <hr width="170px">
+          <h4>Provincia: San Jose</h4>
+          <hr width="170px">
+          <h4>Edad: 43 Años</h4>
+        </div>
+    </div>
+  </div>
+
+ <div class="title">Registro de Candidatos</div>
+ <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <form class="form-inline row-magin buttons">
+        <!--home row -->
+        <div class="row form-group-block-full">
+          <div class="col-md-12">
+              <div class="form-group">
+                <label for="fecha-eleccion">Fecha de Elección: </label>
+                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_elecciones" ng-model="eleccion.fecha_eleccion"></select>
+              </div>
+          </div>
+        </div><!--end row -->
+
+        <!--home row -->
+        <div class="row form-group-block">
+          <div class="col-md-12">
+              <div class="form-group">
+                <label for="label-provincia">Provincia: </label>
+                <select class="form-control" ng-options="provincia.descripcion for provincia in showProvincias()" ng-model="eleccion.provincia" ng-change="showCantones(eleccion.provincia.cantones)"></select>
+              </div>
+              <div class="form-group">
+                <label for="label-canton">Cantón: </label>
+                <select class="form-control" ng-options="canton.descripcion for canton in cantones" ng-model="eleccion.provincia.canton" ng-change="showDistritos(eleccion.provincia.distritos)"></select>
+              </div>
+              <div class="form-group">
+                <label for="label-distritos">Distritos: </label>
+                <select class="form-control" ng-options="distrito.descripcion for distrito in distritos" ng-model="eleccion.distritos"></select>
+              </div>
+          </div><!--end row -->
+        </div>
+
+        <!--home row -->
+        <div class="row form-group-block">
+          <div class="col-md-12">
+              <div class="form-group">
+                <label for="label-partido">Partido: </label>
+                <select class="form-control" ng-model="eleccion.partido" ng-options="partido.descripcion for partido in partidos"></select>
+              </div>
+              <div class="form-group">
+                <label for="label-imagen">Selccionar imágen: </label>
+                <button class="btn btn-grey" ngf-select ng-model="files" ngf-multiple="true">Examinar...</button>
+              </div>
+          </div>
+        </div><!--end row -->
+
+        <!--home row -->
+        <div class="row no-margin form-group-block">
+          <div class="col-md-12">
+              <div class="form-group">
+                <label for="label-nombre">Nombre: </label>
+                <input type="text" class="form-control" placeholder="Nombre"/>
+              </div>
+              <div class="form-group">
+                <label for="label-nombre">Apellido Parterno: </label>
+                <input type="text" class="form-control" placeholder="Apellido Paterno"/>
+              </div>
+              <div class="form-group">
+                <label for="label-nombre">Apellido Materno: </label>
+                <input type="text" class="form-control" placeholder="Apellido Materno" />
+              </div>
+          </div>
+        </div><!--end row -->
+
+        <!--home row -->
+        <div class="row form-group-block">
+          <div class="col-md-12">
+            <textarea class="form-control" placeholder="Propuestas" rows="6" cols="160"></textarea>
+          </div>
+        </div><!--end row -->
+
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button class="btn btn-success">Guardar</button>
+            <button class="btn btn-danger">Cancelar</button>
+          </div>
+        </div>
+      </form>
+      
+    </div>
+  </div>
 </div>
-<form class="form-inline row-magin buttons">
-  <!--home row -->
-  <div class="row form-group-block-full">
-    <div class="col-md-12">
-        <div class="form-group">
-          <label for="fecha-eleccion">Fecha de Elección: </label>
-          <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_elecciones" ng-model="eleccion.fecha_eleccion"></select>
-        </div>
-    </div>
-  </div><!--end row -->
-
-  <!--home row -->
-  <div class="row form-group-block">
-    <div class="col-md-12">
-        <div class="form-group">
-          <label for="label-provincia">Provincia: </label>
-          <select class="form-control" ng-options="provincia.descripcion for provincia in showProvincias()" ng-model="eleccion.provincia" ng-change="showCantones(eleccion.provincia.cantones)"></select>
-        </div>
-        <div class="form-group">
-          <label for="label-canton">Cantón: </label>
-          <select class="form-control" ng-options="canton.descripcion for canton in cantones" ng-model="eleccion.provincia.canton" ng-change="showDistritos(eleccion.provincia.distritos)"></select>
-        </div>
-        <div class="form-group">
-          <label for="label-distritos">Distritos: </label>
-          <select class="form-control" ng-options="distrito.descripcion for distrito in distritos" ng-model="eleccion.distritos"></select>
-        </div>
-    </div><!--end row -->
-  </div>
-
-  <!--home row -->
-  <div class="row form-group-block">
-    <div class="col-md-12">
-        <div class="form-group">
-          <label for="label-partido">Partido: </label>
-          <select class="form-control" ng-model="eleccion.partido" ng-options="partido.descripcion for partido in partidos"></select>
-        </div>
-        <div class="form-group">
-          <label for="label-imagen">Selccionar imágen: </label>
-          <button class="btn btn-grey" ngf-select ng-model="files" ngf-multiple="true">Examinar...</button>
-        </div>
-    </div>
-  </div><!--end row -->
-
-  <!--home row -->
-  <div class="row no-margin form-group-block">
-    <div class="col-md-12">
-        <div class="form-group">
-          <label for="label-nombre">Nombre: </label>
-          <input type="text" class="form-control" placeholder="Nombre"/>
-        </div>
-        <div class="form-group">
-          <label for="label-nombre">Apellido Parterno: </label>
-          <input type="text" class="form-control" placeholder="Apellido Paterno"/>
-        </div>
-        <div class="form-group">
-          <label for="label-nombre">Apellido Materno: </label>
-          <input type="text" class="form-control" placeholder="Apellido Materno" />
-        </div>
-    </div>
-  </div><!--end row -->
-
-  <!--home row -->
-  <div class="row form-group-block">
-    <div class="col-md-12">
-      <textarea class="form-control" placeholder="Propuestas" rows="6" cols="160"></textarea>
-    </div>
-  </div><!--end row -->
-
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <button class="btn btn-success">Guardar</button>
-      <button class="btn btn-danger">Cancelar</button>
-    </div>
-  </div>
-</form>
