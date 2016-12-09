@@ -7,7 +7,26 @@ app.get('/provinces', function (req, res)
 {
   Province.find({}).exec(function (err, province)
   {
-    res.json(province);
+    var newProvince = [];
+    var newCanton = [];
+    var newDistritos = [];
+    province.map( function (value, index)
+    {
+
+      if(value.descripcion =='SAN JOSE')
+      {
+          newProvince.push(value);
+          if(value.cantones.descripcion = 'Central')
+          {
+            newCanton.push(value);
+            if (value.cantones.distritos.descripcion = 'HOSPITAL')
+            {
+              newDistritos.push(value);
+            }
+          }
+      }
+    });
+    res.json(newDistritos);
   });
 });
 
