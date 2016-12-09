@@ -12,6 +12,7 @@ var CitizensSchema = new mongoose.Schema({
   edad: String,
   pass: String,
   rol: { id: String, descripcion: String }
+  candidatos: {presidenciales:[{nombre:String, ap_paterno:String, ap_materno:String,propuestas:String, partido: {codigo:String,descripcion:String},fecha_eleccion:String, estatus_votacion:{fecha_votacion:String,voto:Boolean},otros:String}]}
 });
 
 
