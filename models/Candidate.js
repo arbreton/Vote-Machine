@@ -7,6 +7,7 @@ var candidateSchema = new Schema({ //Propiedades de mi schema
     ap_paterno: String,
     ap_materno: String,
     propuesta: String,
+    fecha_eleccion: String,
     partido: { codigo: String, descripcion: String, img: String },
     provincia: { codigo: String, descripcion: String, distritos:{ codigo: String, descripcion: String, canton: String } }
   }]

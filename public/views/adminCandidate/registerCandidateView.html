@@ -1,4 +1,4 @@
-<div id="wrapper" ng-app="dashboard.candidatos">
+<div id="wrapper">
   <div id="sidebar-wrapper"> <div class="header-logo"><img src="/images/perfil.jpg"></div>
     <div class="info-people-container">
         <div class="info-poeple">
@@ -18,13 +18,14 @@
  <div class="title">Registro de Candidatos</div>
  <div id="page-content-wrapper">
     <div class="container-fluid">
-      <form class="form-inline row-magin buttons">
+
+      <form name="saveForm" ng-submit="saveForm.$valid && saveItem()" class="form-inline row-magin buttons">
         <!--home row -->
         <div class="row form-group-block-full">
           <div class="col-md-12">
               <div class="form-group">
                 <label for="fecha-eleccion">Fecha de Elección: </label>
-                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_elecciones" ng-model="eleccion.fecha_eleccion"></select>
+                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_elecciones" ng-model="candidate.fecha_eleccion" required=""></select>
               </div>
           </div>
         </div><!--end row -->
@@ -34,29 +35,29 @@
           <div class="col-md-12">
               <div class="form-group">
                 <label for="label-provincia">Provincia: </label>
-                <select class="form-control" ng-options="provincia.descripcion for provincia in showProvincias()" ng-model="eleccion.provincia" ng-change="showCantones(eleccion.provincia.cantones)"></select>
+                <select class="form-control" ng-options="province.descripcion for province in provinces" ng-model="candidate.province" ng-change="showCantones(candidate.province.cantones)" required=""></select>
               </div>
               <div class="form-group">
                 <label for="label-canton">Cantón: </label>
-                <select class="form-control" ng-options="canton.descripcion for canton in cantones" ng-model="eleccion.provincia.canton" ng-change="showDistritos(eleccion.provincia.distritos)"></select>
+                <select class="form-control" ng-options="canton.descripcion for canton in cantones" ng-model="candidate.province.canton" ng-change="showDistricts(candidate.province.canton.distritos)" required=""></select>
               </div>
               <div class="form-group">
                 <label for="label-distritos">Distritos: </label>
-                <select class="form-control" ng-options="distrito.descripcion for distrito in distritos" ng-model="eleccion.distritos"></select>
+                <select class="form-control" ng-options="district.descripcion for district in districts" ng-model="candidate.district" required=""></select>
               </div>
-          </div><!--end row -->
-        </div>
+          </div>
+        </div><!--end row -->
 
         <!--home row -->
         <div class="row form-group-block">
           <div class="col-md-12">
               <div class="form-group">
                 <label for="label-partido">Partido: </label>
-                <select class="form-control" ng-model="eleccion.partido" ng-options="partido.descripcion for partido in partidos"></select>
+                <select class="form-control" ng-options="partido.descripcion for partido in partidos" ng-model="candidate.partido"></select>
               </div>
               <div class="form-group">
                 <label for="label-imagen">Selccionar imágen: </label>
-                <button class="btn btn-grey" ngf-select ng-model="files" ngf-multiple="true">Examinar...</button>
+                <div class="button" ngf-select="uploadFile($file)">Upload on file select</div>
               </div>
           </div>
         </div><!--end row -->
@@ -66,15 +67,15 @@
           <div class="col-md-12">
               <div class="form-group">
                 <label for="label-nombre">Nombre: </label>
-                <input type="text" class="form-control" placeholder="Nombre"/>
+                <input type="text" class="form-control" placeholder="Nombre" ng-model="candidate.nombre" required=""/>
               </div>
               <div class="form-group">
                 <label for="label-nombre">Apellido Parterno: </label>
-                <input type="text" class="form-control" placeholder="Apellido Paterno"/>
+                <input type="text" class="form-control" placeholder="Apellido Paterno" ng-model="candidate.ap_paterno" required=""/>
               </div>
               <div class="form-group">
                 <label for="label-nombre">Apellido Materno: </label>
-                <input type="text" class="form-control" placeholder="Apellido Materno" />
+                <input type="text" class="form-control" placeholder="Apellido Materno" ng-model="candidate.ap_materno" required="" />
               </div>
           </div>
         </div><!--end row -->
@@ -82,18 +83,20 @@
         <!--home row -->
         <div class="row form-group-block">
           <div class="col-md-12">
-            <textarea class="form-control" placeholder="Propuestas" rows="6" cols="160"></textarea>
+            <textarea class="form-control" placeholder="Propuestas" rows="6" cols="160" ng-model="candidate.propuesta" required=""></textarea>
           </div>
         </div><!--end row -->
 
+        <!--home row -->
         <div class="row">
           <div class="col-md-12 text-center">
-            <button class="btn btn-success">Guardar</button>
+            <button class="btn btn-success" ng-disabled="!saveForm.$valid" type="submit">Guardar</button>
             <button class="btn btn-danger">Cancelar</button>
           </div>
-        </div>
-      </form>
-      
+        </div><!--end row -->
+
+      </form><!--end form -->
+
     </div>
   </div>
 </div>

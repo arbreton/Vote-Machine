@@ -1,9 +1,9 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var Candidate = mongoose.model('Candidate');
-var app = express();
+var router = express.Router();
 
-app.get('/canditates', function (req, res)
+router.post('/canditates', function (req, res)
 {
   Candidate.findOne({}).exec(function (err, candidate)
   {
@@ -12,4 +12,9 @@ app.get('/canditates', function (req, res)
   });
 });
 
-module.exports = app;
+router.post('/candidate', function(req, res)
+{
+  console.log(req.body);
+});
+
+module.exports = router;
