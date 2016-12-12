@@ -3,3 +3,16 @@ background-image: url(../images/bg.PNG);
 background-repeat: no-repeat;
 background-size: cover;
 }
+
+#div1,#div2,#div3, #div4, #div5, #div6 {
+	margin-top: 100px;
+}
+
+#div1, #div3, #div5{
+	float: left;
+	margin-left: 500px; 
+}
+#div2, #div4, #div6{
+	float: left;
+	margin-left: 80px;
+}
