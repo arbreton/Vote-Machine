@@ -61,8 +61,8 @@ function($stateProvider, $urlRouterProvider) {
 
 	}).state('admin', {
 		url : '/admin',
-		templateUrl : '/admin.html'
-		/*controller : 'Null',*/
+		templateUrl : '/admin.html',
+		controller : 'AdminCantroller',
 		/*resolve : {
 			post : ['$stateParams', 'posts',
 			function($stateParams, posts) {
@@ -226,7 +226,14 @@ function($http, auth) {
 	return o;
 }]);
 
+app.controller('AdminCantroller', ['$scope', '$location', function ($scope, $location)
+{
+	$scope.newCandidate = function()
+	{
+			$location.url("/admin/candidate");
+	};
 
+}]);
 
 app.controller('MainCtrl', ['$scope', 'posts', 'auth',
 function($scope, posts, auth) {
