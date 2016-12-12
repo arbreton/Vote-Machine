@@ -58,6 +58,11 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
   $scope.saveItem = function ()
   {
     $scope.uploadFile(that.file);
+    
+    $http.post('api/candidate').success(function(data)
+    {
+      console.log(data);
+    });
   };
 
 }]);
