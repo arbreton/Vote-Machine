@@ -6,12 +6,14 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
 {
   var that = $scope;
   that.candidate = {};
-  that.fecha_elecciones = [{id: 1, fecha:"2000-2005"}, {id: 2, fecha: "2005-2010"}, {id: 3, fecha:"2010-2015"}, {id: 4, fecha:"2015-2020"}];
+  that.fecha_inicial = [{id: 1, fecha:"2000"}, {id: 2, fecha: "2005"}, {id: 3, fecha:"2010"}, {id: 4, fecha:"2015"}];
+  that.fecha_final = [{id: 1, fecha:"2005"}, {id: 2, fecha: "2010"}, {id: 3, fecha:"2015"}, {id: 4, fecha:"2020"}];
   that.cantones = [];
   that.districts = [];
   that.partidos = [{id:1, descripcion:"Rojo"}, {id:2,descripcion:"Verde"}];
   that.provinces = [];
   that.file = {};
+  $scope.candidates = [{id: 'choice1'}];
    $http.get('/api/provinces').success(function (res)
    {
      that.provinces = res;
@@ -53,6 +55,16 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
     {
       console.log(evt);
     });
+  };
+
+    $scope.addNewChoice = function() {
+    var newItemNo = $scope.candidates.length+1;
+    $scope.candidates.push({'id':'candidates'+newItemNo});
+  };
+    
+  $scope.removeChoice = function() {
+    var lastItem = $scope.candidates.length-1;
+    $scope.candidates.splice(lastItem);
   };
 
   $scope.saveItem = function ()

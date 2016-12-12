@@ -15,7 +15,8 @@
     </div>
   </div>
 
- <div class="title">Candidate Registration</div>
+ <div class="title">New Election Registration</div>
+ <hr>
  <div id="page-content-wrapper">
     <div class="container-fluid">
 
@@ -24,12 +25,18 @@
         <div class="row form-group-block-full">
           <div class="col-md-12">
               <div class="form-group">
-                <label for="fecha-eleccion">Election Date: </label>
-                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_elecciones" ng-model="candidate.fecha_eleccion" required=""></select>
+                <label for="fecha-eleccion">From: </label>
+                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_inicial" ng-model="candidate.fecha_eleccion" required=""></select>
+              
+                <label for="fecha-eleccion">To: </label>
+                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_final" ng-model="candidate.fecha_eleccion" required=""></select>
               </div>
           </div>
         </div><!--end row -->
+<fieldset  data-ng-repeat="candidate in candidates">
 
+<div class="title2">Candidate #?</div>
+ <hr>
         <!--home row -->
         <div class="row form-group-block">
           <div class="col-md-12">
@@ -63,29 +70,39 @@
         </div><!--end row -->
 
         <!--home row -->
+         
         <div class="row no-margin form-group-block">
           <div class="col-md-12">
               <div class="form-group">
                 <label for="label-nombre">Name: </label>
-                <input type="text" class="form-control" placeholder="Nombre" ng-model="candidate.nombre" required=""/>
+                <input type="text" class="form-control" placeholder="Nombre" ng-model="candidate.nombre"/>
               </div>
               <div class="form-group">
                 <label for="label-nombre">First Last Name: </label>
-                <input type="text" class="form-control" placeholder="Apellido Paterno" ng-model="candidate.ap_paterno" required=""/>
+                <input type="text" class="form-control" placeholder="Apellido Paterno" ng-model="candidate.ap_paterno"/>
               </div>
               <div class="form-group">
                 <label for="label-nombre">Second Last Name: </label>
-                <input type="text" class="form-control" placeholder="Apellido Materno" ng-model="candidate.ap_materno" required="" />
+                <input type="text" class="form-control" placeholder="Apellido Materno" ng-model="candidate.ap_materno" />
+                
               </div>
           </div>
         </div><!--end row -->
+      
+        
 
         <!--home row -->
         <div class="row form-group-block">
           <div class="col-md-12">
             <textarea class="form-control" placeholder="Propuestas" rows="6" cols="160" ng-model="candidate.propuesta" required=""></textarea>
+             <button class="btn btn-danger" ng-show="$last" ng-click="removeChoice()">Remove Candidate</button>
           </div>
+
         </div><!--end row -->
+
+</fieldset>
+ <button class="btn btn-success" ng-click="addNewChoice()">Add New Candidate</button>
+
 
         <!--home row -->
         <div class="row">
