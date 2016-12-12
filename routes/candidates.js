@@ -24,12 +24,7 @@ router.post('/canditates', function (req, res)
   });
 });
 
-router.post('/candidate', function (req, res)
-{
-  console.log(res)
-});
-
-route.post('/file',function(req, res)
+router.post('/file',function(req, res)
 {
   upload(req,res,function(err) {
         if(err) {
@@ -44,7 +39,8 @@ route.post('/file',function(req, res)
 
 router.post('/candidate', function(req, res)
 {
-  console.log(req.body);
+  console.log(res);
+  console.log(req);
 });
 
 module.exports = router;
