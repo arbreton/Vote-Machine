@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html ng-app="votingApp">
+  <head>
+    <title>VoteMachine.IO</title>
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="/css/landingUser.css">
+    <link href="css/bootstrap337.min.css" rel="stylesheet">
+    <link href="/css/adminDash.css" type="text/css" rel="stylesheet">
+    <link href="/css/navbar.css" type="text/css" rel="stylesheet">
+    <!-- script del chart-->
+      <style> .glyphicon-thumbs-up { cursor:pointer } </style>
+  </head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">VoteMachine.IO</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="#/admin">Admin</a></li>
+        <li><a href="#/charts">Charts</a></li>
+
+        <li><a href="#/voting">Voting</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QuickCharts <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Settings</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+            <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
+            <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
+            <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+        <ui-view>
+
+        </ui-view>
+
+<script type="text/ng-template" id="/home.html">
+
+  <div class="page-header">
+    <center><h1>VoteMachine.IO</h1></center>
+  </div>
+
+  <div ng-repeat="post in posts | orderBy: '-upvotes'">
+    <span class="glyphicon glyphicon-thumbs-up" ng-click="upvote(post)"></span>
+      {{post.upvotes}}
+    <span class="glyphicon glyphicon-thumbs-down" ng-click="downvote(post)"></span>
+    <span style="font-size:20px;margin-left:10px">
+      <a ng-show="post.link" href="{{post.link}}">
+        {{post.title}}
+      </a>
+      <span ng-hide="post.link">
+        {{post.title}}
+      </span>
+  <span ng-show="post.author">
+    posted by <a>{{post.author}}</a> |
+  </span>
+ </span>
+    <span>
+      <a href="#/posts/{{post._id}}">Comments</a>
+        ({{post.comments.length}})
+    </span>
+  </div>
+
+  <form ng-submit="addPost()" ng-show="isLoggedIn()" style="margin-top:30px">
+    <h3>Add a new post:</h3>
+
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Title"  ng-model="title">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Link" ng-model="link">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Post</button>
+  </form>
+  <div ng-hide="isLoggedIn()">
+
+  <center><h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3></center>
+  </div>
+
+</script>
+
+<script type="text/ng-template" id="/admin.html">
+  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+
+  <div id="wrapper" ng-app="dashboard.candidatos">
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+      <div class="header-logo">
+        <img src="/images/perfil.jpg">
+      </div>
+      <div class="info-people-container">
+          <div class="info-poeple">
+            <h3>Jose Perez Garcia</h3>
+            <hr width="170px">
+            <h4>Canton: Felipe Angeles</h4>
+            <hr width="170px">
+            <h4>Distrito: El Refugio</h4>
+            <hr width="170px">
+            <h4>Provincia: San Jose</h4>
+            <hr width="170px">
+            <h4>Edad: 43 Años</h4>
+        </div>
+      </div>
+      </div>
+      <!-- /#sidebar-wrapper -->
+      <!--Nav bar -->
+
+      <!-- Page Content -->
+       <div class="title">Herramientas</div>
+       <hr>
+
+      <div id="page-content-wrapper" ng-view>
+          <div class="container-fluid">
+            <div class="header">
+
+
+      <div class="btncenter">
+        <div class="buttonlabel">
+           <button type="button" class="btn btn-default bigbutton"><i class="fa fa-commenting-o" aria-hidden="true"></i></button>
+           <label>Vote</label>
+        </div>
+        <div class="buttonlabel">
+            <button type="button" class="btn btn-default bigbutton"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+            <label>Charts</label>
+        </div>
+        <div class="buttonlabel">
+            <button type="button" class="btn btn-default bigbutton" ng-click="newCandidate()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <label>New Election</label>
+        </div>
+      </div>
+
+
+            </div>
+          </div>
+      </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="/posts.html">
+    <div class="page-header">
+      <h3>
+        <a ng-show="post.link" href="{{post.link}}">
+          {{post.title}}
+        </a>
+        <span ng-hide="post.link">
+          {{post.title}}
+        </span>
+      </h3>
+    </div>
+
+    <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
+      <span class="glyphicon glyphicon-thumbs-up" ng-click="upvote(comment)"></span>
+        {{comment.upvotes}}
+      <span class="glyphicon glyphicon-thumbs-down" ng-click="downvote(comment)"></span>
+        - by {{comment.author}}
+      <span style="font-size:20px; margin-left:10px;">
+        {{comment.body}}
+      </span>
+    </div>
+
+    <form ng-submit="addComment()" ng-show="isLoggedIn()" style="margin-top:30px;">
+      <h3>Add a new comment</h3>
+
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+    <div ng-hide="isLoggedIn()">
+	  <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can comment.</h3>
+	</div>
+</script>
+
+<script type="text/ng-template" id="/register.html">
+	 <center>
+    <div class="page-header">
+	    <h1>VoteMachine.IO</h1>
+	  </div>
+	  <div ng-show="error" class="alert alert-danger row">
+	    <span>{{ error.message }}</span>
+	  </div>
+
+	  <form ng-submit="register()"
+	    style="margin-top:30px;margin-left: 500px;margin-right: 500px;">
+	    <h3>Register</h3>
+
+	    <div class="form-group">
+	      <input type="text"
+	      class="form-control"
+	      placeholder="Username"
+	      ng-model="user.username"></input>
+	    </div>
+	    <div class="form-group">
+	      <input type="password"
+	      class="form-control"
+	      placeholder="Password"
+	      ng-model="user.password"></input>
+	    </div>
+	    <button type="submit" class="btn btn-primary">Register</button>
+	  </form>
+    </center>
+</script>
+
+<script type="text/ng-template" id="/login.html">
+  <center>
+	  <div class="page-header">
+	    <h1>VoteMachine.IO</h1>
+	  </div>
+	  <div ng-show="error" class="alert alert-danger row">
+	    <span>{{ error.message }}</span>
+	  </div>
+
+	  <form ng-submit="logIn()"
+	    style="margin-top:30px;margin-left: 500px;margin-right: 500px;">
+      <!--log In -->
+	    <div class =  "text-center">
+        <h1 span class = "glyphicon glyphicon-user" style = "color:283E51"></h1></span>
+      </div>
+      <div class = "form-horizontal">
+	    <div class="form-group">
+        <label for = "inputuser" class = "col-sm-2 control-label">Usuario</label>
+      <div class= "col-sm-8">
+	      <input type="text"
+	      class="form-control"
+	      placeholder="Username"
+	      ng-model="user.username"></input>
+	    </div>
+      </div>
+      </div>
+      <div class = "text-center">
+        <h1 span class="glyphicon glyphicon-lock" style = "color: #283E51"></h1></span>
+      </div>
+      <label for="inputPassword" class="col-sm-2 control-label">Contraseña</label>
+      <div class="col-sm-8">
+	    <div class="form-group">
+	      <input type="password"
+	      class="form-control"
+	      placeholder="Password"
+	      ng-model="user.password"></input>
+	    </div>
+      </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8">
+	       <button type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </div>
+	  </form>
+  </center>
+</script>
+
+<!-- Charts-->
+<script type="text/ng-template" id="/charts.html">
+  <div class="page-header">
+  <h1> MUESTRA DE GRAFICAS </h1>
+  </div>
+<!--aqui le estamos diciendo a la grafica que respete el espacio. si lo omitimos tomara la pantalla completa,
+si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
+  <div style = "width: 20%;" id = "div1">
+    <canvas id = "barChart" height = "800" width = "800"></canvas>
+  </div>
+
+<!--aqui le estamos diciendo a la grafica que respete el espacio. si lo omitimos tomara la pantalla completa,
+si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
+  <div style = "width: 20%;" id = "div2">
+    <canvas id = "lineChart" height = "800" width = "800"></canvas>
+  </div>
+<!-- 3er chart-->
+  <div style = "width: 20%;" id = "div3">
+    <canvas id = "barChart1" height = "800" width = "800"></canvas>
+  </div>
+<!-- 4to chart-->
+  <div style = "width: 20%;" id = "div4">
+    <canvas id = "lineChart1" height = "800" width = "800"></canvas>
+  </div>
+<!-- 5to chart-->
+  <div style = "width: 20%;" id = "div5">
+    <canvas id = "barChart2" height = "800" width = "800"></canvas>
+  </div>
+<!-- 6to chart-->
+  <div style = "width: 20%;" id = "div6">
+    <canvas id = "barChart3" height = "800" width = "800"></canvas>
+  </div>
+</script>
+
+
+<script type="text/ng-template" id="/login.html">
+  <center>
+
+  	  <div class="page-header">
+  	    <h1>VoteMachine.IO</h1>
+  	  </div>
+
+  	  <div ng-show="error" class="alert alert-danger row">
+  	    <span>{{ error.message }}</span>
+  	  </div>
+
+  	  <form ng-submit="logIn()"
+  	    style="margin-top:30px;margin-left: 500px;margin-right: 500px;">
+
+  	    <h3>Log In</h3>
+
+  	    <div class="form-group">
+  	      <input type="text"
+  	      class="form-control"
+  	      placeholder="Username"
+  	      ng-model="user.username"></input>
+  	    </div>
+  	    <div class="form-group">
+  	      <input type="password"
+  	      class="form-control"
+  	      placeholder="Password"
+  	      ng-model="user.password"></input>
+  	    </div>
+  	    <button type="submit" class="btn btn-primary">Log In</button>
+  	  </form>
+  </center>
+</script>
+
+    <!--Librerias -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src ="js/Chart.min.js"></script>
+    <script src = "js/main.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
+    <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+
+    <!--Modulos-->
+    <script src="javascripts/angularApp.js"></script>
+    <script src="javascripts/controllers/registerCandidateController.js"></script>
+    <script src="javascripts/controllers/listCandidateController.js"></script>
+
+  </body>
+</html>

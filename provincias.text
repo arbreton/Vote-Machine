@@ -1,0 +1,5 @@
+
+1   = Primer digito es para identificar la  Provincia
+01  = dos digitos es para identificar el canton.
+001 = Distritos 
+101001,SAN JOSE,CENTRAL,HOSPITAL
