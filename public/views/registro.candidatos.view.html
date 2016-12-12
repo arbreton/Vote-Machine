@@ -1,12 +1,12 @@
 <div class="header-title">
-  <h4>Registro de Candidatos</h4>
+  <h4>Candidate Registration</h4>
 </div>
 <form class="form-inline row-magin buttons">
   <!--home row -->
   <div class="row form-group-block-full">
     <div class="col-md-12">
         <div class="form-group">
-          <label for="fecha-eleccion">Fecha de Elección: </label>
+          <label for="fecha-eleccion">Election Date: </label>
           <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_elecciones" ng-model="eleccion.fecha_eleccion"></select>
         </div>
     </div>
@@ -16,15 +16,15 @@
   <div class="row form-group-block">
     <div class="col-md-12">
         <div class="form-group">
-          <label for="label-provincia">Provincia: </label>
+          <label for="label-provincia">Province: </label>
           <select class="form-control" ng-options="provincia.descripcion for provincia in provincias" ng-model="eleccion.provincia" ng-change="showCantones($index)"></select>
         </div>
         <div class="form-group">
-          <label for="label-canton">Cantón: </label>
+          <label for="label-canton">Canton: </label>
           <select class="form-control" ng-options="canton.descripcion for canton in provincias.cantones" ng-model="eleccion.canton"></select>
         </div>
         <div class="form-group">
-          <label for="label-distritos">Distritos: </label>
+          <label for="label-distritos">Disctricts: </label>
           <select class="form-control"></select>
         </div>
     </div><!--end row -->
@@ -34,12 +34,12 @@
   <div class="row form-group-block">
     <div class="col-md-12">
         <div class="form-group">
-          <label for="label-partido">Partido: </label>
+          <label for="label-partido">Party: </label>
           <select class="form-control"></select>
         </div>
         <div class="form-group">
-          <label for="label-imagen">Selccionar imágen: </label>
-          <button class="btn btn-grey">Examinar...</button>
+          <label for="label-imagen">Select image: </label>
+          <button class="btn btn-grey">Browse...</button>
         </div>
     </div>
   </div><!--end row -->
@@ -48,15 +48,15 @@
   <div class="row no-margin form-group-block">
     <div class="col-md-12">
         <div class="form-group">
-          <label for="label-nombre">Nombre: </label>
+          <label for="label-nombre">Name: </label>
           <input type="text" class="form-control" placeholder="Nombre"/>
         </div>
         <div class="form-group">
-          <label for="label-nombre">Apellido Parterno: </label>
+          <label for="label-nombre">First Last Name: </label>
           <input type="text" class="form-control" placeholder="Apellido Paterno"/>
         </div>
         <div class="form-group">
-          <label for="label-nombre">Apellido Materno: </label>
+          <label for="label-nombre">Second Last Name: </label>
           <input type="text" class="form-control" placeholder="Apellido Materno" />
         </div>
     </div>
@@ -71,8 +71,8 @@
 
   <div class="row">
     <div class="col-md-12 text-center">
-      <button class="btn btn-success">Guardar</button>
-      <button class="btn btn-danger">Cancelar</button>
+      <button class="btn btn-success">Save</button>
+      <button class="btn btn-danger">Cancel</button>
     </div>
   </div>
 </form>

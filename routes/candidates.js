@@ -29,7 +29,7 @@ router.post('/candidate', function (req, res)
   console.log(res)
 });
 
-route.post('/file',function(req, res)
+router.post('/file',function(req, res)
 {
   upload(req,res,function(err) {
         if(err) {
