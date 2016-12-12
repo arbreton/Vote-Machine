@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var Candidate = mongoose.model('Candidate');
 var router = express.Router();
+
 var multer = require('multer');
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
@@ -23,7 +24,12 @@ router.post('/canditates', function (req, res)
   });
 });
 
-app.post('/file',function(req, res)
+router.post('/candidate', function (req, res)
+{
+  console.log(res)
+});
+
+route.post('/file',function(req, res)
 {
   upload(req,res,function(err) {
         if(err) {
