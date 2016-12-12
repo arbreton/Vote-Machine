@@ -61,7 +61,7 @@ function($stateProvider, $urlRouterProvider) {
 
 	}).state('admin', {
 		url : '/admin',
-		templateUrl : '/admin.html',
+		templateUrl : 'views/adminDash.html',
 		controller : 'AdminCantroller',
 		/*resolve : {
 			post : ['$stateParams', 'posts',

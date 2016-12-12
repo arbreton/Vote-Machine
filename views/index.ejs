@@ -9,6 +9,7 @@
     <link href="css/bootstrap337.min.css" rel="stylesheet">
     <link href="/css/adminDash.css" type="text/css" rel="stylesheet">
     <link href="/css/navbar.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- script del chart-->
       <style> .glyphicon-thumbs-up { cursor:pointer } </style>
   </head>
@@ -115,128 +116,7 @@
 
 </script>
 
-<script type="text/ng-template" id="/admin.html">
-  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
 
-  <div id="wrapper" ng-app="dashboard.candidatos">
-      <!-- Sidebar -->
-      <div id="sidebar-wrapper">
-      <div class="header-logo">
-        <img src="/images/perfil.jpg">
-      </div>
-      <div class="info-people-container">
-          <div class="info-poeple">
-            <h3>Jose Perez Garcia</h3>
-            <hr width="170px">
-            <h4>Canton: Felipe Angeles</h4>
-            <hr width="170px">
-            <h4>District: El Refugio</h4>
-            <hr width="170px">
-            <h4>Province: San Jose</h4>
-            <hr width="170px">
-            <h4>Age: 43 Años</h4>
-        </div>
-      </div>
-      </div>
-      <!-- /#sidebar-wrapper -->
-      <!--Nav bar -->
-
-      <!-- Page Content -->
-       <div class="title">Tools</div>
-       <hr>
-
-      <div id="page-content-wrapper" ng-view>
-          <div class="container-fluid">
-            <div class="header">
-
-
-      <div class="btncenter">
-        <div class="buttonlabel">
-           <button type="button" class="btn btn-default bigbutton"><i class="fa fa-commenting-o" aria-hidden="true"></i></button>
-           <label>Vote</label>
-        </div>
-        <div class="buttonlabel">
-            <button type="button" class="btn btn-default bigbutton"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
-            <label>Charts</label>
-        </div>
-        <div class="buttonlabel">
-            <button type="button" class="btn btn-default bigbutton" ng-click="newCandidate()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <label>New Election</label>
-        </div>
-      </div>
-
-
-            </div>
-          </div>
-      </div>
-  </div>
-</script>
-
-<script type="text/ng-template" id="/posts.html">
-    <div class="page-header">
-      <h3>
-        <a ng-show="post.link" href="{{post.link}}">
-          {{post.title}}
-        </a>
-        <span ng-hide="post.link">
-          {{post.title}}
-        </span>
-      </h3>
-    </div>
-
-    <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up" ng-click="upvote(comment)"></span>
-        {{comment.upvotes}}
-      <span class="glyphicon glyphicon-thumbs-down" ng-click="downvote(comment)"></span>
-        - by {{comment.author}}
-      <span style="font-size:20px; margin-left:10px;">
-        {{comment.body}}
-      </span>
-    </div>
-
-    <form ng-submit="addComment()" ng-show="isLoggedIn()" style="margin-top:30px;">
-      <h3>Add a new comment</h3>
-
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Post</button>
-    </form>
-    <div ng-hide="isLoggedIn()">
-	  <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can comment.</h3>
-	</div>
-</script>
-
-<script type="text/ng-template" id="/register.html">
-	 <center>
-    <div class="page-header">
-	    <h1>VoteMachine.IO</h1>
-	  </div>
-	  <div ng-show="error" class="alert alert-danger row">
-	    <span>{{ error.message }}</span>
-	  </div>
-
-	  <form ng-submit="register()"
-	    style="margin-top:30px;margin-left: 500px;margin-right: 500px;">
-	    <h3>Register</h3>
-
-	    <div class="form-group">
-	      <input type="text"
-	      class="form-control"
-	      placeholder="Username"
-	      ng-model="user.username"></input>
-	    </div>
-	    <div class="form-group">
-	      <input type="password"
-	      class="form-control"
-	      placeholder="Password"
-	      ng-model="user.password"></input>
-	    </div>
-	    <button type="submit" class="btn btn-primary">Register</button>
-	  </form>
-    </center>
-</script>
 
 <script type="text/ng-template" id="/login.html">
   <center>
