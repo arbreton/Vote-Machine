@@ -13,7 +13,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
   that.partidos = [{id:1, descripcion:"Rojo"}, {id:2,descripcion:"Verde"}];
   that.provinces = [];
   that.file = {};
-  $scope.candidates = [{id: 'choice1'}];
+  $scope.candidates = [{}];
    $http.get('/api/provinces').success(function (res)
    {
      that.provinces = res;
@@ -71,7 +71,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
   {
     $scope.uploadFile(that.file);
 
-    $http.post('api/candidate').success(function(data)
+    $http.post('api/candidate', that.candidates).success(function(data)
     {
       console.log(data);
     });

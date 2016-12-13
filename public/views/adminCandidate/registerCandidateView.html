@@ -26,10 +26,10 @@
           <div class="col-md-12">
               <div class="form-group">
                 <label for="fecha-eleccion">From: </label>
-                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_inicial" ng-model="candidate.fecha_eleccion" required=""></select>
-              
+                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_inicial" ng-model="candidate.fecha_eleccion_inicial" required=""></select>
+
                 <label for="fecha-eleccion">To: </label>
-                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_final" ng-model="candidate.fecha_eleccion" required=""></select>
+                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_final" ng-model="candidate.fecha_eleccion_final" required=""></select>
               </div>
           </div>
         </div><!--end row -->
@@ -70,7 +70,7 @@
         </div><!--end row -->
 
         <!--home row -->
-         
+
         <div class="row no-margin form-group-block">
           <div class="col-md-12">
               <div class="form-group">
@@ -84,12 +84,12 @@
               <div class="form-group">
                 <label for="label-nombre">Second Last Name: </label>
                 <input type="text" class="form-control" placeholder="Apellido Materno" ng-model="candidate.ap_materno" />
-                
+
               </div>
           </div>
         </div><!--end row -->
-      
-        
+
+
 
         <!--home row -->
         <div class="row form-group-block">

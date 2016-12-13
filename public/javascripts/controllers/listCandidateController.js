@@ -8,7 +8,7 @@ app.controller('listCandidateController', [ '$scope', '$http', function($scope, 
 
   that.candidates = [];
 
-  $http.get('/api/canditate').success( function (data)
+  $http.get('/api/canditates').success( function (data)
   {
       that.candidates = data;
   });

@@ -27,15 +27,15 @@ router.post('/file',function(req, res)
 });
 
 
-router.get('/canditate', function (req, res)
+router.get('/canditates', function (req, res)
 {
   Candidate.find({estatus:true}).exec(function (err, candidate)
   {
     if(err){ res.send('Error');}
     else { res.json(candidate); }
   });
-})
-.post(function(req, res)
+});
+router.post('/candidate',function(req, res)
 {
   var  candidate = new Candidate();
 
