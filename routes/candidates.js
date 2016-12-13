@@ -15,32 +15,64 @@ var storage =   multer.diskStorage({
 
 var upload = multer({ storage : storage}).single('file');
 
-router.post('/canditates', function (req, res)
-{
-  Candidate.findOne({}).exec(function (err, candidate)
-  {
-    if(err){ res.send('Error');}
-    else { res.json(candidate); }
-  });
-});
-
 router.post('/file',function(req, res)
 {
   upload(req,res,function(err) {
         if(err) {
-       console.log("Error uploading file.");
+
         }
-        console.log("File is uploaded");
-        console.log(req);
+
 
     });
 });
 
 
-router.post('/candidate', function(req, res)
+router.get('/canditate', function (req, res)
 {
-  console.log(res);
-  console.log(req);
+  Candidate.find({estatus:true}).exec(function (err, candidate)
+  {
+    if(err){ res.send('Error');}
+    else { res.json(candidate); }
+  });
+})
+.post(function(req, res)
+{
+  var  candidate = new Candidate();
+
+    //info of candidate
+    candidate.nombre = req.body.nombre;
+    candidate.ap_paterno = req.body.ap_paterno;
+    candidate.ap_materno = req.body.ap_materno;
+    candidate.propuestas = req.body.propuesta;
+    candidate.fecha_eleccion.codigo = req.body.fecha_eleccion.id;
+    candidate.fecha_eleccion.fecha = req.body.fecha_eleccion.fecha;
+    candidate.estatus = true;
+
+    //province
+    candidate.partido.codigo = req.body.partido.id;
+    candidate.partido.descripcion = req.body.partido.descripcion;
+    candidate.provincia.codigo = req.body.province.codigo;                                                                                                                                                                                                   5
+    candidate.provincia.descripcion = req.body.province.descripcion;
+    candidate.provincia.distrito.codigo = req.body.district.codigo;
+    candidate.provincia.distrito.descripcion = req.body.district.descripcion;
+    candidate.provincia.canton.codigo = req.body.province.canton.codigo;
+    candidate.provincia.canton.descripcion = req.body.province.canton.descripcion;
+
+    //save item
+    candidate.save( function(err)
+    {
+      if(err) { return handleError(err);}
+      else{ console.log('item saved...'); }
+    });
+});
+
+router.put('/candidate/:id',function (req, res)
+{
+  var id = req.body._id;
+  if(id !='')
+  {
+      var candidate = new Candidate({})
+  }
 });
 
 module.exports = router;
