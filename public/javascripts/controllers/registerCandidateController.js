@@ -59,7 +59,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
 
     $scope.addNewChoice = function() {
     var newItemNo = $scope.candidates.length+1;
-    $scope.candidates.push({'id':'candidates'+newItemNo});
+    $scope.candidates.push(that.candidate);
   };
 
   $scope.removeChoice = function() {
