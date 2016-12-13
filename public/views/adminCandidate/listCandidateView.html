@@ -22,45 +22,29 @@
           <thead>
             <tr>
               <th>FullName</th>
-              <th>Provincia</th>
+              <th>Province</th>
               <th>Canton</th>
-              <th>Distrito</th>
+              <th>District</th>
               <th>Partido</th>
-              <th>Fecha Eleccion</th>
+              <th>Election Date</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-                <td>Pepe Gomez</td>
-                <td>San Jose</td>
-                <td>Central</td>
-                <td>Merida</td>
-                <td>Partido A</td>
-                <td>2000-2005</td>
-                <td><button class="btn btn-success">Edit</button> </td>
-            </tr>
-            <tr>
-              <td>Adrina Gomez</td>
-              <td>San Jose</td>
-              <td>oeste</td>
-              <td>Merida</td>
-              <td>Partido A</td>
-              <td>2000-2005</td>
-              <td><button class="btn btn-success">Edit</button> </td>
-            </tr>
-            <tr>
-              <td>Carlos Gomez</td>
-              <td>San Jose</td>
-              <td>Central</td>
-              <td>Merida</td>
-              <td>Partido A</td>
-              <td>2000-2005</td>
-              <td><button class="btn btn-success">Edit</button> </td>
+            <tr ng-repeat="candidate in candidates">
+                <td>{{candidate.nombre +" " + candidate.ap_paterno + " " + candidate.ap_materno}}</td>
+                <td>{{candidate.provincia.descripcion}}</td>
+                <td>{{candidate.provincia.canton.descripcion}}</td>
+                <td>{{candidate.provincia.distrito.descripcion}}</td>
+                <td>{{candidate.partido.descripcion}}</td>
+                <td>{{candidate.fecha_eleccion.fecha}}</td>
+                <td>
+                  <button class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                  <button class="btn btn-danger" type="submit" ng-click="deleteItem(candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i> Remove</button> 
+                </td>
             </tr>
           </tbody>
         </table>
-
       </div>
     </div>
   </div>
