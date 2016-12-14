@@ -39,14 +39,14 @@ function($stateProvider, $urlRouterProvider) {
 		}
 	}).state('login', {
 		url : '/login',
-		templateUrl : '/login.html',
-		controller : 'AuthCtrl',
-		onEnter : ['$state', 'auth',
-		function($state, auth) {
-			if (auth.isLoggedIn()) {
-				$state.go('home');
-			}
-		}]
+		templateUrl : 'views/login.html',
+		//controller : 'AuthCtrl',
+		//onEnter : ['$state', 'auth',
+		//function($state, auth) {
+			//if (auth.isLoggedIn()) {
+				//$state.go('home');
+			//}
+		//}]
 
 	}).state('register', {
 		url : '/register',
@@ -115,6 +115,7 @@ function($http, $window) {
 		var token = auth.getToken();
 
 		if (token) {
+			console.log(JSON.parse($window.atob(token.split('.')[1])).username);
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 			//console.log (JSON.parse($window.atob(token.split('.')[1])));
 			return payload.exp > Date.now() / 1000;
