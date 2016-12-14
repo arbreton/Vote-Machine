@@ -29,7 +29,7 @@ CitizensSchema.methods.generateJWT = function() {
 
   return jwt.sign({
     _id: this._id,
-    username: this.clave_electoral,
+    clave_electoral: this.clave_electoral,
     exp: parseInt(exp.getTime() / 1000),
   }, 'SECRET');
 };

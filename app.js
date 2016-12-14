@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost:27017/meandatabase', function(err,db){
 
 require('./models/Posts');
 require('./models/Comments');
-require('./models/Users');
+//require('./models/Users');
 require('./models/citizens');
 require('./config/passport');
 require('./models/candidate');
@@ -29,7 +29,7 @@ require('./models/Provinces');
 
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+//var users = require('./routes/users');
 
 var citizens = require('./routes/citizens');
 var candidates = require('./routes/candidates');
