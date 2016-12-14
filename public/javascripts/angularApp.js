@@ -125,10 +125,8 @@ function($http, $window) {
 	};
 
 	auth.currentUser = function() {
-		console.log(JSON.parse($window.atob(token.split('.')[1])));
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
-			console.log(JSON.parse($window.atob(token.split('.')[1])));
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 
 			return payload.username;
