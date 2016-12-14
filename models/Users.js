@@ -4,7 +4,19 @@ var jwt = require('jsonwebtoken');
 
 
 var UserSchema = new mongoose.Schema({
-  username: {type: String, lowercase: true, unique: true},
+  clave_electoral: {type: String, unique: true},
+  provincia: { codigo: String, descripcion: String, canton: String, distrito: String },
+  genero: String,
+  fecha_caducidad: String,
+  estatus: String,
+  nombre: String,
+  ap_paterno: String,
+  ap_materno: String,
+  edad: String,
+  pass: String,
+  rol: { id: String, descripcion: String },
+  candidatos: {presidenciales:[{nombre:String, ap_paterno:String, ap_materno:String,propuestas:String, partido: {codigo:String,descripcion:String},fecha_eleccion:String, estatus_votacion:{fecha_votacion:String,voto:Boolean},otros:String}]},
+  //username: {type: String, lowercase: true, unique: true},
   hash: String,
   salt: String
 });
@@ -26,11 +38,11 @@ UserSchema.methods.generateJWT = function() {
 UserSchema.methods.setPassword = function(password){
   this.salt = crypto.randomBytes(16).toString('hex');
 
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+  this.hash = crypto.pbkdf2Sync(pass, this.salt, 1000, 64).toString('hex');
 };
 
 UserSchema.methods.validPassword = function(password) {
-  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+  var hash = crypto.pbkdf2Sync(pass, this.salt, 1000, 64).toString('hex');
 
   return this.hash === hash;
 };

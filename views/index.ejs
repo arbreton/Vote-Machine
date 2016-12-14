@@ -54,10 +54,10 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
-            <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
-            <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
-            <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+            <li ng-hide="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+            <li ng-hide="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
+            <li ng-show="isLoggedIn()"><a href="/#/login">Log In</a></li>
+            <li ng-show="isLoggedIn()"><a href="/#/register">Register</a></li>
           </ul>
         </li>
       </ul>
@@ -140,7 +140,7 @@
 	      <input type="text"
 	      class="form-control"
 	      placeholder="Username"
-	      ng-model="user.username"></input>
+	      ng-model="user.clave_electoral"></input>
 	    </div>
       </div>
       </div>
@@ -153,7 +153,7 @@
 	      <input type="password"
 	      class="form-control"
 	      placeholder="Password"
-	      ng-model="user.password"></input>
+	      ng-model="user.pass"></input>
 	    </div>
       </div>
       </div>
@@ -248,6 +248,8 @@ si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
     <script src="javascripts/controllers/registerCandidateController.js"></script>
     <script src="javascripts/controllers/listCandidateController.js"></script>
      <script src = "javascripts/controllers/chartsController.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   </body>
 </html>

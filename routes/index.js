@@ -6,7 +6,7 @@ var jwt = require('express-jwt');
 
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
-var User = mongoose.model('User');
+var User = mongoose.model('Citizen');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
@@ -123,7 +123,7 @@ router.post('/register', function(req, res, next){
 
   var user = new User();
 
-  user.username = req.body.username;
+  user.clave_electoral = req.body.username;
 
   user.setPassword(req.body.password)
 
