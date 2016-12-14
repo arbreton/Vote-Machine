@@ -55,7 +55,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li ng-hide="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+            <li ng-hide="isLoggedIn()"><a href="">{{ currentUser() }}</a></li>
             <li ng-hide="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
             <li ng-show="isLoggedIn()"><a href="/#/login">Log In</a></li>
             <li ng-show="isLoggedIn()"><a href="/#/register">Register</a></li>
@@ -250,7 +250,7 @@ si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
     <script src="javascripts/controllers/listCandidateController.js"></script>
      <script src = "javascripts/controllers/chartsController.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   </body>
 </html>

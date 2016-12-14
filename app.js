@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 // connect MongoDB+
-mongoose.connect('mongodb://localhost:27017/meandatabase', function(err,db){
+mongoose.connect('mongodb://localhost:27017/mean-database', function(err,db){
     if (!err){
         console.log('Connected to /mean-database!');
     } else{
@@ -22,7 +22,7 @@ mongoose.connect('mongodb://localhost:27017/meandatabase', function(err,db){
 require('./models/Posts');
 require('./models/Comments');
 require('./models/Users');
-require('./models/citizens');
+require('./models/Citizens');
 require('./config/passport');
 require('./models/candidate');
 require('./models/Provinces');
@@ -32,7 +32,6 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var citizens = require('./routes/citizens');
-var candidates = require('./routes/candidates');
 var candidates = require('./routes/candidates');
 var provinces = require('./routes/provinces');
 

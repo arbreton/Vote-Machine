@@ -115,6 +115,7 @@ function($http, $window) {
 		var token = auth.getToken();
 
 		if (token) {
+			console.log(JSON.parse($window.atob(token.split('.')[1])).username);
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 
 			return payload.exp > Date.now() / 1000;
@@ -124,8 +125,10 @@ function($http, $window) {
 	};
 
 	auth.currentUser = function() {
+		console.log(JSON.parse($window.atob(token.split('.')[1])));
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
+			console.log(JSON.parse($window.atob(token.split('.')[1])));
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 
 			return payload.username;
