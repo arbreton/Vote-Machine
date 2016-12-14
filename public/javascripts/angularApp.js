@@ -39,14 +39,14 @@ function($stateProvider, $urlRouterProvider) {
 		}
 	}).state('login', {
 		url : '/login',
-		templateUrl : '/login.html',
-		controller : 'AuthCtrl',
-		onEnter : ['$state', 'auth',
-		function($state, auth) {
-			if (auth.isLoggedIn()) {
-				$state.go('home');
-			}
-		}]
+		templateUrl : 'views/login.html',
+		//controller : 'AuthCtrl',
+		//onEnter : ['$state', 'auth',
+		//function($state, auth) {
+			//if (auth.isLoggedIn()) {
+				//$state.go('home');
+			//}
+		//}]
 
 	}).state('register', {
 		url : '/register',
