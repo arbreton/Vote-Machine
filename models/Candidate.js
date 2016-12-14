@@ -7,8 +7,10 @@ var candidateSchema = new Schema({ //Propiedades de mi schema
     ap_materno: String,
     propuesta: String,
     estatus: Boolean,
+    genero: String,
+    foto: String,
     fecha_eleccion: {codigo: String,  fecha: String},
-    partido: { codigo: String, descripcion: String, img: String },
+    partido: { codigo: String, descripcion: String, foto: String },
     provincia: { codigo: String, descripcion: String, distrito:{ codigo: String, descripcion: String}, canton: {codigo: String, descripcion: String} }
 });
 

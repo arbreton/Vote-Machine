@@ -13,16 +13,16 @@ var storage =   multer.diskStorage({
   }
 });
 
-var upload = multer({ storage : storage}).single('file');
+var upload = multer({ storage : storage}).single('foto');
 
 router.post('/file',function(req, res)
 {
   upload(req,res,function(err) {
-        if(err) {
-
-        }
-
-
+        if(err) { console.log('error image'); }
+        req.body.file.forEach( function (item, index)
+        {
+            console.log(item)
+        });
     });
 });
 
@@ -37,32 +37,36 @@ router.get('/canditates', function (req, res)
 });
 router.post('/candidate',function(req, res)
 {
-  var  candidate = new Candidate();
-
-    //info of candidate
-    candidate.nombre = req.body.nombre;
-    candidate.ap_paterno = req.body.ap_paterno;
-    candidate.ap_materno = req.body.ap_materno;
-    candidate.propuestas = req.body.propuesta;
-    candidate.fecha_eleccion.codigo = req.body.fecha_eleccion.id;
-    candidate.fecha_eleccion.fecha = req.body.fecha_eleccion.fecha;
-    candidate.estatus = true;
-
-    //province
-    candidate.partido.codigo = req.body.partido.id;
-    candidate.partido.descripcion = req.body.partido.descripcion;
-    candidate.provincia.codigo = req.body.province.codigo;                                                                                                                                                                                                   5
-    candidate.provincia.descripcion = req.body.province.descripcion;
-    candidate.provincia.distrito.codigo = req.body.district.codigo;
-    candidate.provincia.distrito.descripcion = req.body.district.descripcion;
-    candidate.provincia.canton.codigo = req.body.province.canton.codigo;
-    candidate.provincia.canton.descripcion = req.body.province.canton.descripcion;
-
-    //save item
-    candidate.save( function(err)
+    req.body.forEach( function(item, index)
     {
-      if(err) { return handleError(err);}
-      else{ console.log('item saved...'); }
+      var  candidate = new Candidate();
+      //info of candidate
+      candidate.nombre = item.nombre;
+      candidate.ap_paterno = item.ap_paterno;
+      candidate.ap_materno = item.ap_materno;
+      candidate.propuestas = item.propuesta;
+      candidate.genero = item.gender;
+      candidate.fecha_eleccion.codigo = item.fecha_election.codigo;
+      candidate.fecha_eleccion.fecha = item.fecha_election.fecha;
+      candidate.estatus = true;
+
+      //province
+      candidate.partido.codigo = item.partido.id;
+      candidate.partido.descripcion = item.partido.descripcion;
+      candidate.provincia.codigo = item.province.codigo;                                                                                                                                                                                                   5
+      candidate.provincia.descripcion = item.province.descripcion;
+      candidate.provincia.distrito.codigo = item.district.codigo;
+      candidate.provincia.distrito.descripcion = item.district.descripcion;
+      candidate.provincia.canton.codigo = item.province.canton.codigo;
+      candidate.provincia.canton.descripcion = item.province.canton.descripcion;
+
+      //save item
+      candidate.save( function(err)
+      {
+        if(err) { return handleError(err);}
+        else{ console.log('item saved...'); }
+      });
+
     });
 });
 
