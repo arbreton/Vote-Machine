@@ -8,13 +8,25 @@ function($stateProvider, $urlRouterProvider) {
 		url : '/home',
 		templateUrl : '/home.html',
 		controller : 'MainCtrl',
-		resolve : {
+		onEnter : ['$state', 'auth',
+		function($state, auth) {
+			if (auth.isAdmin() == false) {
+				$state.go('voting');
+			}
+			if (auth.isAdmin() == true) {
+				$state.go('admin');
+			}
+			/*if (auth.isLoggedIn()) {
+				$state.go('home');
+			}*/
+		}]
+		/*resolve : {
 			postPromise : ['posts',
 			function(posts) {
 				return posts.getAll();
-			}]
+			}]*/
 
-		}
+		
 	}).state('voting', {
 		url : '/voting',
 		templateUrl : 'views/votingView.html',
@@ -40,13 +52,19 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('login', {
 		url : '/login',
 		templateUrl : 'views/login.html',
-		//controller : 'AuthCtrl',
-		//onEnter : ['$state', 'auth',
-		//function($state, auth) {
-			//if (auth.isLoggedIn()) {
-				//$state.go('home');
-			//}
-		//}]
+		controller : 'AuthCtrl',
+		onEnter : ['$state', 'auth',
+		function($state, auth) {
+			if (auth.isAdmin() == false) {
+				$state.go('voting');
+			}
+			if (auth.isAdmin() == true) {
+				$state.go('admin');
+			}
+			/*if (auth.isLoggedIn()) {
+				$state.go('home');
+			}*/
+		}]
 
 	}).state('register', {
 		url : '/register',
@@ -62,7 +80,8 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('admin', {
 		url : '/admin',
 		templateUrl : 'views/adminDash.html',
-		controller : 'AdminCantroller',
+		//controller : 'MainCtrl',
+		controller : 'AdminController',
 		/*resolve : {
 			post : ['$stateParams', 'posts',
 			function($stateParams, posts) {
@@ -115,7 +134,7 @@ function($http, $window) {
 		var token = auth.getToken();
 
 		if (token) {
-			console.log(JSON.parse($window.atob(token.split('.')[1])).username);
+			//console.log(JSON.parse($window.atob(token.split('.')[1])).username);
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 			//console.log (JSON.parse($window.atob(token.split('.')[1])));
 			return payload.exp > Date.now() / 1000;
@@ -125,12 +144,25 @@ function($http, $window) {
 		}
 	};
 
+	auth.isAdmin = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+			if(payload.rol == "ad"){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	};
+
 	auth.currentUser = function() {
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-			return payload.username;
+			return payload.clave_electoral;
 		}
 	};
 
@@ -228,19 +260,12 @@ function($http, auth) {
 	return o;
 }]);
 
-app.controller('AdminCantroller', ['$scope', '$location', function ($scope, $location)
-{
-	$scope.newCandidate = function()
-	{
-			$location.url("/admin/candidate");
-	};
-
-}]);
 
 app.controller('MainCtrl', ['$scope', 'posts', 'auth',
 function($scope, posts, auth) {
 	$scope.posts = posts.posts;
 	$scope.isLoggedIn = auth.isLoggedIn;
+	$scope.isAdmin = auth.isAdmin;
 	//setting title to blank here to prevent empty posts
 	$scope.title = '';
 
@@ -267,6 +292,33 @@ function($scope, posts, auth) {
 		posts.downvote(post);
 	};
 }]);
+
+app.controller('AdminController', ['$scope', '$location', 'posts', 'auth',
+function($scope, $location, posts, auth) {
+	$scope.isLoggedIn = auth.isLoggedIn;
+	$scope.isAdmin = auth.isAdmin;
+	//setting title to blank here to prevent empty posts
+	$scope.title = '';
+
+	$scope.newCandidate = function()
+	{
+			$location.url("/admin/candidate");
+	};
+
+	$scope.showCharts = function()
+	{
+			$location.url("/charts");
+	};
+
+	$scope.voteNow = function()
+	{
+			$location.url("/voting");
+	};
+
+	
+}]);
+
+
 
 app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth',
 function($scope, posts, post, auth) {
@@ -311,7 +363,12 @@ function($scope, $state, auth) {
 		auth.logIn($scope.user).error(function(error) {
 			$scope.error = error;
 		}).then(function() {
-			$state.go('home');
+			if(auth.isAdmin() == false){
+				$state.go('voting');
+			}
+			if(auth.isAdmin() == true){
+				$state.go('admin');
+			}
 		});
 	};
 }]);
@@ -320,6 +377,7 @@ app.controller('NavCtrl', ['$scope', 'auth',
 function($scope, auth) {
 	$scope.isLoggedIn = auth.isLoggedIn;
 	$scope.currentUser = auth.currentUser;
+	$scope.isAdmin = auth.isAdmin;
 	$scope.logOut = auth.logOut;
 }]);
 

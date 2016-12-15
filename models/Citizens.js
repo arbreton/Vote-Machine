@@ -13,6 +13,7 @@ var CitizensSchema = new mongoose.Schema({
   ap_materno: String,
   edad: String,
   pass: String,
+  date: String,
   rol: { id: String, descripcion: String },
   candidatos: {presidenciales:[{nombre:String, ap_paterno:String, ap_materno:String,propuestas:String, partido: {codigo:String,descripcion:String},fecha_eleccion:String, estatus_votacion:{fecha_votacion:String,voto:Boolean},otros:String}]},
   //hash: String,
@@ -30,6 +31,7 @@ CitizensSchema.methods.generateJWT = function() {
   return jwt.sign({
     _id: this._id,
     clave_electoral: this.clave_electoral,
+    rol: this.rol.id,
     exp: parseInt(exp.getTime() / 1000),
   }, 'SECRET');
 };
