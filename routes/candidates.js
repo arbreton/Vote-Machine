@@ -44,7 +44,7 @@ router.post('/candidate',function(req, res)
       candidate.nombre = item.nombre;
       candidate.ap_paterno = item.ap_paterno;
       candidate.ap_materno = item.ap_materno;
-      candidate.propuestas = item.propuesta;
+      candidate.propuesta = item.propuesta;
       candidate.genero = item.gender;
       candidate.fecha_eleccion.codigo = item.fecha_election.codigo;
       candidate.fecha_eleccion.fecha = item.fecha_election.fecha;
@@ -70,12 +70,45 @@ router.post('/candidate',function(req, res)
     });
 });
 
-router.put('/candidate/:id',function (req, res)
+router.put('/candidate-update/:id',function (req, res)
 {
   var id = req.body._id;
   if(id !='')
   {
-      var candidate = new Candidate({})
+    var query = { _id: id};
+    var update =
+    {
+      nombre : req.body.nombre,
+      ap_paterno : req.body.ap_paterno,
+      ap_materno : req.body.ap_materno,
+      propuesta : req.body.propuesta,
+      genero : req.body.gender,
+      fecha_eleccion : {codigo: req.body.fecha_eleccion.codigo, fecha: req.body.fecha_eleccion.fecha },
+      partido: { codigo : req.body.partido.id, descripcion: req.body.partido.descripcion },
+      provincia: { codigo : req.body.province.codigo, descripcion: req.body.province.descripcion,
+        canton: { codigo : req.body.province.canton.codigo, descripcion : req.body.province.canton.descripcion },
+        distrito:{ codigo : req.body.district.codigo, descripcion : req.body.province.canton.descripcion } }
+    };
+    Candidate.findOneAndUpdate(query, update, function (err, data)
+    {
+      if(err){console.log('Error in update');}
+      res.json({message: 200});
+    });
+  }
+});
+
+router.put('/candidate-delete/:id', function (req, res)
+{
+  var id = req.body._id;
+  if( id !='')
+  {
+      var query = { _id: id};
+      var update = {estatus: false};
+      Candidate.findOneAndUpdate(query, update, function (err, data)
+      {
+        if(err){ res.json({message: 'Error'});}
+        res.json({status: 200, message: 'Was deleted successfully'});
+      });
   }
 });
 

@@ -28,3 +28,15 @@
 .flotante { display:scroll; position:fixed; bottom:20px; right:0px; }
 .form-group-select .form-group { display: block;}
 .form-group-select .form-group  select { width: 73%; margin-left: 26px;}
+.form-group-modal .form-group {display: block; }
+.form-group-modal .form-group  select { margin-left: 6px; width: 67%; float: right;}
+
+.row-magin-modal div {margin-bottom: 10px;}
+.row-magin-modal textarea {width:100% !important;}
+.row-magin-modal input[type='text'], input[type='radio'] { margin-bottom: 10px;}
+.label-modal label { padding-left: 0px; }
+.button-avatar {display: inline-block; padding: 10px; background: #ccc; border-radius: 5px; font-weight: 800; cursor:pointer; }
+.button-avatar > div { margin-bottom:  0px;}
+.preview-img-modal { display: inline-block; height: 150px; width: 150px; border: 1px solid #ccc;}
+.success-request{ position: absolute; top: 0; left:  50%;}
+.success-request h4 { margin-bottom: 0px;}
