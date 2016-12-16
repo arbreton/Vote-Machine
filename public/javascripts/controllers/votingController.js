@@ -1,19 +1,8 @@
 var ngToggle = angular.module('votingApp', []);
 
 
-    
-        ngToggle.controller('dataLoadCtrl',['$scope', function($scope){
 
-        $scope.fotoUsuario="https://upload.wikimedia.org/wikipedia/commons/7/76/Laura-Chinchilla-cropped.jpg";
-        $scope.nombreUsuario="Laura Chinchilla Miranda";
-        $scope.direccionUsuario="Distrito de Zapote en el cantón de San José.";
-        $scope.nacimientoUsuario="28 de marzo de 1959";
-        $scope.masInfoUsuario="Información adicional";
-            
-}]);
-
-
-    ngToggle.controller('VoteCtrl',['$scope', function($scope){
+    ngToggle.controller('VoteCtrl',['$scope','auth', function($scope,auth){
 
 
         $scope.cand1 = true;

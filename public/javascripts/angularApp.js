@@ -134,7 +134,7 @@ function($http, $window) {
 		var token = auth.getToken();
 
 		if (token) {
-			//console.log(JSON.parse($window.atob(token.split('.')[1])).username);
+			console.log(JSON.parse($window.atob(token.split('.')[1])));
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 			//console.log (JSON.parse($window.atob(token.split('.')[1])));
 			return payload.exp > Date.now() / 1000;
@@ -163,6 +163,15 @@ function($http, $window) {
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 
 			return payload.clave_electoral;
+		}
+	};
+
+	auth.currentID = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+			return payload._id;
 		}
 	};
 
@@ -379,6 +388,7 @@ function($scope, auth) {
 	$scope.currentUser = auth.currentUser;
 	$scope.isAdmin = auth.isAdmin;
 	$scope.logOut = auth.logOut;
+	$scope.currentID=auth.currentID;
 }]);
 
 app.controller('votingController',['$scope', function($scope){
