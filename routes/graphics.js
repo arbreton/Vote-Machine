@@ -42,14 +42,7 @@ app.post('/citizens', function(req, res) {
     })
 //Get the citizens that voted in a certain election, chosen by date
 
-.get('/citizens/graph/gender',function(req, res) {
-       /* 
-        Citizen.where('edad').lte(19).select('clave_electoral nombre edad').exec(function(err, citizen) {
-            if (err)
-                res.send(err);
-            res.json(citizen);
-        });
-*/
+.get('/citizens/graph/gender/m',function(req, res) {
 
         Citizen.aggregate(
             [{ $match: {genero: "1"}},
@@ -64,28 +57,6 @@ app.post('/citizens', function(req, res) {
             res.json(citizen);
         });
 
-/*
-        Citizen.aggregate(
-            [{ $match: {genero: "1"}},
-            { $group: { _id: "$provincia.distrito",Total_de_hombres:{ $sum: 1}}},
-            { $sort: {"Total_de_hombres":-1}}
-
-
-
-            ]).exec(function(err, citizen) {
-            if (err)
-                res.send(err);
-            res.json(citizen);
-        });
-*/
-
-/*
-       Citizen.count({'provincia.codigo':"101001",'genero'}, function(err, citizen) {
-            if (err)
-                res.send(err);
-            res.json(citizen);
-        });
-        */
     })
 
 .get('/citizens/graph/gender/f',function(req, res) {
@@ -143,12 +114,90 @@ app.post('/citizens', function(req, res) {
 
 
     })
-.get('/citizens/graph/gender/m',function(req, res) {
+//Which ages vote at which hour
+.get('/citizens/graph/hour/:hour',function(req, res) {
+        Citizen.aggregate(
+            [{ $match: {"candidatos.presidenciales.estatus_votacion.hora_votacion": req.params.hour}},
+            { $group: { _id: "$edad",Total_de_personas:{ $sum: 1}}},
+            { $sort: {"Total_de_personas":-1}}
+
+
+
+            ]).exec(function(err, citizen) {
+            if (err)
+                res.send(err);
+            res.json(citizen);
+        });
+
+    })
+//At which hour people of certain age vote
+.get('/citizens/graph/ages/:age',function(req, res) {
+        Citizen.aggregate(
+            [{ $match: {"edad": req.params.age}},
+            { $group: { _id: "$candidatos.presidenciales.estatus_votacion.hora_votacion",Total_de_personas:{ $sum: 1}}},
+            { $sort: {"Total_de_personas":-1}}
+
+
+
+            ]).exec(function(err, citizen) {
+            if (err)
+                res.send(err);
+            res.json(citizen);
+        });
+
+    })
+
+//Districts that vote early
+.get('/citizens/graph/districts/:time',function(req, res) {
+        Citizen.aggregate(
+            [{ $match: {"candidatos.presidenciales.fecha_eleccion": "12-13-2016"}},
+
+
+            {$match:{"candidatos.presidenciales.estatus_votacion.hora_votacion": req.params.time}},
+            { $group: { _id: "$provincia.distrito",Total_de_mujeres:{ $sum: { $cond: [ { $eq: [ "$genero", "2"] } , 1, 0 ] }},
+            Total_de_hombres:{ $sum: { $cond: [ { $eq: [ "$genero", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+
+            { $sort: {"Total":-1}},
+            {$limit:5}
+
+
+
+            ]).exec(function(err, citizen) {
+            if (err)
+                res.send(err);
+            res.json(citizen);
+        });
+
+
+    })
+
+//Districts that vote early
+.get('/citizens/graph/vote',function(req, res) {
+        Citizen.aggregate(
+            [{ $match: {"candidatos.presidenciales.fecha_eleccion": "12-13-2016"}},
+            { $group: { _id: {nombre:"$candidatos.presidenciales.nombre",ap_paterno:"$candidatos.presidenciales.ap_paterno"},Total_de_mujeres:{ $sum: { $cond: [ { $eq: [ "$genero", "2"] } , 1, 0 ] }},
+            Total_de_hombres:{ $sum: { $cond: [ { $eq: [ "$genero", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+
+            { $sort: {"Total":-1}},
+            {$limit:5}
+
+
+
+            ]).exec(function(err, citizen) {
+            if (err)
+                res.send(err);
+            res.json(citizen);
+        });
+
+
+    })
+
+//Edad
+.get('/citizens/graph/age',function(req, res) {
         Citizen.aggregate(
             [{ $match: {genero: "1"}},
-            { $group: { _id: "$provincia.distrito",Total_de_hombres:{ $sum: 1}}},
-            { $sort: {"Total_de_hombres":-1}},
-            {$limit:5}
+            { $group: { _id: "$edad",Total_de_Hombres:{ $sum: 1}}},
+            { $sort: {"Total_de_hombres":-1}}
 
 
 
