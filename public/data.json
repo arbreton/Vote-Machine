@@ -1,0 +1,483 @@
+[
+  {
+    "_id": "5849be2f1208a81108a90e5d",
+    "__v": 0,
+    "candidatos": {
+      "presidenciales": []
+    }
+  },
+  {
+    "_id": "5849bfd81208a81108a90e5f",
+    "nombre": "Alvaro Hernandez",
+    "clave_electoral": "asdasdasdasqw123aeasdasw",
+    "__v": 0,
+    "candidatos": {
+      "presidenciales": []
+    }
+  },
+  {
+    "_id": "584cac555622ff105071f71f",
+    "nombre": "Alvaro Hernandez",
+    "clave_electoral": "asdasdasdasqw123aeasdasw",
+    "__v": 0,
+    "candidatos": {
+      "presidenciales": []
+    }
+  },
+  {
+    "_id": "584cc45e39b7a20900238f6c",
+    "nombre": "Alvaro Hernandez",
+    "clave_electoral": "asdasdasdasqw123aeasdasw",
+    "__v": 0,
+    "candidatos": {
+      "presidenciales": []
+    }
+  },
+  {
+    "_id": "584cc4d59dd1a30f30651e3f",
+    "nombre": "Alvasdasaro Hernandez",
+    "clave_electoral": "asdasdasdasqw12dasdasdasw",
+    "__v": 2,
+    "candidatos": {
+      "presidenciales": [
+        {
+          "nombre": "Alvasdasaro",
+          "ap_paterno": "hernandez",
+          "ap_materno": "duarte",
+          "propuestas": "simon",
+          "fecha_eleccion": "12-01-2012",
+          "otros": "no",
+          "_id": "584cc6e2bea27d10643e6b8f",
+          "partido": {
+            "codigo": "1",
+            "descripcion": "PRD"
+          }
+        },
+        {
+          "nombre": "Alvasdasaro",
+          "ap_paterno": "hernandez",
+          "ap_materno": "duarte",
+          "propuestas": "simon",
+          "fecha_eleccion": "12-01-2012",
+          "otros": "no",
+          "_id": "584cc814bea27d10643e6b90",
+          "partido": {
+            "codigo": "1",
+            "descripcion": "PRD"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "_id": "584cc91f00fe431200bcbd49",
+    "nombre": "Andre Breton",
+    "__v": 58,
+    "candidatos": {
+      "presidenciales": [
+        {
+          "nombre": "Andre Breton",
+          "ap_paterno": "hernandez",
+          "ap_materno": "duarte",
+          "propuestas": "simon",
+          "fecha_eleccion": "12-01-2012",
+          "otros": "no",
+          "_id": "584cc93700fe431200bcbd4a",
+          "estatus_votacion": {
+            "fecha_votacion": "12-01-2012",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "1",
+            "descripcion": "PRD"
+          }
+        },
+        {
+          "nombre": "Andre Breton",
+          "ap_paterno": "hernandez",
+          "ap_materno": "duarte",
+          "propuestas": "simon",
+          "fecha_eleccion": "12-01-2015",
+          "otros": "no",
+          "_id": "584eeb65c48e7907d0f732b3",
+          "estatus_votacion": {
+            "fecha_votacion": "12-01-2015",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "1",
+            "descripcion": "PRD"
+          }
+        },
+        {
+          "_id": "584eeb7ec48e7907d0f732b4"
+        },
+        {
+          "_id": "584eec2fc48e7907d0f732b5"
+        },
+        {
+          "_id": "584eec92c48e7907d0f732b6"
+        },
+        {
+          "_id": "584eed92ba02530b88544a9a"
+        },
+        {
+          "_id": "584eee62ba02530b88544a9b"
+        },
+        {
+          "_id": "584eeee676121a0ff452b6df"
+        },
+        {
+          "_id": "584eef8776121a0ff452b6e0"
+        },
+        {
+          "_id": "584eefa176121a0ff452b6e1"
+        },
+        {
+          "_id": "584eefb4b933bc025c75c7f5"
+        },
+        {
+          "_id": "584eefccb933bc025c75c7f6"
+        },
+        {
+          "_id": "584ef0ad5255181090c5792a"
+        },
+        {
+          "_id": "584ef0cb5255181090c5792b"
+        },
+        {
+          "_id": "584ef0dff0e08e0bdce7f229"
+        },
+        {
+          "_id": "584ef10ff0e08e0bdce7f22a"
+        },
+        {
+          "_id": "584ef11ec6bda61140601aac"
+        },
+        {
+          "_id": "584ef1a4c6bda61140601aad"
+        },
+        {
+          "_id": "584ef3a74c6f7c0e843ea619"
+        },
+        {
+          "_id": "584ef4193f658e0c20e9f661"
+        },
+        {
+          "_id": "584ef6bbf1680a1040dc320f"
+        },
+        {
+          "_id": "584ef8f44a28d003f460c0a8"
+        },
+        {
+          "_id": "584ef95511caf0129c9d4d3e"
+        },
+        {
+          "_id": "584efaaf2768ea0740efdb53"
+        },
+        {
+          "_id": "584efaf93dbf770880a101bc"
+        },
+        {
+          "_id": "584efb3477352a0ebc736d68"
+        },
+        {
+          "_id": "584efb807d462704408d61d4"
+        },
+        {
+          "_id": "584efb8b7d462704408d61d5"
+        },
+        {
+          "_id": "584efba47d462704408d61d6"
+        },
+        {
+          "_id": "584efba47d462704408d61d7"
+        },
+        {
+          "_id": "584efba47d462704408d61d8"
+        },
+        {
+          "_id": "584efba47d462704408d61d9"
+        },
+        {
+          "_id": "584efbe17d462704408d61da"
+        },
+        {
+          "_id": "584efc1b4429f711284c0689"
+        },
+        {
+          "_id": "584efc433158f307f4f7eb80"
+        },
+        {
+          "_id": "584efcace1d99100b0148a0a"
+        },
+        {
+          "_id": "584efcb1e1d99100b0148a0b"
+        },
+        {
+          "_id": "584efceb46ac9e11506a95d7"
+        },
+        {
+          "_id": "584efd8a6300be10f44c5895"
+        },
+        {
+          "propuestas": null,
+          "fecha_eleccion": "12-12-2016",
+          "otros": "asdas",
+          "_id": "584efdadd029b509e47e2217",
+          "estatus_votacion": {
+            "fecha_votacion": "12-12-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "propuestas": null,
+          "fecha_eleccion": "12-12-2016",
+          "otros": "asdas",
+          "_id": "584efe8bcd894509708dc315",
+          "estatus_votacion": {
+            "fecha_votacion": "12-12-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "propuestas": null,
+          "fecha_eleccion": "12-12-2016",
+          "otros": "asdas",
+          "_id": "584eff1aee4c3812341bc272",
+          "estatus_votacion": {
+            "fecha_votacion": "12-12-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "propuestas": null,
+          "fecha_eleccion": "12-12-2016",
+          "otros": "asdas",
+          "_id": "584effeb5b064d10f44663e0",
+          "estatus_votacion": {
+            "fecha_votacion": "12-12-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "nombre": "Luis Guillermo Solís",
+          "propuestas": "Iniciativa sociedades de convivencia",
+          "fecha_eleccion": "12-10-2016",
+          "otros": "asdas",
+          "_id": "584f01d2e42cd6075492c6de",
+          "estatus_votacion": {
+            "fecha_votacion": "12-10-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "nombre": "Luis Guillermo Solís",
+          "propuestas": "Iniciativa sociedades de convivencia",
+          "fecha_eleccion": "12-10-2016",
+          "otros": "asdas",
+          "_id": "584f02c6604e3a06d0beba6f",
+          "estatus_votacion": {
+            "fecha_votacion": "12-10-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "nombre": "Luis Guillermo Solís",
+          "propuestas": "Iniciativa sociedades de convivencia",
+          "fecha_eleccion": "12-10-2016",
+          "otros": "asdas",
+          "_id": "584f030d198c8406a849f349",
+          "estatus_votacion": {
+            "fecha_votacion": "12-10-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "nombre": "Luis Guillermo Solís",
+          "propuestas": "Iniciativa sociedades de convivencia",
+          "fecha_eleccion": "12-10-2016",
+          "otros": "asdas",
+          "_id": "584f03aa9804570370bc101a",
+          "estatus_votacion": {
+            "fecha_votacion": "12-10-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "nombre": "Luis Guillermo Solís",
+          "propuestas": "Iniciativa sociedades de convivencia",
+          "fecha_eleccion": "12-10-2016",
+          "otros": "asdas",
+          "_id": "584f03f6cf448c01d4b311f1",
+          "estatus_votacion": {
+            "fecha_votacion": "12-10-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "_id": "584f0b0817f34a0ac8f99530"
+        },
+        {
+          "_id": "584f0b6217f34a0ac8f99531"
+        },
+        {
+          "nombre": "Luis Guillermo Solís",
+          "propuestas": "asd",
+          "fecha_eleccion": "12-10-2016",
+          "otros": "asdas",
+          "_id": "585030adecde300b20b2523b",
+          "estatus_votacion": {
+            "fecha_votacion": "12-10-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "nombre": "Luis Guillermo Solís",
+          "propuestas": "asd",
+          "fecha_eleccion": "12-10-2016",
+          "otros": "asdas",
+          "_id": "585030c6ecde300b20b2523c",
+          "estatus_votacion": {
+            "fecha_votacion": "12-10-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "nombre": "Johnny Araya Monge",
+          "propuestas": "Propuesta 1",
+          "fecha_eleccion": "12-13-2016",
+          "otros": "asdas",
+          "_id": "5850315becde300b20b2523d",
+          "estatus_votacion": {
+            "fecha_votacion": "12-13-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PLN"
+          }
+        },
+        {
+          "nombre": "Luis Guillermo Solís",
+          "propuestas": "asd",
+          "fecha_eleccion": "12-13-2016",
+          "otros": "asdas",
+          "_id": "58503197ecde300b20b2523e",
+          "estatus_votacion": {
+            "fecha_votacion": "12-13-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "nombre": "Luis Guillermo Solís",
+          "propuestas": "asd",
+          "fecha_eleccion": "12-13-2016",
+          "otros": "asdas",
+          "_id": "585031f02672e309849fddc9",
+          "estatus_votacion": {
+            "fecha_votacion": "12-13-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "nombre": "Luis Guillermo Solís",
+          "propuestas": "Iniciativa sociedades de convivenciaRespeto a los derechos de los animalesReelección consecutiva única",
+          "fecha_eleccion": "12-13-2016",
+          "otros": "asdas",
+          "_id": "5850409d42d7cd0f802f4fbc",
+          "estatus_votacion": {
+            "fecha_votacion": "12-13-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "01",
+            "descripcion": "PAC"
+          }
+        },
+        {
+          "nombre": "José Miguel Corrales",
+          "propuestas": "Propuesta 1",
+          "fecha_eleccion": "12-13-2016",
+          "otros": "asdas",
+          "_id": "58504a81625bea0dbc33eb3e",
+          "estatus_votacion": {
+            "fecha_votacion": "12-13-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "06",
+            "descripcion": "Partido Patria Nueva"
+          }
+        },
+        {
+          "nombre": "Rodolfo Piza Rocafort",
+          "propuestas": "Propuesta 1",
+          "fecha_eleccion": "12-13-2016",
+          "otros": "asdas",
+          "_id": "58504b0d625bea0dbc33eb3f",
+          "estatus_votacion": {
+            "fecha_votacion": "12-13-2016",
+            "voto": true
+          },
+          "partido": {
+            "codigo": "05",
+            "descripcion": "Partido Unidad Social Cristiana"
+          }
+        }
+      ]
+    }
+  }
+]

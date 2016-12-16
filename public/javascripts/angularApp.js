@@ -106,11 +106,15 @@ function($stateProvider, $urlRouterProvider) {
 			}]
 
 		}*/
-
 	}).state('candidates', {
 		url: '/admin/candidates',
 		templateUrl: 'views/adminCandidate/listCandidateView.html',
 		controller: 'listCandidateController'
+
+	}).state('JSONtest', {
+		url: '/JSONtest',
+		templateUrl: 'views/JSONtest.html'
+
 	})
 	;
 
