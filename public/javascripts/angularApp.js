@@ -30,8 +30,14 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('voting', {
 		url : '/voting',
 		templateUrl : 'views/votingView.html',
-		controller : 'javascripts/controllers/votingController',
-		
+		controller : 'votingController',
+		resolve : {
+			postPromise : ['posts',
+			function(posts) {
+				return posts.getAll();
+			}]
+
+		}
 	}).state('posts', {
 		url : '/posts/:id',
 		templateUrl : '/posts.html',
