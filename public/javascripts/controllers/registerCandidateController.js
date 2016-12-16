@@ -6,6 +6,8 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
 {
   var that = $scope;
   that.candidate = {};
+  that.date_election_i = {};
+  that.date_election_e = {};
   that.fecha_inicial = [{id: 1, fecha:"2000"}, {id: 2, fecha: "2005"}, {id: 3, fecha:"2010"}, {id: 4, fecha:"2015"}];
   that.fecha_final = [{id: 1, fecha:"2005"}, {id: 2, fecha: "2010"}, {id: 3, fecha:"2015"}, {id: 4, fecha:"2020"}];
   that.cantones = [];
@@ -13,7 +15,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
   that.partidos = [{id:1, descripcion:"Rojo"}, {id:2,descripcion:"Verde"}];
   that.provinces = [];
   that.file = {};
-  $scope.candidates = [{id: 'choice1'}];
+  $scope.candidates = [{}];
    $http.get('/api/provinces').success(function (res)
    {
      that.provinces = res;
@@ -61,7 +63,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
     var newItemNo = $scope.candidates.length+1;
     $scope.candidates.push(that.candidate);
   };
-    
+
   $scope.removeChoice = function() {
     var lastItem = $scope.candidates.length-1;
     $scope.candidates.splice(lastItem);
@@ -69,9 +71,14 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
 
   $scope.saveItem = function ()
   {
-    $scope.uploadFile(that.file);
-    
-    $http.post('api/candidate').success(function(data)
+
+    //$scope.uploadFile(that.candidates);
+    var c = that.candidates.map(function (obj, index)
+    {
+         that.candidates[index].fecha_election = {codigo: that.date_election_e.id , fecha:that.date_election_i.fecha + that.date_election_e.fecha };
+    });
+    c= that.candidates;
+    $http.post('api/candidate', c).success(function(data)
     {
       console.log(data);
     });
