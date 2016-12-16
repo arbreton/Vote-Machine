@@ -17,6 +17,8 @@ app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$ti
     $http.put('/api/candidate-delete/'+ candidate._id , candidate ).success(function (data)
     {
       that.request = data;
+      that.candidates.splice(index, index);
+      $timeout(function (){$(".success-request").show().delay(2000).fadeOut();},1000);
     });
   };
 

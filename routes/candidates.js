@@ -13,16 +13,14 @@ var storage =   multer.diskStorage({
   }
 });
 
-var upload = multer({ storage : storage}).single('foto');
+var upload = multer({ storage : storage}).single('file');
 
 router.post('/file',function(req, res)
 {
   upload(req,res,function(err) {
         if(err) { console.log('error image'); }
-        req.body.file.forEach( function (item, index)
-        {
-            console.log(item)
-        });
+            console.log('ok')
+
     });
 });
 
