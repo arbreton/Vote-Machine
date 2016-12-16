@@ -26,10 +26,10 @@
           <div class="col-md-12">
               <div class="form-group">
                 <label for="fecha-eleccion">From: </label>
-                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_inicial" ng-model="candidate.fecha_eleccion" required=""></select>
-              
+                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_inicial" ng-model="date_election_i" required=""></select>
+
                 <label for="fecha-eleccion">To: </label>
-                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_final" ng-model="candidate.fecha_eleccion" required=""></select>
+                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_final" ng-model="date_election_e" required=""></select>
               </div>
           </div>
         </div><!--end row -->
@@ -56,59 +56,73 @@
         </div><!--end row -->
 
         <!--home row -->
-        <div class="row form-group-block">
-          <div class="col-md-12">
+        <div class="row form-group-select">
+          <div class="col-md-4">
               <div class="form-group">
                 <label for="label-partido">Partido: </label>
                 <select class="form-control" ng-options="partido.descripcion for partido in partidos" ng-model="candidate.partido"></select>
               </div>
-              <div class="form-group">
-                <label for="label-imagen">Selccionar imágen: </label>
-                <div class="button" ngf-select="uploadFile($file)">Upload on file select</div>
-              </div>
-          </div>
+          </div><!--end col -->
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="preview-img"> <img ngf-thumbnail="candidate.foto"> </div>
+              <div class="button" ngf-select ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.foto" ngf-min-width="150"  ngf-min-height="150"
+                ngf-resize="{width: 150, height: 150}">Select image candidate</div>
+            </div>
+          </div><!--end col -->
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="preview-img"> <img ngf-thumbnail="files"></div>
+              <div class="button" ngf-select ngf-pattern="'image/*'" ngf-accept="'image/*'"  ngf-min-width="150"  ngf-min-height="150" ng-model="filecv">Select image Partido</div>
+            </div>
+          </div><!--end col -->
         </div><!--end row -->
 
         <!--home row -->
-         
-        <div class="row no-margin form-group-block">
-          <div class="col-md-12">
+        <div class="row no-margin">
+          <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 form-group-md">
               <div class="form-group">
-                <label for="label-nombre">Name: </label>
-                <input type="text" class="form-control" placeholder="Nombre" ng-model="candidate.nombre"/>
+                <label for="label-nombre" class="col-md-6">Name: </label>
+                <input type="text" class="form-control col-md-6" placeholder="Name" ng-model="candidate.nombre"/>
               </div>
-              <div class="form-group">
-                <label for="label-nombre">First Last Name: </label>
-                <input type="text" class="form-control" placeholder="Apellido Paterno" ng-model="candidate.ap_paterno"/>
-              </div>
-              <div class="form-group">
-                <label for="label-nombre">Second Last Name: </label>
-                <input type="text" class="form-control" placeholder="Apellido Materno" ng-model="candidate.ap_materno" />
-                
-              </div>
-          </div>
-        </div><!--end row -->
-      
-        
 
-        <!--home row -->
-        <div class="row form-group-block">
-          <div class="col-md-12">
-            <textarea class="form-control" placeholder="Propuestas" rows="6" cols="160" ng-model="candidate.propuesta" required=""></textarea>
-             <button class="btn btn-danger" ng-show="$last" ng-click="removeChoice()">Remove Candidate</button>
-          </div>
+              <div class="form-group">
+                <label for="label-last-name" class="col-md-6">First Last Name: </label>
+                <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.ap_paterno"/>
+              </div>
 
+              <div class="form-group">
+                <label for="label-second-name" class="col-md-6">Second Last Name: </label>
+                <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.ap_materno" />
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-6"> <label for="genere">Gender:</label></div>
+                <div class="col-md-6">
+                  <div class="radio"><label><input type="radio" ng-model="candidate.gender" value="1">Female</label></div>
+                  <div class="radio"><label> <input type="radio" ng-model="candidate.gender" value="2">Masculine </label></div>
+                </div><!--end col -->
+              </div>
+          </div><!--end col -->
+
+          <div class="col-md-7">
+            <textarea class="form-control" placeholder="Propuestas" rows="8" cols="80" ng-model="candidate.propuesta" required=""></textarea>
+          </div><!--end col -->
         </div><!--end row -->
+
+        <div class="row text-right">
+          <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="$last" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+        </div>
 
 </fieldset>
- <button class="btn btn-success" ng-click="addNewChoice()">Add New Candidate</button>
-
-
+ <button class="btn btn-success circle-button flotante" ng-click="addNewChoice()"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
         <!--home row -->
         <div class="row">
           <div class="col-md-12 text-center">
-            <button class="btn btn-success" ng-disabled="!saveForm.$valid" type="submit">Guardar</button>
-            <button class="btn btn-danger">Cancelar</button>
+            <button class="btn btn-success" ng-disabled="!saveForm.$valid" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+            <button class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
           </div>
         </div><!--end row -->
 

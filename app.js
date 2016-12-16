@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 // connect MongoDB+
-mongoose.connect('mongodb://localhost:27017/meandatabase', function(err,db){
+mongoose.connect('mongodb://localhost:27017/mean-database', function(err,db){
     if (!err){
         console.log('Connected to /mean-database!');
     } else{
