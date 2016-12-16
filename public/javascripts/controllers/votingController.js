@@ -2,7 +2,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
 
         
         $scope.voteInfo={};
-        $scope.voteInfo.id=auth.currentID;
+        $scope.voteInfo.id=auth.currentID();
        /* $scope.voteInfo.nombre={};
         $scope.voteInfo.propuestas={};
         $scope.voteInfo.codigopartido={};

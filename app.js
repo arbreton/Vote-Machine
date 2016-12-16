@@ -34,6 +34,7 @@ var routes = require('./routes/index');
 var citizens = require('./routes/citizens');
 var candidates = require('./routes/candidates');
 var provinces = require('./routes/provinces');
+var graphics = require('./routes/graphics');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -54,6 +55,7 @@ app.use('/', routes);
 app.use('/users', citizens);
 app.use('/api', candidates);
 app.use('/api', provinces);
+app.use('/api', graphics);
 //app.use('/api', citizens);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

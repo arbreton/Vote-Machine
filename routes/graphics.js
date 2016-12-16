@@ -33,13 +33,13 @@ app.post('/citizens', function(req, res) {
         });
     })
 //Get the citizens that voted in a certain election, chosen by date
-.get('/citizens/:fecha_eleccion',function(req, res) {
+/*.get('/citizens/:fecha_eleccion',function(req, res) {
         Citizen.find({'candidatos.presidenciales.fecha_eleccion':req.params.fecha_eleccion}, function(err, citizen) {
             if (err)
                 res.send(err);
             res.json(citizen);
         });
-    })
+    })*/
 //Get the citizens that voted in a certain election, chosen by date
 .get('/citizens/graph/:fecha_eleccion',function(req, res) {
         Citizen.find({'candidatos.presidenciales.fecha_eleccion':req.params.fecha_eleccion}, function(err, citizen) {
