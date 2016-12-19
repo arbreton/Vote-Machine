@@ -9,18 +9,19 @@ var storage =   multer.diskStorage({
     callback(null, './uploads');
   },
   filename: function (req, file, callback) {
-    callback(null, file.originalname);
+    callback(null,  file.originalname );
   }
 });
 
-var upload = multer({ storage : storage}).single('file');
+var upload = multer({ storage : storage}).single('foto');
 
 router.post('/file',function(req, res)
 {
   upload(req,res,function(err) {
-        if(err) { console.log('error image'); }
-            console.log('ok')
-
+        if(err) { console.log('Error al subir la imagen'); }
+        else{console.log('imagen salvada..');}
+        console.log(req);
+        console.log(req.body);
     });
 });
 
@@ -44,7 +45,7 @@ router.post('/candidate',function(req, res)
       candidate.ap_materno = item.ap_materno;
       candidate.propuesta = item.propuesta;
       candidate.genero = item.gender;
-      candidate.fecha_eleccion.codigo = item.fecha_election.codigo;
+      candidate.fecha_eleccion.codigo = item.fecha_election.codigso;
       candidate.fecha_eleccion.fecha = item.fecha_election.fecha;
       candidate.estatus = true;
 
@@ -90,7 +91,7 @@ router.put('/candidate-update/:id',function (req, res)
     Candidate.findOneAndUpdate(query, update, function (err, data)
     {
       if(err){console.log('Error in update');}
-      res.json({message: 200});
+      res.json({status: 200,message: 'Was updated successfully'});
     });
   }
 });
@@ -104,7 +105,7 @@ router.put('/candidate-delete/:id', function (req, res)
       var update = {estatus: false};
       Candidate.findOneAndUpdate(query, update, function (err, data)
       {
-        if(err){ res.json({message: 'Error'});}
+        if(err){ res.json({status: 400 ,message: 'Can not delete the register'});}
         res.json({status: 200, message: 'Was deleted successfully'});
       });
   }

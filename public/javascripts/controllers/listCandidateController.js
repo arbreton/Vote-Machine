@@ -16,8 +16,8 @@ app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$ti
   {
     $http.put('/api/candidate-delete/'+ candidate._id , candidate ).success(function (data)
     {
-      that.request = data;
-      that.candidates.splice(index, index);
+      that.response = data;
+      that.candidates.splice(index, 1);
       $timeout(function (){$(".success-request").show().delay(2000).fadeOut();},1000);
     });
   };
@@ -47,6 +47,29 @@ app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$ti
      });
    };
 
+$scope.confirmationDelete = function (index,candidate)
+{
+  var modalIntance = $uibModal.open({
+    templateUrl: 'views/adminCandidate/modalConfirmation.html',
+    controller: 'modalConfirmationController',
+    size: 'sm',
+    resolve: {
+      item: function (){
+        return true;
+      }
+    }
+  });
+
+  modalIntance.result.then( function (data)
+  {
+    if(data)
+    {
+      $scope.deleteItem(index, candidate);
+    }
+  });
+};
+
+
 }]);
 
 app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item', 'province','$http', function ($scope, $uibModalInstance, item, province, $http)
@@ -74,11 +97,27 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
   {
       $http.put('/api/candidate-update/'+ that.candidate._id, that.candidate).success(function (data)
       {
-        that.candidate.request = data.message;
+        that.candidate.request = data;
         $uibModalInstance.close(that.candidate);
       });
   };
 
 
 
+}]);
+
+
+app.controller('modalConfirmationController', ['$scope', '$uibModalInstance', 'item', function ($scope, $uibModalInstance, item)
+{
+  var that = $scope;
+  that.confirmation = {yes: true, no: false};
+
+  $scope.cancel = function ()
+  {
+    $uibModalInstance.close(that.confirmation.no);
+  };
+  $scope.ok = function ()
+  {
+    $uibModalInstance.close(that.confirmation.yes);
+  };
 }]);

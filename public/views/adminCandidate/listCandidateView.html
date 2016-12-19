@@ -18,7 +18,7 @@
  <div class="title">Candidatos postulados</div>
 
    <div ng-if="response.status==200" class="alert alert-success success-request" role="alert">
-     <h4>{{response.messages}}</h4>
+     <h4>{{response.message}}</h4>
    </div>
 
  <div id="page-content-wrapper">
@@ -45,7 +45,7 @@
                 <td>{{candidate.fecha_eleccion.fecha}}</td>
                 <td>
                   <button class="btn btn-success" ng-click="editItem($index,candidate)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                  <button class="btn btn-danger" type="submit" ng-click="deleteItem($index,candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                  <button class="btn btn-danger" type="submit" ng-click="confirmationDelete($index, candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                 </td>
             </tr>
           </tbody>
