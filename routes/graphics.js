@@ -64,7 +64,7 @@ app.post('/citizens', function(req, res) {
             [{ $match: {genero: "2"}},
             { $group: { _id: "$provincia.distrito",Total_de_mujeres:{ $sum: 1}}},
             { $sort: {"Total_de_mujeres":-1}},
-            {$limit:5}
+            
 
 
 
@@ -83,7 +83,7 @@ app.post('/citizens', function(req, res) {
             Total_de_hombres:{ $sum: { $cond: [ { $eq: [ "$genero", "1"] } , 1, 0 ] }}}},
 
             { $sort: {"Total_de_mujeres":-1}},
-            {$limit:5}
+            
 
 
 
