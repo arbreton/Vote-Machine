@@ -3,19 +3,19 @@ var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 
 var CitizensSchema = new mongoose.Schema({
-  clave_electoral: String,
-  provincia: { codigo: String, descripcion: String, canton: String, distrito: String },
-  genero: String,
-  fecha_caducidad: String,
-  estatus: String,
-  nombre: String,
-  ap_paterno: String,
-  ap_materno: String,
-  edad: String,
-  pass: String,
+  electoral_code: String,
+  province: { code: String, description: String, canton: String, district: String },
+  genre: String,
+  expiration_date: String,
+  status: String,
+  name: String,
+  first_lastname: String,
+  second_lastname: String,
+  age: String,
+  password: String,
   date: String,
-  rol: { id: String, descripcion: String },
-  candidatos: {presidenciales:[{nombre:String, ap_paterno:String, ap_materno:String,propuestas:String, partido: {codigo:String,descripcion:String},fecha_eleccion:String, estatus_votacion:{fecha_votacion:String,voto:Boolean},otros:String}]},
+  role: { id: String, description: String },
+  candidates: {presidential:[{name:String, first_lastname:String, second_lastname:String,proposals:String, partido: {codigo:String,descripcion:String},fecha_eleccion:String, estatus_votacion:{fecha_votacion:String,voto:Boolean},otros:String}]},
   //hash: String,
   //salt: String
 });
@@ -30,23 +30,23 @@ CitizensSchema.methods.generateJWT = function() {
 
   return jwt.sign({
     _id: this._id,
-    clave_electoral: this.clave_electoral,
-    rol: this.rol.id,
+    electoral_code: this.electoral_code,
+    role: this.role.id,
     exp: parseInt(exp.getTime() / 1000),
   }, 'SECRET');
 };
 
-CitizensSchema.methods.setPassword = function(pass){
+CitizensSchema.methods.setPassword = function(password){
   //this.salt = crypto.randomBytes(16).toString('hex');
 
   //this.hash = crypto.pbkdf2Sync(pass, this.salt, 1000, 64).toString('hex');
 };
 
-CitizensSchema.methods.validPassword = function(pass) {
+CitizensSchema.methods.validPassword = function(password) {
   //var hash = crypto.pbkdf2Sync(pass, this.salt, 1000, 64).toString('hex');
 
   //return this.hash === hash;
-  return pass;
+  return password;
 };
 
 mongoose.model('Citizen', CitizensSchema);
