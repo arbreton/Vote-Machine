@@ -122,8 +122,8 @@ function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('home');
 }]);
 
-app.factory('auth', ['$http', '$window',
-function($http, $window) {
+app.factory('auth', ['$http', '$window', '$location',
+function($http,$window, $location) {
 	var auth = {};
 
 	auth.saveToken = function(token) {
@@ -153,7 +153,7 @@ function($http, $window) {
 			var token = auth.getToken();
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-			if(payload.rol == "ad"){
+			if(payload.role == "ad"){
 				return true;
 			}else{
 				return false;
@@ -166,7 +166,7 @@ function($http, $window) {
 			var token = auth.getToken();
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-			return payload.clave_electoral;
+			return payload.electoral_code;
 		}
 	};
 
@@ -193,6 +193,7 @@ function($http, $window) {
 
 	auth.logOut = function() {
 		$window.localStorage.removeItem('votinapp-token');
+		$location.url("/home");
 	};
 
 	return auth;
