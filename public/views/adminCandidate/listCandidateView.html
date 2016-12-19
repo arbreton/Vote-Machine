@@ -30,19 +30,19 @@
               <th>Province</th>
               <th>Canton</th>
               <th>District</th>
-              <th>Partido</th>
+              <th>Match</th>
               <th>Election Date</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="candidate in candidates">
-                <td>{{candidate.nombre +" " + candidate.ap_paterno + " " + candidate.ap_materno}}</td>
-                <td>{{candidate.provincia.descripcion}}</td>
-                <td>{{candidate.provincia.canton.descripcion}}</td>
-                <td>{{candidate.provincia.distrito.descripcion}}</td>
-                <td>{{candidate.partido.descripcion}}</td>
-                <td>{{candidate.fecha_eleccion.fecha}}</td>
+                <td>{{candidate.name +" " + candidate.first_last_name + " " + candidate.second_last_name}}</td>
+                <td>{{candidate.province.description}}</td>
+                <td>{{candidate.province.canton.description}}</td>
+                <td>{{candidate.province.district.description}}</td>
+                <td>{{candidate.match.description}}</td>
+                <td>{{candidate.election_date.date}}</td>
                 <td>
                   <button class="btn btn-success" ng-click="editItem($index,candidate)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                   <button class="btn btn-danger" type="submit" ng-click="confirmationDelete($index, candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>

@@ -79,9 +79,9 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
   that.cantones = [];
   that.districts = [];
   that.candidate = item;
-  that.fecha_inicial = [{id: 1, fecha:"2000"}, {id: 2, fecha: "2005"}, {id: 3, fecha:"2010"}, {id: 4, fecha:"2015"}];
-  that.fecha_final = [{id: 1, fecha:"2005"}, {id: 2, fecha: "2010"}, {id: 3, fecha:"2015"}, {id: 4, fecha:"2020"}];
-  that.partidos = [{codigo:1, descripcion:"Rojo"}, {codigo:2,descripcion:"Verde"}];
+  that.elections_date_ini = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
+  that.elections_date_end = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
+  that.matchs = [{id:1, description:"Rojo"}, {id:2,description:"Verde"}];
   province.getProvinces().then(function (data)
   {
     that.provinces = data;
@@ -95,15 +95,13 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
 
   $scope.updateItem = function ()
   {
+    that.candidate.election_date = {id: that.election_date_ini.id, date: that.election_date_ini.date + ' ' + that.election_date_end.date};
       $http.put('/api/candidate-update/'+ that.candidate._id, that.candidate).success(function (data)
       {
         that.candidate.request = data;
         $uibModalInstance.close(that.candidate);
       });
   };
-
-
-
 }]);
 
 

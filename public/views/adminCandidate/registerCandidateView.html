@@ -42,15 +42,15 @@
           <div class="col-md-12">
               <div class="form-group">
                 <label for="label-provincia">Provincia: </label>
-                <select class="form-control" ng-options="province.descripcion for province in provinces" ng-model="candidate.province" ng-change="showCantones(candidate.province.cantones)" required=""></select>
+                <select class="form-control" ng-options="province.description for province in provinces" ng-model="candidate.province" ng-change="showCantones(candidate.province.cantones)" required=""></select>
               </div>
               <div class="form-group">
                 <label for="label-canton">Canton: </label>
-                <select class="form-control" ng-options="canton.descripcion for canton in cantones" ng-model="candidate.province.canton" ng-change="showDistricts(candidate.province.canton.distritos)" required=""></select>
+                <select class="form-control" ng-options="canton.description for canton in cantones" ng-model="candidate.province.canton" ng-change="showDistricts(candidate.province.canton.districts)" required=""></select>
               </div>
               <div class="form-group">
                 <label for="label-distritos">Disctrict: </label>
-                <select class="form-control" ng-options="district.descripcion for district in districts" ng-model="candidate.district" required=""></select>
+                <select class="form-control" ng-options="district.description for district in districts" ng-model="candidate.district" required=""></select>
               </div>
           </div>
         </div><!--end row -->
@@ -59,15 +59,15 @@
         <div class="row form-group-select">
           <div class="col-md-4">
               <div class="form-group">
-                <label for="label-partido">Partido: </label>
-                <select class="form-control" ng-options="partido.descripcion for partido in partidos" ng-model="candidate.partido"></select>
+                <label for="label-partido">Match: </label>
+                <select class="form-control" ng-options="match.description for match in matchs" ng-model="candidate.match"></select>
               </div>
           </div><!--end col -->
 
           <div class="col-md-4">
             <div class="form-group">
-              <div class="preview-img"> <img ngf-thumbnail="candidate.foto"> </div>
-              <div class="button" ngf-select ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.foto" ngf-min-width="150"  ngf-min-height="150"
+              <div class="preview-img"> <img ngf-thumbnail="candidate.image"> </div>
+              <div class="button" ngf-select ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.image" ngf-min-width="150"  ngf-min-height="150"
                 ngf-resize="{width: 150, height: 150}">Select image candidate</div>
             </div>
           </div><!--end col -->
@@ -85,17 +85,17 @@
           <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 form-group-md">
               <div class="form-group">
                 <label for="label-nombre" class="col-md-6">Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Name" ng-model="candidate.nombre"/>
+                <input type="text" class="form-control col-md-6" placeholder="Name" ng-model="candidate.name"/>
               </div>
 
               <div class="form-group">
                 <label for="label-last-name" class="col-md-6">First Last Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.ap_paterno"/>
+                <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.first_last_name"/>
               </div>
 
               <div class="form-group">
                 <label for="label-second-name" class="col-md-6">Second Last Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.ap_materno" />
+                <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.second_last_name" />
               </div>
 
               <div class="form-group">
@@ -108,7 +108,7 @@
           </div><!--end col -->
 
           <div class="col-md-7">
-            <textarea class="form-control" placeholder="Propuestas" rows="8" cols="80" ng-model="candidate.propuesta" required=""></textarea>
+            <textarea class="form-control" placeholder="Propuestas" rows="8" cols="80" ng-model="candidate.proposal " required=""></textarea>
           </div><!--end col -->
         </div><!--end row -->
 

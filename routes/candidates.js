@@ -28,7 +28,7 @@ router.post('/file',function(req, res)
 
 router.get('/canditates', function (req, res)
 {
-  Candidate.find({estatus:true}).exec(function (err, candidate)
+  Candidate.find({status:true}).exec(function (err, candidate)
   {
     if(err){ res.send('Error');}
     else { res.json(candidate); }
@@ -40,24 +40,24 @@ router.post('/candidate',function(req, res)
     {
       var  candidate = new Candidate();
       //info of candidate
-      candidate.nombre = item.nombre;
-      candidate.ap_paterno = item.ap_paterno;
-      candidate.ap_materno = item.ap_materno;
-      candidate.propuesta = item.propuesta;
-      candidate.genero = item.gender;
-      candidate.fecha_eleccion.codigo = item.fecha_election.codigso;
-      candidate.fecha_eleccion.fecha = item.fecha_election.fecha;
-      candidate.estatus = true;
+      candidate.name = item.name;
+      candidate.first_last_name = item.first_last_name;
+      candidate.second_last_name = item.second_last_name;
+      candidate.proposal = item.proposal;
+      candidate.gender = item.gender;
+      candidate.election_date.id = item.election_date.id;
+      candidate.election_date.date = item.election_date.date;
+      candidate.status = true;
 
       //province
-      candidate.partido.codigo = item.partido.id;
-      candidate.partido.descripcion = item.partido.descripcion;
-      candidate.provincia.codigo = item.province.codigo;                                                                                                                                                                                                   5
-      candidate.provincia.descripcion = item.province.descripcion;
-      candidate.provincia.distrito.codigo = item.district.codigo;
-      candidate.provincia.distrito.descripcion = item.district.descripcion;
-      candidate.provincia.canton.codigo = item.province.canton.codigo;
-      candidate.provincia.canton.descripcion = item.province.canton.descripcion;
+      candidate.match.id = item.match.id;
+      candidate.match.description = item.match.description;
+      candidate.province.id = item.province.id;                                                                                                                                                                                                   5
+      candidate.province.description = item.province.description;
+      candidate.province.district.id = item.district.id;
+      candidate.province.district.description = item.district.description;
+      candidate.province.canton.id = item.province.canton.id;
+      candidate.province.canton.description = item.province.canton.description;
 
       //save item
       candidate.save( function(err)
@@ -77,16 +77,16 @@ router.put('/candidate-update/:id',function (req, res)
     var query = { _id: id};
     var update =
     {
-      nombre : req.body.nombre,
-      ap_paterno : req.body.ap_paterno,
-      ap_materno : req.body.ap_materno,
-      propuesta : req.body.propuesta,
-      genero : req.body.gender,
-      fecha_eleccion : {codigo: req.body.fecha_eleccion.codigo, fecha: req.body.fecha_eleccion.fecha },
-      partido: { codigo : req.body.partido.id, descripcion: req.body.partido.descripcion },
-      provincia: { codigo : req.body.province.codigo, descripcion: req.body.province.descripcion,
-        canton: { codigo : req.body.province.canton.codigo, descripcion : req.body.province.canton.descripcion },
-        distrito:{ codigo : req.body.district.codigo, descripcion : req.body.province.canton.descripcion } }
+      name : req.body.name,
+      first_last_name : req.body.first_last_name,
+      second_last_name : req.body.second_last_name,
+      proposal : req.body.proposal,
+      gender : req.body.gender,
+      election_date : {id: req.body.election_date.id, date: req.body.election_date.date },
+      match: { id : req.body.match.id, description: req.body.match.description },
+      province: { id : req.body.province.id, description: req.body.province.description,
+        canton: { id : req.body.province.canton.id, description : req.body.province.canton.description },
+        district:{ id : req.body.district.id, description : req.body.province.canton.description } }
     };
     Candidate.findOneAndUpdate(query, update, function (err, data)
     {
@@ -102,7 +102,7 @@ router.put('/candidate-delete/:id', function (req, res)
   if( id !='')
   {
       var query = { _id: id};
-      var update = {estatus: false};
+      var update = {status: false};
       Candidate.findOneAndUpdate(query, update, function (err, data)
       {
         if(err){ res.json({status: 400 ,message: 'Can not delete the register'});}

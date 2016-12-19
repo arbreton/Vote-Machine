@@ -12,7 +12,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
   that.fecha_final = [{id: 1, fecha:"2005"}, {id: 2, fecha: "2010"}, {id: 3, fecha:"2015"}, {id: 4, fecha:"2020"}];
   that.cantones = [];
   that.districts = [];
-  that.partidos = [{id:1, descripcion:"Rojo"}, {id:2,descripcion:"Verde"}];
+  that.matchs = [{id:1, description:"Rojo"}, {id:2,description:"Verde"}];
   that.provinces = [];
   that.file = {};
   that.fotos = [];
@@ -35,7 +35,6 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
 
   $scope.clearItem = function()
   {
-    //$scope.saveForm.$setPristine();
     $scope.restForm();
   };
 
@@ -76,7 +75,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
   {
     var c = that.candidates.map(function (obj, index)
     {
-         that.candidates[index].fecha_election = {codigo: that.date_election_e.id , fecha:that.date_election_i.fecha + that.date_election_e.fecha };
+         that.candidates[index].election_date = {id: that.date_election_e.id , date:that.date_election_i.fecha +'-'+ that.date_election_e.fecha };
     });
     c= that.candidates;
     //$scope.uploadFile(that.candidates);
