@@ -36,7 +36,7 @@ let barChart = new Chart(CHART, {
     ]
   },
   /*add options for object scale, the yAxes object represent our 'Y axe'
-  without our ticks object and BeginAtZero it shows a graphic that start
+  without our ticks object and BeginAtZero it shows a graphic starting
   at the smallest number in our data... if you want to see the difference
   comment options*/
   options: {
