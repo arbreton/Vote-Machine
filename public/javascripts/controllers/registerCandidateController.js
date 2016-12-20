@@ -17,6 +17,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
   that.file = {};
   that.fotos = [];
   that.foto = {};
+  that.request = {};
   $scope.candidates = [{}];
    $http.get('/api/provinces').success(function (res)
    {
@@ -89,7 +90,8 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
     $scope.uploadFile(that.candidates);
     $http.post('api/candidate', c).success(function(data)
     {
-      console.log(data);
+      that.request = data;
+      $('success-request-fixed').show().delay(2000).fadeOut();;
     });
   };
 

@@ -116,6 +116,10 @@
           <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="$last" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
         </div>
 
+          <div ng-if="request.status==200" class="alert alert-success success-request-fixed" role="alert">
+            <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
+          </div>
+
 </fieldset>
  <button class="btn btn-success circle-button flotante" ng-click="addNewChoice()"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
         <!--home row -->
