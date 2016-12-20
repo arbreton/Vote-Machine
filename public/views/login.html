@@ -8,9 +8,11 @@
 
     <form ng-submit="logIn()" 
     style="margin-top:30px; margin-left: 400px; margin-right: 100px;">
+    <!--div for glyphicon user-->
       <div class =  "text-center">
         <h1 span class = "glyphicon glyphicon-user" style = "color:283E51"></h1></span>
       </div>
+      <!--div for username form-->
       <div class = "form-horizontal">
       <div class="form-group">
         <label for = "inputuser" class = "col-sm-2 control-label">Username</label>
@@ -21,9 +23,11 @@
         ng-model="user.username"></input>
       </div>
       </div>
+      <!--div for glyphicon lock-->
       <div class = "text-center">
         <h1 span class="glyphicon glyphicon-lock" style = "color: #283E51"></h1></span>
       </div>
+      <!--div for password form-->
       <div class = "form-horizontal">
       <div class="form-group">
         <label for = "inputPassword" class = "col-sm-2 control-label">Password</label>
@@ -34,6 +38,7 @@
         ng-model="user.password"></input>
       </div>
       </div>
+      <!--div for submit button-->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-5">
          <button type="submit" class="btn btn-primary">Log In</button>
