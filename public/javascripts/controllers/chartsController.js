@@ -8,25 +8,25 @@ app.controller('chartsController', [ '$scope', '$http', function($scope, $http)
     console.log(data);
   });
   const CHART = document.getElementById("barChart");
-/*Revisar documentacion de Chart.js para ver mas opciones globales,
-DESCOMENTAR SI QUIEREN QUE LA GRAFICA NO SEA RESPONSIVA
+/*Check chart.js documentation for more global options, 
+uncomment this if you want your graphics don't be responsive
 Chart.defaults.global.responsive = false;*/
 let barChart = new Chart(CHART, {
   type: 'bar',
-  //insercion de datos
+  //data insertion
   data: {
-    /*labels nos remarca cuanto se vera de nuestra grafica, no importando cuantos
-    datos contenga nuestro 'data' no los mostrara*/
+    /*we'll see this labels in our graphics, but if we have more data without this labels
+    our chart will not show it*/
     labels: ["PAC", "PLN", "FA", "ML", "PUSC", "PPN", "Otros"],
-    //datasets nos da las propiedades que contendra la grafica//
+    //datasets will give us the properties for the graphics content//
     datasets: [
     {
-      //nombre de la linea//
-      label: '1era Vuelta',
+      //line name//
+      label: '1era vuelta',
       //espacio de los datos, si hay mas de lo que esta en nuestro labels no se mostraran//
       data: [30.64,29.71,17.25,11.34,6.02,1.50,3.55],
       backgroundColor:"rgba(153, 99, 132, 0.5)",
-    },//finaliza la primera linea, sigue la siguiente linea agregada
+    },//finish the first line, add the next one.
       {
       label: '2da vuelta',
       data: [77,22.1],
@@ -35,12 +35,10 @@ let barChart = new Chart(CHART, {
 
     ]
   },
-  /*agregamos opciones en donde agregamos un objeto escala,
-  dentro de este, tendremos el objeto yAxes que representa
-  al 'eje Y' el cual sin el objeto ticks y BeginAtZero nos
-  mostrara una grafica que empiece por el primer dato mas chico
-  que este en nuestro data... para ver la diferencia comentar
-  toda la parte de options*/
+  /*add options for object scale, the yAxes object represent our 'Y axe'
+  without our ticks object and BeginAtZero it shows a graphic starting
+  at the smallest number in our data... if you want to see the difference
+  comment options*/
   options: {
     scales: {
       yAxes: [{
@@ -49,38 +47,24 @@ let barChart = new Chart(CHART, {
         }
       }],
       xAxes: [{
-        /*stacked se refiere a si quieres que las barras se vean en una sola o en diferentes,
-          para activar una sola barra cambiar el false por el true*/
         stacked: false
       }]
     }
   }
 });
 
-//main.js se encuentra guardado en la carpeta js/main.js que es de donde el HTML lo manda llamar
-//mandamos la informacion hacia nuestro HTML
+//sending the information to our html
 const CHART1 = document.getElementById("lineChart");
-/*Revisar documentacion de Chart.js para ver mas opciones globales,
-DESCOMENTAR SI QUIEREN QUE LA GRAFICA NO SEA RESPONSIVA
-Chart.defaults.global.responsive = false;*/
+//2nd chart
 let lineChart = new Chart(CHART1, {
   type: 'line',
-  //insercion de datos
   data: {
-    /*labels nos remarca cuanto se vera de nuestra grafica, no importando cuantos
-    datos contenga nuestro 'data' no los mostrara*/
     labels: ["one", "two", "three"],
-    //datasets nos da las propiedades que contendra la grafica//
     datasets: [
     {
-      //nombre de la linea//
       label: "EL PRIMERO",
-      /*En este caso tenemos que nuestra linea no estara rellena como
-      en 'EL SEGUNDO'*/
       fill: false,
-      /*LineTension solo se usa en esta grafica y nos remarca que tan curveada queremos la linea*/
       lineTension: 0.1,
-      /*colores y bordes*/
       backgroundColor: "rgba(75,192,192,0.4)",
       borderColor: "rgba(75,192,192,1)",
       borderCapStyle: "butt",
@@ -96,10 +80,8 @@ let lineChart = new Chart(CHART1, {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius:10,
-      //espacio de los datos, si hay mas de lo que esta en nuestro labels no se mostraran//
       data: [65,59,80],
-
-    },//finaliza la primera linea, sigue la siguiente linea agregada
+    },
       {
       label: "EL SEGUNDO",
       fill: true,
@@ -124,12 +106,6 @@ let lineChart = new Chart(CHART1, {
 
     ]
   },
-  /*agregamos opciones en donde agregamos un objeto escala,
-  dentro de este, tendremos el objeto yAxes que representa
-  al 'eje Y' el cual sin el objeto ticks y BeginAtZero nos
-  mostrara una grafica que empiece por el primer dato mas chico
-  que este en nuestro data... para ver la diferencia comentar
-  toda la parte de options*/
   options: {
     scales: {
       yAxes: [{

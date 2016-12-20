@@ -24,31 +24,30 @@
       <!--Nav bar -->
 	<br>
 	<br>
-	<h1 ng-show="isAdmin()" align = "right"> MUESTRA DE GRAFICAS </h1>
-<!--aqui le estamos diciendo a la grafica que respete el espacio. si lo omitimos tomara la pantalla completa, 
-si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
+	<h1 ng-show="isAdmin()" align = "right"> GRAPHICS SAMPLE </h1>
+<!--We need to give this instruction to the graphics because we need them to respect the given space, 
+  if  we skip this they'll take all the screen, for a very responsive graphics put the parameters in percentages-->
 	<div style = "width: 20%;" id = "div1" ng-show="isAdmin()">
 		<canvas id = "barChart" height = "800" width = "800"></canvas>
 	</div>
 
-<!--aqui le estamos diciendo a la grafica que respete el espacio. si lo omitimos tomara la pantalla completa, 
-si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
+<!--2nd chart-->
 	<div style = "width: 20%;" id = "div2" ng-show="isAdmin()">
 		<canvas id = "lineChart" height = "800" width = "800"></canvas>
 	</div>
-<!-- 3er chart-->
+<!-- 3th chart-->
 	<div style = "width: 20%;" id = "div3" ng-show="isAdmin()">
 		<canvas id = "barChart1" height = "800" width = "800"></canvas>
 	</div>
-<!-- 4to chart-->
+<!-- 4th chart-->
 	<div style = "width: 20%;" id = "div4" ng-show="isAdmin()">
 		<canvas id = "lineChart1" height = "800" width = "800"></canvas>
 	</div>
-<!-- 5to chart-->
+<!-- 5th chart-->
 	<div style = "width: 20%;" id = "div5" ng-show="isAdmin()">
 		<canvas id = "barChart2" height = "800" width = "800"></canvas>
 	</div>
-<!-- 6to chart-->
+<!-- 6th chart-->
 	<div style = "width: 20%;" id = "div6" ng-show="isAdmin()">
 		<canvas id = "barChart3" height = "800" width = "800"></canvas>
 	</div>
