@@ -56,14 +56,14 @@
         	
 		</div>
 
-		<!-- Datos segundo candidato presidencial -->
+		<!-- Second presidential candidate data -->
  		<div class="col-md-3">
  			<div ng-show="candpres2">
 				<div id="container">
     				<div id="main_image"><img class="candidate" src="{{cand2img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part2img}}"></div>
 				</div>
-    			<p class="CenterName" ng-bind="nomcandpres2"></p>
+    			<p class="CenterName" ng-bind="display_name_candidate2"></p>
         		<button class="btn-light" ng-click="show(2)">Campaign promises</button>
         		<div>
         			<span ng-hide="cand2">
@@ -77,14 +77,14 @@
         	</div>
 		</div>
 
-		<!-- Datos tercer candidato  presidencial -->
+		<!-- Third presidential candidate data -->
  		<div class="col-md-3">
 			<div ng-show="candpres3">
 				<div id="container">
     				<div id="main_image"><img class="candidate" src="{{cand3img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part3img}}"></div>
 				</div>
-	    		<p class="CenterName" ng-bind="nomcandpres3"></p>
+	    		<p class="CenterName" ng-bind="display_name_candidate3"></p>
 	        	<button class="btn-light" ng-click="show(3)">Campaign promises</button>
 	        	<div>
 	        		<span ng-hide="cand3">
@@ -101,11 +101,11 @@
 	</div>
 	<!-- Candidatos presidenciales 4 a 6  -->
 	<div class="row">
-		<!-- Espacio vacio para acomodar-->
+		<!-- Spacing column-->
 		<div class="col-md-3">
 		</div>
 
-		<!-- Datos cuarto candidato presidencial -->
+		<!-- Fourth presidential candidate data -->
 		<div class="col-md-3">
  		 	
 			<div ng-show="candpres4">
@@ -113,7 +113,7 @@
     				<div id="main_image"><img class="candidate" src="{{cand4img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part4img}}"></div>
 				</div>
-	    		<p class="CenterName" ng-bind="nomcandpres4"></p>
+	    		<p class="CenterName" ng-bind="display_name_candidate4"></p>
 	        	<button class="btn-light" ng-click="show(4)">Campaign promises</button>
 	        	<div>
 	        		<span ng-hide="cand4">
@@ -129,7 +129,7 @@
         	
 		</div>
 
-		<!-- Datos quinto candidato presidencial -->
+		<!-- Fifth presidential candidate data -->
 		<div class="col-md-3">
  		 	
 			<div ng-show="candpres5">
@@ -137,7 +137,7 @@
     				<div id="main_image"><img class="candidate" src="{{cand5img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part5img}}"></div>
 				</div>
-	    		<p class="CenterName" ng-bind="nomcandpres5"></p>
+	    		<p class="CenterName" ng-bind="display_name_candidate5"></p>
 	        	<button class="btn-light" ng-click="show(5)">Campaign promises</button>
 	        	<div>
 	        		<span ng-hide="cand5">
@@ -153,7 +153,7 @@
         	
 		</div>
 
-		<!-- Datos sexto candidato presidencial -->
+		<!-- Sixth presidential candidate data -->
 		<div class="col-md-3">
  		 	
 			<div ng-show="candpres6">
@@ -161,7 +161,7 @@
     				<div id="main_image"><img class="candidate" src="{{cand6img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part6img}}"></div>
 				</div>
-	    		<p class="CenterName" ng-bind="nomcandpres6"></p>
+	    		<p class="CenterName" ng-bind="display_name_candidate6"></p>
 	        	<button class="btn-light" ng-click="show(6)">Campaign promises</button>
 	        	<div>
 	        		<span ng-hide="cand6">
@@ -178,21 +178,21 @@
 		</div>
 	</div>
 
-	<!-- Opciones Otro cantidato y anular voto -->
+	<!-- Other candidate and null vote options -->
 	<div class="row">
-		<!-- Espacio vacio para acomodar-->
+		<!-- Spacing column-->
 		<div class="col-md-3">
 
 		</div>
 		
-		<!-- Espacio Otro-->
+		<!-- Other-->
 		<div class="col-md-6">
 		<button class="btn-info" ng-click="showother()">Other</button>
 		<input ng-show="othercand" type="text" height="40px" style="width: 300px;height: 68px">
 
 		</div>
 
-		<!-- Espacio Anular voto-->
+		<!-- Null vote-->
 		<div class="col-md-3">
 		<button class="btn-info" ng-click="nullvote()">Null Vote</button>
 		</div>
@@ -203,15 +203,15 @@
 </div>
 
 
-<!--Seccion 4 (confirmar voto) -->
+<!--Section 4 (confirm vote) -->
 <div id="finalizar" class="container-fluid">
 	<div class="row">
-		<!--Columnas para espacio -->
+		<!--Spacing column-->
 		<div class="col-md-6">
 		</div>
-		<!--Boton para confirmar voto -->
+		
 		<div class="col-md-3">
-			<!--Boton para confirmar voto -->
+			<!--Confirm vote button -->
 			<button class="btn-primary" ng-click="registerVote()">Finish</button>
 			<p ng-bind="Voto1"></p>
 			<p ng-bind="Voto2"></p>

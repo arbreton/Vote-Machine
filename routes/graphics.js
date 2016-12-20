@@ -193,6 +193,27 @@ app.post('/citizens', function(req, res) {
 
     })
 
+//Districts that vote early
+.get('/citizens/graph/vote2',function(req, res) {
+        Citizen.aggregate(
+            [{ $match: {"candidates.presidential.election_date": "12-13-2016"}},
+            { $group: { _id: "$candidates.presidential.name",Women_Total:{ $sum: { $cond: [ { $eq: [ "$genre", "2"] } , 1, 0 ] }},
+            Men_Total:{ $sum: { $cond: [ { $eq: [ "$genre", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+
+            { $sort: {"Total":-1}},
+           
+
+
+
+            ]).exec(function(err, citizen) {
+            if (err)
+                res.send(err);
+            res.json(citizen);
+        });
+
+
+    })
+
 //age
 .get('/citizens/graph/age',function(req, res) {
         Citizen.aggregate(

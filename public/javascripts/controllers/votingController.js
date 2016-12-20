@@ -31,61 +31,66 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
         $scope.candpres6 = true;
 
 
-        $scope.nomcandpres1="Luis";
+        $scope.candidatename1="Luis";
         $scope.first_lastname_candidate1="Solís";
         $scope.second_lastname_candidate1="Rivera";
-        $scope.display_name_candidate1= $scope.nomcandpres1+" "+$scope.first_lastname_candidate1;
+        $scope.display_name_candidate1= $scope.candidatename1+" "+$scope.first_lastname_candidate1;
         $scope.party_code_candidate1="01";
         $scope.party_code_candidate1="Partido Acción Ciudadana";
         $scope.prop1candpres1="Iniciativa sociedades de convivencia";
         $scope.prop2candpres1="Respeto a los derechos de los animales";
         $scope.prop3candpres1="Reelección consecutiva única";
 
-        $scope.nomcandpres2="Johnny";
+        $scope.candidatename2="Johnny";
         $scope.first_lastname_candidate2="Araya";
         $scope.second_lastname_candidate2="Monge";
+        $scope.display_name_candidate2= $scope.candidatename2+" "+$scope.first_lastname_candidate2;
         $scope.party_code_candidate2="02";
         $scope.party_code_candidate2="Partido Liberación Nacional";
 
-        $scope.prop1candpres2="Propuesta 1";
-        $scope.prop2candpres2="Propuesta 2";
-        $scope.prop3candpres2="Propuesta 3";
+        $scope.prop1candpres2="Proposal 1";
+        $scope.prop2candpres2="Proposal 2";
+        $scope.prop3candpres2="Proposal 3";
 
-        $scope.nomcandpres3="José";
+        $scope.candidatename3="José";
         $scope.first_lastname_candidate3="Villalta";
         $scope.second_lastname_candidate3="Florez-Estrada";
+        $scope.display_name_candidate3= $scope.candidatename3+" "+$scope.first_lastname_candidate3;
         $scope.party_code_candidate3="03";
         $scope.party_code_candidate3="Partido Frente Amplio";
-        $scope.prop1candpres3="Propuesta 1";
-        $scope.prop2candpres3="Propuesta 2";
-        $scope.prop3candpres3="Propuesta 3";
+        $scope.prop1candpres3="Proposal 1";
+        $scope.prop2candpres3="Proposal 2";
+        $scope.prop3candpres3="Proposal 3";
 
-        $scope.nomcandpres4="Otto";
+        $scope.candidatename4="Otto";
         $scope.first_lastname_candidate4="Guevara";
         $scope.second_lastname_candidate4="Guth";
+        $scope.display_name_candidate4= $scope.candidatename4+" "+$scope.first_lastname_candidate4;
         $scope.party_code_candidate4="04";
         $scope.party_code_candidate4="Movimiento Libertario";
-        $scope.prop1candpres4="Propuesta 1";
-        $scope.prop2candpres4="Propuesta 2";
-        $scope.prop3candpres4="Propuesta 3";
+        $scope.prop1candpres4="Proposal 1";
+        $scope.prop2candpres4="Proposal 2";
+        $scope.prop3candpres4="Proposal 3";
 
-        $scope.nomcandpres5="Rodolfo";
+        $scope.candidatename5="Rodolfo";
         $scope.first_lastname_candidate5="Piza";
         $scope.second_lastname_candidate5="Rocafort";
+        $scope.display_name_candidate5= $scope.candidatename5+" "+$scope.first_lastname_candidate5;
         $scope.party_code_candidate5="05";
         $scope.party_code_candidate5="Partido Unidad Social Cristiana";
-        $scope.prop1candpres5="Propuesta 1";
-        $scope.prop2candpres5="Propuesta 2";
-        $scope.prop3candpres5="Propuesta 3";
+        $scope.prop1candpres5="Proposal 1";
+        $scope.prop2candpres5="Proposal 2";
+        $scope.prop3candpres5="Proposal 3";
 
-        $scope.nomcandpres6="José Miguel";
+        $scope.candidatename6="José Miguel";
         $scope.first_lastname_candidate6="Corrales";
         $scope.second_lastname_candidate6="Bolaños";
+        $scope.display_name_candidate6= $scope.candidatename6+" "+$scope.first_lastname_candidate6;
         $scope.party_code_candidate6="06";
         $scope.party_code_candidate6="Partido Patria Nueva";
-        $scope.prop1candpres6="Propuesta 1";
-        $scope.prop2candpres6="Propuesta 2";
-        $scope.prop3candpres6="Propuesta 3";
+        $scope.prop1candpres6="Proposal 1";
+        $scope.prop2candpres6="Proposal 2";
+        $scope.prop3candpres6="Proposal 3";
 
         $scope.show = function(number) {
             switch(number){
@@ -145,7 +150,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
 
             switch(number){
                 case 1:
-                    $scope.voteInfo.name=$scope.nomcandpres1;
+                    $scope.voteInfo.name=$scope.candidatename1;
                     $scope.voteInfo.first_lastname=$scope.first_lastname_candidate1;
                     $scope.voteInfo.second_lastname=$scope.second_lastname_candidate1;
                     $scope.voteInfo.proposals=$scope.prop1candpres1;
@@ -166,7 +171,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
                     
                 break;
                 case 2:
-                    $scope.voteInfo.name=$scope.nomcandpres2;
+                    $scope.voteInfo.name=$scope.candidatename2;
                     $scope.voteInfo.first_lastname=$scope.first_lastname_candidate2;
                     $scope.voteInfo.second_lastname=$scope.second_lastname_candidate2;
                     $scope.voteInfo.proposals=$scope.prop1candpres2;
@@ -187,7 +192,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
                     $scope.othercand=false;
                 break;
                 case 3:
-                    $scope.voteInfo.name=$scope.nomcandpres3;
+                    $scope.voteInfo.name=$scope.candidatename3;
                     $scope.voteInfo.first_lastname=$scope.first_lastname_candidate3;
                     $scope.voteInfo.second_lastname=$scope.second_lastname_candidate3;
                     $scope.voteInfo.proposals=$scope.prop1candpres3;
@@ -207,7 +212,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
                     $scope.othercand=false;
                 break;
                 case 4:
-                    $scope.voteInfo.name=$scope.nomcandpres4;
+                    $scope.voteInfo.name=$scope.candidatename4;
                     $scope.voteInfo.first_lastname=$scope.first_lastname_candidate4;
                     $scope.voteInfo.second_lastname=$scope.second_lastname_candidate4;
                     $scope.voteInfo.proposals=$scope.prop1candpres4;
@@ -227,7 +232,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
                     $scope.othercand=false;
                 break;
                 case 5:
-                    $scope.voteInfo.name=$scope.nomcandpres5;
+                    $scope.voteInfo.name=$scope.candidatename5;
                     $scope.voteInfo.first_lastname=$scope.first_lastname_candidate5;
                     $scope.voteInfo.second_lastname=$scope.second_lastname_candidate5;
                     $scope.voteInfo.proposals=$scope.prop1candpres5;
@@ -247,7 +252,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
                     $scope.othercand=false;
                 break;
                 case 6:
-                    $scope.voteInfo.name=$scope.nomcandpres6;
+                    $scope.voteInfo.name=$scope.candidatename6;
                     $scope.voteInfo.first_lastname=$scope.first_lastname_candidate6;
                     $scope.voteInfo.second_lastname=$scope.second_lastname_candidate6;
                     $scope.voteInfo.proposals=$scope.prop1candpres6;
