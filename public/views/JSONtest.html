@@ -13,7 +13,7 @@ $.ajax({url:"http://localhost:3000/api/citizens/graph/gender/both",dataType:"jso
   .fail(function(){alert("Im a failure")})
   .done(function(data){
   var myData = (data);
-  console.log(myData[0].nombre);
+  //console.log(myData[0]._id.name);
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
        return obj[property];
@@ -23,7 +23,7 @@ Array.prototype.mapProperty = function(property) {
 
 // Example: myData.mapProperty('rank') to get an array of all ranks 
  barChartData = {
-    labels : myData.mapProperty('_id'),//Labels
+    labels : myData.mapProperty('_id.name[0]'),//Labels
      datasets : [
        {
    label: "Men",
