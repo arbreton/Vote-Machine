@@ -3,14 +3,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
         
         $scope.voteInfo={};
         $scope.voteInfo.id=auth.currentID();
-       /* $scope.voteInfo.nombre={};
-        $scope.voteInfo.propuestas={};
-        $scope.voteInfo.codigopartido={};
-        $scope.voteInfo.descripcion={};
-        $scope.voteInfo.fecha_eleccion={};
-        $scope.voteInfo.fecha_votacion={};
-        $scope.voteInfo.voto=true;
-        $scope.voteInfo.otros={};*/
+
         
         //Initial messages of the vote buttons
         $scope.msgPresCand1="Vote";
@@ -39,56 +32,57 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
 
 
         $scope.nomcandpres1="Luis";
-        $scope.ap_paternocandpres1="Solís";
-        $scope.ap_maternocandpres1="Rivera";
-        $scope.partidocand1code="01";
-        $scope.partidocand1desc="Partido Acción Ciudadana";
+        $scope.first_lastname_candidate1="Solís";
+        $scope.second_lastname_candidate1="Rivera";
+        $scope.display_name_candidate1= $scope.nomcandpres1+" "+$scope.first_lastname_candidate1;
+        $scope.party_code_candidate1="01";
+        $scope.party_code_candidate1="Partido Acción Ciudadana";
         $scope.prop1candpres1="Iniciativa sociedades de convivencia";
         $scope.prop2candpres1="Respeto a los derechos de los animales";
         $scope.prop3candpres1="Reelección consecutiva única";
 
         $scope.nomcandpres2="Johnny";
-        $scope.ap_paternocandpres2="Araya";
-        $scope.ap_maternocandpres2="Monge";
-        $scope.partidocand2code="02";
-        $scope.partidocand2desc="Partido Liberación Nacional";
+        $scope.first_lastname_candidate2="Araya";
+        $scope.second_lastname_candidate2="Monge";
+        $scope.party_code_candidate2="02";
+        $scope.party_code_candidate2="Partido Liberación Nacional";
 
         $scope.prop1candpres2="Propuesta 1";
         $scope.prop2candpres2="Propuesta 2";
         $scope.prop3candpres2="Propuesta 3";
 
         $scope.nomcandpres3="José";
-        $scope.ap_paternocandpres3="Villalta";
-        $scope.ap_maternocandpres3="Florez-Estrada";
-        $scope.partidocand3code="03";
-        $scope.partidocand3desc="Partido Frente Amplio";
+        $scope.first_lastname_candidate3="Villalta";
+        $scope.second_lastname_candidate3="Florez-Estrada";
+        $scope.party_code_candidate3="03";
+        $scope.party_code_candidate3="Partido Frente Amplio";
         $scope.prop1candpres3="Propuesta 1";
         $scope.prop2candpres3="Propuesta 2";
         $scope.prop3candpres3="Propuesta 3";
 
         $scope.nomcandpres4="Otto";
-        $scope.ap_paternocandpres4="Guevara";
-        $scope.ap_maternocandpres4="Guth";
-        $scope.partidocand4code="04";
-        $scope.partidocand4desc="Movimiento Libertario";
+        $scope.first_lastname_candidate4="Guevara";
+        $scope.second_lastname_candidate4="Guth";
+        $scope.party_code_candidate4="04";
+        $scope.party_code_candidate4="Movimiento Libertario";
         $scope.prop1candpres4="Propuesta 1";
         $scope.prop2candpres4="Propuesta 2";
         $scope.prop3candpres4="Propuesta 3";
 
         $scope.nomcandpres5="Rodolfo";
-        $scope.ap_paternocandpres5="Piza";
-        $scope.ap_maternocandpres5="Rocafort";
-        $scope.partidocand5code="05";
-        $scope.partidocand5desc="Partido Unidad Social Cristiana";
+        $scope.first_lastname_candidate5="Piza";
+        $scope.second_lastname_candidate5="Rocafort";
+        $scope.party_code_candidate5="05";
+        $scope.party_code_candidate5="Partido Unidad Social Cristiana";
         $scope.prop1candpres5="Propuesta 1";
         $scope.prop2candpres5="Propuesta 2";
         $scope.prop3candpres5="Propuesta 3";
 
         $scope.nomcandpres6="José Miguel";
-        $scope.ap_paternocandpres6="Corrales";
-        $scope.ap_maternocandpres6="Bolaños";
-        $scope.partidocand6code="06";
-        $scope.partidocand6desc="Partido Patria Nueva";
+        $scope.first_lastname_candidate6="Corrales";
+        $scope.second_lastname_candidate6="Bolaños";
+        $scope.party_code_candidate6="06";
+        $scope.party_code_candidate6="Partido Patria Nueva";
         $scope.prop1candpres6="Propuesta 1";
         $scope.prop2candpres6="Propuesta 2";
         $scope.prop3candpres6="Propuesta 3";
@@ -151,16 +145,16 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
 
             switch(number){
                 case 1:
-                    $scope.voteInfo.nombre=$scope.nomcandpres1;
-                    $scope.voteInfo.ap_paterno=$scope.ap_paternocandpres1;
-                    $scope.voteInfo.ap_materno=$scope.ap_maternocandpres1;
-                    $scope.voteInfo.propuestas=$scope.prop1candpres1;
-                    $scope.voteInfo.codigopartido=$scope.partidocand1code;
-                    $scope.voteInfo.descripcion=$scope.partidocand1desc;
-                    $scope.voteInfo.fecha_eleccion='12-13-2016';
-                    $scope.voteInfo.fecha_votacion='12-13-2016';
-                    $scope.voteInfo.voto=true;
-                    $scope.voteInfo.otros="asdas";
+                    $scope.voteInfo.name=$scope.nomcandpres1;
+                    $scope.voteInfo.first_lastname=$scope.first_lastname_candidate1;
+                    $scope.voteInfo.second_lastname=$scope.second_lastname_candidate1;
+                    $scope.voteInfo.proposals=$scope.prop1candpres1;
+                    $scope.voteInfo.code=$scope.party_code_candidate1;
+                    $scope.voteInfo.description=$scope.party_code_candidate1;
+                    $scope.voteInfo.election_date='12-13-2016';
+                    $scope.voteInfo.vote_date='12-13-2016';
+                    $scope.voteInfo.voted=true;
+                    $scope.voteInfo.others="asdas";
                     $scope.$parent.voteInfo=$scope.voteInfo;
                    
                     $scope.msgPresCand1="Selected";
@@ -172,16 +166,16 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
                     
                 break;
                 case 2:
-                    $scope.voteInfo.nombre=$scope.nomcandpres2;
-                    $scope.voteInfo.ap_paterno=$scope.ap_paternocandpres2;
-                    $scope.voteInfo.ap_materno=$scope.ap_maternocandpres2;
-                    $scope.voteInfo.propuestas=$scope.prop1candpres2;
-                    $scope.voteInfo.codigopartido=$scope.partidocand2code;
-                    $scope.voteInfo.descripcion=$scope.partidocand2desc;
-                    $scope.voteInfo.fecha_eleccion='12-13-2016';
-                    $scope.voteInfo.fecha_votacion='12-13-2016';
-                    $scope.voteInfo.voto=true;
-                    $scope.voteInfo.otros="asdas";
+                    $scope.voteInfo.name=$scope.nomcandpres2;
+                    $scope.voteInfo.first_lastname=$scope.first_lastname_candidate2;
+                    $scope.voteInfo.second_lastname=$scope.second_lastname_candidate2;
+                    $scope.voteInfo.proposals=$scope.prop1candpres2;
+                    $scope.voteInfo.code=$scope.party_code_candidate2;
+                    $scope.voteInfo.description=$scope.party_code_candidate2;
+                    $scope.voteInfo.election_date='12-13-2016';
+                    $scope.voteInfo.vote_date='12-13-2016';
+                    $scope.voteInfo.voted=true;
+                    $scope.voteInfo.others="asdas";
                     $scope.$parent.voteInfo=$scope.voteInfo;
                     
                     $scope.msgPresCand1="Change vote";
@@ -193,16 +187,16 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
                     $scope.othercand=false;
                 break;
                 case 3:
-                    $scope.voteInfo.nombre=$scope.nomcandpres3;
-                    $scope.voteInfo.ap_paterno=$scope.ap_paternocandpres3;
-                    $scope.voteInfo.ap_materno=$scope.ap_maternocandpres3;
-                    $scope.voteInfo.propuestas=$scope.prop1candpres3;
-                    $scope.voteInfo.codigopartido=$scope.partidocand3code;
-                    $scope.voteInfo.descripcion=$scope.partidocand3desc;
-                    $scope.voteInfo.fecha_eleccion='12-13-2016';
-                    $scope.voteInfo.fecha_votacion='12-13-2016';
-                    $scope.voteInfo.voto=true;
-                    $scope.voteInfo.otros="asdas";
+                    $scope.voteInfo.name=$scope.nomcandpres3;
+                    $scope.voteInfo.first_lastname=$scope.first_lastname_candidate3;
+                    $scope.voteInfo.second_lastname=$scope.second_lastname_candidate3;
+                    $scope.voteInfo.proposals=$scope.prop1candpres3;
+                    $scope.voteInfo.code=$scope.party_code_candidate3;
+                    $scope.voteInfo.description=$scope.party_code_candidate3;
+                    $scope.voteInfo.election_date='12-13-2016';
+                    $scope.voteInfo.vote_date='12-13-2016';
+                    $scope.voteInfo.voted=true;
+                    $scope.voteInfo.others="asdas";
                     $scope.$parent.voteInfo=$scope.voteInfo;
                     $scope.msgPresCand1="Change vote";
                     $scope.msgPresCand2="Change vote";
@@ -213,16 +207,16 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
                     $scope.othercand=false;
                 break;
                 case 4:
-                    $scope.voteInfo.nombre=$scope.nomcandpres4;
-                    $scope.voteInfo.ap_paterno=$scope.ap_paternocandpres4;
-                    $scope.voteInfo.ap_materno=$scope.ap_maternocandpres4;
-                    $scope.voteInfo.propuestas=$scope.prop1candpres4;
-                    $scope.voteInfo.codigopartido=$scope.partidocand4code;
-                    $scope.voteInfo.descripcion=$scope.partidocand4desc;
-                    $scope.voteInfo.fecha_eleccion='12-13-2016';
-                    $scope.voteInfo.fecha_votacion='12-13-2016';
-                    $scope.voteInfo.voto=true;
-                    $scope.voteInfo.otros="asdas";
+                    $scope.voteInfo.name=$scope.nomcandpres4;
+                    $scope.voteInfo.first_lastname=$scope.first_lastname_candidate4;
+                    $scope.voteInfo.second_lastname=$scope.second_lastname_candidate4;
+                    $scope.voteInfo.proposals=$scope.prop1candpres4;
+                    $scope.voteInfo.code=$scope.party_code_candidate4;
+                    $scope.voteInfo.description=$scope.party_code_candidate4;
+                    $scope.voteInfo.election_date='12-13-2016';
+                    $scope.voteInfo.vote_date='12-13-2016';
+                    $scope.voteInfo.voted=true;
+                    $scope.voteInfo.others="asdas";
                     $scope.$parent.voteInfo=$scope.voteInfo;
                     $scope.msgPresCand1="Change vote";
                     $scope.msgPresCand2="Change vote";
@@ -233,16 +227,16 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
                     $scope.othercand=false;
                 break;
                 case 5:
-                    $scope.voteInfo.nombre=$scope.nomcandpres5;
-                    $scope.voteInfo.ap_paterno=$scope.ap_paternocandpres5;
-                    $scope.voteInfo.ap_materno=$scope.ap_maternocandpres5;
-                    $scope.voteInfo.propuestas=$scope.prop1candpres5;
-                    $scope.voteInfo.codigopartido=$scope.partidocand5code;
-                    $scope.voteInfo.descripcion=$scope.partidocand5desc;
-                    $scope.voteInfo.fecha_eleccion='12-13-2016';
-                    $scope.voteInfo.fecha_votacion='12-13-2016';
-                    $scope.voteInfo.voto=true;
-                    $scope.voteInfo.otros="asdas";
+                    $scope.voteInfo.name=$scope.nomcandpres5;
+                    $scope.voteInfo.first_lastname=$scope.first_lastname_candidate5;
+                    $scope.voteInfo.second_lastname=$scope.second_lastname_candidate5;
+                    $scope.voteInfo.proposals=$scope.prop1candpres5;
+                    $scope.voteInfo.code=$scope.party_code_candidate5;
+                    $scope.voteInfo.description=$scope.party_code_candidate5;
+                    $scope.voteInfo.election_date='12-13-2016';
+                    $scope.voteInfo.vote_date='12-13-2016';
+                    $scope.voteInfo.voted=true;
+                    $scope.voteInfo.others="asdas";
                     $scope.$parent.voteInfo=$scope.voteInfo;
                     $scope.msgPresCand1="Change vote";
                     $scope.msgPresCand2="Change vote";
@@ -253,16 +247,16 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
                     $scope.othercand=false;
                 break;
                 case 6:
-                    $scope.voteInfo.nombre=$scope.nomcandpres6;
-                    $scope.voteInfo.ap_paterno=$scope.ap_paternocandpres6;
-                    $scope.voteInfo.ap_materno=$scope.ap_maternocandpres6;
-                    $scope.voteInfo.propuestas=$scope.prop1candpres6;
-                    $scope.voteInfo.codigopartido=$scope.partidocand6code;
-                    $scope.voteInfo.descripcion=$scope.partidocand6desc;
-                    $scope.voteInfo.fecha_eleccion='12-13-2016';
-                    $scope.voteInfo.fecha_votacion='12-13-2016';
-                    $scope.voteInfo.voto=true;
-                    $scope.voteInfo.otros="asdas";
+                    $scope.voteInfo.name=$scope.nomcandpres6;
+                    $scope.voteInfo.first_lastname=$scope.first_lastname_candidate6;
+                    $scope.voteInfo.second_lastname=$scope.second_lastname_candidate6;
+                    $scope.voteInfo.proposals=$scope.prop1candpres6;
+                    $scope.voteInfo.code=$scope.party_code_candidate6;
+                    $scope.voteInfo.description=$scope.party_code_candidate6;
+                    $scope.voteInfo.election_date='12-13-2016';
+                    $scope.voteInfo.vote_date='12-13-2016';
+                    $scope.voteInfo.voted=true;
+                    $scope.voteInfo.others="asdas";
                     $scope.$parent.voteInfo=$scope.voteInfo;
                     $scope.msgPresCand1="Change vote";
                     $scope.msgPresCand2="Change vote";
@@ -280,11 +274,11 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
         }
 
         $scope.registerVote=function(){
-            $scope.voteInfo.hora_votacion=new Date;
-            $scope.almostready=$filter('date')($scope.voteInfo.hora_votacion, 'shortTime').split(':');
-            $scope.voteInfo.hora_votacion=$scope.almostready[0];
-            $scope.voteInfo.fecha_votacion=new Date;
-            $scope.voteInfo.fecha_votacion=$filter('date')($scope.voteInfo.fecha_votacion, 'shortDate');
+            $scope.voteInfo.vote_hour=new Date;
+            $scope.splitHour=$filter('date')($scope.voteInfo.vote_hour, 'shortTime').split(':');
+            $scope.voteInfo.vote_hour=$scope.splitHour[0];
+            $scope.voteInfo.vote_date=new Date;
+            $scope.voteInfo.vote_date=$filter('date')($scope.voteInfo.vote_date, 'shortDate');
             console.log($scope.voteInfo);
             Vote.addVote($scope.voteInfo).then(function(){
                 $state.go('home');

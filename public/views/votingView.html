@@ -15,7 +15,7 @@
             <hr width="170px">
             <h4>Province: San Jose</h4>
             <hr width="170px">
-            <h4>Age: 43 Años</h4>
+            <h4>Age: 43 Years</h4>
         </div>
       </div>
       </div>
@@ -23,22 +23,23 @@
       <!--Nav bar -->
 
 
-	<!--Datos primer a tercer candidato presidencial y barra lateral-->
+	<!--First to third presidential candidates-->
 	<div class="row">
-	<center class="tipoEleccion">Presidential Elections</center>
-		<!--Columna para espaciado -->
+	<center class="electionType">Presidential Elections</center>
+		<!--Spacing column -->
 		<div class="col-md-3">
 		</div>
-		<!-- Datos primer candidato  presidencial-->
+		<!-- First presidential candidate data-->
  		<div class="col-md-3">
  		 	
 			<div ng-show="candpres1">
 				<div id="container">
-    				<div id="main_image"><img class="candidato" src="{{cand1img}}"></div>
-    				<div id="overlay_image"><img class="partido" src="{{part1img}}"></div>
+    				<div id="main_image"><img class="candidate" src="{{cand1img}}"></div>
+    				<div id="overlay_image"><img class="party" src="{{part1img}}"></div>
 				</div>
 				
-    		<p class="CenterName" ng-bind="nomcandpres1"></p>
+    		<p class="CenterName" ng-bind="display_name_candidate1"></p>
+    		
     		
         	<button class="btn-light" ng-click="show(1)">Campaign promises</button>
         	<div>
@@ -59,8 +60,8 @@
  		<div class="col-md-3">
  			<div ng-show="candpres2">
 				<div id="container">
-    				<div id="main_image"><img class="candidato" src="{{cand2img}}"></div>
-    				<div id="overlay_image"><img class="partido" src="{{part2img}}"></div>
+    				<div id="main_image"><img class="candidate" src="{{cand2img}}"></div>
+    				<div id="overlay_image"><img class="party" src="{{part2img}}"></div>
 				</div>
     			<p class="CenterName" ng-bind="nomcandpres2"></p>
         		<button class="btn-light" ng-click="show(2)">Campaign promises</button>
@@ -80,8 +81,8 @@
  		<div class="col-md-3">
 			<div ng-show="candpres3">
 				<div id="container">
-    				<div id="main_image"><img class="candidato" src="{{cand3img}}"></div>
-    				<div id="overlay_image"><img class="partido" src="{{part3img}}"></div>
+    				<div id="main_image"><img class="candidate" src="{{cand3img}}"></div>
+    				<div id="overlay_image"><img class="party" src="{{part3img}}"></div>
 				</div>
 	    		<p class="CenterName" ng-bind="nomcandpres3"></p>
 	        	<button class="btn-light" ng-click="show(3)">Campaign promises</button>
@@ -109,8 +110,8 @@
  		 	
 			<div ng-show="candpres4">
 				<div id="container">
-    				<div id="main_image"><img class="candidato" src="{{cand4img}}"></div>
-    				<div id="overlay_image"><img class="partido" src="{{part4img}}"></div>
+    				<div id="main_image"><img class="candidate" src="{{cand4img}}"></div>
+    				<div id="overlay_image"><img class="party" src="{{part4img}}"></div>
 				</div>
 	    		<p class="CenterName" ng-bind="nomcandpres4"></p>
 	        	<button class="btn-light" ng-click="show(4)">Campaign promises</button>
@@ -133,8 +134,8 @@
  		 	
 			<div ng-show="candpres5">
 				<div id="container">
-    				<div id="main_image"><img class="candidato" src="{{cand5img}}"></div>
-    				<div id="overlay_image"><img class="partido" src="{{part5img}}"></div>
+    				<div id="main_image"><img class="candidate" src="{{cand5img}}"></div>
+    				<div id="overlay_image"><img class="party" src="{{part5img}}"></div>
 				</div>
 	    		<p class="CenterName" ng-bind="nomcandpres5"></p>
 	        	<button class="btn-light" ng-click="show(5)">Campaign promises</button>
@@ -157,8 +158,8 @@
  		 	
 			<div ng-show="candpres6">
 				<div id="container">
-    				<div id="main_image"><img class="candidato" src="{{cand6img}}"></div>
-    				<div id="overlay_image"><img class="partido" src="{{part6img}}"></div>
+    				<div id="main_image"><img class="candidate" src="{{cand6img}}"></div>
+    				<div id="overlay_image"><img class="party" src="{{part6img}}"></div>
 				</div>
 	    		<p class="CenterName" ng-bind="nomcandpres6"></p>
 	        	<button class="btn-light" ng-click="show(6)">Campaign promises</button>
