@@ -9,7 +9,7 @@
   <canvas id="canvas1"></canvas>
 
  <script type="text/javascript">
-$.ajax({url:"http://localhost:3000/api/citizens/graph/gender/both",dataType:"json"})
+/*$.ajax({url:"http://localhost:3000/api/citizens/graph/gender/both",dataType:"json"})
   .fail(function(){alert("Im a failure")})
   .done(function(data){
   var myData = (data);
@@ -49,8 +49,52 @@ console.log(data)
     data: barChartData, 
 });
  //}  
+ }); */
+ </script>
+ <script type="text/javascript">
+$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
+  .fail(function(){alert("Im a failure")})
+  .done(function(data){
+  var myData = (data);
+  console.log(myData[0].name);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+   backgroundColor:"rgba(153, 99, 132, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+
+ //window.onload = function(){
+//console.log("cheerio")
+console.log(data)
+ var ctx = document.getElementById("canvas").getContext("2d");
+
+
+ var myNewChart = new Chart(ctx , {
+    type: "bar",
+    data: barChartData, 
+});
+ //}  
  }); 
  </script>
+
 
 <script type="text/javascript">
 $.ajax({url:"data1.json",dataType:"json"})
