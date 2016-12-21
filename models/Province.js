@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
-
-var ProvinceSchema = new mongoose.Schema({
-  codigo: String,
-  descripcion: String,
+var Schema = mongoose.Schema;
+var provinceSchema = new Schema({
+  id: String,
+  description: String,
   cantones: [
-    {  codigo: String, descripcion: String,
-       distritos: [{ codigo: String, descripcion: String } ]  
+    {  id: String, description: String,
+       districts: [{ id: String, description: String } ]
     }
    ]
 
 });
 
-mongoose.model('Province', ProvinceSchema);
+mongoose.model('Province', provinceSchema);

@@ -24,15 +24,14 @@ require('./models/Comments');
 require('./models/Users');
 require('./models/citizens');
 require('./config/passport');
-require('./models/candidate');
-require('./models/Provinces');
+require('./models/Candidate');
+require('./models/Province');
 require('./models/Matches');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var citizens = require('./routes/citizens');
-var candidates = require('./routes/candidates');
 var candidates = require('./routes/candidates');
 var provinces = require('./routes/provinces');
 var matches = require('./routes/matches');
