@@ -2,16 +2,16 @@ var mongoose = require('mongoose'); //importar mongoose
 var Schema = mongoose.Schema; //referenciar la propiedad shcema
 
 var candidateSchema = new Schema({ //Propiedades de mi schema
-    nombre : String,
-    ap_paterno: String,
-    ap_materno: String,
-    propuesta: String,
-    estatus: Boolean,
-    genero: String,
-    foto: String,
-    fecha_eleccion: {codigo: String,  fecha: String},
-    partido: { codigo: String, descripcion: String, foto: String },
-    provincia: { codigo: String, descripcion: String, distrito:{ codigo: String, descripcion: String}, canton: {codigo: String, descripcion: String} }
+    name : String,
+    first_last_name: String,
+    second_last_name: String,
+    proposal: String,
+    status: Boolean,
+    gender: String,
+    image: String,
+    election_date: {id: String,  date: String},
+    match: { id: String, description: String, image: String },
+    province: { id: String, description: String, district:{ id: String, description: String}, canton: {id: String, description: String} }
 });
 
 //exportar el modelo
