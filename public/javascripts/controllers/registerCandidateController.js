@@ -1,8 +1,8 @@
 'use strict';
 
-var app = angular.module('adminCandidate', ['ngFileUpload']);
+var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceMatch']);
 
-app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', function($scope, $http, Upload)
+app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'match', function($scope, $http, Upload, $timeout, match)
 {
   var that = $scope;
   that.candidate = {};
@@ -12,10 +12,18 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
   that.fecha_final = [{id: 1, fecha:"2005"}, {id: 2, fecha: "2010"}, {id: 3, fecha:"2015"}, {id: 4, fecha:"2020"}];
   that.cantones = [];
   that.districts = [];
-  that.partidos = [{id:1, descripcion:"Rojo"}, {id:2,descripcion:"Verde"}];
+  that.matches = [];
   that.provinces = [];
   that.file = {};
+  that.fotos = [];
+  that.foto = {};
+  that.request = {};
   $scope.candidates = [{}];
+
+  match.getMatches().then(function (data)
+  {
+    that.matches = data;
+  })
    $http.get('/api/provinces').success(function (res)
    {
      that.provinces = res;
@@ -33,7 +41,6 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
 
   $scope.clearItem = function()
   {
-    //$scope.saveForm.$setPristine();
     $scope.restForm();
   };
 
@@ -46,7 +53,8 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
   {
     Upload.upload({
       url: 'api/file',
-      data: {file: file}
+      method: 'POST',
+      data: { image: file}
     }).then(function (resp)
     {
       console.log(resp)
@@ -71,16 +79,24 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', fun
 
   $scope.saveItem = function ()
   {
-
-    //$scope.uploadFile(that.candidates);
     var c = that.candidates.map(function (obj, index)
     {
-         that.candidates[index].fecha_election = {codigo: that.date_election_e.id , fecha:that.date_election_i.fecha + that.date_election_e.fecha };
+         that.candidates[index].election_date = {id: that.date_election_e.id , date:that.date_election_i.fecha +'-'+ that.date_election_e.fecha };
     });
     c= that.candidates;
+    //$scope.uploadFile(that.candidates);
+
+    var x = that.candidates.map(function (item)
+    {
+      x = item.image;
+      that.fotos.push(x);
+    });
+
+    //$scope.uploadFile(that.fotos);
     $http.post('api/candidate', c).success(function(data)
     {
-      console.log(data);
+      that.request = data;
+      $timeout(function (){$('.success-request-fixed').show().delay(2000).fadeOut(); },100);
     });
   };
 

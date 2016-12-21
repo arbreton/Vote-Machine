@@ -55,7 +55,7 @@
         <li><a href="#">Settings</a></li>
         <li class="dropdown">
           <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
-      
+
           <ul class="dropdown-menu">
             <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
             <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
@@ -262,6 +262,8 @@ si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
     <!--Modulos-->
     <script src="javascripts/angularApp.js"></script>
     <script src="services/votingService.js"></script>
+    <script src ="javascripts/services/serviceProvince.js"></script>
+    <script src ="javascripts/services/serviceMatch.js"></script>
     <script src="javascripts/controllers/registerCandidateController.js"></script>
     <script src="javascripts/controllers/listCandidateController.js"></script>
     <script src="javascripts/controllers/votingController.js"></script>

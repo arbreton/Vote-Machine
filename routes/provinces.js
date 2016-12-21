@@ -6,7 +6,7 @@ var app = express();
 
 app.get('/provinces', function (req, res)
 {
-  Province.find({}).sort({descripcion: 1}).exec(function (err, province)
+  Province.find({}).sort({description: 1}).exec(function (err, province)
   {
     res.json(province);
   });
