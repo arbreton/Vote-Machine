@@ -102,7 +102,7 @@ app.post('/citizens', function(req, res) {
             { $group: { _id: "$candidates.presidential.vote_status.vote_hour",Women_Total:{ $sum: { $cond: [ { $eq: [ "$genre", "2"] } , 1, 0 ] }},
             Men_Total:{ $sum: { $cond: [ { $eq: [ "$genre", "1"] } , 1, 0 ] }}}},
 
-            { $sort: {"Women_Total":-1}},
+            //{ $sort: {"Women_Total":-1}},
             {$limit:5}
 
 

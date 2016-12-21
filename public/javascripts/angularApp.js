@@ -111,6 +111,10 @@ function($stateProvider, $urlRouterProvider) {
 		templateUrl: 'views/adminCandidate/listCandidateView.html',
 		controller: 'listCandidateController'
 
+	}).state('graphics', {
+		url: '/graphics',
+		templateUrl: 'views/graphicsView.html'
+
 	}).state('JSONtest', {
 		url: '/JSONtest',
 		templateUrl: 'views/JSONtest.html'
