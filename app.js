@@ -24,8 +24,8 @@ require('./models/Comments');
 //require('./models/Users');
 require('./models/citizens');
 require('./config/passport');
-require('./models/candidate');
-require('./models/Provinces');
+require('./models/Candidate');
+require('./models/Province');
 require('./models/Matches');
 
 var routes = require('./routes/index');
