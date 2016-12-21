@@ -10,6 +10,5 @@ app.factory('province', ['$http', function ($http)
         return res.data;
     });
   };
-
   return this.province;
 }]);

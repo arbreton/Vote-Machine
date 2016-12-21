@@ -6,22 +6,21 @@ var router = express.Router();
 var multer = require('multer');
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, './uploads');
+    callback(null, './public/uploads');
   },
   filename: function (req, file, callback) {
     callback(null,  file.originalname );
   }
 });
 
-var upload = multer({ storage : storage}).single('foto');
+var upload = multer({ storage : storage}).single('image');
 
 router.post('/file',function(req, res)
 {
+
   upload(req,res,function(err) {
         if(err) { console.log('Error al subir la imagen'); }
-        else{console.log('imagen salvada..');}
-        console.log(req);
-        console.log(req.body);
+        else{  res.json(req.file); }
     });
 });
 
