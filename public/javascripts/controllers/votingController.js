@@ -1,4 +1,4 @@
-app.controller('votingController',['$scope','Vote','$state','$filter','auth', function($scope,Vote,$state,$filter,auth){
+app.controller('votingController',['$scope','Vote','$state','$filter','auth','$window', function($scope,Vote,$state,$filter,auth,$window){
 
         
         $scope.voteInfo={};
@@ -286,7 +286,8 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth', fu
             $scope.voteInfo.vote_date=$filter('date')($scope.voteInfo.vote_date, 'shortDate');
             console.log($scope.voteInfo);
             Vote.addVote($scope.voteInfo).then(function(){
-                $state.go('home');
+                $window.alert("Thanks for voting ");
+                auth.logOut();
             });
         }
 }]);

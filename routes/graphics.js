@@ -193,7 +193,7 @@ app.post('/citizens', function(req, res) {
 
     })
 
-//Districts that vote early
+//Candidates votes
 .get('/citizens/graph/vote2',function(req, res) {
         Citizen.aggregate(
             [{ $match: {"candidates.presidential.election_date": "12-13-2016"}},

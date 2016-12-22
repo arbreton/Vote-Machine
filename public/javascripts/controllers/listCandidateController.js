@@ -16,7 +16,9 @@ app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$ti
   {
     $http.put('/api/candidate-delete/'+ candidate._id , candidate ).success(function (data)
     {
-      that.request = data;
+      that.response = data;
+      that.candidates.splice(index, 1);
+      $timeout(function (){$(".success-request").show().delay(2000).fadeOut();},1000);
     });
   };
 
@@ -45,6 +47,29 @@ app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$ti
      });
    };
 
+$scope.confirmationDelete = function (index,candidate)
+{
+  var modalIntance = $uibModal.open({
+    templateUrl: 'views/adminCandidate/modalConfirmation.html',
+    controller: 'modalConfirmationController',
+    size: 'sm',
+    resolve: {
+      item: function (){
+        return true;
+      }
+    }
+  });
+
+  modalIntance.result.then( function (data)
+  {
+    if(data)
+    {
+      $scope.deleteItem(index, candidate);
+    }
+  });
+};
+
+
 }]);
 
 app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item', 'province','$http', function ($scope, $uibModalInstance, item, province, $http)
@@ -54,9 +79,9 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
   that.cantones = [];
   that.districts = [];
   that.candidate = item;
-  that.fecha_inicial = [{id: 1, fecha:"2000"}, {id: 2, fecha: "2005"}, {id: 3, fecha:"2010"}, {id: 4, fecha:"2015"}];
-  that.fecha_final = [{id: 1, fecha:"2005"}, {id: 2, fecha: "2010"}, {id: 3, fecha:"2015"}, {id: 4, fecha:"2020"}];
-  that.partidos = [{codigo:1, descripcion:"Rojo"}, {codigo:2,descripcion:"Verde"}];
+  that.elections_date_ini = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
+  that.elections_date_end = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
+  that.matchs = [{id:1, description:"Rojo"}, {id:2,description:"Verde"}];
   province.getProvinces().then(function (data)
   {
     that.provinces = data;
@@ -70,13 +95,27 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
 
   $scope.updateItem = function ()
   {
+    that.candidate.election_date = {id: that.election_date_ini.id, date: that.election_date_ini.date + ' ' + that.election_date_end.date};
       $http.put('/api/candidate-update/'+ that.candidate._id, that.candidate).success(function (data)
       {
-        that.candidate.request = data.message;
+        that.candidate.request = data;
         $uibModalInstance.close(that.candidate);
       });
   };
+}]);
 
 
+app.controller('modalConfirmationController', ['$scope', '$uibModalInstance', 'item', function ($scope, $uibModalInstance, item)
+{
+  var that = $scope;
+  that.confirmation = {yes: true, no: false};
 
+  $scope.cancel = function ()
+  {
+    $uibModalInstance.close(that.confirmation.no);
+  };
+  $scope.ok = function ()
+  {
+    $uibModalInstance.close(that.confirmation.yes);
+  };
 }]);
