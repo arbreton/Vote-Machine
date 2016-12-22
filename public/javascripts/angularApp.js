@@ -1,5 +1,5 @@
 
-var app = angular.module('votingApp', ['ui.router',  'adminCandidate', 'adminListCandidate', 'ViewCharts']);
+var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'ViewCharts']);
 
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
@@ -122,6 +122,9 @@ function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('home');
 }]);
 
+
+
+
 app.factory('auth', ['$http', '$window', '$location',
 function($http,$window, $location) {
 	var auth = {};
@@ -145,6 +148,20 @@ function($http,$window, $location) {
 
 		} else {
 			return false;
+		}
+	};
+
+	auth.isnotLoggedIn = function() {
+		var token = auth.getToken();
+
+		if (token) {
+			//console.log(JSON.parse($window.atob(token.split('.')[1])));
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+			//console.log (JSON.parse($window.atob(token.split('.')[1])));
+			return false;
+
+		} else {
+			return true;
 		}
 	};
 
@@ -295,6 +312,17 @@ function($scope, posts, auth) {
 	//setting title to blank here to prevent empty posts
 	$scope.title = '';
 
+	$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+    if (toState.resolve) {
+        $scope.showSpinner();
+    }
+});
+$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+    if (toState.resolve) {
+        $scope.hideSpinner();
+    }
+});
+
 	$scope.addPost = function() {
 		if ($scope.title === '') {
 			return;
@@ -325,7 +353,9 @@ function($scope, $location, posts, auth, $window) {
 	//var token = auth.getToken();
 	//var payload = JSON.parse($window.atob(token.split('.')[1]));
 	$scope.isLoggedIn = auth.isLoggedIn;
+	$scope.isnotLoggedIn = auth.isnotLoggedIn;
 	$scope.isAdmin = auth.isAdmin;
+	if(auth.isLoggedIn()==true){
 	$scope.name = auth.payload().name;
 	$scope.first_lastname = auth.payload().first_lastname;
 	$scope.second_lastname = auth.payload().second_lastname;
@@ -333,9 +363,22 @@ function($scope, $location, posts, auth, $window) {
 	$scope.canton = auth.payload().canton;
 	$scope.district = auth.payload().district;
 	$scope.birth_year = auth.payload().birth_year;
+	}
+	
 	//setting title to blank here to prevent empty posts
 	$scope.title = '';
-	console.log(auth.payload());
+	//console.log(auth.payload());
+
+$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+    if (toState.resolve) {
+        $scope.showSpinner();
+    }
+});
+$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+    if (toState.resolve) {
+        $scope.hideSpinner();
+    }
+});
 
 	$scope.newCandidate = function()
 	{
