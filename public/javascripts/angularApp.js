@@ -127,11 +127,11 @@ function($http,$window, $location) {
 	var auth = {};
 
 	auth.saveToken = function(token) {
-		$window.localStorage['votinapp-token'] = token;
+		$window.localStorage['votingapp-token'] = token;
 	};
 
 	auth.getToken = function() {
-		return $window.localStorage['votinapp-token'];
+		return $window.localStorage['votingapp-token'];
 	}
 
 	auth.isLoggedIn = function() {
@@ -160,6 +160,18 @@ function($http,$window, $location) {
 			}
 		}
 	};
+
+
+
+	auth.payload = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+			return payload;
+		}
+	};
+
 
 	auth.currentUser = function() {
 		if (auth.isLoggedIn()) {
@@ -192,7 +204,7 @@ function($http,$window, $location) {
 	};
 
 	auth.logOut = function() {
-		$window.localStorage.removeItem('votinapp-token');
+		$window.localStorage.removeItem('votingapp-token');
 		$location.url("/home");
 	};
 
@@ -307,12 +319,23 @@ function($scope, posts, auth) {
 	};
 }]);
 
-app.controller('AdminController', ['$scope', '$location', 'posts', 'auth',
-function($scope, $location, posts, auth) {
+app.controller('AdminController', ['$scope', '$location', 'posts', 'auth', '$window',
+function($scope, $location, posts, auth, $window) {
+
+	//var token = auth.getToken();
+	//var payload = JSON.parse($window.atob(token.split('.')[1]));
 	$scope.isLoggedIn = auth.isLoggedIn;
 	$scope.isAdmin = auth.isAdmin;
+	$scope.name = auth.payload().name;
+	$scope.first_lastname = auth.payload().first_lastname;
+	$scope.second_lastname = auth.payload().second_lastname;
+	$scope.province = auth.payload().province;
+	$scope.canton = auth.payload().canton;
+	$scope.district = auth.payload().district;
+	$scope.birth_year = auth.payload().birth_year;
 	//setting title to blank here to prevent empty posts
 	$scope.title = '';
+	console.log(auth.payload());
 
 	$scope.newCandidate = function()
 	{
@@ -332,6 +355,12 @@ function($scope, $location, posts, auth) {
 	
 }]);
 
+
+app.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+});
 
 
 app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth',
