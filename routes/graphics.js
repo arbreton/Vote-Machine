@@ -197,8 +197,8 @@ app.post('/citizens', function(req, res) {
 .get('/citizens/graph/vote2',function(req, res) {
         Citizen.aggregate(
             [{ $match: {"candidates.presidential.election_date": "12-13-2016"}},
-            { $group: { _id: "$candidates.presidential.name",Women_Total:{ $sum: { $cond: [ { $eq: [ "$genre", "2"] } , 1, 0 ] }},
-            Men_Total:{ $sum: { $cond: [ { $eq: [ "$genre", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+            { $group: { _id: "$candidates.presidential.name",Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] }},
+            Men_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
 
             { $sort: {"Total":-1}},
            
@@ -217,9 +217,10 @@ app.post('/citizens', function(req, res) {
 //age
 .get('/citizens/graph/age',function(req, res) {
         Citizen.aggregate(
-            [{ $match: {genre: "1"}},
-            { $group: { _id: "$age",Men_Total:{ $sum: 1}}},
-            { $sort: {"Men_Total":-1}}
+            [
+            { $group: { _id: "$age",Women_Total:{ $sum: { $cond: [ { $eq: [ "$genre", "2"] } , 1, 0 ] }},
+            Men_Total:{ $sum: { $cond: [ { $eq: [ "$genre", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+            { $sort: {"_id":+1}},
 
 
 

@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 var CitizensSchema = new mongoose.Schema({
   electoral_code: String,
   province: { code: String, description: String, canton: String, district: String },
-  genre: String,
+  gender: String,
   expiration_date: String,
   status: String,
   name: String,
