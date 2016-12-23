@@ -20,8 +20,8 @@ mongoose.connect('mongodb://localhost:27017/mean-database',{
     }
 });
 
-require('./models/Posts');
-require('./models/Comments');
+//require('./models/Posts');
+//require('./models/Comments');
 //require('./models/Users');
 require('./models/citizens');
 require('./config/passport');
