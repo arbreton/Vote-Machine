@@ -11,7 +11,7 @@ var CitizensSchema = new mongoose.Schema({
   name: String,
   first_lastname: String,
   second_lastname: String,
-  age: String,
+  birth_year: String,
   password: String,
   date: String,
   role: { id: String, description: String },

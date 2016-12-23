@@ -2,27 +2,27 @@
 <br>
 <h2> Votes by gender</h2>
 
-<div id="chartCanvas" class="container-fluid">
-	<div class="row">
+
+
 		<!--Spacing column-->
-		<div class="col-md-6">
+		<div >
 
 		<center>Candidates current votes</center>
 		<i id="loading1" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			<span class="sr-only">Loading...</span>
 		<canvas id="canvas"></canvas>
 		</div>
-		<!--
-		<div class="col-md-6">
+		
+		<div >
 			<center>Votes by hour</center>
 			<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			<span class="sr-only">Loading...</span>
 			<canvas id="canvas1"></canvas>
 			
 		</div>
--->
-	</div>
-</div>
+
+
+
 
 
  <script type="text/javascript">
@@ -68,7 +68,7 @@ console.log(data)
  //}  
  }); */
  </script>
- <script type="text/javascript">/*
+ <script type="text/javascript">
  //$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
 $.ajax({url:"http://localhost:3000/api/citizens/graph/gender/time",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
@@ -108,7 +108,7 @@ Array.prototype.mapProperty = function(property) {
     data: barChartData1, 
 });
  //}  
- }); */
+ }); 
  </script>
 
 
@@ -154,7 +154,20 @@ console.log(data)
 
  var myNewChart = new Chart(ctx , {
     type: "bar",
-    data: barChartData, 
+    data: barChartData,
+    options:{
+    	scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
 });
  //}  
  }); 
