@@ -96,14 +96,15 @@ app.post('/citizens', function(req, res) {
 
 
     })
+
 .get('/citizens/graph/gender/time',function(req, res) {
         Citizen.aggregate(
             [{ $match: {"candidates.presidential.election_date": "12-13-2016"}},
             { $group: { _id: "$candidates.presidential.vote_status.vote_hour",Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] }},
             Men_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] }}}},
 
-            { $sort: {"Women_Total":-1}},
-            {$limit:5}
+            { $sort: {"_id":+1}}
+            //{$limit:5}
 
 
 
@@ -115,6 +116,7 @@ app.post('/citizens', function(req, res) {
 
 
     })
+
 //Which ages vote at which hour
 .get('/citizens/graph/hour/:hour',function(req, res) {
         Citizen.aggregate(
@@ -148,7 +150,28 @@ app.post('/citizens', function(req, res) {
 
     })
 
-//Districts that vote early
+//Districts that vote at an hour
+.get('/citizens/graph/candidates/:time',function(req, res) {
+        Citizen.aggregate(
+            [{ $match: {"candidates.presidential.election_date": "12-13-2016"}},
+            {$match:{"candidates.presidential.vote_status.vote_hour": req.params.time}},
+            { $group: { _id: "$candidates.presidential.name",Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] }},
+            Men_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+
+            { $sort: {"Total":-1}},
+            {$limit:5}
+
+
+
+            ]).exec(function(err, citizen) {
+            if (err)
+                res.send(err);
+            res.json(citizen);
+        });
+
+
+    })
+//Districts that vote at an hour
 .get('/citizens/graph/districts/:time',function(req, res) {
         Citizen.aggregate(
             [{ $match: {"candidates.presidential.election_date": "12-13-2016"}},
@@ -216,11 +239,19 @@ app.post('/citizens', function(req, res) {
 
 //age
 .get('/citizens/graph/age',function(req, res) {
+<<<<<<< HEAD
        Citizen.aggregate(
            [
            { $group: { _id: "$birth_year",Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] }},
            Men_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
            { $sort: {"_id":+1}},
+=======
+        Citizen.aggregate(
+            [
+            { $group: { _id: "$birth_year",Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] }},
+            Men_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+            { $sort: {"_id":+1}},
+>>>>>>> c65e4638108efabf0d988aa1866a9f338d263afc
 
 
 

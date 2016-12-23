@@ -4,8 +4,8 @@ var router = express.Router();
 var passport = require('passport');
 var jwt = require('express-jwt');
 
-var Post = mongoose.model('Post');
-var Comment = mongoose.model('Comment');
+//var Post = mongoose.model('Post');
+//var Comment = mongoose.model('Comment');
 var User = mongoose.model('Citizen');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
   res.render('index');
 });
 
-router.get('/posts', function(req, res, next) {
+/*router.get('/posts', function(req, res, next) {
   Post.find(function(err, posts){
     if(err){ 
       return next(err);
@@ -115,7 +115,7 @@ router.put('/posts/:post/comments/:comment/downvote', auth, function(req, res, n
     res.json(comment);
   });
 });
-
+*/
 router.post('/register', function(req, res, next){
   if(!req.body.username || !req.body.password){
     return res.status(400).json({message: 'Please fill out all fields'});
@@ -139,7 +139,7 @@ router.post('/login', function(req, res, next){
     return res.status(400).json({message: 'Please fill out all fields'});
   }
 
-console.log('calling passport)');
+console.log('(calling passport)');
   passport.authenticate('local', function(err, user, info){
     if(err){ return next(err); }
 

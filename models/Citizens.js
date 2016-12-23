@@ -32,6 +32,13 @@ CitizensSchema.methods.generateJWT = function() {
     _id: this._id,
     electoral_code: this.electoral_code,
     role: this.role.id,
+    birth_year: 2016 - parseInt(this.birth_year),
+    name: this.name,
+    first_lastname: this.first_lastname,
+    second_lastname: this.second_lastname,
+    province: this.province.description,
+    canton: this.province.canton,
+    district: this.province.district,
     exp: parseInt(exp.getTime() / 1000),
   }, 'SECRET');
 };

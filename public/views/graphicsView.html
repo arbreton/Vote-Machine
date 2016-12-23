@@ -1,0 +1,174 @@
+<br>
+<br>
+<h2> Votes by gender</h2>
+
+
+
+		<!--Spacing column-->
+		<div >
+
+		<center>Candidates current votes</center>
+		<i id="loading1" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+			<span class="sr-only">Loading...</span>
+		<canvas id="canvas"></canvas>
+		</div>
+		
+		<div >
+			<center>Votes by hour</center>
+			<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+			<span class="sr-only">Loading...</span>
+			<canvas id="canvas1"></canvas>
+			
+		</div>
+
+
+
+
+
+ <script type="text/javascript">
+/*$.ajax({url:"http://localhost:3000/api/citizens/graph/gender/both",dataType:"json"})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
+  .done(function(data){
+  var myData = (data);
+  console.log(myData[0].nombre);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+   backgroundColor:"rgba(153, 99, 132, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+
+ //window.onload = function(){
+//console.log("cheerio")
+console.log(data)
+ var ctx = document.getElementById("canvas").getContext("2d");
+
+
+ var myNewChart = new Chart(ctx , {
+    type: "bar",
+    data: barChartData, 
+});
+ //}  
+ }); */
+ </script>
+ <script type="text/javascript">
+ //$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
+$.ajax({url:"http://localhost:3000/api/citizens/graph/gender/time",dataType:"json"})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
+  .done(function(data){
+  var myData1 = (data);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData1 = {
+    labels : myData1.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+   backgroundColor:"rgba(0, 0, 132, 0.5)",
+   data : myData1.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData1.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+
+ //window.onload = function(){
+//console.log("cheerio")
+ var ctx = document.getElementById("canvas1").getContext("2d");
+
+
+ var myNewChart1 = new Chart(ctx , {
+    type: "bar",
+    data: barChartData1, 
+});
+ //}  
+ }); 
+ </script>
+
+
+<script type="text/javascript">
+$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
+  .done(function(data){
+  var myData = (data);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+   backgroundColor:"rgba(0, 0, 132, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Total",
+   backgroundColor:"rgba(0, 0, 0, 0.5)",
+   data : myData.mapProperty("Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+
+ //window.onload = function(){
+//console.log("cheerio")
+console.log(data)
+ var ctx = document.getElementById("canvas").getContext("2d");
+
+
+ var myNewChart = new Chart(ctx , {
+    type: "bar",
+    data: barChartData,
+    options:{
+    	scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
+});
+ //}  
+ }); 
+ </script>

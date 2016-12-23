@@ -1,6 +1,7 @@
 <br>
 <br>
 <h1> THIS IS A JSON TEST WITH CHARTJS</h1>
+
 <!--votes div-->
 <div style = "width: 50%;" id="chartCanvas">
  <canvas id="canvas"></canvas>
@@ -16,11 +17,12 @@
 </div>
 <!--test div-->
 <div style = "width: 50%;" id="chartCanvas1">
+
   <canvas id="canvas1"></canvas>
 
  <script type="text/javascript">
 /*$.ajax({url:"http://localhost:3000/api/citizens/graph/gender/both",dataType:"json"})
-  .fail(function(){alert("Im a failure")})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
   //console.log(myData[0]._id.name);
@@ -62,11 +64,12 @@ console.log(data)
  }); */
  </script>
  <script type="text/javascript">
-$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
-  .fail(function(){alert("Im a failure")})
+ //$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
+$.ajax({url:"http://localhost:3000/api/citizens/graph/gender/time",dataType:"json"})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
-  console.log(myData[0].name);
+  //console.log(myData[0].name);
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
        return obj[property];
@@ -80,6 +83,7 @@ Array.prototype.mapProperty = function(property) {
      datasets : [
        {
    label: "Men",
+
    backgroundColor:"rgba(0, 0, 255, 0.5)",
    data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
   },
@@ -106,9 +110,9 @@ console.log(data)
  </script>
 
 
-<script type="text/javascript">
+<script type="text/javascript">/*
 $.ajax({url:"data1.json",dataType:"json"})
-  .fail(function(){alert("Im a failure")})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data1){
   var myData1 = (data1);
   console.log(myData1[0].nombre);

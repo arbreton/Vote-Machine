@@ -11,7 +11,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 // connect MongoDB+
-mongoose.connect('mongodb://localhost:27017/mean-database', function(err,db){
+mongoose.connect('mongodb://localhost:27017/mean-database',{
+  connectTimeoutMS:120000}, function(err,db){
     if (!err){
         console.log('Connected to /mean-database!');
     } else{
@@ -19,14 +20,14 @@ mongoose.connect('mongodb://localhost:27017/mean-database', function(err,db){
     }
 });
 
-require('./models/Posts');
-require('./models/Comments');
+//require('./models/Posts');
+//require('./models/Comments');
 //require('./models/Users');
 require('./models/citizens');
 require('./config/passport');
-require('./models/candidate');
-require('./models/Provinces');
-
+require('./models/Candidate');
+require('./models/Province');
+require('./models/Matches');
 
 var routes = require('./routes/index');
 //var users = require('./routes/users');
@@ -35,7 +36,7 @@ var citizens = require('./routes/citizens');
 var candidates = require('./routes/candidates');
 var provinces = require('./routes/provinces');
 var graphics = require('./routes/graphics');
-
+var matches = require('./routes/matches');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -57,6 +58,8 @@ app.use('/api', candidates);
 app.use('/api', provinces);
 app.use('/api', graphics);
 //app.use('/api', citizens);
+app.use('/api', citizens);
+app.use('/api', matches)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
