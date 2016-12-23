@@ -55,7 +55,7 @@ $scope.confirmationDelete = function (index,candidate)
     size: 'sm',
     resolve: {
       item: function (){
-        return true;
+        return candidate;
       }
     }
   });
@@ -108,6 +108,7 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
 app.controller('modalConfirmationController', ['$scope', '$uibModalInstance', 'item', function ($scope, $uibModalInstance, item)
 {
   var that = $scope;
+  that.candidate = item;
   that.confirmation = {yes: true, no: false};
 
   $scope.cancel = function ()

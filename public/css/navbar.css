@@ -15,7 +15,7 @@
 .form-group-block .form-group select {width: 70%; margin-left: 10px;}
 .form-group-block-full .form-group{width: 100%; display: block;}
 .form-group-block-full .form-group select {width: 25%; margin-left: 10px;}
-.buttons .btn-success{margin-right: 10px;}
+.buttons .btn-success{margin-right: 34px;}
 .form-group-block input {width: 64% !important;}
 .form-group-block textarea { width: 100% !important;}
 .navbar-inverse { position: fixed !important;}
@@ -45,3 +45,7 @@
 .success-request-fixed h4 { margin-bottom: 0px; display: inline-block;}
 .success-request-fixed .container-success {margin-bottom: 0px;}
 .success-request-fixed .container-success i{ font-size: 30px;}
+/*Modal*/
+.modal-header {padding: 0px;}
+.modal-header .modal-title{ transform: translateY(0); margin-left: 10px; font-size: 21px;}
+.check-request { position: absolute; transform: translate(50%); top: 0px; right: 171px; font-size: 25px !important; color: green;}

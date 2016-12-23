@@ -7,9 +7,10 @@ var multer = require('multer');
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, './public/uploads');
+
   },
   filename: function (req, file, callback) {
-    callback(null,  file.originalname );
+    callback(null, Date.now() + file.originalname );
   }
 });
 
@@ -17,10 +18,9 @@ var upload = multer({ storage : storage}).single('image');
 
 router.post('/file',function(req, res)
 {
-
   upload(req,res,function(err) {
         if(err) { console.log('Error al subir la imagen'); }
-        else{  res.json(req.file); }
+        else{  res.json(req.file); console.log(req.file); console.log('Imagen subida...'); }
     });
 });
 
@@ -46,8 +46,8 @@ router.post('/candidate',function(req, res)
       candidate.gender = item.gender;
       candidate.election_date.id = item.election_date.id;
       candidate.election_date.date = item.election_date.date;
+      candidate.image = item.image;
       candidate.status = true;
-
       //province
       candidate.match.id = item.match.id;
       candidate.match.description = item.match.description;
