@@ -239,21 +239,11 @@ app.post('/citizens', function(req, res) {
 
 //age
 .get('/citizens/graph/age',function(req, res) {
-<<<<<<< HEAD
        Citizen.aggregate(
            [
            { $group: { _id: "$birth_year",Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] }},
            Men_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
            { $sort: {"_id":+1}},
-=======
-        Citizen.aggregate(
-            [
-            { $group: { _id: "$birth_year",Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] }},
-            Men_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
-            { $sort: {"_id":+1}},
->>>>>>> c65e4638108efabf0d988aa1866a9f338d263afc
-
-
 
            ]).exec(function(err, citizen) {
            if (err)
