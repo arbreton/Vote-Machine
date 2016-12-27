@@ -1,19 +1,31 @@
 <br>
 <br>
 <h1> THIS IS A JSON TEST WITH CHARTJS</h1>
+
+<!--votes div-->
 <div style = "width: 50%;" id="chartCanvas">
  <canvas id="canvas"></canvas>
  <br>
 </div>
+<!--age div-->
+<div style = "width: 50%;" id= "chartCanvas3">
+  <canvas id = "canvas3"></canvas>
+</div>
+<!-- districs vote per hour div-->
+<div style = "width: 50%;" id= "chartCanvas4">
+  <canvas id = "canvas4"></canvas>
+</div>
+<!--test div-->
 <div style = "width: 50%;" id="chartCanvas1">
+
   <canvas id="canvas1"></canvas>
 
  <script type="text/javascript">
 /*$.ajax({url:"http://localhost:3000/api/citizens/graph/gender/both",dataType:"json"})
-  .fail(function(){alert("Im a failure")})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
-  console.log(myData[0].nombre);
+  //console.log(myData[0]._id.name);
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
        return obj[property];
@@ -23,7 +35,7 @@ Array.prototype.mapProperty = function(property) {
 
 // Example: myData.mapProperty('rank') to get an array of all ranks 
  barChartData = {
-    labels : myData.mapProperty('_id'),//Labels
+    labels : myData.mapProperty('_id.name[0]'),//Labels
      datasets : [
        {
    label: "Men",
@@ -52,11 +64,12 @@ console.log(data)
  }); */
  </script>
  <script type="text/javascript">
-$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
-  .fail(function(){alert("Im a failure")})
+ //$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
+$.ajax({url:"http://localhost:3000/api/citizens/graph/gender/time",dataType:"json"})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
-  console.log(myData[0].name);
+  //console.log(myData[0].name);
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
        return obj[property];
@@ -70,7 +83,8 @@ Array.prototype.mapProperty = function(property) {
      datasets : [
        {
    label: "Men",
-   backgroundColor:"rgba(153, 99, 132, 0.5)",
+
+   backgroundColor:"rgba(0, 0, 255, 0.5)",
    data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
   },
   {
@@ -96,9 +110,9 @@ console.log(data)
  </script>
 
 
-<script type="text/javascript">
+<script type="text/javascript">/*
 $.ajax({url:"data1.json",dataType:"json"})
-  .fail(function(){alert("Im a failure")})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data1){
   var myData1 = (data1);
   console.log(myData1[0].nombre);
@@ -132,6 +146,96 @@ Array.prototype.mapProperty = function(property) {
  var myNewChart1 = new Chart(ctx , {
     type: "bar",
     data: barChartData1, 
+});
+ //}  
+ }); 
+ </script>
+
+ <!--age graphic-->
+ <script type="text/javascript">
+$.ajax({url:"http://localhost:3000/api/citizens/graph/age",dataType:"json"})
+  .fail(function(){alert("Im a failure")})
+  .done(function(data){
+  var myData = (data);
+  console.log(myData[0].nombre);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData3 = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+   backgroundColor:"rgba(0, 0, 255, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+
+ //window.onload = function(){
+//console.log("cheerio")
+console.log(data)
+ var ctx = document.getElementById("canvas3").getContext("2d");
+
+
+ var myNewChart3 = new Chart(ctx , {
+    type: "bar",
+    data: barChartData3, 
+});
+ //}  
+ }); 
+ </script>
+
+ <!--districs vote per hour-->
+  <script type="text/javascript">
+$.ajax({url:"http://localhost:3000/api/citizens/graph/districts/10",dataType:"json"})
+  .fail(function(){alert("Im a failure")})
+  .done(function(data){
+  var myData = (data);
+  console.log(myData[0].nombre);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData4 = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+   backgroundColor:"rgba(0, 0, 255, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+
+ //window.onload = function(){
+//console.log("cheerio")
+console.log(data)
+ var ctx = document.getElementById("canvas4").getContext("2d");
+
+
+ var myNewChart4 = new Chart(ctx , {
+    type: "bar",
+    data: barChartData4, 
 });
  //}  
  }); 

@@ -1,6 +1,8 @@
 #!/usr/bin/env node
-var debug = require('debug')('votinapp');
+//var connect = require('connect');
+var debug = require('debug')('votingApp');
 var app = require('../app');
+
 
 app.set('port', process.env.PORT || 3000);
 

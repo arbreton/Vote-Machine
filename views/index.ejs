@@ -5,6 +5,7 @@
     <title>VoteMachine.IO</title>
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/src/loading-bar.css">
     <link rel="stylesheet" type="text/css" href="/css/landingUser.css">
     <link href="css/bootstrap337.min.css" rel="stylesheet">
     <link href="/css/adminDash.css" type="text/css" rel="stylesheet">
@@ -32,23 +33,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-        <!--<li><a href="#/admin">Admin</a></li>
-        <li><a href="#/charts">Charts</a></li>
-
-        <li><a href="#/voting">Voting</a></li>
-        <li class="dropdown">
-          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">QuickCharts <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>-->
+    
       <li class="dropdown">
       </li>
       <ul class="nav navbar-nav navbar-right">
@@ -69,6 +54,8 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+      
+
         <ui-view>
 
         </ui-view>
@@ -79,40 +66,6 @@
     <center><h1>VoteMachine.IO</h1></center>
   </div>
 
-  <div ng-repeat="post in posts | orderBy: '-upvotes'">
-    <span class="glyphicon glyphicon-thumbs-up" ng-click="upvote(post)"></span>
-      {{post.upvotes}}
-    <span class="glyphicon glyphicon-thumbs-down" ng-click="downvote(post)"></span>
-    <span style="font-size:20px;margin-left:10px">
-      <a ng-show="post.link" href="{{post.link}}">
-        {{post.title}}
-      </a>
-      <span ng-hide="post.link">
-        {{post.title}}
-      </span>
-  <span ng-show="post.author">
-    posted by <a>{{post.author}}</a> |
-  </span>
- </span>
-    <span>
-      <a href="#/posts/{{post._id}}">Comments</a>
-        ({{post.comments.length}})
-    </span>
-  </div>
-
-  <form ng-submit="addPost()" ng-show="isLoggedIn()" style="margin-top:30px">
-    <h3>Add a new post:</h3>
-
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Title"  ng-model="title">
-    </div>
-
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Link" ng-model="link">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Post</button>
-  </form>
   <div ng-hide="isLoggedIn()">
 
   <center><h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can vote.</h3></center>
@@ -250,7 +203,7 @@ si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
 
     <!--Librerias -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src ="js/Chart.min.js"></script>
+    
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
     <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
@@ -258,6 +211,7 @@ si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
     <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src ="js/Chart.min.js"></script>
 
     <!--Modulos-->
     <script src="javascripts/angularApp.js"></script>
@@ -265,10 +219,12 @@ si lo ponemos en porcentaje nos dara una grafica mas responsiva -->
     <script src ="javascripts/services/serviceProvince.js"></script>
     <script src ="javascripts/services/serviceMatch.js"></script>
     <script src="javascripts/controllers/registerCandidateController.js"></script>
+    <script src="javascripts/controllers/registerPartyController.js"></script>
     <script src="javascripts/controllers/listCandidateController.js"></script>
     <script src="javascripts/controllers/votingController.js"></script>
     <script src="javascripts/services/serviceProvince.js"></script>
      <script src = "javascripts/controllers/chartsController.js"></script>
+     <script src="bower_components/angular-loading-bar/src/loading-bar.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
