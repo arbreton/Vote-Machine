@@ -23,6 +23,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   {
     that.matches = data;
   });
+  
   province.getProvinces().then(function (data)
   {
     that.provinces = data
@@ -32,6 +33,11 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   $scope.showCantones = function (cantones)
   {
      return that.cantones = cantones;
+  };
+
+  $scope.showMatch = function (index, obj)
+  {
+    return  that.candidates[index].img_match= obj.image;
   };
 
   $scope.showDistricts = function(districts)

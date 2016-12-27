@@ -52,6 +52,7 @@ router.post('/candidate',function(req, res)
       //province
       candidate.match._id = item.match._id;
       candidate.match.description = item.match.description;
+      candidate.match.image = item.match.image;
       candidate.province.id = item.province.id;                                                                                                                                                                                                   5
       candidate.province.description = item.province.description;
       candidate.province.canton.id = item.canton.id;

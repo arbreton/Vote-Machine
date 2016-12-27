@@ -60,13 +60,13 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="label-partido">Match: </label>
-                <select class="form-control" ng-options="match.description for match in matches" ng-model="candidate.match"></select>
+                <select class="form-control" ng-options="match.description for match in matches" ng-model="candidate.match" ng-change="showMatch($index ,candidate.match)"></select>
               </div>
           </div><!--end col -->
 
           <div class="col-md-4">
             <div class="form-group">
-              <div class="preview-img"> </div>
+              <div class="preview-img"><img ngf-thumbnail="candidate.img_match"> </div>
             </div>
           </div><!--end col -->
 
