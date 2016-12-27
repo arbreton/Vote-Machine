@@ -26,10 +26,10 @@
           <div class="col-md-12">
               <div class="form-group">
                 <label for="fecha-eleccion">From: </label>
-                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_inicial" ng-model="date_election_i" required=""></select>
+                <select class="form-control" ng-options="election.date for election in initial_elections" ng-model="initial_election" required=""></select>
 
                 <label for="fecha-eleccion">To: </label>
-                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_final" ng-model="date_election_e" required=""></select>
+                <select class="form-control" ng-options="election.date for election in final_elections" ng-model="final_election" required=""></select>
               </div>
           </div>
         </div><!--end row -->

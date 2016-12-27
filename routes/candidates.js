@@ -45,8 +45,10 @@ router.post('/candidate',function(req, res)
       candidate.second_last_name = item.second_last_name;
       candidate.proposal = item.proposal;
       candidate.gender = item.gender;
-      candidate.election_date.id = item.election_date.id;
-      candidate.election_date.date = item.election_date.date;
+      candidate.initial_election.id = item.initial_election.id;
+      candidate.initial_election.date = item.initial_election.date;
+      candidate.final_election.id = item.final_election.id;
+      candidate.final_election.date = item.final_election.date;
       candidate.image = item.image;
       candidate.status = true;
       //province

@@ -8,9 +8,11 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   that.candidate = {};
   that.date_election_i = {};
   that.date_election_e = {};
-  that.fecha_inicial = [{id: 1, fecha:"2000"}, {id: 2, fecha: "2005"}, {id: 3, fecha:"2010"}, {id: 4, fecha:"2015"}];
-  that.fecha_final = [{id: 1, fecha:"2005"}, {id: 2, fecha: "2010"}, {id: 3, fecha:"2015"}, {id: 4, fecha:"2020"}];
+  that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
+  that.final_elections = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
   that.cantones = [];
+  that.final_election = {};
+  that.initial_election = {};
   that.districts = [];
   that.matches = [];
   that.provinces = [];
@@ -23,7 +25,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   {
     that.matches = data;
   });
-  
+
   province.getProvinces().then(function (data)
   {
     that.provinces = data
@@ -94,7 +96,8 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   {
     var c = that.candidates.map(function (obj, index)
     {
-         that.candidates[index].election_date = {id: that.date_election_e.id , date:that.date_election_i.fecha +'-'+ that.date_election_e.fecha };
+         that.candidates[index].initial_election = that.initial_election
+         that.candidates[index].final_election = that.final_election;
     });
     c= that.candidates;
     $http.post('api/candidate', c).success(function(data)

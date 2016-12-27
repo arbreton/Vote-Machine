@@ -80,8 +80,8 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
   that.districts = [];
   that.candidate = item;
   that.candidate.img = item.image;
-  that.elections_date_ini = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
-  that.elections_date_end = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
+  that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
+  that.final_elections = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
   that.matches = [];
   match.getMatches().then( function (data)
   {

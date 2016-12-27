@@ -40,6 +40,7 @@
 .button-avatar:hover { background: rgba(183, 179, 179, 0.88);}
 .button-avatar > div { margin-bottom:  0px; padding: 10px;}
 .preview-img-modal { display: inline-block; height: 150px; width: 150px; border: 1px solid #ccc;}
+.preview-img-modal img{ width: 150px; height: 150px;}
 .success-request{ position: absolute; top: 0; left:  50%;}
 .success-request h4 { margin-bottom: 0px;}
 .success-request-fixed { position: fixed; background: #5cb85c; color:#fff; top: 50%; left: 50%;}

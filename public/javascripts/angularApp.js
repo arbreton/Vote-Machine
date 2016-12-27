@@ -15,9 +15,9 @@ function($stateProvider, $urlRouterProvider) {
 			if (auth.isAdmin() == true) {
 				$state.go('admin');
 			}
-			
+
 		}]
-		
+
 	}).state('voting', {
 		url : '/voting',
 		templateUrl : 'views/votingView.html',
@@ -41,7 +41,7 @@ function($stateProvider, $urlRouterProvider) {
 			if (auth.isAdmin() == true) {
 				$state.go('admin');
 			}
-			
+
 		}]
 
 	}).state('register', {
@@ -217,7 +217,7 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
     }
 });
 
-	
+
 }]);
 
 app.controller('AdminController', ['$scope', '$location', 'auth', '$window',
@@ -235,7 +235,7 @@ function($scope, $location, auth, $window) {
 	$scope.district = auth.payload().district;
 	$scope.birth_year = auth.payload().birth_year;
 	}
-	
+
 	//setting title to blank here to prevent empty posts
 	$scope.title = '';
 	//console.log(auth.payload());
@@ -268,12 +268,17 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 			$location.url("/charts");
 	};
 
+	$scope.showCandidates = function ()
+	{
+			$location.url("/admin/candidates");
+	};
+
 	$scope.voteNow = function()
 	{
 			$location.url("/voting");
 	};
 
-	
+
 }]);
 
 
@@ -318,4 +323,3 @@ function($scope, auth) {
 	$scope.logOut = auth.logOut;
 	$scope.currentID=auth.currentID;
 }]);
-
