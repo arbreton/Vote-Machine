@@ -228,7 +228,7 @@ app.post('/citizens', function(req, res) {
 
 
 
-            ]).maxTimeMS(70000).exec(function(err, citizen) {
+            ]).exec(function(err, citizen) {
             if (err)
                 res.send(err);
             res.json(citizen);
