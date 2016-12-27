@@ -1,8 +1,8 @@
 'use strict';
 
-var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceMatch']);
+var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceMatch', 'serviceProvince']);
 
-app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'match', function($scope, $http, Upload, $timeout, match)
+app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'match', 'province', function($scope, $http, Upload, $timeout, match, province)
 {
   var that = $scope;
   that.candidate = {};
@@ -22,11 +22,12 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   match.getMatches().then(function (data)
   {
     that.matches = data;
-  })
-   $http.get('/api/provinces').success(function (res)
-   {
-     that.provinces = res;
-   });
+  });
+  province.getProvinces().then(function (data)
+  {
+    that.provinces = data
+  });
+
 
   $scope.showCantones = function (cantones)
   {

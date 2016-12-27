@@ -1,5 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
+//mongoose.Promise = global.Promise;
 var Candidate = mongoose.model('Candidate');
 var router = express.Router();
 
@@ -20,7 +21,7 @@ router.post('/file',function(req, res)
 {
   upload(req,res,function(err) {
         if(err) { console.log('Error al subir la imagen'); }
-        else{  res.json(req.file); console.log(req.file); console.log('Imagen subida...'); }
+        else{  res.json(req.file);  console.log('Imagen subida...'); }
     });
 });
 
@@ -49,21 +50,28 @@ router.post('/candidate',function(req, res)
       candidate.image = item.image;
       candidate.status = true;
       //province
-      candidate.match.id = item.match.id;
+      candidate.match._id = item.match._id;
       candidate.match.description = item.match.description;
       candidate.province.id = item.province.id;                                                                                                                                                                                                   5
       candidate.province.description = item.province.description;
+      candidate.province.canton.id = item.canton.id;
+      candidate.province.canton.description = item.canton.description;
       candidate.province.district.id = item.district.id;
       candidate.province.district.description = item.district.description;
-      candidate.province.canton.id = item.province.canton.id;
-      candidate.province.canton.description = item.province.canton.description;
 
       //save item
-      candidate.save( function(err)
+      candidate.save().then( function (can)
+      {
+        res.json({status: 200,message: 'The register was saved successfully'});
+      }, function (err)
       {
         if(err) { return handleError(err);}
-        else{res.json({status: 200,message: 'The register was saved successfully'}); }
       });
+      /*candidate.save( function(err)
+      {
+        if(err) { return handleError(err);}
+        else{console.log("saved items..."); /*res.json({status: 200,message: 'The register was saved successfully'}); }
+      });*/
 
     });
 });
@@ -71,6 +79,7 @@ router.post('/candidate',function(req, res)
 router.put('/candidate-update/:id',function (req, res)
 {
   var id = req.body._id;
+  console.log(req.body);
   if(id !='')
   {
     var query = { _id: id};
@@ -82,7 +91,8 @@ router.put('/candidate-update/:id',function (req, res)
       proposal : req.body.proposal,
       gender : req.body.gender,
       election_date : {id: req.body.election_date.id, date: req.body.election_date.date },
-      match: { id : req.body.match.id, description: req.body.match.description },
+      image: req.body.image,
+      match: { _id : req.body.match._id, description: req.body.match.description },
       province: { id : req.body.province.id, description: req.body.province.description,
         canton: { id : req.body.province.canton.id, description : req.body.province.canton.description },
         district:{ id : req.body.district.id, description : req.body.province.canton.description } }
