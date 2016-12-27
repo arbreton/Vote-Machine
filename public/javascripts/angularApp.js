@@ -15,9 +15,22 @@ function($stateProvider, $urlRouterProvider) {
 			if (auth.isAdmin() == true) {
 				$state.go('admin');
 			}
-			
+
 		}]
-		
+
+
+	}).state('voting', {
+		url : '/voting',
+		templateUrl : 'views/votingView.html',
+		controller : 'votingController',
+		resolve : {
+			postPromise : ['posts',
+			function(posts) {
+				return posts.getAll();
+			}]
+
+		}
+
 	}).state('login', {
 		url : '/login',
 		templateUrl : 'views/login.html',
@@ -30,16 +43,16 @@ function($stateProvider, $urlRouterProvider) {
 			if (auth.isAdmin() == true) {
 				$state.go('admin');
 			}
-			
+
 		}]
 
 	}).state('voting', {
 		url : '/voting',
 		templateUrl : 'views/votingView.html',
-		
-		
+
+
 		//controller : 'AdminController',
-		
+
 
 	}).state('register', {
 		url : '/register',
@@ -214,7 +227,7 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
     }
 });
 
-	
+
 }]);
 
 app.controller('AdminController', ['$scope', '$location', 'auth', '$window',
@@ -233,7 +246,7 @@ function($scope, $location, auth, $window) {
 	$scope.birth_date = auth.payload().birth_date;
 	$scope.image = auth.payload().image;
 	}
-	
+
 	//setting title to blank here to prevent empty posts
 	$scope.title = '';
 	//console.log(auth.payload());
@@ -266,12 +279,17 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 			$location.url("/charts");
 	};
 
+	$scope.showCandidates = function ()
+	{
+			$location.url("/admin/candidates");
+	};
+
 	$scope.voteNow = function()
 	{
 			$location.url("/voting");
 	};
 
-	
+
 }]);
 
 
@@ -316,4 +334,3 @@ function($scope, auth) {
 	$scope.logOut = auth.logOut;
 	$scope.currentID=auth.currentID;
 }]);
-

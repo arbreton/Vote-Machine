@@ -1,4 +1,4 @@
- 
+
 
  <div id="wrapper" ng-app="dashboard.candidatos">
       <!-- Sidebar -->
@@ -46,6 +46,10 @@
             <label>New Election</label>
         </div>
         <div class="buttonlabel">
+            <button type="button" class="btn btn-default bigbutton" ng-click="showCandidates()"><i class="fa fa-list" aria-hidden="true"></i></button>
+            <label>Candidates</label>
+        </div>
+        <div class="buttonlabel">
             <button type="button" class="btn btn-default bigbutton" ng-click="newParty()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
             <label>New Party</label>
         </div>
@@ -56,7 +60,7 @@
           </div>
       </div>
   </div>
-   
+
 <div ng-hide="isAdmin()">
 
 <div class="page-header">
@@ -64,4 +68,3 @@
   </div>
   <center><h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can vote.</h3></center>
   </div>
-  

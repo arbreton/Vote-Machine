@@ -9,19 +9,19 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="fecha-eleccion">From: </label>
-          <select class="form-control" ng-options="election.date  for election in elections_date_ini" ng-model="election_date_ini" required=""></select>
+          <select class="form-control" ng-options="election.date  for election in initial_elections track by election.id" ng-model="candidate.initial_election" required=""></select>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label for="fecha-eleccion">To: </label>
-          <select class="form-control" ng-options="election.date  for election in elections_date_end" ng-model="election_date_end" required=""></select>
+          <select class="form-control" ng-options="election.date  for election in final_elections track by election.id" ng-model="candidate.final_election" required=""></select>
         </div>
       </div>
       <div class="col-md-4">
           <div class="form-group">
-            <label for="label-partido">Partido: </label>
-            <select class="form-control" ng-options="match.description for match in matchs track by match.id" ng-model="candidate.match"></select>
+            <label for="label-partido">Match: </label>
+            <select class="form-control" ng-options="match.description for match in matches track by match._id" ng-model="candidate.match"></select>
           </div>
       </div>
     </div><!--end row -->
@@ -37,20 +37,20 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-canton">Canton: </label>
-                <select class="form-control" ng-options="canton.description for canton in cantones track by canton.id" ng-model="candidate.province.canton" ng-change="showDistricts(candidate.province.canton.districts)" required=""></select>
+                <select class="form-control" ng-options="canton.description for canton in cantones track by canton.id" ng-model="candidate.canton" ng-change="showDistricts(candidate.canton.districts)" required=""></select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-distritos">Disctrict: </label>
-                <select class="form-control" ng-options="district.description for district in districts " ng-model="candidate.district" required=""></select>
+                <select class="form-control" ng-options="district.description for district in districts" ng-model="candidate.district" required=""></select>
               </div>
           </div>
         </div><!--end row -->
 
         <!--home row -->
         <div class="row form-group-select  label-modal">
-          <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
               <div class="form-group">
                 <label for="label-nombre" class="col-md-6">Name: </label>
                 <input type="text" class="form-control col-md-6" placeholder="Name" ng-model="candidate.name"/>
@@ -75,13 +75,18 @@
               </div>
           </div><!--end col -->
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group text-center">
-              <div class="preview-img-modal"> <img ngf-thumbnail="candidate.foto"> </div>
+              <div class="preview-img-modal"> <img ngf-thumbnail="candidate.img"> </div>
               <div class="button-avatar">
-                <div ngf-select ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.foto" ngf-min-width="150"  ngf-min-height="150"
+                <div ngf-select="uploadFile($file)" ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.img" ngf-min-width="150"  ngf-min-height="150"
                 ngf-resize="{width: 150, height: 150}">Select image</div>
               </div>
+            </div>
+          </div><!--end col -->
+          <div class="col-md-3">
+            <div class="form-group text-center">
+              <div class="preview-img-modal"> <img ng-src="{{candidate.match.image}}"> <label>Match Logo</label> </div>
             </div>
           </div><!--end col -->
         </div><!--end row -->
