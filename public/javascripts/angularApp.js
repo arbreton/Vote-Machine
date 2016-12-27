@@ -18,17 +18,6 @@ function($stateProvider, $urlRouterProvider) {
 			
 		}]
 		
-	}).state('voting', {
-		url : '/voting',
-		templateUrl : 'views/votingView.html',
-		controller : 'votingController',
-		resolve : {
-			postPromise : ['posts',
-			function(posts) {
-				return posts.getAll();
-			}]
-
-		}
 	}).state('login', {
 		url : '/login',
 		templateUrl : 'views/login.html',
@@ -43,6 +32,14 @@ function($stateProvider, $urlRouterProvider) {
 			}
 			
 		}]
+
+	}).state('voting', {
+		url : '/voting',
+		templateUrl : 'views/votingView.html',
+		
+		
+		//controller : 'AdminController',
+		
 
 	}).state('register', {
 		url : '/register',
@@ -233,7 +230,8 @@ function($scope, $location, auth, $window) {
 	$scope.province = auth.payload().province;
 	$scope.canton = auth.payload().canton;
 	$scope.district = auth.payload().district;
-	$scope.birth_year = auth.payload().birth_year;
+	$scope.birth_date = auth.payload().birth_date;
+	$scope.image = auth.payload().image;
 	}
 	
 	//setting title to blank here to prevent empty posts
