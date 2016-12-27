@@ -1,8 +1,8 @@
 'use strict';
 
-var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceMatch']);
+var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceMatch', 'serviceProvince']);
 
-app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'match', function($scope, $http, Upload, $timeout, match)
+app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'match', 'province', function($scope, $http, Upload, $timeout, match, province)
 {
   var that = $scope;
   that.candidate = {};
@@ -14,24 +14,30 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   that.districts = [];
   that.matches = [];
   that.provinces = [];
-  that.file = {};
-  that.fotos = [];
-  that.foto = {};
+  $scope.file = {};
   that.request = {};
-  $scope.candidates = [{}];
+  that.requestImage = {};
+  that.candidates = [{}];
 
   match.getMatches().then(function (data)
   {
     that.matches = data;
-  })
-   $http.get('/api/provinces').success(function (res)
-   {
-     that.provinces = res;
-   });
+  });
+  
+  province.getProvinces().then(function (data)
+  {
+    that.provinces = data
+  });
+
 
   $scope.showCantones = function (cantones)
   {
-     return $scope.cantones = cantones;
+     return that.cantones = cantones;
+  };
+
+  $scope.showMatch = function (index, obj)
+  {
+    return  that.candidates[index].img_match= obj.image;
   };
 
   $scope.showDistricts = function(districts)
@@ -46,10 +52,10 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
 
   $scope.restForm = function()
   {
-    $scope.candidate = {};
+    that.candidate = {};
   };
-
-  $scope.uploadFile = function (file)
+  $scope.restForm();
+  $scope.uploadFile = function (file, index)
   {
     Upload.upload({
       url: 'api/file',
@@ -57,26 +63,33 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
       data: { image: file}
     }).then(function (resp)
     {
-      console.log(resp)
+      $scope.addItemByIndex(index, resp.data);
+      that.requestImage = resp;
     }, function (resp)
     {
-      console.log(resp);
     }, function (evt)
     {
-      console.log(evt);
     });
   };
 
     $scope.addNewChoice = function() {
-    var newItemNo = $scope.candidates.length+1;
-    $scope.candidates.push(that.candidate);
+    var newItemNo = that.candidates.length+1;
+    that.candidates.push(that.candidate);
   };
 
   $scope.removeChoice = function() {
     var lastItem = $scope.candidates.length-1;
-    $scope.candidates.splice(lastItem);
+    that.candidates.splice(lastItem);
   };
 
+  $scope.addItemByIndex = function(index, resImage)
+  {
+    if(index != null)
+    {
+      let path ='/uploads/'+resImage.filename;
+      return that.candidates[index].image = path;
+    }
+  }
   $scope.saveItem = function ()
   {
     var c = that.candidates.map(function (obj, index)
@@ -84,15 +97,6 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
          that.candidates[index].election_date = {id: that.date_election_e.id , date:that.date_election_i.fecha +'-'+ that.date_election_e.fecha };
     });
     c= that.candidates;
-    //$scope.uploadFile(that.candidates);
-
-    var x = that.candidates.map(function (item)
-    {
-      x = item.image;
-      that.fotos.push(x);
-    });
-
-    //$scope.uploadFile(that.fotos);
     $http.post('api/candidate', c).success(function(data)
     {
       that.request = data;

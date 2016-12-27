@@ -20,8 +20,8 @@
       </div>
       <div class="col-md-4">
           <div class="form-group">
-            <label for="label-partido">Partido: </label>
-            <select class="form-control" ng-options="match.description for match in matchs track by match.id" ng-model="candidate.match"></select>
+            <label for="label-partido">Match: </label>
+            <select class="form-control" ng-options="match.description for match in matches track by match._id" ng-model="candidate.match"></select>
           </div>
       </div>
     </div><!--end row -->
@@ -37,13 +37,13 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-canton">Canton: </label>
-                <select class="form-control" ng-options="canton.description for canton in cantones track by canton.id" ng-model="candidate.province.canton" ng-change="showDistricts(candidate.province.canton.districts)" required=""></select>
+                <select class="form-control" ng-options="canton.description for canton in cantones track by canton.id" ng-model="candidate.canton" ng-change="showDistricts(candidate.canton.districts)" required=""></select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-distritos">Disctrict: </label>
-                <select class="form-control" ng-options="district.description for district in districts " ng-model="candidate.district" required=""></select>
+                <select class="form-control" ng-options="district.description for district in districts" ng-model="candidate.district" required=""></select>
               </div>
           </div>
         </div><!--end row -->
@@ -77,9 +77,9 @@
 
           <div class="col-md-4">
             <div class="form-group text-center">
-              <div class="preview-img-modal"> <img ngf-thumbnail="candidate.foto"> </div>
+              <div class="preview-img-modal"> <img ngf-thumbnail="candidate.img"> </div>
               <div class="button-avatar">
-                <div ngf-select ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.foto" ngf-min-width="150"  ngf-min-height="150"
+                <div ngf-select="uploadFile($file)" ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.img" ngf-min-width="150"  ngf-min-height="150"
                 ngf-resize="{width: 150, height: 150}">Select image</div>
               </div>
             </div>

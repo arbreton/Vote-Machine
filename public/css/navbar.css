@@ -15,7 +15,7 @@
 .form-group-block .form-group select {width: 70%; margin-left: 10px;}
 .form-group-block-full .form-group{width: 100%; display: block;}
 .form-group-block-full .form-group select {width: 25%; margin-left: 10px;}
-.buttons .btn-success{margin-right: 10px;}
+.buttons .btn-success{margin-right: 34px;}
 .form-group-block input {width: 64% !important;}
 .form-group-block textarea { width: 100% !important;}
 .navbar-inverse { position: fixed !important;}
@@ -23,11 +23,12 @@
 .form-group-md .form-group { margin-bottom: 10px !important; width: 100%; display: block;}
 .form-group-md .form-group input[type="text"]  { margin-bottom: 15px;}
 .preview-img{ height: 150px; width: 150px; border: 1px solid #ccc;}
+.preview-img img { width: 150px; height: 150px;}
 .circle-button { border-radius: 50% !important; width: 60px; height: 60px; box-shadow: 0px 1px 6px #5f5b5b;}
 .circle-button i { font-size: 25px;}
 .flotante { display:scroll; position:fixed; bottom:20px; right:0px; }
 .form-group-select .form-group { display: block;}
-.form-group-select .form-group  select { width: 73%; margin-left: 26px;}
+.form-group-select .form-group  select { width: 72%; margin-left: 33px;}
 .form-group-modal .form-group {display: block; }
 .form-group-modal .form-group  select { margin-left: 6px; width: 67%; float: right;}
 
@@ -35,9 +36,9 @@
 .row-magin-modal textarea {width:100% !important;}
 .row-magin-modal input[type='text'], input[type='radio'] { margin-bottom: 10px;}
 .label-modal label { padding-left: 0px; }
-.button-avatar {display: inline-block; padding: 10px; background: #ccc; border-radius: 5px; font-weight: 800; cursor:pointer; box-shadow: 0px 1px 5px #383535; }
+.button-avatar {display: inline-block; background: #ccc; border-radius: 5px; font-weight: 800; cursor:pointer; box-shadow: 0px 1px 5px #383535; }
 .button-avatar:hover { background: rgba(183, 179, 179, 0.88);}
-.button-avatar > div { margin-bottom:  0px;}
+.button-avatar > div { margin-bottom:  0px; padding: 10px;}
 .preview-img-modal { display: inline-block; height: 150px; width: 150px; border: 1px solid #ccc;}
 .success-request{ position: absolute; top: 0; left:  50%;}
 .success-request h4 { margin-bottom: 0px;}
@@ -45,3 +46,7 @@
 .success-request-fixed h4 { margin-bottom: 0px; display: inline-block;}
 .success-request-fixed .container-success {margin-bottom: 0px;}
 .success-request-fixed .container-success i{ font-size: 30px;}
+/*Modal*/
+.modal-header {padding: 0px;}
+.modal-header .modal-title{ transform: translateY(0); margin-left: 10px; font-size: 21px;}
+.check-request { position: absolute; transform: translate(50%); top: 0px; right: 171px; font-size: 25px !important; color: green;}
