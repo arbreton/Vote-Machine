@@ -1,16 +1,20 @@
 var express = require('express');
+//var connect = require('connect');
+var session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
+var http = require('http');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+//var app2 = connect();
 var app = express();
 
 var mongoose = require('mongoose');
 var passport = require('passport');
+var options = {server: {socketOptions: {socketTimeoutMS: 10000}}};
 
-// connect MongoDB+
 mongoose.connect('mongodb://localhost:27017/mean-database',{
   connectTimeoutMS:120000}, function(err,db){
     if (!err){
@@ -18,7 +22,26 @@ mongoose.connect('mongodb://localhost:27017/mean-database',{
     } else{
         console.dir(err); //failed to connect
     }
-});
+});  
+
+
+
+// connect MongoDB+
+
+app.use(session({
+    store: new MongoStore({  mongooseConnection: mongoose.connection}),
+    //store: new MongoStore({ url: 'mongodb://localhost:27017/mean-database' }),
+    secret: 'SECRET', cookie: { maxAge: 120000 },resave: false,
+    saveUninitialized: false
+
+}));
+console.log('Connected to /mean-database!');
+
+
+
+  
+
+
 
 //require('./models/Posts');
 //require('./models/Comments');
@@ -43,6 +66,7 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

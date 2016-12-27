@@ -1,4 +1,4 @@
-var app = angular.module('votingApp', ['ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty', 'ViewCharts']);
+var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty', 'ViewCharts']);
 
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
@@ -108,11 +108,11 @@ function($http,$window, $location) {
 	var auth = {};
 
 	auth.saveToken = function(token) {
-		$window.localStorage['votingapp-token'] = token;
+		$window.localStorage['votingApp-token'] = token;
 	};
 
 	auth.getToken = function() {
-		return $window.localStorage['votingapp-token'];
+		return $window.localStorage['votingApp-token'];
 	}
 
 	auth.isLoggedIn = function() {
@@ -191,7 +191,7 @@ function($http,$window, $location) {
 	};
 
 	auth.logOut = function() {
-		$window.localStorage.removeItem('votingapp-token');
+		$window.localStorage.removeItem('votingApp-token');
 		$location.url("/home");
 	};
 
