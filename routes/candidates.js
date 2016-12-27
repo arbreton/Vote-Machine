@@ -67,12 +67,6 @@ router.post('/candidate',function(req, res)
       {
         if(err) { return handleError(err);}
       });
-      /*candidate.save( function(err)
-      {
-        if(err) { return handleError(err);}
-        else{console.log("saved items..."); /*res.json({status: 200,message: 'The register was saved successfully'}); }
-      });*/
-
     });
 });
 
