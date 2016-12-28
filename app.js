@@ -13,16 +13,11 @@ var app = express();
 
 var mongoose = require('mongoose');
 var passport = require('passport');
+
 var options = {server: {socketOptions: {connectionTimeoutMS: 120000,socketTimeoutMS: 120000}}};
 
 
-
-// connect MongoDB+
-mongoose.connect('mongodb://localhost:27017/mean-database',{
-  connectTimeoutMS:240000}, function(err,db){
-
 mongoose.connect('mongodb://localhost:27017/mean-database',options, function(err,db){
-
     if (!err){
         console.log('Connected to /mean-database!');
     } else{
