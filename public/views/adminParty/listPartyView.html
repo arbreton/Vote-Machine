@@ -1,4 +1,5 @@
-  <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+<div id="wrapper">
+    <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
       <div class="header-logo"> 
         <img ng-src="{{image}}">
       </div>
@@ -17,7 +18,7 @@
       </div>
       </div>
 
- <div class="title">Candidatos postulados</div>
+ <div class="title">Candidates</div>
 
    <div ng-if="response.status==200" class="alert alert-success success-request" role="alert">
      <h4>{{response.message}}</h4>

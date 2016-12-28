@@ -68,6 +68,12 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('candidates', {
 		url: '/admin/candidates',
 		templateUrl: 'views/adminCandidate/listCandidateView.html',
+		controller: 'listPartyController'
+
+
+	}).state('parties', {
+		url: '/admin/parties',
+		templateUrl: 'views/adminParty/listPartyView.html',
 		controller: 'listCandidateController'
 
 
@@ -261,6 +267,11 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 	$scope.showCandidates = function ()
 	{
 			$location.url("/admin/candidates");
+	};
+
+	$scope.showParties = function ()
+	{
+			$location.url("/admin/parties");
 	};
 
 	$scope.voteNow = function()
