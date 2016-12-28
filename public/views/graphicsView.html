@@ -71,6 +71,10 @@
  <canvas id="canvas3"></canvas>
  <br>
 </div>
+<div ng-show="lateChart" style = "width: 80%;" id="chartCanvas4">
+ <canvas id="canvas4"></canvas>
+ <br>
+</div>
           </div>
       </div>
   </div>
@@ -80,6 +84,7 @@
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
+  hourChartFunction();
   //console.log(myData[0].name);
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
@@ -137,10 +142,12 @@ Array.prototype.mapProperty = function(property) {
  }); 
  </script>
  <script type="text/javascript">
+ function hourChartFunction(){
  $.ajax({url:"http://localhost:3000/api/citizens/graph/gender/time",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
+  ageChartFunction();
   //console.log(myData[0].name);
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
@@ -187,14 +194,16 @@ Array.prototype.mapProperty = function(property) {
     }
 });
  //}  
- }); 
+ }); }
  </script>
 
   <script type="text/javascript">
+  function ageChartFunction(){
  $.ajax({url:"http://localhost:3000/api/citizens/graph/age",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
+  earlyChartFunction();
   //console.log(myData[0].name);
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
@@ -241,14 +250,16 @@ Array.prototype.mapProperty = function(property) {
     }
 });
  //}  
- }); 
+ }); }
  </script>
 
   <script type="text/javascript">
+  function earlyChartFunction(){
 $.ajax({url:"http://localhost:3000/api/citizens/graph/districts/10",dataType:"json"})
   .fail(function(){alert("Im a failure")})
   .done(function(data){
   var myData = (data);
+  lateChartFunction();
   console.log(myData[0].nombre);
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
@@ -298,5 +309,48 @@ console.log(data)
     }
 });
  //}  
- }); 
+ }); }
+ </script>
+  <script type="text/javascript">
+  function lateChartFunction(){
+$.ajax({url:"http://localhost:3000/api/citizens/graph/districts/19",dataType:"json"})
+  .fail(function(){alert("Im a failure")})
+  .done(function(data){
+  var myData = (data);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData4 = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+   backgroundColor:"rgba(0, 0, 255, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+
+ //window.onload = function(){
+//console.log("cheerio")
+console.log(data)
+ var ctx = document.getElementById("canvas4").getContext("2d");
+
+
+ var myNewChart4 = new Chart(ctx , {
+    type: "bar",
+    data: barChartData4, 
+});
+ //}  
+ }); }
  </script>
