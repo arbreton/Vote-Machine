@@ -12,7 +12,7 @@ var passport = require('passport');
 
 // connect MongoDB+
 mongoose.connect('mongodb://localhost:27017/mean-database',{
-  connectTimeoutMS:120000}, function(err,db){
+  connectTimeoutMS:240000}, function(err,db){
     if (!err){
         console.log('Connected to /mean-database!');
     } else{
