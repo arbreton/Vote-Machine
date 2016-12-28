@@ -4,7 +4,7 @@ var Match = mongoose.model('Match');
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, callback){
-    callback(null, './uploads');
+    callback(null, './uploads/matches');
   },
   filename: function (req, file, callback){
     callback(null, file.originalname);

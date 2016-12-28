@@ -2,9 +2,9 @@
 
  <div ng-controller="graphicsController" id="wrapper">
       <!-- Sidebar -->
-      <div id="sidebar-wrapper">
-      <div class="header-logo">
-        <img src="/images/perfil.jpg">
+        <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+      <div class="header-logo"> 
+        <img ng-src="{{image}}">
       </div>
       <div class="info-people-container">
           <div class="info-poeple">
@@ -16,7 +16,9 @@
             <hr width="170px">
             <h4>Province: {{province}}</h4>
             <hr width="170px">
-            <h4>Age: {{birth_year}} Years</h4>
+
+            <h4>Birth Date: {{birth_date}}</h4>
+
         </div>
       </div>
       </div>

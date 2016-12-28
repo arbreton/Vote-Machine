@@ -4,14 +4,15 @@
 
 <div class="modal-body" id="modal-body">
   <form class="form-inline row-magin-modal buttons">
-    <h4>You want to delete the register?</h4>
+    <h4>Do you want delete to?</h4>
+    <strong>{{candidate.first_last_name +' '+ candidate.second_last_name +', '+candidate.name}}</strong>
 </div>
 <div class="modal-footer">
     <!--home row -->
     <div class="row">
       <div class="col-md-12 text-center">
-        <button class="btn btn-success"  type="button" ng-click="ok(confirmation.yes)"> Si</button>
-        <button class="btn btn-danger" type="button" ng-click="cancel(confirmation.no)">No</button>
+        <button class="btn btn-success"  type="button" ng-click="ok(confirmation.yes)"> Yes</button>
+        <button class="btn btn-danger" type="button" ng-click="cancel(confirmation.no)">Not</button>
       </div>
     </div><!--end row -->
   </form><!--end form -->

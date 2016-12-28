@@ -15,6 +15,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var options = {server: {socketOptions: {connectionTimeoutMS: 120000,socketTimeoutMS: 120000}}};
 
+
 mongoose.connect('mongodb://localhost:27017/mean-database',options, function(err,db){
     if (!err){
         console.log('Connected to /mean-database!');
@@ -23,11 +24,9 @@ mongoose.connect('mongodb://localhost:27017/mean-database',options, function(err
     }
 });  
 
-
-
 // connect MongoDB+
 
-app.use(session({
+/*app.use(session({
     store: new MongoStore({  mongooseConnection: mongoose.connection}),
     //store: new MongoStore({ url: 'mongodb://localhost:27017/mean-database' }),
     secret: 'SECRET', cookie: { maxAge: 120000 },resave: false,
@@ -37,14 +36,9 @@ app.use(session({
 console.log('Connected to /mean-database!');
 
 
-
+*/
   
 
-
-
-//require('./models/Posts');
-//require('./models/Comments');
-//require('./models/Users');
 require('./models/citizens');
 require('./config/passport');
 require('./models/Candidate');
@@ -52,7 +46,6 @@ require('./models/Province');
 require('./models/Matches');
 
 var routes = require('./routes/index');
-//var users = require('./routes/users');
 
 var citizens = require('./routes/citizens');
 var candidates = require('./routes/candidates');
@@ -63,7 +56,6 @@ var matches = require('./routes/matches');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.use(logger('dev'));
@@ -80,7 +72,6 @@ app.use('/users', citizens);
 app.use('/api', candidates);
 app.use('/api', provinces);
 app.use('/api', graphics);
-//app.use('/api', citizens);
 app.use('/api', citizens);
 app.use('/api', matches)
 // catch 404 and forward to error handler
