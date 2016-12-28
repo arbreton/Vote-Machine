@@ -1,6 +1,6 @@
  
 
- <div id="wrapper">
+ <div ng-controller="graphicsController" id="wrapper">
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
       <div class="header-logo">
@@ -16,7 +16,7 @@
             <hr width="170px">
             <h4>Province: {{province}}</h4>
             <hr width="170px">
-            <h4>Age: {{birth_year}} Años</h4>
+            <h4>Age: {{birth_year}} Years</h4>
         </div>
       </div>
       </div>
@@ -26,20 +26,28 @@
       <!-- Page Content -->
        <div class="title" >Charts</div>
        <div class="buttonlabel">
-           <button type="button" class="btn btn-default smallbutton" ng-click="voteNow()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+           <button type="button" class="btn btn-default smallbutton" ng-click="showChart('General')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
            <p>General</p>
         </div>
         <div class="buttonlabel">
-            <button type="button" class="btn btn-default smallbutton" ng-click="showCharts()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Hour')"><i class="fa fa-line-chart" aria-hidden="true"></i></button>
             <p>Hour</p>
         </div>
         <div class="buttonlabel">
-            <button type="button" class="btn btn-default smallbutton" ng-click="newCandidate()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Age')"><i class="fa fa-pie-chart" aria-hidden="true"></i></button>
             <p>Age</p>
         </div>
         <div class="buttonlabel">
-            <button type="button" class="btn btn-default smallbutton" ng-click="newParty()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
-            <p>District</p>
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Early')"><i class="fa fa-area-chart" aria-hidden="true"></i></button>
+            <p>Early</p>
+        </div>
+        <div class="buttonlabel">
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Late')"><i class="fa fa-area-chart" aria-hidden="true"></i></button>
+            <p>Late</p>
+        </div>
+        <div class="buttonlabel">
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Genders')"><i class="fa fa-area-chart" aria-hidden="true"></i></button>
+            <p>Total</p>
         </div>
 
        <hr>
@@ -47,8 +55,20 @@
       <div id="page-content-wrapper" ng-view>
           <div class="container-fluid">
             <!--votes div-->
-<div style = "width: 80%;" id="chartCanvas">
+<div ng-show="generalChart" style = "width: 80%;" id="chartCanvas">
  <canvas id="canvas"></canvas>
+ <br>
+</div>
+<div ng-show="hourChart" style = "width: 80%;" id="chartCanvas1">
+ <canvas id="canvas1"></canvas>
+ <br>
+</div>
+<div ng-show="ageChart" style = "width: 80%;" id="chartCanvas2">
+ <canvas id="canvas2"></canvas>
+ <br>
+</div>
+<div ng-show="earlyChart" style = "width: 80%;" id="chartCanvas3">
+ <canvas id="canvas3"></canvas>
  <br>
 </div>
           </div>
@@ -74,12 +94,14 @@ Array.prototype.mapProperty = function(property) {
      datasets : [
        {
    label: "Men",
+   hidden: true,
 
    backgroundColor:"rgba(0, 0, 255, 0.5)",
    data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
   },
   {
    label: "Women",
+   hidden: true,
    backgroundColor:"rgba(253, 91, 232, 0.5)",
    data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
   }
@@ -96,7 +118,184 @@ Array.prototype.mapProperty = function(property) {
 
  var myNewChart = new Chart(ctx , {
     type: "bar",
-    data: barChartData, 
+    data: barChartData,
+    options:{
+      scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
+});
+ //}  
+ }); 
+ </script>
+ <script type="text/javascript">
+ $.ajax({url:"http://localhost:3000/api/citizens/graph/gender/time",dataType:"json"})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
+  .done(function(data){
+  var myData = (data);
+  //console.log(myData[0].name);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData1 = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+
+   backgroundColor:"rgba(0, 0, 255, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+ var ctx = document.getElementById("canvas1").getContext("2d");
+
+
+ var myNewChart = new Chart(ctx , {
+    type: "bar",
+    data: barChartData1,
+    options:{
+      scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
+});
+ //}  
+ }); 
+ </script>
+
+  <script type="text/javascript">
+ $.ajax({url:"http://localhost:3000/api/citizens/graph/age",dataType:"json"})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
+  .done(function(data){
+  var myData = (data);
+  //console.log(myData[0].name);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData2 = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+
+   backgroundColor:"rgba(0, 0, 255, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+ var ctx = document.getElementById("canvas2").getContext("2d");
+
+
+ var myNewChart = new Chart(ctx , {
+    type: "bar",
+    data: barChartData2,
+    options:{
+      scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
+});
+ //}  
+ }); 
+ </script>
+
+  <script type="text/javascript">
+$.ajax({url:"http://localhost:3000/api/citizens/graph/districts/10",dataType:"json"})
+  .fail(function(){alert("Im a failure")})
+  .done(function(data){
+  var myData = (data);
+  console.log(myData[0].nombre);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData3 = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+   backgroundColor:"rgba(0, 0, 255, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+
+ //window.onload = function(){
+//console.log("cheerio")
+console.log(data)
+ var ctx = document.getElementById("canvas3").getContext("2d");
+
+
+ var myNewChart3 = new Chart(ctx , {
+    type: "bar",
+    data: barChartData3, 
+    options:{
+      scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
 });
  //}  
  }); 
