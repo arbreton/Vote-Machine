@@ -1,19 +1,22 @@
 <div id="wrapper">
-  <div id="sidebar-wrapper"> <div class="header-logo"><img src="/images/perfil.jpg"></div>
-    <div class="info-people-container">
-        <div class="info-poeple">
-          <h3>Jose Perez Garcia</h3>
-          <hr width="170px">
-          <h4>Canton: Felipe Angeles</h4>
-          <hr width="170px">
-          <h4>District: El Refugio</h4>
-          <hr width="170px">
-          <h4>Province: San Jose</h4>
-          <hr width="170px">
-          <h4>Age: 43 Años</h4>
+    <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+      <div class="header-logo"> 
+        <img ng-src="{{image}}">
+      </div>
+      <div class="info-people-container">
+          <div class="info-poeple">
+            <h3>{{name | capitalize}} {{first_lastname | capitalize}} {{second_lastname | capitalize}}</h3>
+            <hr width="170px">
+            <h4>Canton: {{canton}}</h4>
+            <hr width="170px">
+            <h4>District: {{district}}</h4>
+            <hr width="170px">
+            <h4>Province: {{province}}</h4>
+            <hr width="170px">
+            <h4>Birth Date: {{birth_date}}</h4>
         </div>
-    </div>
-  </div>
+      </div>
+      </div>
 
  <div class="title">New Election Registration</div>
  <hr>
@@ -26,14 +29,14 @@
           <div class="col-md-12">
               <div class="form-group">
                 <label for="fecha-eleccion">From: </label>
-                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_inicial" ng-model="date_election_i" required=""></select>
+                <select class="form-control" ng-options="election.date for election in initial_elections" ng-model="initial_election" required=""></select>
 
                 <label for="fecha-eleccion">To: </label>
-                <select class="form-control" ng-options="eleccion.fecha  for eleccion in fecha_final" ng-model="date_election_e" required=""></select>
+                <select class="form-control" ng-options="election.date for election in final_elections" ng-model="final_election" required=""></select>
               </div>
           </div>
         </div><!--end row -->
-<fieldset  data-ng-repeat="candidate in candidates">
+<fieldset  ng-repeat="candidate in candidates">
 
 <div class="title2">Candidate #{{$index+1}}</div>
  <hr>
@@ -46,7 +49,7 @@
               </div>
               <div class="form-group">
                 <label for="label-canton">Canton: </label>
-                <select class="form-control" ng-options="canton.description for canton in cantones" ng-model="candidate.province.canton" ng-change="showDistricts(candidate.province.canton.districts)" required=""></select>
+                <select class="form-control" ng-options="canton.description for canton in cantones" ng-model="candidate.canton" ng-change="showDistricts(candidate.canton.districts)" required=""></select>
               </div>
               <div class="form-group">
                 <label for="label-distritos">Disctrict: </label>
@@ -60,23 +63,30 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="label-partido">Match: </label>
-                <select class="form-control" ng-options="match.description for match in matches" ng-model="candidate.match"></select>
+                <select class="form-control" ng-options="match.description for match in matches" ng-model="candidate.match" ng-change="showMatch($index ,candidate.match)"></select>
               </div>
           </div><!--end col -->
 
           <div class="col-md-4">
             <div class="form-group">
-              <div class="preview-img"> <img ngf-thumbnail="foto"></div>
+              <div class="preview-img"><img ngf-thumbnail="candidate.img_match"> </div>
             </div>
           </div><!--end col -->
 
           <div class="col-md-4">
             <div class="form-group">
-              <div class="preview-img"> <img ngf-thumbnail="candidate.image"> </div>
+              <div class="preview-img"> <img ngf-thumbnail="candidate.img"></div>
               <div class="button-avatar">
-                <div class="button" ngf-select="uploadFile(candidate.image)" ngf-pattern="'image/*'" name= "image" ngf-accept="'image/*'"  ng-model="candidate.image" ngf-min-width="150"  ngf-min-height="150"
-                ngf-resize="{width: 150, height: 150}">Image candidate</div>
+                <div class="button"
+                  ngf-select="uploadFile(candidate.img, $index)"
+                  ng-model="candidate.img"
+                  name="file"
+                  ngf-pattern="'image/*'"
+                  ngf-accept="'image/*'"
+                  ngf-max-size="1MB" ngf-min-height="150"
+                  ngf-resize="{width: 150, height: 150}">Image candidate</div>
               </div>
+              <i class="fa fa-check check-request" ng-if="requestImage.status==200" aria-hiden="true"></i>
             </div>
           </div><!--end col -->
 
@@ -110,7 +120,7 @@
           </div><!--end col -->
 
           <div class="col-md-7">
-            <textarea class="form-control" placeholder="Propuestas" rows="8" cols="80" ng-model="candidate.proposal " required=""></textarea>
+            <textarea class="form-control" placeholder="Propuestas" rows="8" cols="80" ng-model="candidate.proposal" required=""></textarea>
           </div><!--end col -->
         </div><!--end row -->
 
@@ -127,8 +137,8 @@
         <!--home row -->
         <div class="row">
           <div class="col-md-12 text-center">
-            <button class="btn btn-success" ng-disabled="!saveForm.$valid" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-            <button class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
+            <button class="btn btn-success" ng-disabled="!saveForm.$valid"  type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+            <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
           </div>
         </div><!--end row -->
 
@@ -137,5 +147,3 @@
     </div>
   </div>
 </div>
-
-

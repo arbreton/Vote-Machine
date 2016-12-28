@@ -1,28 +1,49 @@
 var express = require('express');
+//var connect = require('connect');
+var session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
+var http = require('http');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+//var app2 = connect();
 var app = express();
 
 var mongoose = require('mongoose');
 var passport = require('passport');
+var options = {server: {socketOptions: {socketTimeoutMS: 20000},connectTimeoutMS:120000}};
+
 
 // connect MongoDB+
 mongoose.connect('mongodb://localhost:27017/mean-database',{
   connectTimeoutMS:240000}, function(err,db){
+
+mongoose.connect('mongodb://localhost:27017/mean-database',options, function(err,db){
+
     if (!err){
         console.log('Connected to /mean-database!');
     } else{
         console.dir(err); //failed to connect
     }
-});
+});  
 
-//require('./models/Posts');
-//require('./models/Comments');
-//require('./models/Users');
+// connect MongoDB+
+
+/*app.use(session({
+    store: new MongoStore({  mongooseConnection: mongoose.connection}),
+    //store: new MongoStore({ url: 'mongodb://localhost:27017/mean-database' }),
+    secret: 'SECRET', cookie: { maxAge: 120000 },resave: false,
+    saveUninitialized: false
+
+}));
+console.log('Connected to /mean-database!');
+
+
+*/
+  
+
 require('./models/citizens');
 require('./config/passport');
 require('./models/Candidate');
@@ -30,7 +51,6 @@ require('./models/Province');
 require('./models/Matches');
 
 var routes = require('./routes/index');
-//var users = require('./routes/users');
 
 var citizens = require('./routes/citizens');
 var candidates = require('./routes/candidates');
@@ -41,8 +61,8 @@ var matches = require('./routes/matches');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -57,7 +77,6 @@ app.use('/users', citizens);
 app.use('/api', candidates);
 app.use('/api', provinces);
 app.use('/api', graphics);
-//app.use('/api', citizens);
 app.use('/api', citizens);
 app.use('/api', matches)
 // catch 404 and forward to error handler

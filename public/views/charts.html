@@ -2,21 +2,21 @@
 
 
   <!-- Sidebar -->
-      <div id="sidebar-wrapper" ng-show="isAdmin()">
-      <div class="header-logo">
-        <img src="/images/perfil.jpg">
+       <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+      <div class="header-logo"> 
+        <img ng-src="{{image}}">
       </div>
       <div class="info-people-container">
           <div class="info-poeple">
-            <h3>Jose Perez Garcia</h3>
+            <h3>{{name | capitalize}} {{first_lastname | capitalize}} {{second_lastname | capitalize}}</h3>
             <hr width="170px">
-            <h4>Canton: Felipe Angeles</h4>
+            <h4>Canton: {{canton}}</h4>
             <hr width="170px">
-            <h4>District: El Refugio</h4>
+            <h4>District: {{district}}</h4>
             <hr width="170px">
-            <h4>Province: San Jose</h4>
+            <h4>Province: {{province}}</h4>
             <hr width="170px">
-            <h4>Age: 43 Años</h4>
+            <h4>Birth Date: {{birth_date}}</h4>
         </div>
       </div>
       </div>

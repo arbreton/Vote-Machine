@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' ,'ui.bootstrap.modal', 'serviceProvince']);
+var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' ,'ui.bootstrap.modal', 'serviceProvince', 'serviceMatch', 'ngFileUpload']);
 
 app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$timeout', function($scope, $http, $uibModal, $timeout)
 {
@@ -55,7 +55,7 @@ $scope.confirmationDelete = function (index,candidate)
     size: 'sm',
     resolve: {
       item: function (){
-        return true;
+        return candidate;
       }
     }
   });
@@ -72,24 +72,53 @@ $scope.confirmationDelete = function (index,candidate)
 
 }]);
 
-app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item', 'province','$http', function ($scope, $uibModalInstance, item, province, $http)
+app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item', 'province', 'match','$http', 'Upload', function ($scope, $uibModalInstance, item, province, match, $http, Upload)
 {
   var that = $scope;
   that.provinces = [];
   that.cantones = [];
   that.districts = [];
   that.candidate = item;
-  that.elections_date_ini = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
-  that.elections_date_end = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
-  that.matchs = [{id:1, description:"Rojo"}, {id:2,description:"Verde"}];
+  that.candidate.img = item.image;
+  that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
+  that.final_elections = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
+  that.matches = [];
+  match.getMatches().then( function (data)
+  {
+    that.matches = data;
+  })
+  $scope.uploadFile = function (file)
+  {
+    if(file !='')
+    {
+      Upload.upload({
+        url: 'api/file',
+        method: 'POST',
+        data: { image: file}
+      }).then(function (resp){
+        that.requestImage = resp;
+        let path ='/uploads/'+ resp.data.filename;
+        that.candidate.image = path;
+      }, function (resp){
+      }, function (evt){
+      });
+    }
+  };
+
   province.getProvinces().then(function (data)
   {
     that.provinces = data;
   });
 
-  $scope.showCantones = function (cantones){ return $scope.cantones = cantones; };
+  $scope.showCantones = function (cantones)
+  {
+     return $scope.cantones = cantones;
+  };
 
-  $scope.showDistricts = function(districts) { return that.districts = districts; };
+  $scope.showDistricts = function(districts)
+  {
+    return that.districts = districts;
+  };
 
   $scope.cancel = function() {  $uibModalInstance.dismiss('Cancel'); }
 
@@ -108,6 +137,7 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
 app.controller('modalConfirmationController', ['$scope', '$uibModalInstance', 'item', function ($scope, $uibModalInstance, item)
 {
   var that = $scope;
+  that.candidate = item;
   that.confirmation = {yes: true, no: false};
 
   $scope.cancel = function ()

@@ -1,0 +1,101 @@
+ <div id="wrapper">
+      <!-- Sidebar -->
+        <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+      <div class="header-logo"> 
+        <img ng-src="{{image}}">
+      </div>
+      <div class="info-people-container">
+          <div class="info-poeple">
+            <h3>{{name | capitalize}} {{first_lastname | capitalize}} {{second_lastname | capitalize}}</h3>
+            <hr width="170px">
+            <h4>Canton: {{canton}}</h4>
+            <hr width="170px">
+            <h4>District: {{district}}</h4>
+            <hr width="170px">
+            <h4>Province: {{province}}</h4>
+            <hr width="170px">
+            <h4>Birth Date: {{birth_date}}</h4>
+        </div>
+      </div>
+      </div>
+      <!-- /#sidebar-wrapper -->
+      <!--Nav bar -->
+
+      <!-- Page Content -->
+       <div class="title" >Charts</div>
+       <div class="buttonlabel">
+           <button type="button" class="btn btn-default smallbutton" ng-click="voteNow()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+           <p>General</p>
+        </div>
+        <div class="buttonlabel">
+            <button type="button" class="btn btn-default smallbutton" ng-click="showCharts()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+            <p>Hour</p>
+        </div>
+        <div class="buttonlabel">
+            <button type="button" class="btn btn-default smallbutton" ng-click="newCandidate()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+            <p>Age</p>
+        </div>
+        <div class="buttonlabel">
+            <button type="button" class="btn btn-default smallbutton" ng-click="newParty()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+            <p>District</p>
+        </div>
+
+       <hr>
+
+      <div id="page-content-wrapper" ng-view>
+          <div class="container-fluid">
+            <!--votes div-->
+<div style = "width: 80%;" id="chartCanvas">
+ <canvas id="canvas"></canvas>
+ <br>
+</div>
+          </div>
+      </div>
+  </div>
+   
+ <script type="text/javascript">
+ $.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
+  .done(function(data){
+  var myData = (data);
+  //console.log(myData[0].name);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+
+   backgroundColor:"rgba(0, 0, 255, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+  ,
+  {
+   label: "Total",
+   backgroundColor:"rgba(0, 0, 0, 0.5)",
+   data : myData.mapProperty("Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+ var ctx = document.getElementById("canvas").getContext("2d");
+
+
+ var myNewChart = new Chart(ctx , {
+    type: "bar",
+    data: barChartData, 
+});
+ //}  
+ }); 
+ </script>

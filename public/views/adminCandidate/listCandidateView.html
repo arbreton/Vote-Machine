@@ -1,20 +1,24 @@
-  <div id="sidebar-wrapper"> <div class="header-logo"><img src="/images/perfil.jpg"></div>
-    <div class="info-people-container">
-        <div class="info-poeple">
-          <h3>Jose Perez Garcia</h3>
-          <hr width="170px">
-          <h4>Canton: Felipe Angeles</h4>
-          <hr width="170px">
-          <h4>Distrito: El Refugio</h4>
-          <hr width="170px">
-          <h4>Provincia: San Jose</h4>
-          <hr width="170px">
-          <h4>Edad: 43 Años</h4>
+<div id="wrapper">
+    <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+      <div class="header-logo"> 
+        <img ng-src="{{image}}">
+      </div>
+      <div class="info-people-container">
+          <div class="info-poeple">
+            <h3>{{name | capitalize}} {{first_lastname | capitalize}} {{second_lastname | capitalize}}</h3>
+            <hr width="170px">
+            <h4>Canton: {{canton}}</h4>
+            <hr width="170px">
+            <h4>District: {{district}}</h4>
+            <hr width="170px">
+            <h4>Province: {{province}}</h4>
+            <hr width="170px">
+            <h4>Birth Date: {{birth_date}}</h4>
         </div>
-    </div>
-  </div>
+      </div>
+      </div>
 
- <div class="title">Candidatos postulados</div>
+ <div class="title">Candidates</div>
 
    <div ng-if="response.status==200" class="alert alert-success success-request" role="alert">
      <h4>{{response.message}}</h4>
