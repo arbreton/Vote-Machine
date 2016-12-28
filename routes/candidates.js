@@ -52,9 +52,9 @@ router.post('/candidate',function(req, res)
       candidate.image = item.image;
       candidate.status = true;
       //province
-      candidate.match._id = item.match._id;
-      candidate.match.description = item.match.description;
-      candidate.match.image = item.match.image;
+      candidate.party._id = item.party._id;
+      candidate.party.description = item.party.description;
+      candidate.party.image = item.party.image;
       candidate.province.id = item.province.id;                                                                                                                                                                                                   5
       candidate.province.description = item.province.description;
       candidate.province.canton.id = item.canton.id;
@@ -89,7 +89,7 @@ router.put('/candidate-update/:id',function (req, res)
       gender : req.body.gender,
       election_date : {id: req.body.election_date.id, date: req.body.election_date.date },
       image: req.body.image,
-      match: { _id : req.body.match._id, description: req.body.match.description },
+      party: { _id : req.body.party._id, description: req.body.party.description },
       province: { id : req.body.province.id, description: req.body.province.description,
         canton: { id : req.body.province.canton.id, description : req.body.province.canton.description },
         district:{ id : req.body.district.id, description : req.body.province.canton.description } }

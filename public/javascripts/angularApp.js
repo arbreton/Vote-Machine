@@ -1,4 +1,4 @@
-var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty', 'ViewCharts']);
+var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty','adminListParty', 'ViewCharts']);
 
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
@@ -68,24 +68,18 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('candidates', {
 		url: '/admin/candidates',
 		templateUrl: 'views/adminCandidate/listCandidateView.html',
-		controller: 'listPartyController'
+		controller: 'listCandidateController'
 
 
 	}).state('parties', {
 		url: '/admin/parties',
 		templateUrl: 'views/adminParty/listPartyView.html',
-		controller: 'listCandidateController'
+		controller: 'listPartyController'
 
 
 	}).state('graphics', {
 		url: '/graphics',
 		templateUrl: 'views/graphicsView.html'
-
-	}).state('partys', {
-		url: '/admin/partys',
-		templateUrl: 'views/adminParty/listPartyView.html',
-		controller: 'listPartyController'
-
 
 	}).state('JSONtest', {
 		url: '/JSONtest',

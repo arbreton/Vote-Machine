@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' ,'ui.bootstrap.modal', 'serviceProvince', 'serviceMatch', 'ngFileUpload']);
+var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' ,'ui.bootstrap.modal', 'serviceProvince', 'serviceParty', 'ngFileUpload']);
 
 app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$timeout', function($scope, $http, $uibModal, $timeout)
 {
@@ -72,7 +72,7 @@ $scope.confirmationDelete = function (index,candidate)
 
 }]);
 
-app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item', 'province', 'match','$http', 'Upload', function ($scope, $uibModalInstance, item, province, match, $http, Upload)
+app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item', 'province', 'party','$http', 'Upload', function ($scope, $uibModalInstance, item, province, party, $http, Upload)
 {
   var that = $scope;
   that.provinces = [];
@@ -82,10 +82,10 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
   that.candidate.img = item.image;
   that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
   that.final_elections = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
-  that.matches = [];
-  match.getMatches().then( function (data)
+  that.parties = [];
+  party.getParties().then( function (data)
   {
-    that.matches = data;
+    that.parties = data;
   })
   $scope.uploadFile = function (file)
   {
