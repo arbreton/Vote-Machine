@@ -16,7 +16,15 @@ function($stateProvider, $urlRouterProvider) {
 				$state.go('admin');
 			}
 
+			
 		}]
+		
+	}).state('voting', {
+		url : '/voting',
+		templateUrl : 'views/votingView.html',
+		controller : 'votingController'
+
+
 	}).state('login', {
 		url : '/login',
 		templateUrl : 'views/login.html',
@@ -32,10 +40,6 @@ function($stateProvider, $urlRouterProvider) {
 			}
 
 		}]
-	}).state('voting', {
-		url : '/voting',
-		templateUrl : 'views/votingView.html',
-
 	}).state('register', {
 		url : '/register',
 		templateUrl : '/register.html',
@@ -79,7 +83,8 @@ function($stateProvider, $urlRouterProvider) {
 
 	}).state('graphics', {
 		url: '/graphics',
-		templateUrl: 'views/graphicsView.html'
+		templateUrl: 'views/graphicsView.html',
+		controller: 'graphicsController'
 
 	}).state('partys', {
 		url: '/admin/partys',

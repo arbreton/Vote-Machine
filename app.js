@@ -13,7 +13,8 @@ var app = express();
 
 var mongoose = require('mongoose');
 var passport = require('passport');
-var options = {server: {socketOptions: {socketTimeoutMS: 20000},connectTimeoutMS:120000}};
+var options = {server: {socketOptions: {connectionTimeoutMS: 120000,socketTimeoutMS: 120000}}};
+
 
 
 // connect MongoDB+

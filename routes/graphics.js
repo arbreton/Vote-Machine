@@ -241,7 +241,7 @@ app.post('/citizens', function(req, res) {
 .get('/citizens/graph/age',function(req, res) {
        Citizen.aggregate(
            [
-           { $group: { _id: "$birth_year",Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] }},
+           { $group: { _id: { $substr: [ "$birth_date", 0, 4 ] } ,Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] }},
            Men_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
            { $sort: {"_id":+1}},
 
