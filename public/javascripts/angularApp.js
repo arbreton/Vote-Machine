@@ -266,7 +266,7 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 
 	$scope.showCharts = function()
 	{
-			$location.url("/charts");
+			$location.url("/graphics");
 	};
 
 	$scope.showCandidates = function ()

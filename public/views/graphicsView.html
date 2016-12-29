@@ -31,23 +31,23 @@
            <p>General</p>
         </div>
         <div class="buttonlabel">
-            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Hour')"><i class="fa fa-line-chart" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Hour')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
             <p>Hour</p>
         </div>
         <div class="buttonlabel">
-            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Age')"><i class="fa fa-pie-chart" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Age')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
             <p>Age</p>
         </div>
         <div class="buttonlabel">
-            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Early')"><i class="fa fa-area-chart" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Early')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
             <p>Early</p>
         </div>
         <div class="buttonlabel">
-            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Late')"><i class="fa fa-area-chart" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Late')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
             <p>Late</p>
         </div>
         <div class="buttonlabel">
-            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Genders')"><i class="fa fa-area-chart" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Genders')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
             <p>Total</p>
         </div>
 
@@ -74,6 +74,10 @@
 </div>
 <div ng-show="lateChart" style = "width: 80%;" id="chartCanvas4">
  <canvas id="canvas4"></canvas>
+ <br>
+</div>
+<div ng-show="genderChart" style = "width: 80%;" id="chartCanvas5">
+ <canvas id="canvas5"></canvas>
  <br>
 </div>
           </div>
@@ -318,6 +322,7 @@ $.ajax({url:"http://localhost:3000/api/citizens/graph/districts/19",dataType:"js
   .fail(function(){alert("Im a failure")})
   .done(function(data){
   var myData = (data);
+  genderChartFunction();
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
        return obj[property];
@@ -351,6 +356,76 @@ console.log(data)
  var myNewChart4 = new Chart(ctx , {
     type: "bar",
     data: barChartData4, 
+    options:{
+      scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
+});
+ //}  
+ }); }
+ </script>
+
+  <script type="text/javascript">
+  function genderChartFunction(){
+$.ajax({url:"http://localhost:3000/api/citizens/graph/gender/both",dataType:"json"})
+  .fail(function(){alert("Im a failure")})
+  .done(function(data){
+  var myData = (data);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData5 = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+   backgroundColor:"rgba(0, 0, 255, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+
+ //window.onload = function(){
+//console.log("cheerio")
+console.log(data)
+ var ctx = document.getElementById("canvas5").getContext("2d");
+
+
+ var myNewChart5 = new Chart(ctx , {
+    type: "bar",
+    data: barChartData5, 
+    options:{
+      scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
 });
  //}  
  }); }
