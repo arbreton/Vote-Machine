@@ -1,16 +1,21 @@
 'use strict';
 
-var app = angular.module('adminListparty', ['datatables','ui.bootstrap' ,'ui.bootstrap.modal', 'serviceProvince', 'serviceMatch', 'ngFileUpload']);
+var app = angular.module('adminListParty', ['datatables','ui.bootstrap' ,'ui.bootstrap.modal', 'serviceProvince', 'serviceParty', 'ngFileUpload']);
 
-app.controller('listPartyController', [ '$scope', '$http', '$uibModal', '$timeout', function($scope, $http, $uibModal, $timeout)
+app.controller('listPartyController', [ '$scope', '$http', '$uibModal', '$timeout', 'party', function($scope, $http, $uibModal, $timeout, party)
 {
   var that = $scope;
   that.parties = [];
   that.response = {};
-  $http.get('/api/canditates').success( function (data)
+  $http.get('/api/parties').success( function (data)
   {
       that.parties = data;
   });
+
+party.getParties().then(function(data){
+    that.parties = data;
+})
+
 
   $scope.deleteItem = function (index,party)
   {
@@ -72,7 +77,7 @@ $scope.confirmationDelete = function (index,party)
 
 }]);
 
-app.controller('modalpartyController', ['$scope','$uibModalInstance', 'item', 'province', 'match','$http', 'Upload', function ($scope, $uibModalInstance, item, province, match, $http, Upload)
+app.controller('modalpartyController', ['$scope','$uibModalInstance', 'item', 'province', 'party','$http', 'Upload', function ($scope, $uibModalInstance, item, province, party, $http, Upload)
 {
   var that = $scope;
   that.provinces = [];
@@ -82,10 +87,10 @@ app.controller('modalpartyController', ['$scope','$uibModalInstance', 'item', 'p
   that.party.img = item.image;
   that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
   that.final_elections = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
-  that.matches = [];
-  match.getMatches().then( function (data)
+  that.parties = [];
+  party.getParties().then( function (data)
   {
-    that.matches = data;
+    that.parties = data;
   })
   $scope.uploadFile = function (file)
   {

@@ -20,8 +20,8 @@
       </div>
       <div class="col-md-4">
           <div class="form-group">
-            <label for="label-partido">Match: </label>
-            <select class="form-control" ng-options="match.description for match in matches track by match._id" ng-model="candidate.match"></select>
+            <label for="label-partido">Party: </label>
+            <select class="form-control" ng-options="party.description for party in parties track by party._id" ng-model="candidate.party"></select>
           </div>
       </div>
     </div><!--end row -->
@@ -86,7 +86,7 @@
           </div><!--end col -->
           <div class="col-md-3">
             <div class="form-group text-center">
-              <div class="preview-img-modal"> <img ng-src="{{candidate.match.image}}"> <label>Match Logo</label> </div>
+              <div class="preview-img-modal"> <img ng-src="{{candidate.party.image}}"> <label>Party Logo</label> </div>
             </div>
           </div><!--end col -->
         </div><!--end row -->
