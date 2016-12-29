@@ -1,17 +1,10 @@
+var express = require('express');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var User = mongoose.model('Citizen');
-var localsignin = require('passport-local').Strategy;
+var app = express();
 
-
-
-
-
-passport.authenticate('localsignin', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  failureFlash: true })
 
 
 
@@ -29,7 +22,4 @@ passport.use(new LocalStrategy(
     }).maxTime(20000);
   }
 ));
-/*
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});*/
+
