@@ -17,6 +17,11 @@ background-size: cover;
 	margin-left: 80px;
 }
 
+/*Login*/
+h1.glyphicon{
+  margin-right: 150px;
+}
+
 /* Landing Page */
 .container-full {
   margin: 0 auto;
