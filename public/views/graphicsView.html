@@ -85,6 +85,8 @@
   </div>
 
  <script type="text/javascript">
+ generalChartFunction();
+  function generalChartFunction(){
  $.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
@@ -145,6 +147,7 @@ Array.prototype.mapProperty = function(property) {
 });
  //}  
  }); 
+}
  </script>
  <script type="text/javascript">
  function hourChartFunction(){
@@ -380,6 +383,7 @@ $.ajax({url:"http://localhost:3000/api/citizens/graph/gender/both",dataType:"jso
   .fail(function(){alert("Im a failure")})
   .done(function(data){
   var myData = (data);
+  generalChartFunction();
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
        return obj[property];
