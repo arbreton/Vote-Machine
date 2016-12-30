@@ -272,7 +272,7 @@ Array.prototype.mapProperty = function(property) {
 
   <script type="text/javascript">
   function earlyChartFunction(){
-$.ajax({url:"http://localhost:3000/api/citizens/graph/districts/10",dataType:"json"})
+$.ajax({url:"http://localhost:3000/api/citizens/graph/votes/10",dataType:"json"})
   .fail(function(){alert("Im a failure")})
   .done(function(data){
   var myData = (data);
@@ -331,7 +331,7 @@ console.log(data)
  </script>
   <script type="text/javascript">
   function lateChartFunction(){
-$.ajax({url:"http://localhost:3000/api/citizens/graph/districts/19",dataType:"json"})
+$.ajax({url:"http://localhost:3000/api/citizens/graph/votes/19",dataType:"json"})
   .fail(function(){alert("Im a failure")})
   .done(function(data){
   var myData = (data);

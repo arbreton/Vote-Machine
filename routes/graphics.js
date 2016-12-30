@@ -194,6 +194,29 @@ app.post('/citizens', function(req, res) {
 
 
     })
+//Votes per hour for candidate
+.get('/citizens/graph/votes/:time',function(req, res) {
+        Citizen.aggregate(
+            [{ $match: {"candidates.presidential.election_date": "12-13-2016"}},
+
+
+            {$match:{"candidates.presidential.vote_status.vote_hour": req.params.time}},
+            { $group: { _id: "$candidates.presidential.name",Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] }},
+            Men_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+
+            { $sort: {"Total":-1}},
+            {$limit:5}
+
+
+
+            ]).exec(function(err, citizen) {
+            if (err)
+                res.send(err);
+            res.json(citizen);
+        });
+
+
+    })
 
 //Districts that vote early
 .get('/citizens/graph/vote',function(req, res) {
