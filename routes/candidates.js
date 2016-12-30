@@ -50,6 +50,7 @@ router.post('/candidate',function(req, res)
       candidate.final_election.id = item.final_election.id;
       candidate.final_election.date = item.final_election.date;
       candidate.image = item.image;
+      candidate.election_day = new Date(item.election_day);
       candidate.status = true;
       //province
       candidate.party._id = item.party._id;
@@ -76,7 +77,7 @@ router.post('/candidate',function(req, res)
 router.put('/candidate-update/:id',function (req, res)
 {
   var id = req.body._id;
-  console.log(req.body);
+
   if(id !='')
   {
     var query = { _id: id};
@@ -87,12 +88,14 @@ router.put('/candidate-update/:id',function (req, res)
       second_last_name : req.body.second_last_name,
       proposal : req.body.proposal,
       gender : req.body.gender,
-      election_date : {id: req.body.election_date.id, date: req.body.election_date.date },
+      initial_election: { id : req.body.initial_election.id, date: req.body.initial_election.date },
+      final_election:  { id : req.body.final_election.id, date: req.body.final_election.date},
+      election_day: req.body.election_day,
       image: req.body.image,
       party: { _id : req.body.party._id, description: req.body.party.description },
       province: { id : req.body.province.id, description: req.body.province.description,
-        canton: { id : req.body.province.canton.id, description : req.body.province.canton.description },
-        district:{ id : req.body.district.id, description : req.body.province.canton.description } }
+        canton: { id : req.body.canton.id, description : req.body.canton.description },
+        district:{ id : req.body.district.id, description : req.body.district.description } }
     };
     Candidate.findOneAndUpdate(query, update, function (err, data)
     {
