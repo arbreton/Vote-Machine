@@ -57,26 +57,32 @@
           <div class="container-fluid">
             <!--votes div-->
 <div ng-show="generalChart" style = "width: 80%;" id="chartCanvas">
+  <div class="loader" id = "loader1"></div>
  <canvas id="canvas"></canvas>
  <br>
 </div>
 <div ng-show="hourChart" style = "width: 80%;" id="chartCanvas1">
+    <div class="loader" id = "loader1"></div>
  <canvas id="canvas1"></canvas>
  <br>
 </div>
 <div ng-show="ageChart" style = "width: 80%;" id="chartCanvas2">
+    <div class="loader" id = "loader1"></div>
  <canvas id="canvas2"></canvas>
  <br>
 </div>
 <div ng-show="earlyChart" style = "width: 80%;" id="chartCanvas3">
+    <div class="loader" id = "loader1"></div>
  <canvas id="canvas3"></canvas>
  <br>
 </div>
 <div ng-show="lateChart" style = "width: 80%;" id="chartCanvas4">
+    <div class="loader" id = "loader1"></div>
  <canvas id="canvas4"></canvas>
  <br>
 </div>
 <div ng-show="genderChart" style = "width: 80%;" id="chartCanvas5">
+    <div class="loader" id = "loader1"></div>
  <canvas id="canvas5"></canvas>
  <br>
 </div>
@@ -91,6 +97,7 @@
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
+  loader1.style.visibility = "hidden";
   hourChartFunction();
   //console.log(myData[0].name);
 Array.prototype.mapProperty = function(property) {
@@ -155,6 +162,7 @@ Array.prototype.mapProperty = function(property) {
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
+  loader1.style.visibility = "hidden";
   ageChartFunction();
   //console.log(myData[0].name);
 Array.prototype.mapProperty = function(property) {
@@ -211,6 +219,7 @@ Array.prototype.mapProperty = function(property) {
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
+  loader1.style.visibility = "hidden";
   earlyChartFunction();
   //console.log(myData[0].name);
 Array.prototype.mapProperty = function(property) {
@@ -267,6 +276,7 @@ $.ajax({url:"http://localhost:3000/api/citizens/graph/districts/10",dataType:"js
   .fail(function(){alert("Im a failure")})
   .done(function(data){
   var myData = (data);
+  loader1.style.visibility = "hidden";
   lateChartFunction();
   console.log(myData[0].nombre);
 Array.prototype.mapProperty = function(property) {
@@ -325,6 +335,7 @@ $.ajax({url:"http://localhost:3000/api/citizens/graph/districts/19",dataType:"js
   .fail(function(){alert("Im a failure")})
   .done(function(data){
   var myData = (data);
+  loader1.style.visibility = "hidden";
   genderChartFunction();
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
@@ -383,6 +394,7 @@ $.ajax({url:"http://localhost:3000/api/citizens/graph/gender/both",dataType:"jso
   .fail(function(){alert("Im a failure")})
   .done(function(data){
   var myData = (data);
+  loader1.style.visibility = "hidden";
   generalChartFunction();
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
