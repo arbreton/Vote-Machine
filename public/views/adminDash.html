@@ -4,7 +4,7 @@
       <!-- Sidebar -->
       <div id="sidebar-wrapper" ng-show="isAdmin()">
       <div class="header-logo">
-        <img src="/images/perfil.jpg">
+        <img ng-src="{{image}}">
       </div>
       <div class="info-people-container">
           <div class="info-poeple">
@@ -16,7 +16,7 @@
             <hr width="170px">
             <h4>Province: {{province}}</h4>
             <hr width="170px">
-            <h4>Age: {{birth_year}} Años</h4>
+            <h4>Birth Date: {{birth_date}}</h4>
         </div>
       </div>
       </div>
@@ -33,10 +33,10 @@
 
 
       <div class="btncenter" ng-show="isAdmin()">
-        <div class="buttonlabel">
+       <!--  <div class="buttonlabel">
            <button type="button" class="btn btn-default bigbutton" ng-click="voteNow()"><i class="fa fa-commenting-o" aria-hidden="true"></i></button>
            <label>Vote</label>
-        </div>
+        </div>-->
         <div class="buttonlabel">
             <button type="button" class="btn btn-default bigbutton" ng-click="showCharts()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
             <label>Charts</label>
@@ -49,9 +49,14 @@
             <button type="button" class="btn btn-default bigbutton" ng-click="showCandidates()"><i class="fa fa-list" aria-hidden="true"></i></button>
             <label>Candidates</label>
         </div>
+        <br>
         <div class="buttonlabel">
             <button type="button" class="btn btn-default bigbutton" ng-click="newParty()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
             <label>New Party</label>
+        </div>
+        <div class="buttonlabel">
+            <button type="button" class="btn btn-default bigbutton" ng-click="showParties()"><i class="fa fa-list" aria-hidden="true"></i></button>
+            <label>Parties</label>
         </div>
       </div>
 

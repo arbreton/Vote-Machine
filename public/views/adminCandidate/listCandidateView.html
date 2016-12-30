@@ -1,19 +1,22 @@
 <div id="wrapper">
-  <div id="sidebar-wrapper"> <div class="header-logo"><img src="/images/perfil.jpg"></div>
-    <div class="info-people-container">
-        <div class="info-poeple">
-          <h3>Jose Perez Garcia</h3>
-          <hr width="170px">
-          <h4>Canton: Felipe Angeles</h4>
-          <hr width="170px">
-          <h4>Distrito: El Refugio</h4>
-          <hr width="170px">
-          <h4>Provincia: San Jose</h4>
-          <hr width="170px">
-          <h4>Edad: 43 Años</h4>
+    <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+      <div class="header-logo">
+        <img ng-src="{{image}}">
+      </div>
+      <div class="info-people-container">
+          <div class="info-poeple">
+            <h3>{{name | capitalize}} {{first_lastname | capitalize}} {{second_lastname | capitalize}}</h3>
+            <hr width="170px">
+            <h4>Canton: {{canton}}</h4>
+            <hr width="170px">
+            <h4>District: {{district}}</h4>
+            <hr width="170px">
+            <h4>Province: {{province}}</h4>
+            <hr width="170px">
+            <h4>Birth Date: {{birth_date}}</h4>
         </div>
-    </div>
-  </div>
+      </div>
+      </div>
 
  <div class="title">Candidates</div>
 
@@ -30,7 +33,7 @@
               <th>Province</th>
               <th>Canton</th>
               <th>District</th>
-              <th>Match</th>
+              <th>Party</th>
               <th>Election Date</th>
               <th>Actions</th>
             </tr>
@@ -41,8 +44,8 @@
                 <td>{{candidate.province.description}}</td>
                 <td>{{candidate.province.canton.description}}</td>
                 <td>{{candidate.province.district.description}}</td>
-                <td>{{candidate.match.description}}</td>
-                <td>{{candidate.initial_election.date + '-' + candidate.final_election.date}}</td>
+                <td>{{candidate.party.description}}</td>
+                <td>{{candidate.election_date.date}}</td>
                 <td>
                   <button class="btn btn-success" ng-click="editItem($index,candidate)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                   <button class="btn btn-danger" type="submit" ng-click="confirmationDelete($index, candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>

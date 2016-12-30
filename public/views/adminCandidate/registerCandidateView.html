@@ -1,19 +1,22 @@
 <div id="wrapper">
-  <div id="sidebar-wrapper"> <div class="header-logo"><img src="/images/perfil.jpg"></div>
-    <div class="info-people-container">
-        <div class="info-poeple">
-          <h3>Jose Perez Garcia</h3>
-          <hr width="170px">
-          <h4>Canton: Felipe Angeles</h4>
-          <hr width="170px">
-          <h4>District: El Refugio</h4>
-          <hr width="170px">
-          <h4>Province: San Jose</h4>
-          <hr width="170px">
-          <h4>Age: 43 Años</h4>
+    <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+      <div class="header-logo"> 
+        <img ng-src="{{image}}">
+      </div>
+      <div class="info-people-container">
+          <div class="info-poeple">
+            <h3>{{name | capitalize}} {{first_lastname | capitalize}} {{second_lastname | capitalize}}</h3>
+            <hr width="170px">
+            <h4>Canton: {{canton}}</h4>
+            <hr width="170px">
+            <h4>District: {{district}}</h4>
+            <hr width="170px">
+            <h4>Province: {{province}}</h4>
+            <hr width="170px">
+            <h4>Birth Date: {{birth_date}}</h4>
         </div>
-    </div>
-  </div>
+      </div>
+      </div>
 
  <div class="title">New Election Registration</div>
  <hr>
@@ -68,14 +71,14 @@
         <div class="row form-group-select">
           <div class="col-md-4">
               <div class="form-group">
-                <label for="label-partido">Match: </label>
-                <select class="form-control" ng-options="match.description for match in matches" ng-model="candidate.match" ng-change="showMatch($index ,candidate.match)"></select>
+                <label for="label-partido">Party: </label>
+                <select class="form-control" ng-options="party.description for party in parties" ng-model="candidate.party" ng-change="showParty($index ,candidate.party)"></select>
               </div>
           </div><!--end col -->
 
           <div class="col-md-4">
             <div class="form-group">
-              <div class="preview-img"><img ngf-thumbnail="candidate.img_match"> </div>
+              <div class="preview-img"><img ngf-thumbnail="candidate.img_party"> </div>
             </div>
           </div><!--end col -->
 

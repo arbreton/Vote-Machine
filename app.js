@@ -1,5 +1,4 @@
 var express = require('express');
-//var connect = require('connect');
 var session = require('express-session')
 const MongoStore = require('connect-mongo')(session);
 var http = require('http');
@@ -8,12 +7,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-//var app2 = connect();
 var app = express();
 
 var mongoose = require('mongoose');
 var passport = require('passport');
-var options = {server: {socketOptions: {socketTimeoutMS: 70000}}};
+
+var options = {server: {socketOptions: {connectionTimeout: 480000,socketTimeoutMS: 240000}}};
+
 
 mongoose.connect('mongodb://localhost:27017/mean-database',options, function(err,db){
     if (!err){
@@ -24,47 +24,26 @@ mongoose.connect('mongodb://localhost:27017/mean-database',options, function(err
 });  
 
 
-
-// connect MongoDB+
-
-app.use(session({
-    store: new MongoStore({  mongooseConnection: mongoose.connection}),
-    //store: new MongoStore({ url: 'mongodb://localhost:27017/mean-database' }),
-    secret: 'SECRET', cookie: { maxAge: 120000 },resave: false,
-    saveUninitialized: false
-
-}));
-console.log('Connected to /mean-database!');
-
-
-
   
 
-
-
-//require('./models/Posts');
-//require('./models/Comments');
-//require('./models/Users');
 require('./models/citizens');
 require('./config/passport');
 require('./models/Candidate');
 require('./models/Province');
-require('./models/Matches');
+require('./models/Parties');
 
 var routes = require('./routes/index');
-//var users = require('./routes/users');
 
 var citizens = require('./routes/citizens');
 var candidates = require('./routes/candidates');
 var provinces = require('./routes/provinces');
 var graphics = require('./routes/graphics');
-var matches = require('./routes/matches');
+var parties = require('./routes/parties');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -80,9 +59,8 @@ app.use('/users', citizens);
 app.use('/api', candidates);
 app.use('/api', provinces);
 app.use('/api', graphics);
-//app.use('/api', citizens);
 app.use('/api', citizens);
-app.use('/api', matches)
+app.use('/api', parties);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

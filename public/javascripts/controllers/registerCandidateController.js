@@ -1,8 +1,9 @@
 'use strict';
 
-var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceMatch', 'serviceProvince', 'ui.bootstrap']);
+var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceParty', 'serviceProvince', 'ui.bootstrap']);
 
-app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'match', 'province', '$filter', function($scope, $http, Upload, $timeout, match, province, $filter)
+app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'party', 'province', '$filter', function($scope, $http, Upload, $timeout, party, province, $filter)
+
 {
   var that = $scope;
   that.candidate = {};
@@ -14,7 +15,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   that.final_election = {};
   that.initial_election = {};
   that.districts = [];
-  that.matches = [];
+  that.parties = [];
   that.provinces = [];
   $scope.file = {};
   that.request = {};
@@ -23,9 +24,10 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   that.election_day = {};
   that.election_day_text = {};
   that.popup = { opened: false };
-  match.getMatches().then(function (data)
+
+  party.getParties().then(function (data)
   {
-    that.matches = data;
+    that.parties = data;
   });
 
   $scope.open = function()
@@ -49,7 +51,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
 
   $scope.showMatch = function (index, obj)
   {
-    return  that.candidates[index].img_match= obj.image;
+    return  that.candidates[index].img_party= obj.image;
   };
 
   $scope.showDistricts = function(districts)

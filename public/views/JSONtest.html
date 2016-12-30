@@ -1,19 +1,25 @@
 <br>
 <br>
-<h1> THIS IS A JSON TEST WITH CHARTJS</h1>
-
+<h2><center> votes per hour </center></h2>
 <!--votes div-->
 <div style = "width: 50%;" id="chartCanvas">
  <canvas id="canvas"></canvas>
  <br>
 </div>
 <!--age div-->
+<h2><center> Age chart </center></h2>
 <div style = "width: 50%;" id= "chartCanvas3">
   <canvas id = "canvas3"></canvas>
 </div>
 <!-- districs vote per hour div-->
+<h2><center> Districs that vote early </center></h2>
 <div style = "width: 50%;" id= "chartCanvas4">
   <canvas id = "canvas4"></canvas>
+</div>
+<!-- Candidate votes div-->
+<h2><center> Candidates current votes </center></h2>
+<div style = "width: 50%;" id = "chartCanvas5">
+  <canvas id= "canvas5"></canvas>
 </div>
 <!--test div-->
 <div style = "width: 50%;" id="chartCanvas1">
@@ -236,6 +242,68 @@ console.log(data)
  var myNewChart4 = new Chart(ctx , {
     type: "bar",
     data: barChartData4, 
+});
+ //}  
+ }); 
+ </script>
+
+ <!--current votes-->
+<script type="text/javascript">
+$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
+  .done(function(data){
+  var myData = (data);
+Array.prototype.mapProperty = function(property) {
+      return this.map(function (obj) {
+       return obj[property];
+      });
+
+     };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData5 = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+   backgroundColor:"rgba(0, 0, 132, 0.5)",
+   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+  },
+  {
+   label: "Total",
+   backgroundColor:"rgba(0, 0, 0, 0.5)",
+   data : myData.mapProperty("Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+
+ //window.onload = function(){
+//console.log("cheerio")
+console.log(data)
+ var ctx = document.getElementById("canvas5").getContext("2d");
+
+
+ var myNewChart5 = new Chart(ctx , {
+    type: "bar",
+    data: barChartData5,
+    options:{
+      scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
 });
  //}  
  }); 

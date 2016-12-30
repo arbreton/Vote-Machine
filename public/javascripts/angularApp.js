@@ -1,4 +1,4 @@
-var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty', 'ViewCharts']);
+var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty','adminListParty', 'ViewCharts']);
 
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
@@ -16,24 +16,21 @@ function($stateProvider, $urlRouterProvider) {
 				$state.go('admin');
 			}
 
+			
 		}]
-
+		
 	}).state('voting', {
 		url : '/voting',
 		templateUrl : 'views/votingView.html',
-		controller : 'votingController',
-		resolve : {
-			postPromise : ['posts',
-			function(posts) {
-				return posts.getAll();
-			}]
+		controller : 'votingController'
 
-		}
+
 	}).state('login', {
 		url : '/login',
 		templateUrl : 'views/login.html',
 		controller : 'AuthCtrl',
 		onEnter : ['$state', 'auth',
+		//Function to Redirect admins and users
 		function($state, auth) {
 			if (auth.isAdmin() == false) {
 				$state.go('voting');
@@ -43,7 +40,6 @@ function($stateProvider, $urlRouterProvider) {
 			}
 
 		}]
-
 	}).state('register', {
 		url : '/register',
 		templateUrl : '/register.html',
@@ -79,15 +75,16 @@ function($stateProvider, $urlRouterProvider) {
 		controller: 'listCandidateController'
 
 
-	}).state('graphics', {
-		url: '/graphics',
-		templateUrl: 'views/graphicsView.html'
-
-	}).state('partys', {
-		url: '/admin/partys',
+	}).state('parties', {
+		url: '/admin/parties',
 		templateUrl: 'views/adminParty/listPartyView.html',
 		controller: 'listPartyController'
 
+
+	}).state('graphics', {
+		url: '/graphics',
+		templateUrl: 'views/graphicsView.html',
+		controller: 'graphicsController'
 
 	}).state('JSONtest', {
 		url: '/JSONtest',
@@ -102,7 +99,7 @@ function($stateProvider, $urlRouterProvider) {
 
 
 
-
+//App factory for authentication
 app.factory('auth', ['$http', '$window', '$location',
 function($http,$window, $location) {
 	var auth = {};
@@ -126,7 +123,7 @@ function($http,$window, $location) {
 			return false;
 		}
 	};
-
+//Verifying if the user is not logged in
 	auth.isnotLoggedIn = function() {
 		var token = auth.getToken();
 
@@ -138,7 +135,7 @@ function($http,$window, $location) {
 			return true;
 		}
 	};
-
+//Verifying if the user is admin
 	auth.isAdmin = function() {
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
@@ -150,9 +147,7 @@ function($http,$window, $location) {
 			}
 		}
 	};
-
-
-
+// Token
 	auth.payload = function() {
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
@@ -160,8 +155,7 @@ function($http,$window, $location) {
 			return payload;
 		}
 	};
-
-
+// Checking the current user
 	auth.currentUser = function() {
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
@@ -219,7 +213,7 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 
 
 }]);
-
+//Administrative Controller
 app.controller('AdminController', ['$scope', '$location', 'auth', '$window',
 function($scope, $location, auth, $window) {
 
@@ -233,7 +227,8 @@ function($scope, $location, auth, $window) {
 	$scope.province = auth.payload().province;
 	$scope.canton = auth.payload().canton;
 	$scope.district = auth.payload().district;
-	$scope.birth_year = auth.payload().birth_year;
+	$scope.birth_date = auth.payload().birth_date;
+	$scope.image = auth.payload().image;
 	}
 
 	//setting title to blank here to prevent empty posts
@@ -265,12 +260,17 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 
 	$scope.showCharts = function()
 	{
-			$location.url("/charts");
+			$location.url("/graphics");
 	};
 
 	$scope.showCandidates = function ()
 	{
 			$location.url("/admin/candidates");
+	};
+
+	$scope.showParties = function ()
+	{
+			$location.url("/admin/parties");
 	};
 
 	$scope.voteNow = function()

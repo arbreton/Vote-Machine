@@ -156,11 +156,8 @@ hr {
     font-family: 'roboto';
     src: url('/css/fonts/RobotoCondensed-Regular.ttf');
 }
-.header-logo {text-align: center; width: 100%; margin-top: 15px;}
-.header-logo img{ width: 150px;  border-radius: 50%; height: 150px; margin: 20px; box-shadow: 0px 0px 1px #000;}
-.info-people-container {
-    width: 100%;
-}
+
+
 .info-people-container .info-poeple{
     padding-left: 15px;  padding-right: 15px; text-align: center;
 }

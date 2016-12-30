@@ -3,17 +3,17 @@ var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 
 var CitizensSchema = new mongoose.Schema({
-  electoral_code: String,
   province: { code: String, description: String, canton: String, district: String },
+  electoral_code: String,
   gender: String,
+  image:String,
   expiration_date: String,
   status: String,
   name: String,
   first_lastname: String,
   second_lastname: String,
-  birth_year: String,
+  birth_date: String,
   password: String,
-  date: String,
   role: { id: String, description: String },
   candidates: {presidential:[{name:String, first_lastname:String, second_lastname:String,proposals:String, party: {code:String,description:String},election_date:String, vote_status:{vote_date:String,vote_hour:String,voted:Boolean},others:String}]},
   //hash: String,
@@ -32,13 +32,14 @@ CitizensSchema.methods.generateJWT = function() {
     _id: this._id,
     electoral_code: this.electoral_code,
     role: this.role.id,
-    birth_year: 2016 - parseInt(this.birth_year),
+    birth_date: this.birth_date,
     name: this.name,
     first_lastname: this.first_lastname,
     second_lastname: this.second_lastname,
     province: this.province.description,
     canton: this.province.canton,
     district: this.province.district,
+    image: this.image,
     exp: parseInt(exp.getTime() / 1000),
   }, 'SECRET');
 };
