@@ -22,34 +22,22 @@ h1.glyphicon{
   margin-right: 150px;
 }
 
-/* Landing Page */
-.container-full {
-  margin: 0 auto;
-  width: 100%;
-  min-height:100%;
-  color:#eee;
-  overflow:hidden;
-}
-/* Preloader with Bootstrap Progress Bar
------------------------------------------------*/
+
+/*loader*/
 .loader {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 99;
-  background:rgb(249,249,249);
-}
-.loader-container {
-  width: 600px;
-  height: 200px;
   position: absolute;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  
-  margin: auto;
-  text-align: center;
+  left: 480px;
+  top: 150px;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #243B55; /* Darker Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+/*spinner animation for loader*/
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

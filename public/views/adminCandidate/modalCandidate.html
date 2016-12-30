@@ -73,6 +73,17 @@
                   <div class="radio"><label> <input type="radio" ng-model="candidate.gender" value="2">Masculine </label></div>
                 </div><!--end col -->
               </div>
+              <div class="form-group">
+                <label for="fecha-eleccion" class="col-md-6">Election Day: </label>
+                <div class="col-md-6 input-day">
+                  <p class="input-group">
+                    <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="candidate.election_day" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+              </div>
+            </div>
           </div><!--end col -->
 
           <div class="col-md-3">
