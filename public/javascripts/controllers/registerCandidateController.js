@@ -37,6 +37,11 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
 
   $scope.getDate = function ()
   {
+    var d = new Date();
+   var h = d.getHours();
+   var m = d.getMinutes();
+   var s = d.getSeconds();
+   var hour = h + ":" + m + ":" + s;
     return that.election_day_text  = $('#election_day').val();
   };
   province.getProvinces().then(function (data)
@@ -49,7 +54,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
      return that.cantones = cantones;
   };
 
-  $scope.showMatch = function (index, obj)
+  $scope.showParty = function (index, obj)
   {
     return  that.candidates[index].img_party= obj.image;
   };
@@ -61,6 +66,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
 
   $scope.clearItem = function()
   {
+    $scope.saveForm.$setPristine();
     $scope.restForm();
   };
 
@@ -118,6 +124,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
     {
       that.request = data;
       $timeout(function (){$('.success-request-fixed').show().delay(2000).fadeOut(); },100);
+      $scope.clearItem();
     });
   };
 

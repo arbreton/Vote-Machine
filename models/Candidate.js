@@ -12,7 +12,7 @@ var candidateSchema = new Schema({ //Propiedades de mi schema
     image: String,
     initial_election: {id: String,  date: String},
     final_election: {id: String,  date: String},
-    match: { _id: String, description: String, image: String },
+    party: { _id: String, description: String, image: String },
     province: { id: String, description: String, district:{ id: String, description: String}, canton: {id: String, description: String} }
 });
 

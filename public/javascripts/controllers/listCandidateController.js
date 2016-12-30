@@ -72,7 +72,7 @@ $scope.confirmationDelete = function (index,candidate)
 
 }]);
 
-app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item', 'province', 'party','$http', 'Upload', function ($scope, $uibModalInstance, item, province, party, $http, Upload)
+app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item', 'province', 'party','$http', 'Upload', '$filter', function ($scope, $uibModalInstance, item, province, party, $http, Upload, $filter)
 {
   var that = $scope;
   that.provinces = [];
@@ -80,13 +80,30 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
   that.districts = [];
   that.candidate = item;
   that.candidate.img = item.image;
+  $('#election_day').text( $filter('date')(new Date(item.election_day), 'yyyy-MM-dd'));
   that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
   that.final_elections = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
   that.parties = [];
+  that.election_day = {};
+  that.popup = { opened: false };
   party.getParties().then( function (data)
   {
     that.parties = data;
-  })
+  });
+  $scope.open = function()
+  {
+    $scope.popup.opened = true;
+  };
+
+  $scope.getDate = function ()
+  {
+    var d = new Date();
+   var h = d.getHours();
+   var m = d.getMinutes();
+   var s = d.getSeconds();
+   var hour = h + ":" + m + ":" + s;
+    return that.election_day_text  = $('#election_day').val();
+  };
   $scope.uploadFile = function (file)
   {
     if(file !='')

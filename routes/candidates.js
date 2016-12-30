@@ -50,7 +50,7 @@ router.post('/candidate',function(req, res)
       candidate.final_election.id = item.final_election.id;
       candidate.final_election.date = item.final_election.date;
       candidate.image = item.image;
-      candidate.election_day = item.election_day;
+      candidate.election_day = new Date(item.election_day);
       candidate.status = true;
       //province
       candidate.party._id = item.party._id;
@@ -90,6 +90,7 @@ router.put('/candidate-update/:id',function (req, res)
       gender : req.body.gender,
       initial_election: { id : req.body.initial_election.id, date: req.body.initial_election.date },
       final_election:  { id : req.body.final_election.id, date: req.body.final_election.date},
+      election_day: req.body.election_day,
       image: req.body.image,
       party: { _id : req.body.party._id, description: req.body.party.description },
       province: { id : req.body.province.id, description: req.body.province.description,
