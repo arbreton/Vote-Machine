@@ -42,7 +42,7 @@
                 <td>{{candidate.province.canton.description}}</td>
                 <td>{{candidate.province.district.description}}</td>
                 <td>{{candidate.match.description}}</td>
-                <td>{{candidate.election_date.date}}</td>
+                <td>{{candidate.initial_election.date + '-' + candidate.final_election.date}}</td>
                 <td>
                   <button class="btn btn-success" ng-click="editItem($index,candidate)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                   <button class="btn btn-danger" type="submit" ng-click="confirmationDelete($index, candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>

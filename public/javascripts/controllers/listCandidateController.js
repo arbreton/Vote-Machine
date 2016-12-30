@@ -124,7 +124,6 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
 
   $scope.updateItem = function ()
   {
-    that.candidate.election_date = {id: that.election_date_ini.id, date: that.election_date_ini.date + ' ' + that.election_date_end.date};
       $http.put('/api/candidate-update/'+ that.candidate._id, that.candidate).success(function (data)
       {
         that.candidate.request = data;

@@ -1,8 +1,8 @@
 'use strict';
 
-var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceMatch', 'serviceProvince']);
+var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceMatch', 'serviceProvince', 'ui.bootstrap']);
 
-app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'match', 'province', function($scope, $http, Upload, $timeout, match, province)
+app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'match', 'province', '$filter', function($scope, $http, Upload, $timeout, match, province, $filter)
 {
   var that = $scope;
   that.candidate = {};
@@ -20,17 +20,27 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   that.request = {};
   that.requestImage = {};
   that.candidates = [{}];
-
+  that.election_day = {};
+  that.election_day_text = {};
+  that.popup = { opened: false };
   match.getMatches().then(function (data)
   {
     that.matches = data;
   });
 
+  $scope.open = function()
+  {
+    $scope.popup.opened = true;
+  };
+
+  $scope.getDate = function ()
+  {
+    return that.election_day_text  = $('#election_day').val();
+  };
   province.getProvinces().then(function (data)
   {
     that.provinces = data
   });
-
 
   $scope.showCantones = function (cantones)
   {
@@ -54,7 +64,8 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
 
   $scope.restForm = function()
   {
-    that.candidate = {};
+    that.candidates = [{}];
+    that.requestImage = {};
   };
   $scope.restForm();
   $scope.uploadFile = function (file, index)
@@ -98,6 +109,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
     {
          that.candidates[index].initial_election = that.initial_election
          that.candidates[index].final_election = that.final_election;
+         that.candidates[index].election_day = $scope.getDate();
     });
     c= that.candidates;
     $http.post('api/candidate', c).success(function(data)

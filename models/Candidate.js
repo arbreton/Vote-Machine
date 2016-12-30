@@ -8,6 +8,7 @@ var candidateSchema = new Schema({ //Propiedades de mi schema
     proposal: String,
     status: Boolean,
     gender: String,
+    election_day: Date,
     image: String,
     initial_election: {id: String,  date: String},
     final_election: {id: String,  date: String},

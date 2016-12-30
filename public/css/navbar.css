@@ -14,7 +14,7 @@
 .form-group-block .form-group{display: inline-block !important; width: 33%;}
 .form-group-block .form-group select {width: 70%; margin-left: 10px;}
 .form-group-block-full .form-group{width: 100%; display: block;}
-.form-group-block-full .form-group select {width: 25%; margin-left: 10px;}
+.form-group-block-full .form-group select {width: 40%; margin-left: 10px;}
 .buttons .btn-success{margin-right: 34px;}
 .form-group-block input {width: 64% !important;}
 .form-group-block textarea { width: 100% !important;}

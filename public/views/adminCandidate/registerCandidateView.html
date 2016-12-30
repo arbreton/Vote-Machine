@@ -23,7 +23,7 @@
       <form name="saveForm" ng-submit="saveForm.$valid && saveItem()" class="form-inline row-magin buttons">
         <!--home row -->
         <div class="row form-group-block-full">
-          <div class="col-md-12">
+          <div class="col-md-7">
               <div class="form-group">
                 <label for="fecha-eleccion">From: </label>
                 <select class="form-control" ng-options="election.date for election in initial_elections" ng-model="initial_election" required=""></select>
@@ -32,6 +32,15 @@
                 <select class="form-control" ng-options="election.date for election in final_elections" ng-model="final_election" required=""></select>
               </div>
           </div>
+          <div class="col-md-5">
+            <label for="fecha-eleccion">Election Day: </label>
+            <p class="input-group">
+              <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election_day" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
         </div><!--end row -->
 <fieldset  ng-repeat="candidate in candidates">
 
