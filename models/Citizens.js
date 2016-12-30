@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 var crypto = require('crypto');
+var algorithm = 'aes-256-ctc';
+var key = 'Where the lake ends';
 var jwt = require('jsonwebtoken');
+//var passkey= "";
+
+
 
 var CitizensSchema = new mongoose.Schema({
   province: { code: String, description: String, canton: String, district: String },
@@ -41,7 +46,7 @@ CitizensSchema.methods.generateJWT = function() {
     district: this.province.district,
     image: this.image,
     exp: parseInt(exp.getTime() / 1000),
-  }, 'SECRET');
+  }, 'SECRETZ');
 };
 
 CitizensSchema.methods.setPassword = function(password){
@@ -51,10 +56,14 @@ CitizensSchema.methods.setPassword = function(password){
 };
 
 CitizensSchema.methods.validPassword = function(password) {
-  //var hash = crypto.pbkdf2Sync(pass, this.salt, 1000, 64).toString('hex');
 
-  //return this.hash === hash;
-  return password;
+  var decipher = crypto.createDecipher('aes-256-cbc', key);
+  var dec = decipher.update(this.password,'base64','utf8');
+  dec += decipher.final('utf8');
+  return dec;
+
 };
+
+ 
 
 mongoose.model('Citizen', CitizensSchema);
