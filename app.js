@@ -12,7 +12,7 @@ var app = express();
 var mongoose = require('mongoose');
 var passport = require('passport');
 
-var options = {server: {socketOptions: {connectionTimeoutMS: 120000,socketTimeoutMS: 120000}}};
+var options = {server: {socketOptions: {connectionTimeout: 480000,socketTimeoutMS: 240000}}};
 
 
 mongoose.connect('mongodb://localhost:27017/mean-database',options, function(err,db){
