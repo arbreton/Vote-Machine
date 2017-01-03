@@ -14,7 +14,7 @@
             <h4>Province: {{province}}</h4>
             <hr width="170px">
             <h4>Birth Date: {{birth_date}}</h4>
-        </div>
+          </div>
       </div>
       </div>
 
@@ -48,7 +48,7 @@
                 <td>{{candidate.initial_election.date +' '+ candidate.final_election.date}}</td>
                 <td>
                   <button class="btn btn-success" ng-click="editItem($index,candidate)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                  <button class="btn btn-danger" type="submit" ng-click="confirmationDelete($index, candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                  <button class="btn btn-danger" ng-click="confirmationDelete($index,candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                 </td>
             </tr>
           </tbody>
