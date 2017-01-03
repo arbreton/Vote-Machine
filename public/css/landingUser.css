@@ -1,9 +1,10 @@
 #container{
     position: relative;
-    width: 200px;
+    width: 150px;
     height: 200px;
 }
 #main_image{
+
     width: 100%;
     height: 100%;
 }
@@ -48,7 +49,8 @@ p.CenterName{
 	font-size: 20px;
 	margin-left: 0;
     margin-right: auto;
-    width: 200px
+    width: 200px;
+    text-align: center;
 }
 p.CenterParty{
 	font-size: 15px;
@@ -79,14 +81,22 @@ body {
   }
 .electionType{
 	font-size: 24px;
+	margin-bottom: 30px;
+	margin-top: 20px;
  }
  .btn-info{
- 	border-radius: 0px;
- 	width: 200px;
+ 	font-size: 22px;
+ 	border-radius: 5px;
+ 	width: 210px;
+ 	background: linear-gradient(#457fca, #5691c8) !important;
  }
  .btn-primary{
- 	border-radius: 0px;
- 	width: 200px;
+ 	background: linear-gradient(#4B79A1, #283E51) !important;
+ 	font-size: 22px;
+ 	border-radius: 5px;
+ 	margin-top: 10px;
+ 	height: 40px;
+ 	width: 210px;
  }
 #presidencial {padding-top:50px;height: auto; }
 #senadores {padding-top:50px;height:auto; }
@@ -96,6 +106,9 @@ body {
 
 
 .btn-light { 
-	width: 200px;
-	border-radius: 8px;
-	 background-color: hsl(191, 96%, 37%) !important; background-repeat: repeat-x; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#28d4fa", endColorstr="#0397b8"); background-image: -khtml-gradient(linear, left top, left bottom, from(#28d4fa), to(#0397b8)); background-image: -moz-linear-gradient(top, #28d4fa, #0397b8); background-image: -ms-linear-gradient(top, #28d4fa, #0397b8); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #28d4fa), color-stop(100%, #0397b8)); background-image: -webkit-linear-gradient(top, #28d4fa, #0397b8); background-image: -o-linear-gradient(top, #28d4fa, #0397b8); background-image: linear-gradient(#28d4fa, #0397b8); border-color: #0397b8 #0397b8 hsl(191, 96%, 32%); color: #fff !important; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33); -webkit-font-smoothing: antialiased; }
+	font-size: 20px;
+	width: 210px;
+	height: 50px;
+	border-radius: 5px;
+	background: linear-gradient(#004e92, #000428) !important;
+	color: white;

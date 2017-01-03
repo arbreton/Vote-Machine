@@ -37,9 +37,9 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$w
         $scope.display_name_candidate1= $scope.candidatename1+" "+$scope.first_lastname_candidate1;
         $scope.party_code_candidate1="01";
         $scope.party_code_candidate1="Partido Acción Ciudadana";
-        $scope.prop1candpres1="Iniciativa sociedades de convivencia";
-        $scope.prop2candpres1="Respeto a los derechos de los animales";
-        $scope.prop3candpres1="Reelección consecutiva única";
+        $scope.prop1candpres1="Replace a Muslim ban with an extreme vetting of Muslims. (Oct 2016)";
+        $scope.prop2candpres1="No federal government profit from student loans. (Nov 2015)";
+        $scope.prop3candpres1="Opposes Common Core. (Feb 2015)";
 
         $scope.candidatename2="Johnny";
         $scope.first_lastname_candidate2="Araya";
@@ -48,9 +48,9 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$w
         $scope.party_code_candidate2="02";
         $scope.party_code_candidate2="Partido Liberación Nacional";
 
-        $scope.prop1candpres2="Proposal 1";
-        $scope.prop2candpres2="Proposal 2";
-        $scope.prop3candpres2="Proposal 3";
+        $scope.prop1candpres2="We have 2 trillion barrels of oil; enough for 283 years. (Nov 2015)";
+        $scope.prop2candpres2="Solar hasn't caught on because it has a 32-year payback. (Aug 2015)";
+        $scope.prop3candpres2="Enough natural gas in Marcellus Shale for 110 year supply. (Dec 2011)";
 
         $scope.candidatename3="José";
         $scope.first_lastname_candidate3="Villalta";
@@ -58,9 +58,9 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$w
         $scope.display_name_candidate3= $scope.candidatename3+" "+$scope.first_lastname_candidate3;
         $scope.party_code_candidate3="03";
         $scope.party_code_candidate3="Partido Frente Amplio";
-        $scope.prop1candpres3="Proposal 1";
-        $scope.prop2candpres3="Proposal 2";
-        $scope.prop3candpres3="Proposal 3";
+        $scope.prop1candpres3="Eminent domain is something you need very strongly. (Feb 2016)";
+        $scope.prop2candpres3="Asbestos got a bad rap from miners & mob-led movement. (Oct 1997)";
+        $scope.prop3candpres3="Happiest people have great families & God in their lives. (Nov 2015)";
 
         $scope.candidatename4="Otto";
         $scope.first_lastname_candidate4="Guevara";
@@ -68,9 +68,9 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$w
         $scope.display_name_candidate4= $scope.candidatename4+" "+$scope.first_lastname_candidate4;
         $scope.party_code_candidate4="04";
         $scope.party_code_candidate4="Movimiento Libertario";
-        $scope.prop1candpres4="Proposal 1";
-        $scope.prop2candpres4="Proposal 2";
-        $scope.prop3candpres4="Proposal 3";
+        $scope.prop1candpres4="Mutually profitable 2-way relationship with the media. (Nov 2015)";
+        $scope.prop2candpres4="Gun violence is inevitable; regulations won't help. (Oct 2015)";
+        $scope.prop3candpres4="Create V.A. mental health division to reduce veteran suicide. (Sep 2016)";
 
         $scope.candidatename5="Rodolfo";
         $scope.first_lastname_candidate5="Piza";
@@ -78,9 +78,9 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$w
         $scope.display_name_candidate5= $scope.candidatename5+" "+$scope.first_lastname_candidate5;
         $scope.party_code_candidate5="05";
         $scope.party_code_candidate5="Partido Unidad Social Cristiana";
-        $scope.prop1candpres5="Proposal 1";
-        $scope.prop2candpres5="Proposal 2";
-        $scope.prop3candpres5="Proposal 3";
+        $scope.prop1candpres5="Ignore career diplomats who insist on nuance. (Nov 2015)";
+        $scope.prop2candpres5="I am against gun control. (Feb 2011)";
+        $scope.prop3candpres5="Develop nukes in South Korea & Japan to counter North Korea. (Apr 2016)";
 
         $scope.candidatename6="José Miguel";
         $scope.first_lastname_candidate6="Corrales";
@@ -88,9 +88,9 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$w
         $scope.display_name_candidate6= $scope.candidatename6+" "+$scope.first_lastname_candidate6;
         $scope.party_code_candidate6="06";
         $scope.party_code_candidate6="Partido Patria Nueva";
-        $scope.prop1candpres6="Proposal 1";
-        $scope.prop2candpres6="Proposal 2";
-        $scope.prop3candpres6="Proposal 3";
+        $scope.prop1candpres6="Trade pacts are no good for us and no good for our workers. (Feb 2016)";
+        $scope.prop2candpres6="20% tax on all imported goods. (Dec 2011)";
+        $scope.prop3candpres6="China is dumping steel all over & killing steel companies. (Oct 2016)";
 
         $scope.show = function(number) {
             switch(number){
