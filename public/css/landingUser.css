@@ -11,7 +11,7 @@
 #overlay_image{
     position: absolute;
     bottom: 0px;
-    right: 0px;
+    right: -50px;
     width: 50px;
     height: 50px;
 }
