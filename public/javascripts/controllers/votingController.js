@@ -271,6 +271,26 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$w
                     $scope.msgPresCand6="Selected";
                     $scope.othercand=false;
                 break;
+                case 7:
+                    $scope.voteInfo.name="null";
+                    $scope.voteInfo.first_lastname="";
+                    $scope.voteInfo.second_lastname="";
+                    $scope.voteInfo.proposals="";
+                    $scope.voteInfo.code="";
+                    $scope.voteInfo.description="";
+                    $scope.voteInfo.election_date='12-13-2016';
+                    $scope.voteInfo.vote_date='12-13-2016';
+                    $scope.voteInfo.voted=true;
+                    $scope.voteInfo.others="";
+                    $scope.$parent.voteInfo=$scope.voteInfo;
+                    $scope.msgPresCand1="Change vote";
+                    $scope.msgPresCand2="Change vote";
+                    $scope.msgPresCand3="Change vote";
+                    $scope.msgPresCand4="Change vote";
+                    $scope.msgPresCand5="Change vote";
+                    $scope.msgPresCand6="Change vote";
+                    $scope.othercand=false;
+                break;
                 default:
                 break;
             }
