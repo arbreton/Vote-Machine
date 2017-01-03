@@ -127,12 +127,12 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$w
         $scope.part6img="http://www.crwflags.com/fotw/images/c/cr%7Dpn.gif";
 
 
-        $scope.cand1img="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Luis_Guillermo_Sol%C3%ADs%2C_Costa_Rica_03.JPG/800px-Luis_Guillermo_Sol%C3%ADs%2C_Costa_Rica_03.JPG";
-        $scope.cand2img="https://upload.wikimedia.org/wikipedia/commons/c/c9/Johnny_Araya_en_el_festival_Chepe_Joven_2011_cropped.png";
-        $scope.cand3img="https://upload.wikimedia.org/wikipedia/commons/4/47/Frente_Amplio_%28Costa_Rica%29_-_Asamblea_Provincial_en_Quesada_24_cropped.png";
-        $scope.cand4img="https://upload.wikimedia.org/wikipedia/commons/b/b7/Otto_Guevara.jpg";
-        $scope.cand5img="https://upload.wikimedia.org/wikipedia/commons/4/4e/Photo_of_Mr._Rodolfo_Piza_and_company_in_PUSC_cropped.png";
-        $scope.cand6img="https://upload.wikimedia.org/wikipedia/commons/7/72/Jose_Miguel_Corrales_cropped.jpg";
+        $scope.cand1img="/uploads/Luis_Guillermo.jpg";
+        $scope.cand2img="/uploads/Johnny_Araya.png";
+        $scope.cand3img="/uploads/Jose_Villalta.png";
+        $scope.cand4img="/uploads/Otto_Guevara.jpg";
+        $scope.cand5img="/uploads/Rodolfo_Piza.png";
+        $scope.cand6img="/uploads/Jose_Miguel.jpg";
 
         $scope.showother=function(){
 
