@@ -1,6 +1,6 @@
-'use strict';
+//'use strict';
 
-var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' ,'ui.bootstrap.modal', 'serviceProvince', 'serviceParty', 'ngFileUpload']);
+var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' , 'serviceProvince', 'serviceParty', 'ngFileUpload']);
 
 app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$timeout', function($scope, $http, $uibModal, $timeout)
 {
@@ -32,7 +32,9 @@ app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$ti
        size: 'lg',
        resolve:
        {
-         item: function () { return obj;}
+         item: function () {
+           return obj;
+         }
        }
      });
 
@@ -47,27 +49,27 @@ app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$ti
      });
    };
 
-$scope.confirmationDelete = function (index,candidate)
-{
-  var modalIntance = $uibModal.open({
-    templateUrl: 'views/adminCandidate/modalConfirmation.html',
-    controller: 'modalConfirmationController',
-    size: 'sm',
-    resolve: {
-      item: function (){
-        return candidate;
-      }
-    }
-  });
-
-  modalIntance.result.then( function (data)
+  $scope.confirmationDelete = function (index, obj)
   {
-    if(data)
+    var modalInstance = $uibModal.open({
+      templateUrl: 'views/adminCandidate/modalConfirmation.html',
+      controller: 'modalConfirmactionController',
+      size: 'sm',
+      resolve:
+      {
+        item: function(){
+          return obj;
+        }
+      }
+    });
+    modalInstance.result.then( function(data)
     {
-      $scope.deleteItem(index, candidate);
-    }
-  });
-};
+      if(data)
+      {
+        $scope.deleteItem(index, obj);
+      }
+    });
+  };
 
 
 }]);
@@ -148,20 +150,22 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
       });
   };
 }]);
+//end controller
 
-
-app.controller('modalConfirmationController', ['$scope', '$uibModalInstance', 'item', function ($scope, $uibModalInstance, item)
+app.controller('modalConfirmactionController', ['$scope', '$uibModalInstance', 'item', function ($scope, $uibModalInstance, item)
 {
+  console.log(item)
   var that = $scope;
   that.candidate = item;
   that.confirmation = {yes: true, no: false};
 
-  $scope.cancel = function ()
+  $scope.cancel = function()
   {
     $uibModalInstance.close(that.confirmation.no);
   };
-  $scope.ok = function ()
+  $scope.ok = function()
   {
     $uibModalInstance.close(that.confirmation.yes);
   };
+
 }]);
