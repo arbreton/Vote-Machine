@@ -56,32 +56,32 @@
       <div id="page-content-wrapper" ng-view>
           <div class="container-fluid">
             <!--votes div-->
-<div ng-show="generalChart" style = "width: 80%;" id="chartCanvas">
+<div ng-show="generalChart" style = "width: 75%;" id="chartCanvas">
   <div class="loader" id = "loader1"></div>
  <canvas id="canvas"></canvas>
  <br>
 </div>
-<div ng-show="hourChart" style = "width: 80%;" id="chartCanvas1">
+<div ng-show="hourChart" style = "width: 75%;" id="chartCanvas1">
     <div class="loader" id = "loader2"></div>
  <canvas id="canvas1"></canvas>
  <br>
 </div>
-<div ng-show="ageChart" style = "width: 80%;" id="chartCanvas2">
+<div ng-show="ageChart" style = "width: 75%;" id="chartCanvas2">
     <div class="loader" id = "loader3"></div>
  <canvas id="canvas2"></canvas>
  <br>
 </div>
-<div ng-show="earlyChart" style = "width: 80%;" id="chartCanvas3">
+<div ng-show="earlyChart" style = "width: 75%;" id="chartCanvas3">
     <div class="loader" id = "loader4"></div>
  <canvas id="canvas3"></canvas>
  <br>
 </div>
-<div ng-show="lateChart" style = "width: 80%;" id="chartCanvas4">
+<div ng-show="lateChart" style = "width: 75%;" id="chartCanvas4">
     <div class="loader" id = "loader5"></div>
  <canvas id="canvas4"></canvas>
  <br>
 </div>
-<div ng-show="genderChart" style = "width: 80%;" id="chartCanvas5">
+<div ng-show="genderChart" style = "width: 75%;" id="chartCanvas5">
     <div class="loader" id = "loader6"></div>
  <canvas id="canvas5"></canvas>
  <br>
@@ -273,7 +273,7 @@ Array.prototype.mapProperty = function(property) {
   <script type="text/javascript">
   function earlyChartFunction(){
 $.ajax({url:"http://localhost:3000/api/citizens/graph/votes/10",dataType:"json"})
-  .fail(function(){alert("Im a failure")})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
   loader4.style.visibility = "hidden";
@@ -332,7 +332,7 @@ console.log(data)
   <script type="text/javascript">
   function lateChartFunction(){
 $.ajax({url:"http://localhost:3000/api/citizens/graph/votes/19",dataType:"json"})
-  .fail(function(){alert("Im a failure")})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
   loader5.style.visibility = "hidden";
@@ -391,7 +391,7 @@ console.log(data)
   <script type="text/javascript">
   function genderChartFunction(){
 $.ajax({url:"http://localhost:3000/api/citizens/graph/gender/both",dataType:"json"})
-  .fail(function(){alert("Im a failure")})
+  .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
   loader6.style.visibility = "hidden";
