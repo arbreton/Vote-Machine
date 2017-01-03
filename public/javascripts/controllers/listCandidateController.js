@@ -28,7 +28,7 @@ app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$ti
      var modalInstance = $uibModal.open({
        animation: $scope.animationsEnabled,
        templateUrl: 'views/adminCandidate/modalCandidate.html',
-       controller: 'modalConfirmactionController',
+       controller: 'modalCandidateController',
        size: 'lg',
        resolve:
        {
