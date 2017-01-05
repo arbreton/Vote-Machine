@@ -2,7 +2,7 @@
 
 var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' , 'serviceProvince', 'serviceParty', 'ngFileUpload']);
 
-app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$timeout', function($scope, $http, $uibModal, $timeout)
+app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$timeout', 'DTOptionsBuilder', 'DTColumnBuilder', function($scope, $http, $uibModal, $timeout, DTOptionsBuilder, DTColumnBuilder)
 {
   var that = $scope;
   that.candidates = [];

@@ -1,0 +1,70 @@
+<div id="wrapper">
+    <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+      <div class="header-logo">
+        <img ng-src="{{image}}">
+      </div>
+      <div class="info-people-container">
+          <div class="info-poeple">
+            <h3>{{name | capitalize}} {{first_lastname | capitalize}} {{second_lastname | capitalize}}</h3>
+            <hr width="170px">
+            <h4>Canton: {{canton}}</h4>
+            <hr width="170px">
+            <h4>District: {{district}}</h4>
+            <hr width="170px">
+            <h4>Province: {{province}}</h4>
+            <hr width="170px">
+            <h4>Birth Date: {{birth_date}}</h4>
+        </div>
+      </div>
+      </div>
+
+ <div class="title">New Election Registration</div>
+ <hr>
+ <div id="page-content-wrapper">
+    <div class="container-fluid">
+
+      <form name="saveForm" ng-submit="saveForm.$valid && saveItem()" class="form-inline row-magin buttons">
+        <!--home row -->
+        <div class="row">
+            <div class="col-md-3">
+              <label for="fecha-eleccion">From: </label>
+              <p class="input-group">
+                <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.from" is-open="popup.from" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openFrom()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+          </div>
+          <div class="col-md-3">
+            <label for="fecha-eleccion">To: </label>
+            <p class="input-group">
+              <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.to" is-open="popup.to" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openTo()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+        <div class="col-md-4">
+          <label for="fecha-eleccion">Election Day: </label>
+          <p class="input-group">
+            <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.day" is-open="popup.day" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="openDay()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
+      </div><!--end row -->
+
+        <!--home row -->
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button class="btn btn-success" ng-disabled="!saveForm.$valid"  type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+            <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
+          </div><!--end col-->
+        </div><!--end row -->
+
+      </form><!--end form -->
+
+    </div>
+  </div>
+</div>
