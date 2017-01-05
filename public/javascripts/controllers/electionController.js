@@ -1,17 +1,21 @@
 'use strict'
-var app = angular.module('election', ['ui.bootstrap']);
+var app = angular.module('election', ['ui.bootstrap', 'datatables', 'serviceElection']);
 
-app.controller('electionController', ['$scope', function ($scope)
+app.controller('electionController', ['$scope', '$http' ,'election', function ($scope, $http ,election)
 {
   var that = $scope;
   that.election = {};
+  that.elections = [];
   that.popup = { from: false, to: false, day: false };
     $scope.inlineOptions = {
     customClass: getDayClass,
     minDate: new Date(),
     showWeeks: true
   };
-
+  election.getElection().then(function (data)
+  {
+    that.elections = data;
+  })
   $scope.openFrom = function()
   {
     that.popup.from = true;
@@ -25,6 +29,17 @@ app.controller('electionController', ['$scope', function ($scope)
   $scope.openDay = function ()
   {
     that.popup.day = true;
+  };
+
+  $scope.saveItem = function()
+  {
+    $http.post('/api/election', that.election).success(function (data)
+    {
+      if(data.status = 200)
+      {
+        console.log('test')
+      }
+    });
   };
 
   function getDayClass(data) {

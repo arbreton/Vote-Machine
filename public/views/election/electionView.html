@@ -29,7 +29,7 @@
             <div class="col-md-3">
               <label for="fecha-eleccion">From: </label>
               <p class="input-group">
-                <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.from" is-open="popup.from" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.initial_election" is-open="popup.from" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="openFrom()"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -38,7 +38,7 @@
           <div class="col-md-3">
             <label for="fecha-eleccion">To: </label>
             <p class="input-group">
-              <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.to" is-open="popup.to" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.final_election" is-open="popup.to" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="openTo()"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -47,7 +47,7 @@
         <div class="col-md-4">
           <label for="fecha-eleccion">Election Day: </label>
           <p class="input-group">
-            <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.day" is-open="popup.day" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.election_day" is-open="popup.day" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="openDay()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
@@ -65,6 +65,21 @@
 
       </form><!--end form -->
 
+      <table datatable="0">
+        <thead>
+          <tr>
+            <th>Initial election</th>
+            <th>Final election</th>
+            <th>Day election</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="election in elections">
+            <td>{{election.initial_election}}</td>
+            <td>{{election.final_election}}</td>
+            <td>{{election.election_day}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
