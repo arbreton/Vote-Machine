@@ -18,8 +18,14 @@ background-size: cover;
 }
 
 /*Login*/
-h1.glyphicon{
-  margin-right: 150px;
+.login-form{
+  width:500px;
+  padding:20px 15px;
+  background:rgba(75,121,161,0.5);
+  border-radius:4px;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+  margin:150px auto;
 }
 
 
