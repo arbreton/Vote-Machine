@@ -1,27 +1,22 @@
 'use strict';
 
-var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceParty', 'serviceProvince', 'ui.bootstrap']);
+var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceParty', 'serviceProvince', 'ui.bootstrap', 'serviceElection']);
 
-app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'party', 'province', '$filter', function($scope, $http, Upload, $timeout, party, province, $filter)
+app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'party', 'province', '$filter', 'election', function($scope, $http, Upload, $timeout, party, province, $filter, election)
 
 {
   var that = $scope;
   that.candidate = {};
-  that.date_election_i = {};
-  that.date_election_e = {};
-  that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
-  that.final_elections = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
+  that.select_item = { status:false};
   that.cantones = [];
-  that.final_election = {};
-  that.initial_election = {};
   that.districts = [];
+  that.elections = [];
   that.parties = [];
   that.provinces = [];
   $scope.file = {};
   that.request = {};
   that.requestImage = {};
   that.candidates = [{}];
-  that.election_day = {};
   that.election_day_text = {};
   that.popup = { opened: false };
 
@@ -30,6 +25,32 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
     that.parties = data;
   });
 
+  election.getElection().then(function(data)
+  {
+    that.elections = data;
+  });
+
+  $scope.getParty = function (value, index)
+  {
+    that.itemPrevious = index;
+    that.item;
+      if(that.itemPrevious == index)
+      {
+        if(that.item ==undefined)
+        {
+          that.parties[that.itemPrevious].selectItem = true;
+          that.item = that.itemPrevious;
+        }
+        else {
+          that.parties[index].selectItem = true;
+          that.parties[that.item].selectItem = false;
+        }
+      }
+      else {
+        that.parties[that.itemPrevious].selectItem = false;
+      }
+
+  };
   $scope.open = function()
   {
     $scope.popup.opened = true;

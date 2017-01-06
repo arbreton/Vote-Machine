@@ -62,3 +62,7 @@
 .uib-daypicker tr > td > button {width: 36px !important;}
 .uib-button-bar  button { width: 52px !important; margin: 0px !important;}
 .uib-month button {width: 92px !important; }
+.title-label{ display: block; padding: 10px;}
+.select-item img{ cursor:pointer;}
+.item-check {display: block;}
+.item-check i {     position: static; display: inline-block;}

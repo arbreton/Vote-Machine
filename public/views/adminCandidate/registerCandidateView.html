@@ -1,6 +1,6 @@
 <div id="wrapper">
     <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
-      <div class="header-logo"> 
+      <div class="header-logo">
         <img ng-src="{{image}}">
       </div>
       <div class="info-people-container">
@@ -28,22 +28,11 @@
         <div class="row form-group-block-full">
           <div class="col-md-7">
               <div class="form-group">
-                <label for="fecha-eleccion">From: </label>
-                <select class="form-control" ng-options="election.date for election in initial_elections" ng-model="initial_election" required=""></select>
-
-                <label for="fecha-eleccion">To: </label>
-                <select class="form-control" ng-options="election.date for election in final_elections" ng-model="final_election" required=""></select>
+                <label for="fecha-eleccion">Election: </label>
+                <select class="form-control" ng-options="election.election_day for election in elections" ng-model="initial_election" required=""></select>
               </div>
           </div>
-          <div class="col-md-5">
-            <label for="fecha-eleccion">Election Day: </label>
-            <p class="input-group">
-              <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election_day" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p>
-        </div>
+
         </div><!--end row -->
 <fieldset  ng-repeat="candidate in candidates">
 
@@ -68,17 +57,13 @@
         </div><!--end row -->
 
         <!--home row -->
-        <div class="row form-group-select">
-          <div class="col-md-4">
-              <div class="form-group">
-                <label for="label-partido">Party: </label>
-                <select class="form-control" ng-options="party.description for party in parties" ng-model="candidate.party" ng-change="showParty($index ,candidate.party)"></select>
-              </div>
-          </div><!--end col -->
+        <div class="row form-group-select select-item">
+          <label class="title-label">Parties</label>
 
-          <div class="col-md-4">
+          <div class="col-md-2"  ng-repeat="party in parties">
             <div class="form-group">
-              <div class="preview-img"><img ngf-thumbnail="candidate.img_party"> </div>
+              <div class="preview-img"><img  ngf-thumbnail="party.image" ng-model="party" ng-click="getParty(party, $index)"> </div>
+              <i  class="fa fa-check check-selected" ng-if="party.selectItem" aria-hiden="true"></i>
             </div>
           </div><!--end col -->
 
