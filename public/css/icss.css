@@ -47,3 +47,30 @@ background-size: cover;
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/*null vote div*/
+.null-vote{
+  width:300px;
+  height:120px;
+  padding:5px 5px;
+  background:rgba(75,121,161,0.2);
+  border-radius:2px;
+  -moz-border-radius:2px;
+  -webkit-border-radius:2px;
+  margin:50px auto;
+  margin-right: 110px;
+}
+
+/*other vote div*/
+.other-vote{
+  width:400px;
+  height:120px;
+  padding:5px 5px;
+  background:rgba(75,121,161,0.2);
+  border-radius:2px;
+  -moz-border-radius:2px;
+  -webkit-border-radius:2px;
+  margin:50px auto;
+  margin-left: 10px;
+  float: left;
+}
