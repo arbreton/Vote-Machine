@@ -31,6 +31,7 @@ require('./config/passport');
 require('./models/Candidate');
 require('./models/Province');
 require('./models/Parties');
+require('./models/Elections');
 
 var routes = require('./routes/index');
 
@@ -39,6 +40,7 @@ var candidates = require('./routes/candidates');
 var provinces = require('./routes/provinces');
 var graphics = require('./routes/graphics');
 var parties = require('./routes/parties');
+var votes = require('./routes/voting');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -61,6 +63,7 @@ app.use('/api', provinces);
 app.use('/api', graphics);
 app.use('/api', citizens);
 app.use('/api', parties);
+app.use('/api', votes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

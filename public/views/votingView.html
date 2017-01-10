@@ -51,7 +51,11 @@
         		<p ng-bind="prop3candpres1"></p>
         		</span>
         		<span ng-show="cand1"></span>
+<<<<<<< HEAD
         		<button class="btn-primary" ng-click="votepres(1)" ng-bind="msgPresCand1" onclick= "document.getElementById('img1').style.borderColor='#4B79A1';"></button>
+=======
+        		<button class="btn-primary" ng-click="confirmationVote(1,display_name_candidate1)" ng-bind="msgPresCand1"></button>
+>>>>>>> 31930180f47638e67104334b4b4b5315b3941873
         	</div>
         	</div>
         	<br>
@@ -74,7 +78,7 @@
         			<p ng-bind="prop3candpres2"></p>
         			</span>
         			<span ng-show="cand2"></span>
-        			<button class="btn-primary" ng-click="votepres(2)" ng-bind="msgPresCand2"></button>
+        			<button class="btn-primary" ng-click="confirmationVote(2,display_name_candidate2)" ng-bind="msgPresCand2"></button>
         		</div>
         	</div>
 		</div>
@@ -95,14 +99,14 @@
 	        		<p ng-bind="prop3candpres3"></p>
 	        		</span>
 	        		<span ng-show="cand3"></span>
-	        		<button class="btn-primary" ng-click="votepres(3)" ng-bind="msgPresCand3"></button>
+	        		<button class="btn-primary" ng-click="confirmationVote(3,display_name_candidate3)" ng-bind="msgPresCand3"></button>
 	        	</div>
         	</div>
 		</div>
 
 	</div>
 	<!-- Candidatos presidenciales 4 a 6  -->
-	<div class="row"ng-show="isLoggedIn()" ng-controller="AdminController">
+	<div class="row" ng-show="isLoggedIn()" ng-controller="AdminController">
 		<!-- Spacing column-->
 		<div class="col-md-3" >
 		</div>
@@ -124,7 +128,7 @@
 	        		<p ng-bind="prop3candpres4"></p>
 	        		</span>
 	        		<span ng-show="cand4"></span>
-	        		<button class="btn-primary" ng-click="votepres(4)" ng-bind="msgPresCand4"></button>
+	        		<button class="btn-primary" ng-click="confirmationVote(4,display_name_candidate4)" ng-bind="msgPresCand4"></button>
 	        	</div>
         	</div>
         	<br>
@@ -148,7 +152,7 @@
 	        		<p ng-bind="prop3candpres5"></p>
 	        		</span>
 	        		<span ng-show="cand5"></span>
-	        		<button class="btn-primary" ng-click="votepres(5)" ng-bind="msgPresCand5"></button>
+	        		<button class="btn-primary" ng-click="confirmationVote(5,display_name_candidate5)" ng-bind="msgPresCand5"></button>
 	        	</div>
         	</div>
         	<br>
@@ -172,7 +176,7 @@
 	        		<p ng-bind="prop3candpres6"></p>
 	        		</span>
 	        		<span ng-show="cand6"></span>
-	        		<button class="btn-primary" ng-click="votepres(6)" ng-bind="msgPresCand6"></button>
+	        		<button class="btn-primary" ng-click="confirmationVote(6,display_name_candidate6)" ng-bind="msgPresCand6"></button>
 	        	</div>
         	</div>
         	<br>
@@ -202,6 +206,9 @@
 		<button class="btn-info" ng-click="nullvote()">Null Vote</button></center>
 		</div>
 		</div>
+		
+		
+		
 
 	</div>
 

@@ -171,6 +171,34 @@ function($http,$window, $location) {
 			return payload._id;
 		}
 	};
+	auth.currentBD = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+			return payload.birth_date;
+		}
+	};
+	auth.currentGender = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+			return payload.gender;
+		}
+	};
+	auth.currentProvince = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+			return payload.provinceCode;
+		}
+	};
+	auth.currentEthnicity = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+			return payload.ethnicity;
+		}
+	};
 
 	auth.register = function(user) {
 		return $http.post('/register', user).success(function(data) {
