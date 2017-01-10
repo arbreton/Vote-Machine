@@ -261,6 +261,31 @@ app.post('/citizens', function(req, res) {
 
     })
 
+.get('/elections/graph/votes',function(req, res) {
+        Election.aggregate(
+            [
+            { 
+                $match: { "election_day": new Date("2017-01-10T00:00:00.000Z")}},
+                
+                {$unwind:"$votes"},
+            { $group: { _id: "$votes.name",Women_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] }},
+            Men_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+
+            { $sort: {"Total":-1}},
+           
+
+
+
+            ]).exec(function(err, election) {
+            if (err)
+                res.send(err);
+            console.log(election);
+            res.json(election);
+        });
+
+
+    })
+
 //age
 .get('/citizens/graph/age',function(req, res) {
        Citizen.aggregate(
