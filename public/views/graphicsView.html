@@ -159,7 +159,7 @@ Array.prototype.mapProperty = function(property) {
  </script>
  <script type="text/javascript">
  function hourChartFunction(){
- $.ajax({url:"http://localhost:3000/api/citizens/graph/gender/time",dataType:"json"})
+ $.ajax({url:"http://localhost:3000/api/elections/graph/gender/time",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
@@ -216,7 +216,7 @@ Array.prototype.mapProperty = function(property) {
 
   <script type="text/javascript">
   function ageChartFunction(){
- $.ajax({url:"http://localhost:3000/api/citizens/graph/age",dataType:"json"})
+ $.ajax({url:"http://localhost:3000/api/elections/graph/age",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
@@ -273,7 +273,7 @@ Array.prototype.mapProperty = function(property) {
 
   <script type="text/javascript">
   function earlyChartFunction(){
-$.ajax({url:"http://localhost:3000/api/citizens/graph/votes/10",dataType:"json"})
+$.ajax({url:"http://localhost:3000/api/elections/graph/votes/10",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
@@ -332,7 +332,7 @@ console.log(data)
  </script>
   <script type="text/javascript">
   function lateChartFunction(){
-$.ajax({url:"http://localhost:3000/api/citizens/graph/votes/19",dataType:"json"})
+$.ajax({url:"http://localhost:3000/api/elections/graph/votes/19",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
