@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 //mongoose.Promise = global.Promise;
-var Candidate = mongoose.model('Candidate');
+var Election = mongoose.model('Election');
 var router = express.Router();
 
 var multer = require('multer');
@@ -36,51 +36,60 @@ router.get('/canditates', function (req, res)
 });
 router.post('/candidate',function(req, res)
 {
-    req.body.forEach( function(item, index)
+  var idElection = req.body.election;
+    Election.findById(idElection).exec( function (err, election)
     {
-      var  candidate = new Candidate();
-      //info of candidate
-      candidate.name = item.name;
-      candidate.first_last_name = item.first_last_name;
-      candidate.second_last_name = item.second_last_name;
-      candidate.proposal = item.proposal;
-      candidate.gender = item.gender;
-      candidate.initial_election.id = item.initial_election.id;
-      candidate.initial_election.date = item.initial_election.date;
-      candidate.final_election.id = item.final_election.id;
-      candidate.final_election.date = item.final_election.date;
-      candidate.image = item.image;
-      candidate.election_day = new Date(item.election_day);
-      candidate.status = true;
-      //province
-      candidate.party._id = item.party._id;
-      candidate.party.description = item.party.description;
-      candidate.party.image = item.party.image;
-      candidate.province.id = item.province.id;                                                                                                                                                                                                   5
-      candidate.province.description = item.province.description;
-      candidate.province.canton.id = item.canton.id;
-      candidate.province.canton.description = item.canton.description;
-      candidate.province.district.id = item.district.id;
-      candidate.province.district.description = item.district.description;
-
-      //save item
-      candidate.save().then( function (can)
+      if(err){ console.log('Error al buscar la eleccion');}
+      else
       {
-        res.json({status: 200,message: 'The register was saved successfully'});
-      }, function (err)
-      {
-        if(err) { return handleError(err);}
-      });
+        req.body.candidates.forEach( function(item, index)
+        {
+          //info of candidate
+          var e = { province: { canton:{}, district: {} } };
+          e.name = item.name;
+          e.first_last_name = item.first_last_name;
+          e.second_last_name = item.second_last_name;
+          e.proposal = item.proposal;
+          e.gender = item.gender;
+          e.image = item.image;
+          e.status = true;
+          //province
+          /*e.party._id = item.party._id;
+          e.party.description = item.party.description;
+          e.party.image = item.party.image;*/
+          e.province.id = item.province.id;                                                                                                                                                                                                   5
+          e.province.description = item.province.description;
+          e.province.canton.id = item.canton.id;
+          e.province.canton.description = item.canton.description;
+          e.province.district.id = item.district.id;
+          e.province.district.description = item.district.description;
+          election.candidates.push(e);
+        });
+        //save item
+        election.save().then( function (can)
+        {
+          res.json({status: 200,message: 'The register was saved successfully'});
+        }, function (err)
+        {
+          if(err) { return handleError(err);}
+        });
+      }//end else
     });
+
+
 });
 
 router.put('/candidate-update/:id',function (req, res)
 {
   var id = req.body._id;
-
+  console.log(id);
+  Election.find().elemMatch("candidates", {_id: id}).exec(function (err, data)
+  {
+    console.log(data)
+  });
   if(id !='')
   {
-    var query = { _id: id};
+  /*  var query = {  _id: id};
     var update =
     {
       name : req.body.name,
@@ -88,20 +97,17 @@ router.put('/candidate-update/:id',function (req, res)
       second_last_name : req.body.second_last_name,
       proposal : req.body.proposal,
       gender : req.body.gender,
-      initial_election: { id : req.body.initial_election.id, date: req.body.initial_election.date },
-      final_election:  { id : req.body.final_election.id, date: req.body.final_election.date},
-      election_day: req.body.election_day,
-      image: req.body.image,
-      party: { _id : req.body.party._id, description: req.body.party.description },
+      //image: req.body.image,
+      //party: { _id : req.body.party._id, description: req.body.party.description },
       province: { id : req.body.province.id, description: req.body.province.description,
         canton: { id : req.body.canton.id, description : req.body.canton.description },
         district:{ id : req.body.district.id, description : req.body.district.description } }
     };
-    Candidate.findOneAndUpdate(query, update, function (err, data)
+    Election.findOneAndUpdate(query, update, function (err, data)
     {
       if(err){console.log('Error in update');}
       res.json({status: 200,message: 'Was updated successfully'});
-    });
+    });*/
   }
 });
 

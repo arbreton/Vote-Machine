@@ -1,20 +1,16 @@
 'use strict';
 
-var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceParty', 'serviceProvince', 'ui.bootstrap']);
+var app = angular.module('adminCandidate', ['ngFileUpload', 'serviceParty', 'serviceProvince', 'ui.bootstrap', 'serviceElection']);
 
-app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'party', 'province', '$filter', function($scope, $http, Upload, $timeout, party, province, $filter)
+app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$timeout', 'party', 'province', '$filter', 'election', function($scope, $http, Upload, $timeout, party, province, $filter, election)
 
 {
   var that = $scope;
   that.candidate = {};
-  that.date_election_i = {};
-  that.date_election_e = {};
-  that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
-  that.final_elections = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
+  that.select_item = { status:false};
   that.cantones = [];
-  that.final_election = {};
-  that.initial_election = {};
   that.districts = [];
+  that.elections = [];
   that.parties = [];
   that.provinces = [];
   $scope.file = {};
@@ -22,7 +18,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   that.requestImage = {};
   that.candidates = [{}];
   that.election_day = {};
-  that.election_day_text = {};
+  that.electionCandidate = {};
   that.popup = { opened: false };
 
   party.getParties().then(function (data)
@@ -30,20 +26,59 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
     that.parties = data;
   });
 
+  election.getElection().then(function(data)
+  {
+    /*data.map(function (item)
+    {*/
+        that.elections = data;
+    //});
+
+  });
+
+  $scope.getParty = function (value, index)
+  {
+    that.indexPrevious;
+    if(that.parties[index].selectItem == undefined)
+    {
+      that.parties[index].selectItem = true;
+    //  $scope.addPartyCandidate(value, index);
+      if(that.indexPrevious != undefined)
+      {
+        that.parties[that.indexPrevious].selectItem = false;
+        that.indexPrevious = index;
+        $scope.addPartyCandidate(value, index);
+      }
+      else
+      {
+        that.indexPrevious = index;
+      }
+    }
+    else
+    {
+      if(that.parties[index] == that.indexPrevious)
+      {
+        that.parties[index].selectItem = true;
+        $scope.addPartyCandidate(value, index);
+      }
+      else
+      {
+        that.parties[that.indexPrevious].selectItem = false;
+        that.parties[index].selectItem = true;
+        that.indexPrevious = index;
+        $scope.addPartyCandidate(value, index);
+      }
+    }
+  };
+  $scope.addPartyCandidate = function (value, index)
+  {
+    that.candidates[index].party = value;
+  };
   $scope.open = function()
   {
     $scope.popup.opened = true;
   };
 
-  $scope.getDate = function ()
-  {
-    var d = new Date();
-   var h = d.getHours();
-   var m = d.getMinutes();
-   var s = d.getSeconds();
-   var hour = h + ":" + m + ":" + s;
-    return that.election_day_text  = $('#election_day').val();
-  };
+
   province.getProvinces().then(function (data)
   {
     that.provinces = data
@@ -113,14 +148,10 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   }
   $scope.saveItem = function ()
   {
-    var c = that.candidates.map(function (obj, index)
-    {
-         that.candidates[index].initial_election = that.initial_election
-         that.candidates[index].final_election = that.final_election;
-         that.candidates[index].election_day = $scope.getDate();
-    });
-    c= that.candidates;
-    $http.post('api/candidate', c).success(function(data)
+    that.electionCandidate.candidates = that.candidates;
+    that.electionCandidate.election = that.election_day._id;
+
+    $http.post('api/candidate', that.electionCandidate).success(function(data)
     {
       that.request = data;
       $timeout(function (){$('.success-request-fixed').show().delay(2000).fadeOut(); },100);

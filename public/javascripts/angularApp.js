@@ -1,4 +1,4 @@
-var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty','adminListParty', 'ViewCharts']);
+var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty','adminListParty', 'ViewCharts', 'election']);
 
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
@@ -16,9 +16,9 @@ function($stateProvider, $urlRouterProvider) {
 				$state.go('admin');
 			}
 
-			
+
 		}]
-		
+
 	}).state('voting', {
 		url : '/voting',
 		templateUrl : 'views/votingView.html',
@@ -90,6 +90,10 @@ function($stateProvider, $urlRouterProvider) {
 		url: '/JSONtest',
 		templateUrl: 'views/JSONtest.html'
 
+	}).state('election', {
+		url: '/admin/election',
+		templateUrl: 'views/election/electionView.html',
+		controller: 'electionController'
 	})
 	;
 
@@ -304,6 +308,11 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 	$scope.voteNow = function()
 	{
 			$location.url("/voting");
+	};
+
+	$scope.showElection = function ()
+	{
+		$location.url("/admin/election");
 	};
 
 
