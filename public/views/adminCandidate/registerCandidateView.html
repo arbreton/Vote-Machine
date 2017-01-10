@@ -29,7 +29,7 @@
           <div class="col-md-7">
               <div class="form-group">
                 <label for="fecha-eleccion">Election: </label>
-                <select class="form-control" ng-options="election.election_day for election in elections" ng-model="initial_election" required=""></select>
+                <select class="form-control" ng-options="election.election_day for election in elections" ng-model="election_day" required=""></select>
               </div>
           </div>
 
@@ -62,12 +62,16 @@
 
           <div class="col-md-2"  ng-repeat="party in parties">
             <div class="form-group">
-              <div class="preview-img"><img  ngf-thumbnail="party.image" ng-model="party" ng-click="getParty(party, $index)"> </div>
-              <i  class="fa fa-check check-selected" ng-if="party.selectItem" aria-hiden="true"></i>
+              <div class="preview-img"><img  ng-src="{{party.image}}" ng-model="candidate.party" ng-click="getParty(party, $index)"> </div>
+              <i  class="fa fa-check  selected-item" ng-if="party.selectItem" aria-hiden="true"></i>
             </div>
           </div><!--end col -->
 
-          <div class="col-md-4">
+        </div><!--end row -->
+
+        <!--home row -->
+        <div class="row no-margin">
+          <div class="col-md-2">
             <div class="form-group">
               <div class="preview-img"> <img ngf-thumbnail="candidate.img"></div>
               <div class="button-avatar">
@@ -80,40 +84,35 @@
                   ngf-max-size="1MB" ngf-min-height="150"
                   ngf-resize="{width: 150, height: 150}">Image candidate</div>
               </div>
-              <i class="fa fa-check check-request" ng-if="requestImage.status==200" aria-hiden="true"></i>
+              <i class="fa fa-check check-request check-selected" ng-if="requestImage.status==200" aria-hiden="true"></i>
             </div>
           </div><!--end col -->
 
-        </div><!--end row -->
+          <div class="col-md-10">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group-md">
+                <div class="form-group">
+                  <label for="label-nombre" class="col-md-6">Name: </label>
+                  <input type="text" class="form-control col-md-6" placeholder="Name" ng-model="candidate.name"/>
+                </div>
 
-        <!--home row -->
-        <div class="row no-margin">
-          <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 form-group-md">
-              <div class="form-group">
-                <label for="label-nombre" class="col-md-6">Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Name" ng-model="candidate.name"/>
-              </div>
+                <div class="form-group">
+                  <label for="label-last-name" class="col-md-6">First Last Name: </label>
+                  <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.first_last_name"/>
+                </div>
 
-              <div class="form-group">
-                <label for="label-last-name" class="col-md-6">First Last Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.first_last_name"/>
-              </div>
+                <div class="form-group">
+                  <label for="label-second-name" class="col-md-6">Second Last Name: </label>
+                  <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.second_last_name" />
+                </div>
 
-              <div class="form-group">
-                <label for="label-second-name" class="col-md-6">Second Last Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.second_last_name" />
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-6"> <label for="genere">Gender:</label></div>
-                <div class="col-md-6">
-                  <div class="radio"><label><input type="radio" ng-model="candidate.gender" value="1">Female</label></div>
-                  <div class="radio"><label> <input type="radio" ng-model="candidate.gender" value="2">Masculine </label></div>
-                </div><!--end col -->
-              </div>
-          </div><!--end col -->
-
-          <div class="col-md-7">
+                <div class="form-group">
+                  <div class="col-md-6"> <label for="genere">Gender:</label></div>
+                  <div class="col-md-6">
+                    <div class="radio"><label><input type="radio" ng-model="candidate.gender" value="1">Female</label></div>
+                    <div class="radio"><label> <input type="radio" ng-model="candidate.gender" value="2">Masculine </label></div>
+                  </div><!--end col -->
+                </div>
+            </div><!--end col -->
             <textarea class="form-control" placeholder="Propuestas" rows="8" cols="80" ng-model="candidate.proposal" required=""></textarea>
           </div><!--end col -->
         </div><!--end row -->

@@ -26,7 +26,8 @@
 
  <div id="page-content-wrapper">
     <div class="container-fluid">
-        <table datatable="" class="row-border hover">
+      <div class="form-group"> <label>Select Election: </label><select ng-options="election.election_day for election in elections" ng-model="election" class="form-control"></select><div>
+        <table  class=" table row-border hover">
           <thead>
             <tr>
               <th>FullName</th>
@@ -34,18 +35,16 @@
               <th>Canton</th>
               <th>District</th>
               <th>Party</th>
-              <th>Election Date</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="candidate in candidates">
+            <tr ng-repeat="candidate in election.candidates">
                 <td>{{candidate.name +" " + candidate.first_last_name + " " + candidate.second_last_name}}</td>
                 <td>{{candidate.province.description}}</td>
                 <td>{{candidate.province.canton.description}}</td>
                 <td>{{candidate.province.district.description}}</td>
                 <td>{{candidate.party.description}}</td>
-                <td>{{candidate.initial_election.date +' '+ candidate.final_election.date}}</td>
                 <td>
                   <button class="btn btn-success" ng-click="editItem($index,candidate)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                   <button class="btn btn-danger" ng-click="confirmationDelete($index,candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
@@ -53,7 +52,7 @@
             </tr>
           </tbody>
         </table>
-        
+
     </table>
       </div>
     </div>

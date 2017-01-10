@@ -1,15 +1,17 @@
 //'use strict';
 
-var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' , 'serviceProvince', 'serviceParty', 'ngFileUpload']);
+var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' , 'serviceProvince', 'serviceParty', 'ngFileUpload', 'serviceElection' ]);
 
-app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$timeout', 'DTOptionsBuilder', 'DTColumnBuilder', function($scope, $http, $uibModal, $timeout, DTOptionsBuilder, DTColumnBuilder)
+app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$timeout', 'DTOptionsBuilder', 'DTColumnBuilder', 'election', function($scope, $http, $uibModal, $timeout, DTOptionsBuilder, DTColumnBuilder, election)
 {
   var that = $scope;
   that.candidates = [];
   that.response = {};
-  $http.get('/api/canditates').success( function (data)
+  that.elections = [];
+
+  election.getElection().then(function(data)
   {
-      that.candidates = data;
+    that.elections = data;
   });
 
   $scope.deleteItem = function (index,candidate)

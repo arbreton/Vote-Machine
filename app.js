@@ -28,7 +28,7 @@ mongoose.connect('mongodb://localhost:27017/mean-database',options, function(err
 
 require('./models/citizens');
 require('./config/passport');
-require('./models/Candidate');
+require('./models/Election');
 require('./models/Province');
 require('./models/Parties');
 require('./models/Election');

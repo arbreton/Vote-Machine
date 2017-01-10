@@ -17,7 +17,8 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   that.request = {};
   that.requestImage = {};
   that.candidates = [{}];
-  that.election_day_text = {};
+  that.election_day = {};
+  that.electionCandidate = {};
   that.popup = { opened: false };
 
   party.getParties().then(function (data)
@@ -27,44 +28,57 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
 
   election.getElection().then(function(data)
   {
-    that.elections = data;
+    /*data.map(function (item)
+    {*/
+        that.elections = data;
+    //});
+
   });
 
   $scope.getParty = function (value, index)
   {
-    that.itemPrevious = index;
-    that.item;
-      if(that.itemPrevious == index)
+    that.indexPrevious;
+    if(that.parties[index].selectItem == undefined)
+    {
+      that.parties[index].selectItem = true;
+    //  $scope.addPartyCandidate(value, index);
+      if(that.indexPrevious != undefined)
       {
-        if(that.item ==undefined)
-        {
-          that.parties[that.itemPrevious].selectItem = true;
-          that.item = that.itemPrevious;
-        }
-        else {
-          that.parties[index].selectItem = true;
-          that.parties[that.item].selectItem = false;
-        }
+        that.parties[that.indexPrevious].selectItem = false;
+        that.indexPrevious = index;
+        $scope.addPartyCandidate(value, index);
       }
-      else {
-        that.parties[that.itemPrevious].selectItem = false;
+      else
+      {
+        that.indexPrevious = index;
       }
-
+    }
+    else
+    {
+      if(that.parties[index] == that.indexPrevious)
+      {
+        that.parties[index].selectItem = true;
+        $scope.addPartyCandidate(value, index);
+      }
+      else
+      {
+        that.parties[that.indexPrevious].selectItem = false;
+        that.parties[index].selectItem = true;
+        that.indexPrevious = index;
+        $scope.addPartyCandidate(value, index);
+      }
+    }
+  };
+  $scope.addPartyCandidate = function (value, index)
+  {
+    that.candidates[index].party = value;
   };
   $scope.open = function()
   {
     $scope.popup.opened = true;
   };
 
-  $scope.getDate = function ()
-  {
-    var d = new Date();
-   var h = d.getHours();
-   var m = d.getMinutes();
-   var s = d.getSeconds();
-   var hour = h + ":" + m + ":" + s;
-    return that.election_day_text  = $('#election_day').val();
-  };
+
   province.getProvinces().then(function (data)
   {
     that.provinces = data
@@ -134,14 +148,10 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   }
   $scope.saveItem = function ()
   {
-    var c = that.candidates.map(function (obj, index)
-    {
-         that.candidates[index].initial_election = that.initial_election
-         that.candidates[index].final_election = that.final_election;
-         that.candidates[index].election_day = $scope.getDate();
-    });
-    c= that.candidates;
-    $http.post('api/candidate', c).success(function(data)
+    that.electionCandidate.candidates = that.candidates;
+    that.electionCandidate.election = that.election_day._id;
+
+    $http.post('api/candidate', that.electionCandidate).success(function(data)
     {
       that.request = data;
       $timeout(function (){$('.success-request-fixed').show().delay(2000).fadeOut(); },100);
