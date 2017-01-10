@@ -10,7 +10,7 @@ var electionSchema = new Schema({
 
  election_day: Date,
 
- votes: [{name:String,gender:String,provinceCode:String,age: Number,hour:String,ethnicity:String}],
+ votes: [{name:String,gender:String,province_code:String,age: Number,hour:String,ethnic_group:String}],
 
  candidates: [{
 

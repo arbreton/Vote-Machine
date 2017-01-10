@@ -189,14 +189,14 @@ function($http,$window, $location) {
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
-			return payload.provinceCode;
+			return payload.province_code;
 		}
 	};
-	auth.currentEthnicity = function() {
+	auth.currentethnic_group = function() {
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
-			return payload.ethnicity;
+			return payload.ethnic_group;
 		}
 	};
 

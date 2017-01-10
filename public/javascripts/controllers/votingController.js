@@ -5,8 +5,8 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
         $scope.voteInfo.citizen_id=auth.currentID();
         $scope.voteInfo.BD=auth.currentBD();
         $scope.voteInfo.gender=auth.currentGender();
-        $scope.voteInfo.provinceCode=auth.currentProvince();
-        $scope.voteInfo.ethnicity=auth.currentEthnicity();
+        $scope.voteInfo.province_code=auth.currentProvince();
+        $scope.voteInfo.ethnic_group=auth.currentethnic_group();
         $scope.today = new Date();
         $scope.nowyear = $scope.today.getFullYear();
         $scope.voteInfo.age=parseInt($scope.nowyear)-parseInt($scope.voteInfo.BD.substring(0,4));
