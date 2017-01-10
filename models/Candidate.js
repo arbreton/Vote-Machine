@@ -13,8 +13,7 @@ var candidateSchema = new Schema({ //Propiedades de mi schema
     initial_election: {id: String,  date: String},
     final_election: {id: String,  date: String},
     party: { _id: String, description: String, image: String },
-    province: { id: String, description: String, district:{ id: String, description: String}, canton: {id: String, description: String} },
-    votes: [{gender:String,provinceCode:String,age: Number,hour:String,ethnicity:String}]
+    province: { id: String, description: String, district:{ id: String, description: String}, canton: {id: String, description: String} }
 });
 
 //exportar el modelo
