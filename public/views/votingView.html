@@ -27,6 +27,7 @@
 	<!--First to third presidential candidates-->
 	<div class="row" ng-show="isLoggedIn()" ng-controller="AdminController">
 	<center class="electionType">Presidential Elections</center>
+	<hr>
 		<!--Spacing column -->
 		<div class="col-md-3">
 		</div>
@@ -187,15 +188,19 @@
 		</div>
 		
 		<!-- Other-->
-		<div class="col-md-6">
-		<button class="btn-info" ng-click="showOther()">Other</button>
-		<input ng-show="otherCandidate" type="text" height="40px" style="width: 300px;height: 68px">
-
+		<div class = "other-vote">
+		<h3><center>Independent candidate name</center><h3>
+		<div class="col-xs-offset-2">
+		<input type="text">
+		</div>
 		</div>
 
 		<!-- Null vote-->
-		<div class="col-md-3">
-		<button class="btn-info" ng-click="nullvote()">Null Vote</button>
+		<div class = "null-vote">
+		<h3><center>Null vote</center></h3>
+		<center><div class="col-xs-offset-1 col-md-3">
+		<button class="btn-info" ng-click="nullvote()">Null Vote</button></center>
+		</div>
 		</div>
 		
 		

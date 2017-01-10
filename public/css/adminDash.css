@@ -51,7 +51,7 @@ hr {
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #eaeaea;
+    background: #101010;
     top:52px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -95,7 +95,7 @@ hr {
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #ffffff;
 }
 
 .sidebar-nav li a:hover {
@@ -117,7 +117,7 @@ hr {
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #fff;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {

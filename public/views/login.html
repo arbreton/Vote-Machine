@@ -1,44 +1,50 @@
+<style>
+body{
+   background-image: url(../images/voteimg.jpg);
+}
+h1,label{
+ color: black;
+}
+</style>
 <center>
-    <div class="page-header">
-     <img src="../images/LogoVM.png" height = "100">
-    </div>
-    <div ng-show="error" class="alert alert-danger row">
-      <span>{{ error.message }}</span>
-    </div>
+  <div ng-show = "error" class = "alert alert-danger row">
+    <span>{{ error.message }}</span>
+  </div>
 
-    <form ng-submit="logIn()" 
-    style="margin-top:30px; margin-left: 400px; margin-right: 100px;">
-    <!--glyphicon user-->
-        <h1 span class = "glyphicon glyphicon-user" style = "color:#283E51"></h1></span>
-      <!--div for username form-->
-      <div class = "form-horizontal">
+  <form ng-submit = "logIn()">
+
+  <div class = "login-form">
+    <img src="../images/LogoVM.png" height = "100">
+    <h1><center>Please login</center></h1>
+    <div class = "form-horizontal">
       <div class="form-group">
-        <label for = "inputuser" class = "col-sm-2 control-label">Username</label>
-        <div class= "col-sm-6">
+        <label for = "inputuser" class = "col-sm-4 control-label">Electoral code</label>
+        <br>
+        <div class= "col-xs-offset-1 col-sm-10">
         <input type="text"
         class="form-control"
-        placeholder="Username"
+        placeholder="Electoral code"
         ng-model="user.username"></input>
       </div>
       </div>
-      <!--glyphicon lock-->
-        <h1 span class="glyphicon glyphicon-lock" style = "color: #283E51"></h1></span>
-      <!--div for password form-->
       <div class = "form-horizontal">
       <div class="form-group">
-        <label for = "inputPassword" class = "col-sm-2 control-label">Password</label>
-        <div class="col-sm-6">
+        <label for = "inputPassword" class = "col-xs-offset-1 col-sm-2 control-label">Password</label>
+        <br>
+        <div class="col-xs-offset-1 col-sm-10">
         <input type="password"
         class="form-control"
         placeholder="Password"
         ng-model="user.password"></input>
       </div>
       </div>
-      <!--div for submit button-->
       <div class="form-group">
         <div class="col-xs-offset-3 col-sm-4">
          <button type="submit" class="btn btn-primary">Log In</button>
         </div>
       </div>
-    </form>
+      </div>
+  </div>
+  </div>
+  </form>
 </center>
