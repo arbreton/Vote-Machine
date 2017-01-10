@@ -236,10 +236,11 @@ app.post('/citizens', function(req, res) {
 
 
 
-            ]).exec(function(err, citizen) {
+            ]).exec(function(err, election) {
             if (err)
                 res.send(err);
-            res.json(citizen);
+            console.log(election);
+            res.json(election);
         });
 
 
