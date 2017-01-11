@@ -47,8 +47,12 @@
             <p>Late</p>
         </div>
         <div class="buttonlabel">
-            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Genders')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
-            <p>Disctricts</p>
+            <button type="button" class="btn btn-default smallbutton" ng-click="showChart('Interactive')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+            <p>Interactive</p>
+        </div>
+        <div class="buttonlabel">
+            <button type="button" class="btn btn-default smallbutton" ng-click="startCharts()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+            <p>Start</p>
         </div>
 
        <hr>
@@ -91,7 +95,7 @@
   </div>
 
  <script type="text/javascript">
- generalChartFunction();
+ 
   function generalChartFunction(){
  //$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
   $.ajax({url:"http://localhost:3000/api/elections/graph/votes",dataType:"json"})
@@ -337,7 +341,7 @@ $.ajax({url:"http://localhost:3000/api/elections/graph/votes/19",dataType:"json"
   .done(function(data){
   var myData = (data);
   loader5.style.visibility = "hidden";
-  genderChartFunction();
+  generalChartFunction();
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
        return obj[property];
@@ -390,13 +394,13 @@ console.log(data)
  </script>
 
   <script type="text/javascript">
-  function genderChartFunction(){
+  function interactiveChartFunction(){
 $.ajax({url:"http://localhost:3000/api/elections/graph/ethnic_group",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
   loader6.style.visibility = "hidden";
-  generalChartFunction();
+  
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
        return obj[property];
@@ -447,3 +451,5 @@ console.log(data)
  //}  
  }); }
  </script>
+
+

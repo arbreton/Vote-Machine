@@ -6,6 +6,9 @@ app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','
         $scope.earlyChart=false;
         $scope.lateChart=false;
         $scope.genderChart=false;
+        $scope.startCharts=function(chart){
+            generalChartFunction();
+        };
         $scope.showChart = function(chart) {
             switch(chart)
             {
@@ -57,6 +60,15 @@ app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','
                 $scope.lateChart=false;
                 $scope.genderChart=true;
                 break;
+                case 'Interactive':
+                $scope.generalChart=false;
+                $scope.hourChart=false;
+                $scope.ageChart=false;
+                $scope.earlyChart=false;
+                $scope.lateChart=false;
+                $scope.genderChart=true;
+                break;
+
                 default:
                 break;
 
