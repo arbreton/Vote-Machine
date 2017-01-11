@@ -36,7 +36,7 @@
  		 	
 			<div ng-show="candpres1">
 				<div id="container">
-    				<div id="main_image"><img class="candidate" src="{{cand1img}}" style = "border: 10px solid white;" id = "img1"></div>
+    				<div id="main_image"><img class="candidate" src="{{cand1img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part1img}}"></div>
 				</div>
 				
@@ -53,7 +53,7 @@
         		<span ng-show="cand1"></span>
 
 
-        		<button class="btn-primary" ng-click="confirmationVote(1,display_name_candidate1)" ng-bind="msgPresCand1" onclick= "document.getElementById('img1').style.borderColor='#4B79A1';"></button>
+        		<button class="btn-primary" ng-click="confirmationVote(1,display_name_candidate1)" ng-bind="msgPresCand1" id = "img1"></button>
 
         	</div>
         	</div>
