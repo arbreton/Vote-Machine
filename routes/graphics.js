@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose'); 
 var Citizen=mongoose.model('Citizen'); //get Citizen model
+var Election=mongoose.model('Election');
 var app = express();  // get an instance of the express Router
 
 

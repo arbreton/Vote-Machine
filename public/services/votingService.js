@@ -12,6 +12,10 @@ app.factory('Vote', ['$http', function($http){
 	o.addVote = function(voteInfo) {
 		return $http.put('/api/citizens/'+voteInfo.id,voteInfo);
 	};
-
+	o.getElectionData=function(){
+		return $http.get('/api/currentElection2').then(function(res){
+			return res.data;
+		})
+	};
 	return o;
 }]);

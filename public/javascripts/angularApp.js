@@ -175,6 +175,34 @@ function($http,$window, $location) {
 			return payload._id;
 		}
 	};
+	auth.currentBD = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+			return payload.birth_date;
+		}
+	};
+	auth.currentGender = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+			return payload.gender;
+		}
+	};
+	auth.currentProvince = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+			return payload.province_code;
+		}
+	};
+	auth.currentethnic_group = function() {
+		if (auth.isLoggedIn()) {
+			var token = auth.getToken();
+			var payload = JSON.parse($window.atob(token.split('.')[1]));
+			return payload.ethnic_group;
+		}
+	};
 
 	auth.register = function(user) {
 		return $http.post('/register', user).success(function(data) {
@@ -280,6 +308,11 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 	$scope.voteNow = function()
 	{
 			$location.url("/voting");
+	};
+
+	$scope.showElection = function ()
+	{
+		$location.url("/admin/election");
 	};
 
 
