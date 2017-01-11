@@ -351,6 +351,22 @@ app.post('/citizens', function(req, res) {
        });
 
    })
+.get('/elections/graph/ethnic_group',function(req, res) {
+       Election.aggregate(
+           [
+           {$match: { "election_day": new Date("2017-01-10T00:00:00.000Z")}},
+            {$unwind:"$votes"},
+           { $group: { _id: '$votes.ethnic_group' ,Women_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] }},
+           Men_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+           { $sort: {"_id":+1}},
+
+           ]).exec(function(err, citizen) {
+           if (err)
+               res.send(err);
+           res.json(citizen);
+       });
+
+   })
 
 //age
 .get('/citizens/graph/age',function(req, res) {
