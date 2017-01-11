@@ -35,6 +35,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
 
         $scope.part1img="https://pac.cr/wp-content/uploads/2015/05/pac15_y1.png";
         Vote.getElectionData().then(function(data){
+            
             $scope.electionInfo=data;   
             $scope.voteInfo.election_id=$scope.electionInfo[0]._id;
             if($scope.electionInfo.length>0){
@@ -133,8 +134,10 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
             Vote.getElectionUserData($scope.temporalItem).then(function(data){
                 console.log(data);
                 if(data.length>0){
+                    
                     $window.alert("You have already voted and will be disconected");
-                    auth.logOut();
+                    auth.logOut();;
+                    
                 }
             });
         });

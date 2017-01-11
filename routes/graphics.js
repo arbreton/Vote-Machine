@@ -219,6 +219,33 @@ app.post('/citizens', function(req, res) {
 
     })
 
+//Votes per hour for candidate
+.get('/elections/graph/votes/:time',function(req, res) {
+        Election.aggregate(
+            [{ $match: { "election_day": new Date("2017-01-10T00:00:00.000Z")}},
+                
+                {$unwind:"$votes"},
+
+
+            {$match:{"votes.hour": req.params.time}},
+            { $group: { _id: "$votes.name",Women_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] }},
+            Men_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+
+            { $sort: {"Total":-1}},
+            {$limit:5}
+
+
+
+            ]).exec(function(err, election) {
+            if (err)
+                res.send(err);
+            console.log(election);
+            res.json(election);
+        });
+
+
+    })
+
 //Districts that vote early
 .get('/citizens/graph/vote',function(req, res) {
         Citizen.aggregate(
@@ -260,6 +287,86 @@ app.post('/citizens', function(req, res) {
 
 
     })
+
+.get('/elections/graph/gender/time',function(req, res) {
+        Election.aggregate(
+            [{ $match: { "election_day": new Date("2017-01-10T00:00:00.000Z")}},
+                
+                {$unwind:"$votes"},
+            { $group: { _id: "$votes.hour",Women_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] }},
+            Men_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] }}}},
+
+            { $sort: {"_id":+1}}
+            //{$limit:5}
+
+
+
+            ]).exec(function(err, citizen) {
+            if (err)
+                res.send(err);
+            res.json(citizen);
+        });
+
+
+    })
+
+.get('/elections/graph/votes',function(req, res) {
+        Election.aggregate(
+            [
+            { 
+                $match: { "election_day": new Date("2017-01-10T00:00:00.000Z")}},
+                
+                {$unwind:"$votes"},
+            { $group: { _id: "$votes.name",Women_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] }},
+            Men_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+
+            { $sort: {"Total":-1}},
+           
+
+
+
+            ]).exec(function(err, election) {
+            if (err)
+                res.send(err);
+            console.log(election);
+            res.json(election);
+        });
+
+
+    })
+
+.get('/elections/graph/age',function(req, res) {
+       Election.aggregate(
+           [
+           {$match: { "election_day": new Date("2017-01-10T00:00:00.000Z")}},
+            {$unwind:"$votes"},
+           { $group: { _id: '$votes.age' ,Women_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] }},
+           Men_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+           { $sort: {"_id":+1}},
+
+           ]).exec(function(err, citizen) {
+           if (err)
+               res.send(err);
+           res.json(citizen);
+       });
+
+   })
+.get('/elections/graph/ethnic_group',function(req, res) {
+       Election.aggregate(
+           [
+           {$match: { "election_day": new Date("2017-01-10T00:00:00.000Z")}},
+            {$unwind:"$votes"},
+           { $group: { _id: '$votes.ethnic_group' ,Women_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] }},
+           Men_Total:{ $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] }},Total:{ $sum: 1}}},
+           { $sort: {"_id":+1}},
+
+           ]).exec(function(err, citizen) {
+           if (err)
+               res.send(err);
+           res.json(citizen);
+       });
+
+   })
 
 //age
 .get('/citizens/graph/age',function(req, res) {

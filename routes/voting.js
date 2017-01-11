@@ -81,7 +81,7 @@ app.post('/citizens', function(req, res) {
             var voteItem={};
             voteItem.name=req.body.name;
             voteItem.gender=req.body.gender;
-            voteItem.provinceCode=req.body.provinceCode;
+            voteItem.province_code=req.body.province_code;
             voteItem.age=req.body.age;
             voteItem.hour=req.body.hour;
             voteItem.ethnicity=req.body.ethnicity;
