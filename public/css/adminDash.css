@@ -207,10 +207,10 @@ hr {
    font-size: 70px !important;
 }
 
-h3.info-poeple{
+.info-poeple > h3{
 color:#fff;
 }
 
-h4.info-poeple{
+.info-poeple > h4{
     color:#fff;
 }
