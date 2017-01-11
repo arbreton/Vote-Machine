@@ -1,16 +1,22 @@
 'use strict'
 var app = angular.module('election', ['ui.bootstrap', 'datatables', 'serviceElection']);
 
-app.controller('electionController', ['$scope', '$http' ,'election', function ($scope, $http ,election)
+app.controller('electionController', ['$scope', '$http' ,'election', '$filter', '$timeout', function ($scope, $http ,election, $filter, $timeout)
 {
   var that = $scope;
   that.election = {};
   that.elections = [];
-  that.popup = { from: false, to: false, day: false };
-    $scope.inlineOptions = {
+  that.status = {};
+  $scope.date;
+  that.popup = {
+    from: false,
+    to: false,
+    day: false
+  };
+  $scope.inlineOptions = {
     customClass: getDayClass,
     minDate: new Date(),
-    showWeeks: true
+    showWeeks: true,
   };
   election.getElection().then(function (data)
   {
@@ -26,9 +32,25 @@ app.controller('electionController', ['$scope', '$http' ,'election', function ($
     that.popup.to = true;
   };
 
-  $scope.openDay = function ()
+  $scope.openDay = function()
   {
     that.popup.day = true;
+  };
+
+  //get election day and y compare with date selected
+  $scope.select = function (date)
+  {
+    var selectDate = $filter('date')(new Date(date), 'yyyy-MM-dd');
+    that.elections.map(function (item)
+    {
+        if(item.electionDay === selectDate)
+        {
+          return that.status.electionDay = true break; 
+        }
+        else {
+          return that.status.electionDay = false;
+        }
+    });
   };
 
   $scope.saveItem = function()
@@ -37,7 +59,8 @@ app.controller('electionController', ['$scope', '$http' ,'election', function ($
     {
       if(data.status = 200)
       {
-        console.log('test')
+        that.status.request = true;
+        $timeout(function (){$('.success-request-fixed').show().delay(2000).fadeOut(); },100);
       }
     });
   };
