@@ -10,7 +10,7 @@ app.controller('electionController', ['$scope', '$http' ,'election', function ($
     $scope.inlineOptions = {
     customClass: getDayClass,
     minDate: new Date(),
-    showWeeks: true
+    showWeeks: true,
   };
   election.getElection().then(function (data)
   {
@@ -30,6 +30,10 @@ app.controller('electionController', ['$scope', '$http' ,'election', function ($
   {
     that.popup.day = true;
   };
+  $scope.select = function (date)
+  {
+    console.log(date)
+  }
 
   $scope.saveItem = function()
   {
