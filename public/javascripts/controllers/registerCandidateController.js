@@ -28,12 +28,9 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
 
   election.getElection().then(function(data)
   {
-    /*data.map(function (item)
-    {*/
         that.elections = data;
-    //});
-
   });
+
 
   $scope.getParty = function (value, index)
   {

@@ -10,12 +10,21 @@ app.factory('election', ['$http', '$filter', function($http, $filter)
       res.data.map(function(item)
       {
         item._id = item._id;
-        item.election_day = $filter('date')(new Date(item.election_day), 'yyyy-MM-dd');
-        item.final_election = $filter('date')(new Date(item.final_election), 'yyyy-MM-dd');
-        item.initial_election = $filter('date')(new Date(item.initial_election), 'yyyy-MM-dd');
+        item.electionDay = $filter('date')(new Date(item.electionDay), 'yyyy-MM-dd');
+        item.finalElection = $filter('date')(new Date(item.finalElection), 'yyyy-MM-dd');
+        item.initialElection = $filter('date')(new Date(item.initialElection), 'yyyy-MM-dd');
       });
        return res.data;
     });
+  }; //end funcion getElection
+
+  this.election.filterElection = function (elections, selectDate)
+  {
+    elections.filter(function(item)
+    {
+      return item.electionDay == selectDate;
+    });
+    return elections;
   };
   return this.election;
 }]);

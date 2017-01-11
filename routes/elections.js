@@ -12,9 +12,9 @@ app.route('/election')
   })
   .post( function (req, res){
     var election = new Election();
-    election.initial_election = req.body.initial_election;
-    election.final_election = req.body.final_election;
-    election.election_day = req.body.election_day;
+    election.initialElection = req.body.initialElection;
+    election.finalElection = req.body.finalElection;
+    election.electionDay = req.body.electionDay;
     election.save( function(err)
     {
       if(err){ res.json({status:500, message: 'Error saved the register'});}

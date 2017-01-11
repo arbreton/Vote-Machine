@@ -29,7 +29,7 @@
           <div class="col-md-7">
               <div class="form-group">
                 <label for="fecha-eleccion">Election: </label>
-                <select class="form-control" ng-options="election.election_day for election in elections"  ng-model="election_day" required=""></select>
+                <select class="form-control" ng-options="election.electionDay for election in elections"  ng-model="electionDay" required=""></select>
               </div>
           </div>
 
@@ -97,12 +97,12 @@
 
                 <div class="form-group">
                   <label for="label-last-name" class="col-md-6">First Last Name: </label>
-                  <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.first_last_name"/>
+                  <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.firstLastName"/>
                 </div>
 
                 <div class="form-group">
                   <label for="label-second-name" class="col-md-6">Second Last Name: </label>
-                  <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.second_last_name" />
+                  <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.secondLastName" />
                 </div>
 
                 <div class="form-group">
