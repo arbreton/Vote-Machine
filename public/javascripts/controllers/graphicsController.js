@@ -1,4 +1,4 @@
-app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','$window','province', function($scope,Vote,$state,$filter,auth,$window,province){
+app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','$window', function($scope,Vote,$state,$filter,auth,$window){
 
         $scope.generalChart=true;
         $scope.hourChart=false;
@@ -7,11 +7,6 @@ app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','
         $scope.lateChart=false;
         $scope.genderChart=false;
         $scope.provinces={};
-
-        province.getProvinces().then(function (data)
-        {
-            that.provinces = data
-        });
 
         $scope.startCharts=function(chart){
             generalChartFunction();

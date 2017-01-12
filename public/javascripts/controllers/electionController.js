@@ -45,7 +45,8 @@ app.controller('electionController', ['$scope', '$http' ,'election', '$filter', 
     {
         if(item.electionDay === selectDate)
         {
-          return that.status.electionDay = true;
+          return that.status.electionDay = true; 
+
         }
         else {
           return that.status.electionDay = false;

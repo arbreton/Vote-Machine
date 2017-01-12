@@ -34,26 +34,26 @@
 		<!-- First presidential candidate data-->
  		<div class="col-md-3" ng-show="isLoggedIn()" ng-controller="AdminController">
  		 	
-			<div ng-show="candpres1">
+			<div ng-show="candPres1">
 				<div id="container">
     				<div id="main_image"><img class="candidate" src="{{cand1img}}" style = "border: 10px solid white;" id = "img1"></div>
     				<div id="overlay_image"><img class="party" src="{{part1img}}"></div>
 				</div>
 				
-    		<p class="CenterName" ng-bind="display_name_candidate1"></p>
+    		<p class="CenterName" ng-bind="displayNameCandidate1"></p>
     		
     		
         	<button class="btn-light" ng-click="show(1)">Campaign Promises</button>
         	<div>
         		<span ng-hide="cand1">
-        		<p ng-bind="prop1candpres1"></p>
-        		<p ng-bind="prop2candpres1"></p>
-        		<p ng-bind="prop3candpres1"></p>
+        		<p ng-bind="prop1candPres1"></p>
+        		<p ng-bind="prop2candPres1"></p>
+        		<p ng-bind="prop3candPres1"></p>
         		</span>
         		<span ng-show="cand1"></span>
 
 
-        		<button class="btn-primary" ng-click="confirmationVote(1,display_name_candidate1)" ng-bind="msgPresCand1" onclick= "document.getElementById('img1').style.borderColor='#4B79A1';"></button>
+        		<button class="btn-primary" ng-click="confirmationVote(1,displayNameCandidate1)" ng-bind="msgPresCand1" onclick= "document.getElementById('img1').style.borderColor='#4B79A1';"></button>
 
         	</div>
         	</div>
@@ -63,42 +63,42 @@
 
 		<!-- Second presidential candidate data -->
  		<div class="col-md-3" ng-show="isLoggedIn()" ng-controller="AdminController">
- 			<div ng-show="candpres2">
+ 			<div ng-show="candPres2">
 				<div id="container">
     				<div id="main_image"><img class="candidate" src="{{cand2img}}" style = "border: 10px solid white;" id = "img2"></div>
     				<div id="overlay_image"><img class="party" src="{{part2img}}"></div>
 				</div>
-    			<p class="CenterName" ng-bind="display_name_candidate2"></p>
+    			<p class="CenterName" ng-bind="displayNameCandidate2"></p>
         		<button class="btn-light" ng-click="show(2)">Campaign Promises</button>
         		<div>
         			<span ng-hide="cand2">
-        			<p ng-bind="prop1candpres2"></p>
-        			<p ng-bind="prop2candpres2"></p>
-        			<p ng-bind="prop3candpres2"></p>
+        			<p ng-bind="prop1candPres2"></p>
+        			<p ng-bind="prop2candPres2"></p>
+        			<p ng-bind="prop3candPres2"></p>
         			</span>
         			<span ng-show="cand2"></span>
-        			<button class="btn-primary" ng-click="confirmationVote(2,display_name_candidate2)" ng-bind="msgPresCand2"></button>
+        			<button class="btn-primary" ng-click="confirmationVote(2,displayNameCandidate2)" ng-bind="msgPresCand2"></button>
         		</div>
         	</div>
 		</div>
 
 		<!-- Third presidential candidate data -->
  		<div class="col-md-3" ng-show="isLoggedIn()" ng-controller="AdminController">
-			<div ng-show="candpres3">
+			<div ng-show="candPres3">
 				<div id="container">
     				<div id="main_image"><img class="candidate" src="{{cand3img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part3img}}"></div>
 				</div>
-	    		<p class="CenterName" ng-bind="display_name_candidate3"></p>
+	    		<p class="CenterName" ng-bind="displayNameCandidate3"></p>
 	        	<button class="btn-light" ng-click="show(3)">Campaign Promises</button>
 	        	<div>
 	        		<span ng-hide="cand3">
-	        		<p ng-bind="prop1candpres3"></p>
-	        		<p ng-bind="prop2candpres3"></p>
-	        		<p ng-bind="prop3candpres3"></p>
+	        		<p ng-bind="prop1candPres3"></p>
+	        		<p ng-bind="prop2candPres3"></p>
+	        		<p ng-bind="prop3candPres3"></p>
 	        		</span>
 	        		<span ng-show="cand3"></span>
-	        		<button class="btn-primary" ng-click="confirmationVote(3,display_name_candidate3)" ng-bind="msgPresCand3"></button>
+	        		<button class="btn-primary" ng-click="confirmationVote(3,displayNameCandidate3)" ng-bind="msgPresCand3"></button>
 	        	</div>
         	</div>
 		</div>
@@ -113,21 +113,21 @@
 		<!-- Fourth presidential candidate data -->
 		<div class="col-md-3" ng-show="isLoggedIn()" ng-controller="AdminController">
  		 	
-			<div ng-show="candpres4">
+			<div ng-show="candPres4">
 				<div id="container">
     				<div id="main_image"><img class="candidate" src="{{cand4img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part4img}}"></div>
 				</div>
-	    		<p class="CenterName" ng-bind="display_name_candidate4"></p>
+	    		<p class="CenterName" ng-bind="displayNameCandidate4"></p>
 	        	<button class="btn-light" ng-click="show(4)">Campaign Promises</button>
 	        	<div>
 	        		<span ng-hide="cand4">
-	        		<p ng-bind="prop1candpres4"></p>
-	        		<p ng-bind="prop2candpres4"></p>
-	        		<p ng-bind="prop3candpres4"></p>
+	        		<p ng-bind="prop1candPres4"></p>
+	        		<p ng-bind="prop2candPres4"></p>
+	        		<p ng-bind="prop3candPres4"></p>
 	        		</span>
 	        		<span ng-show="cand4"></span>
-	        		<button class="btn-primary" ng-click="confirmationVote(4,display_name_candidate4)" ng-bind="msgPresCand4"></button>
+	        		<button class="btn-primary" ng-click="confirmationVote(4,displayNameCandidate4)" ng-bind="msgPresCand4"></button>
 	        	</div>
         	</div>
         	<br>
@@ -137,21 +137,21 @@
 		<!-- Fifth presidential candidate data -->
 		<div class="col-md-3" ng-show="isLoggedIn()" ng-controller="AdminController">
  		 	
-			<div ng-show="candpres5">
+			<div ng-show="candPres5">
 				<div id="container">
     				<div id="main_image"><img class="candidate" src="{{cand5img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part5img}}"></div>
 				</div>
-	    		<p class="CenterName" ng-bind="display_name_candidate5"></p>
+	    		<p class="CenterName" ng-bind="displayNameCandidate5"></p>
 	        	<button class="btn-light" ng-click="show(5)">Campaign Promises</button>
 	        	<div>
 	        		<span ng-hide="cand5">
-	        		<p ng-bind="prop1candpres5"></p>
-	        		<p ng-bind="prop2candpres5"></p>
-	        		<p ng-bind="prop3candpres5"></p>
+	        		<p ng-bind="prop1candPres5"></p>
+	        		<p ng-bind="prop2candPres5"></p>
+	        		<p ng-bind="prop3candPres5"></p>
 	        		</span>
 	        		<span ng-show="cand5"></span>
-	        		<button class="btn-primary" ng-click="confirmationVote(5,display_name_candidate5)" ng-bind="msgPresCand5"></button>
+	        		<button class="btn-primary" ng-click="confirmationVote(5,displayNameCandidate5)" ng-bind="msgPresCand5"></button>
 	        	</div>
         	</div>
         	<br>
@@ -161,21 +161,21 @@
 		<!-- Sixth presidential candidate data -->
 		<div class="col-md-3" ng-show="isLoggedIn()" ng-controller="AdminController">
  		 	
-			<div ng-show="candpres6">
+			<div ng-show="candPres6">
 				<div id="container">
     				<div id="main_image"><img class="candidate" src="{{cand6img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part6img}}"></div>
 				</div>
-	    		<p class="CenterName" ng-bind="display_name_candidate6"></p>
+	    		<p class="CenterName" ng-bind="displayNameCandidate6"></p>
 	        	<button class="btn-light" ng-click="show(6)">Campaign Promises</button>
 	        	<div>
 	        		<span ng-hide="cand6">
-	        		<p ng-bind="prop1candpres6"></p>
-	        		<p ng-bind="prop2candpres6"></p>
-	        		<p ng-bind="prop3candpres6"></p>
+	        		<p ng-bind="prop1candPres6"></p>
+	        		<p ng-bind="prop2candPres6"></p>
+	        		<p ng-bind="prop3candPres6"></p>
 	        		</span>
 	        		<span ng-show="cand6"></span>
-	        		<button class="btn-primary" ng-click="confirmationVote(6,display_name_candidate6)" ng-bind="msgPresCand6"></button>
+	        		<button class="btn-primary" ng-click="confirmationVote(6,displayNameCandidate6)" ng-bind="msgPresCand6"></button>
 	        	</div>
         	</div>
         	<br>

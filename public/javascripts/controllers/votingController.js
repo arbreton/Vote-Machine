@@ -35,7 +35,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
 
         $scope.part1img="https://pac.cr/wp-content/uploads/2015/05/pac15_y1.png";
         Vote.getElectionData().then(function(data){
-            
+            console.log(data);
             $scope.electionInfo=data;   
             $scope.voteInfo.electionID=$scope.electionInfo[0]._id;
             if($scope.electionInfo.length>0){
@@ -43,8 +43,8 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                 if($scope.electionInfo[0].candidates.length>0){
                     $scope.candPres1 = true;
                     $scope.candidateName1=$scope.electionInfo[0].candidates[0].name;
-                    $scope.firstLastNameCandidate1=$scope.electionInfo[0].candidates[0].first_last_name;
-                    $scope.secondLastNameCandidate1=$scope.electionInfo[0].candidates[0].second_last_name;
+                    $scope.firstLastNameCandidate1=$scope.electionInfo[0].candidates[0].firstLastName;
+                    $scope.secondLastNameCandidate1=$scope.electionInfo[0].candidates[0].secondLastName;
                     $scope.displayNameCandidate1= $scope.candidateName1+" "+$scope.firstLastNameCandidate1;
                     $scope.partyCodeCandidate1=$scope.electionInfo[0].candidates[0].party.description;
                     $scope.partyCodeCandidate1=$scope.electionInfo[0].candidates[0].party.description;
@@ -59,8 +59,8 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                 if($scope.electionInfo[0].candidates.length>1){
                     $scope.candPres2 = true;
                     $scope.candidateName2=$scope.electionInfo[0].candidates[1].name;
-                    $scope.firstLastNameCandidate2=$scope.electionInfo[0].candidates[1].first_last_name;
-                    $scope.secondLastNameCandidate2=$scope.electionInfo[0].candidates[1].second_last_name;
+                    $scope.firstLastNameCandidate2=$scope.electionInfo[0].candidates[1].firstLastName;
+                    $scope.secondLastNameCandidate2=$scope.electionInfo[0].candidates[1].secondLastName;
                     $scope.displayNameCandidate2= $scope.candidateName2+" "+$scope.firstLastNameCandidate2;
                     $scope.partyCodeCandidate2=$scope.electionInfo[0].candidates[1].party.description;
                     $scope.partyCodeCandidate2=$scope.electionInfo[0].candidates[1].party.description;
@@ -73,8 +73,8 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                 if($scope.electionInfo[0].candidates.length>2){
                     $scope.candPres3 = true;
                     $scope.candidateName3=$scope.electionInfo[0].candidates[2].name;
-                    $scope.firstLastNameCandidate3=$scope.electionInfo[0].candidates[2].first_last_name;
-                    $scope.secondLastNameCandidate3=$scope.electionInfo[0].candidates[2].second_last_name;
+                    $scope.firstLastNameCandidate3=$scope.electionInfo[0].candidates[2].firstLastName;
+                    $scope.secondLastNameCandidate3=$scope.electionInfo[0].candidates[2].secondLastName;
                     $scope.displayNameCandidate3= $scope.candidateName3+" "+$scope.firstLastNameCandidate3;
                     $scope.partyCodeCandidate3=$scope.electionInfo[0].candidates[2].party.description;
                     $scope.partyCodeCandidate3=$scope.electionInfo[0].candidates[2].party.description;
@@ -87,8 +87,8 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                 if($scope.electionInfo[0].candidates.length>3){
                     $scope.candPres4 = true;
                     $scope.candidateName4=$scope.electionInfo[0].candidates[3].name;
-                    $scope.firstLastNameCandidate4=$scope.electionInfo[0].candidates[3].first_last_name;
-                    $scope.secondLastNameCandidate4=$scope.electionInfo[0].candidates[3].second_last_name;
+                    $scope.firstLastNameCandidate4=$scope.electionInfo[0].candidates[3].firstLastName;
+                    $scope.secondLastNameCandidate4=$scope.electionInfo[0].candidates[3].secondLastName;
                     $scope.displayNameCandidate4= $scope.candidateName4+" "+$scope.firstLastNameCandidate4;
                     $scope.partyCodeCandidate4=$scope.electionInfo[0].candidates[3].party.description;
                     $scope.partyCodeCandidate4=$scope.electionInfo[0].candidates[3].party.description;
@@ -101,8 +101,8 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                 if($scope.electionInfo[0].candidates.length>4){
                     $scope.candPres5 = true;
                     $scope.candidateName5=$scope.electionInfo[0].candidates[4].name;
-                    $scope.firstLastNameCandidate5=$scope.electionInfo[0].candidates[4].first_last_name;
-                    $scope.secondLastNameCandidate5=$scope.electionInfo[0].candidates[4].second_last_name;
+                    $scope.firstLastNameCandidate5=$scope.electionInfo[0].candidates[4].firstLastName;
+                    $scope.secondLastNameCandidate5=$scope.electionInfo[0].candidates[4].secondLastName;
                     $scope.displayNameCandidate5= $scope.candidateName5+" "+$scope.firstLastNameCandidate5;
                     $scope.partyCodeCandidate5=$scope.electionInfo[0].candidates[4].party.description;
                     $scope.partyCodeCandidate5=$scope.electionInfo[0].candidates[4].party.description;
@@ -115,8 +115,8 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                 if($scope.electionInfo[0].candidates.length>5){
                     $scope.candPres6 = true;
                     $scope.candidateName6=$scope.electionInfo[0].candidates[5].name;
-                    $scope.firstLastNameCandidate6=$scope.electionInfo[0].candidates[5].first_last_name;
-                    $scope.secondLastNameCandidate6=$scope.electionInfo[0].candidates[5].second_last_name;
+                    $scope.firstLastNameCandidate6=$scope.electionInfo[0].candidates[5].firstLastName;
+                    $scope.secondLastNameCandidate6=$scope.electionInfo[0].candidates[5].secondLastName;
                     $scope.displayNameCandidate6= $scope.candidateName6+" "+$scope.firstLastNameCandidate6;
                     $scope.partyCodeCandidate6=$scope.electionInfo[0].candidates[5].party.description;
                     $scope.partyCodeCandidate6=$scope.electionInfo[0].candidates[5].party.description;
