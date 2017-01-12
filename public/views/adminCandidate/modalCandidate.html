@@ -25,7 +25,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-canton">Canton: </label>
-                <select class="form-control" ng-options="canton.description for canton in cantones track by canton.id" ng-model="candidate.canton" ng-change="showDistricts(candidate.canton.districts)" required=""></select>
+                <select class="form-control" ng-options="canton.description for canton in provinces.cantones track by candidate.canton.id" ng-model="candidate.canton" ng-change="showDistricts(candidate.canton.districts)" required=""></select>
               </div>
             </div>
             <div class="col-md-4">
@@ -38,6 +38,15 @@
 
         <!--home row -->
         <div class="row form-group-select  label-modal">
+          <div class="col-md-3">
+            <div class="form-group text-center">
+              <div class="preview-img-modal"> <img ngf-thumbnail="candidate.img"> </div>
+              <div class="button-avatar">
+                <div ngf-select="uploadFile($file)" ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.img" ngf-min-width="150"  ngf-min-height="150"
+                ngf-resize="{width: 150, height: 150}">Select image</div>
+              </div>
+            </div>
+          </div><!--end col -->
           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
               <div class="form-group">
                 <label for="label-nombre" class="col-md-6">Name: </label>
@@ -46,12 +55,12 @@
 
               <div class="form-group">
                 <label for="label-last-name" class="col-md-6">First Last Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.first_last_name"/>
+                <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.firstLastName"/>
               </div>
 
               <div class="form-group">
                 <label for="label-second-name" class="col-md-6">Second Last Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.second_last_name" />
+                <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.secondLastName" />
               </div>
 
               <div class="form-group">
@@ -61,16 +70,6 @@
                   <div class="radio"><label> <input type="radio" ng-model="candidate.gender" value="2">Masculine </label></div>
                 </div><!--end col -->
               </div>
-          </div><!--end col -->
-
-          <div class="col-md-3">
-            <div class="form-group text-center">
-              <div class="preview-img-modal"> <img ngf-thumbnail="candidate.img"> </div>
-              <div class="button-avatar">
-                <div ngf-select="uploadFile($file)" ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.img" ngf-min-width="150"  ngf-min-height="150"
-                ngf-resize="{width: 150, height: 150}">Select image</div>
-              </div>
-            </div>
           </div><!--end col -->
         </div><!--end row -->
 

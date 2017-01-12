@@ -32,7 +32,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   });
 
 
-  $scope.getParty = function (value, index)
+  $scope.getParty = function (value, index, indexCandidate)
   {
     that.indexPrevious;
     if(that.parties[index].selectItem == undefined)
@@ -43,11 +43,12 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
       {
         that.parties[that.indexPrevious].selectItem = false;
         that.indexPrevious = index;
-        $scope.addPartyCandidate(value, index);
+        $scope.addPartyCandidate(value, indexCandidate);
       }
       else
       {
         that.indexPrevious = index;
+        $scope.addPartyCandidate(value, indexCandidate);
       }
     }
     else
@@ -55,20 +56,20 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
       if(that.parties[index] == that.indexPrevious)
       {
         that.parties[index].selectItem = true;
-        $scope.addPartyCandidate(value, index);
+        $scope.addPartyCandidate(value, indexCandidate);
       }
       else
       {
         that.parties[that.indexPrevious].selectItem = false;
         that.parties[index].selectItem = true;
         that.indexPrevious = index;
-        $scope.addPartyCandidate(value, index);
+        $scope.addPartyCandidate(value, indexCandidate);
       }
     }
   };
-  $scope.addPartyCandidate = function (value, index)
+  $scope.addPartyCandidate = function (value, indexCandidate)
   {
-    that.candidates[index].party = value;
+    that.candidates[indexCandidate].party = value;
   };
   $scope.open = function()
   {
@@ -106,6 +107,7 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   {
     that.candidates = [{}];
     that.requestImage = {};
+    that.select_item = { status:false};
   };
   $scope.restForm();
   $scope.uploadFile = function (file, index)
@@ -118,10 +120,10 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
     {
       $scope.addItemByIndex(index, resp.data);
       that.requestImage = resp;
-    }, function (resp)
-    {
-    }, function (evt)
-    {
+    },
+    function (resp){
+    },
+     function (evt){
     });
   };
 
@@ -146,12 +148,14 @@ app.controller('registerCandidateController', [ '$scope', '$http', 'Upload', '$t
   $scope.saveItem = function ()
   {
     that.electionCandidate.candidates = that.candidates;
-    that.electionCandidate.election = that.election_day._id;
-
+    that.electionCandidate.election = that.electionDay._id;
     $http.post('api/candidate', that.electionCandidate).success(function(data)
     {
       that.request = data;
-      $timeout(function (){$('.success-request-fixed').show().delay(2000).fadeOut(); },100);
+      $timeout(function ()
+      {
+        $('.success-request-fixed').show().delay(2000).fadeOut();
+      },100);
       $scope.clearItem();
     });
   };

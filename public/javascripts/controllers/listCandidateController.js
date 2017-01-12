@@ -2,13 +2,14 @@
 
 var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' , 'serviceProvince', 'serviceParty', 'ngFileUpload', 'serviceElection' ]);
 
-app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$timeout', 'DTOptionsBuilder', 'DTColumnBuilder', 'election', function($scope, $http, $uibModal, $timeout, DTOptionsBuilder, DTColumnBuilder, election)
+app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$timeout', 'DTOptionsBuilder', 'DTColumnBuilder', 'election', '$filter', function($scope, $http, $uibModal, $timeout, DTOptionsBuilder, DTColumnBuilder, election, $filter)
 {
   var that = $scope;
   that.candidates = [];
   that.response = {};
   that.elections = [];
-
+  that.dateNow = {};
+  that.dateNow = $filter('date')(new Date(), 'yyyy-MM-dd');
   election.getElection().then(function(data)
   {
     that.elections = data;
@@ -84,12 +85,11 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
   that.districts = [];
   that.candidate = item;
   that.candidate.img = item.image;
-  $('#election_day').text( $filter('date')(new Date(item.election_day), 'yyyy-MM-dd'));
-  that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
-  that.final_elections = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
   that.parties = [];
-  that.election_day = {};
-  that.popup = { opened: false };
+  that.popup =
+  {
+    opened: false
+  };
   party.getParties().then( function (data)
   {
     that.parties = data;
@@ -99,15 +99,6 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
     $scope.popup.opened = true;
   };
 
-  $scope.getDate = function ()
-  {
-    var d = new Date();
-   var h = d.getHours();
-   var m = d.getMinutes();
-   var s = d.getSeconds();
-   var hour = h + ":" + m + ":" + s;
-    return that.election_day_text  = $('#election_day').val();
-  };
   $scope.uploadFile = function (file)
   {
     if(file !='')

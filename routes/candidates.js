@@ -45,7 +45,14 @@ router.post('/candidate',function(req, res)
         req.body.candidates.forEach( function(item, index)
         {
           //info of candidate
-          var e = { province: { canton:{}, district: {} } };
+          var e = {
+            party: {} ,
+            province:
+            {
+              canton:{},
+              district: {}
+            }
+          };
           e.name = item.name;
           e.firstLastName = item.firstLastName;
           e.secondLastName = item.secondLastName;
@@ -54,9 +61,9 @@ router.post('/candidate',function(req, res)
           e.image = item.image;
           e.status = true;
           //province
-          /*e.party._id = item.party._id;
+          e.party._id = item.party._id;
           e.party.description = item.party.description;
-          e.party.image = item.party.image;*/
+          e.party.image = item.party.image;
           e.province.id = item.province.id;                                                                                                                                                                                                   5
           e.province.description = item.province.description;
           e.province.canton.id = item.canton.id;
