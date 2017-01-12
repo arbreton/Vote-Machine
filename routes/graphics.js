@@ -15,7 +15,7 @@ var app = express();  // get an instance of the express Router
 //Add a new citizen to the database
 app.post('/citizens', function(req, res) {
     var citizen = new Citizen();
-    citizen.electoral_code = req.body.electoral_code;
+    citizen.electoralCode = req.body.electoralCode;
     citizen.name=req.body.name;  // set the bears name (comes from the request)
     citizen.save(function(err) {
         if (err)
@@ -44,12 +44,12 @@ app.post('/citizens', function(req, res) {
     { 
         $group: { 
             _id: "$province.district", 
-            Men_Total: { $sum: 1 } 
+            menTotal: { $sum: 1 } 
         } 
     },
     { 
         $sort: 
-            { "Men_Total": -1 }
+            { "menTotal": -1 }
     },
     {
         $limit:
@@ -74,12 +74,12 @@ app.post('/citizens', function(req, res) {
     { 
         $group:{ 
             _id: "$province.district",
-            Women_Total: { $sum: 1 } 
+            womenTotal: { $sum: 1 } 
         }
     },
     { 
         $sort: 
-            { "Women_Total": -1 }
+            { "womenTotal": -1 }
     },
     ]).exec(function(err, citizen) {
         if (err)
@@ -95,13 +95,13 @@ app.post('/citizens', function(req, res) {
     { 
         $group: { 
             _id: "$province.district",
-            Women_Total: { $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] } },
-            Men_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] } }
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] } },
+            menTotal:{ $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] } }
         }
     },
     { 
         $sort: 
-            { "Women_Total": -1 }
+            { "womenTotal": -1 }
     },
     {
         $limit:
@@ -119,7 +119,7 @@ app.post('/citizens', function(req, res) {
     Election.aggregate([
     {  
         $match: 
-            { "election_day": new Date("2017-01-11T00:00:00.000Z") }
+            { "electionDay": new Date("2017-01-11T00:00:00.000Z") }
     },          
     {
         $unwind:
@@ -132,8 +132,8 @@ app.post('/citizens', function(req, res) {
     { 
         $group: { 
             _id: "$votes.name",
-            Women_Total: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
-            Men_Total: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
             Total: { $sum: 1 }
         }
     },
@@ -156,7 +156,7 @@ app.post('/citizens', function(req, res) {
     Election.aggregate([
     { 
         $match: 
-            { "election_day": new Date("2017-01-11T00:00:00.000Z") }
+            { "electionDay": new Date("2017-01-11T00:00:00.000Z") }
     },
     {
         $unwind:
@@ -165,8 +165,8 @@ app.post('/citizens', function(req, res) {
     { 
         $group: { 
             _id: "$votes.hour",
-            Women_Total: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2" ] } , 1, 0 ] } },
-            Men_Total: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1" ] } , 1, 0 ] } }
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2" ] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1" ] } , 1, 0 ] } }
         }
     },
     { 
@@ -185,7 +185,7 @@ app.post('/citizens', function(req, res) {
     Election.aggregate([
     { 
         $match: 
-            { "election_day": new Date("2017-01-11T00:00:00.000Z") }
+            { "electionDay": new Date("2017-01-11T00:00:00.000Z") }
     },
     {
         $unwind: 
@@ -194,8 +194,8 @@ app.post('/citizens', function(req, res) {
     { 
         $group: { 
             _id: "$votes.name",
-            Women_Total: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2" ] } , 1, 0 ] } },
-            Men_Total: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1" ] } , 1, 0 ] } },
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2" ] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1" ] } , 1, 0 ] } },
             Total: { $sum: 1 } 
         }
     },
@@ -216,7 +216,7 @@ app.post('/citizens', function(req, res) {
     Election.aggregate([
     {
         $match: 
-            { "election_day": new Date("2017-01-11T00:00:00.000Z") }
+            { "electionDay": new Date("2017-01-11T00:00:00.000Z") }
     },
     {
         $unwind:
@@ -225,8 +225,8 @@ app.post('/citizens', function(req, res) {
     { 
         $group: { 
             _id: '$votes.age',
-            Women_Total: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
-            Men_Total: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
             Total: { $sum: 1} 
         }
     },
@@ -242,11 +242,11 @@ app.post('/citizens', function(req, res) {
 })
 
 //Get the votes in an election by ethnic group
-.get('/elections/graph/ethnic_group',function(req, res) {
+.get('/elections/graph/ethnicGroup',function(req, res) {
     Election.aggregate([
     {
         $match: 
-            { "election_day": new Date("2017-01-11T00:00:00.000Z") }
+            { "electionDay": new Date("2017-01-11T00:00:00.000Z") }
     },
     {
         $unwind: 
@@ -254,9 +254,9 @@ app.post('/citizens', function(req, res) {
     },
     { 
         $group: { 
-            _id: '$votes.ethnic_group',
-            Women_Total: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2" ] } , 1, 0 ] } },
-            Men_Total: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1" ] } , 1, 0 ] } },
+            _id: '$votes.ethnicGroup',
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2" ] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1" ] } , 1, 0 ] } },
             Total: { $sum: 1 }
         }
     },
@@ -276,9 +276,9 @@ app.post('/citizens', function(req, res) {
     Citizen.aggregate([
     { 
         $group: { 
-            _id: { $substr: [ "$birth_date", 0, 4 ] },
-            Women_Total:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] } },
-            Men_Total: { $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] } },
+            _id: { $substr: [ "$birthDate", 0, 4 ] },
+            womenTotal:{ $sum: { $cond: [ { $eq: [ "$gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$gender", "1"] } , 1, 0 ] } },
             Total:{ $sum: 1} 
         } 
     },

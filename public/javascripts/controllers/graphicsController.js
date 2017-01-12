@@ -110,13 +110,13 @@ Array.prototype.mapProperty = function(property) {
    hidden: true,
 
    backgroundColor:"rgba(0, 0, 255, 0.5)",
-   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("menTotal") //actual value (which becomes the graph)
   },
   {
    label: "Women",
    hidden: true,
    backgroundColor:"rgba(253, 91, 232, 0.5)",
-   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("womenTotal") //actual value (which becomes the graph)
   }
   ,
   {
@@ -173,12 +173,12 @@ Array.prototype.mapProperty = function(property) {
    label: "Men",
 
    backgroundColor:"rgba(0, 0, 255, 0.5)",
-   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("menTotal") //actual value (which becomes the graph)
   },
   {
    label: "Women",
    backgroundColor:"rgba(253, 91, 232, 0.5)",
-   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("womenTotal") //actual value (which becomes the graph)
   }
        ]
   };
@@ -228,12 +228,12 @@ Array.prototype.mapProperty = function(property) {
    label: "Men",
 
    backgroundColor:"rgba(0, 0, 255, 0.5)",
-   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("menTotal") //actual value (which becomes the graph)
   },
   {
    label: "Women",
    backgroundColor:"rgba(253, 91, 232, 0.5)",
-   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("womenTotal") //actual value (which becomes the graph)
   }
        ]
   };
@@ -283,12 +283,12 @@ Array.prototype.mapProperty = function(property) {
        {
    label: "Men",
    backgroundColor:"rgba(0, 0, 255, 0.5)",
-   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("menTotal") //actual value (which becomes the graph)
   },
   {
    label: "Women",
    backgroundColor:"rgba(253, 91, 232, 0.5)",
-   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("womenTotal") //actual value (which becomes the graph)
   }
        ]
   };
@@ -339,12 +339,12 @@ Array.prototype.mapProperty = function(property) {
        {
    label: "Men",
    backgroundColor:"rgba(0, 0, 255, 0.5)",
-   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("menTotal") //actual value (which becomes the graph)
   },
   {
    label: "Women",
    backgroundColor:"rgba(253, 91, 232, 0.5)",
-   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("womenTotal") //actual value (which becomes the graph)
   }
        ]
   };
@@ -396,12 +396,12 @@ Array.prototype.mapProperty = function(property) {
        {
    label: "Men",
    backgroundColor:"rgba(0, 0, 255, 0.5)",
-   data : myData.mapProperty("Men_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("menTotal") //actual value (which becomes the graph)
   },
   {
    label: "Women",
    backgroundColor:"rgba(253, 91, 232, 0.5)",
-   data : myData.mapProperty("Women_Total") //actual value (which becomes the graph)
+   data : myData.mapProperty("womenTotal") //actual value (which becomes the graph)
   }
        ]
   };

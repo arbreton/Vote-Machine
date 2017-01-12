@@ -17,7 +17,7 @@ var app = express();  // get an instance of the express Router
 app.post('/citizens', function(req, res) {
     var citizen = new Citizen();
     var election= new Election();
-    citizen.electoral_code = req.body.electoral_code;
+    citizen.electoralCode = req.body.electoralCode;
     citizen.name=req.body.name;  
 
     citizen.save(function(err) {
@@ -34,7 +34,7 @@ app.post('/citizens', function(req, res) {
 	var to=new Date();
 	to.setHours(-8,0,0,0);
 	to.setDate(from.getDate()+1);
-    Election.find({'election_day':{$gte: from, $lt:to}}, function(err, election) {
+    Election.find({'electionDay':{$gte: from, $lt:to}}, function(err, election) {
         if (err)
             res.send(err);
         res.json(election);
@@ -51,7 +51,7 @@ app.post('/citizens', function(req, res) {
 	Election.aggregate(
     { 
         $match: 
-            { "election_day": from }
+            { "electionDay": from }
     }       
     ).exec(function(err, election) {
         if (err)
@@ -61,8 +61,8 @@ app.post('/citizens', function(req, res) {
 })
 
 //Get the current citizen info if he/she already voted in the selected election
-.get('/currentElection3/:election_id/:citizen_id',function(req, res) {
-	Citizen.find({'_id': req.params.citizen_id,'votes.electionID': req.params.election_id}, function(err, citizens) {
+.get('/currentElection3/:electionID/:citizenID',function(req, res) {
+	Citizen.find({'_id': req.params.citizenID,'votes.electionID': req.params.electionID}, function(err, citizens) {
         if (err)
             res.send(err);
         res.json(citizens);
@@ -70,16 +70,16 @@ app.post('/citizens', function(req, res) {
 })
 
 //Register a vote in an election
-.put('/elections/:election_id/:candidate_id/:citizen_id',function(req, res) {
+.put('/elections/:electionID/:candidateID/:citizenID',function(req, res) {
           
-    Election.findById(req.params.election_id, function(err, election) {
+    Election.findById(req.params.electionID, function(err, election) {
         if (err)
             return res.send(err);
         //Prepare data in an object to insert
         var voteItem={};
         voteItem.name=req.body.name;
         voteItem.gender=req.body.gender;
-        voteItem.province_code=req.body.province_code;
+        voteItem.provinceCode=req.body.provinceCode;
         voteItem.age=req.body.age;
         voteItem.hour=req.body.hour;
         voteItem.ethnicity=req.body.ethnicity;
@@ -96,14 +96,14 @@ app.post('/citizens', function(req, res) {
 })
 
 //Register that a citizen voted in an election
-.put('/elections/vote/:election_id/:candidate_id/:citizen_id',function(req, res) {
+.put('/elections/vote/:electionID/:candidateID/:citizenID',function(req, res) {
 	
-    Citizen.findById(req.params.citizen_id, function(err, citizen) {
+    Citizen.findById(req.params.citizenID, function(err, citizen) {
         if (err)
             res.send(err);
         //Prepare data in an object to insert
         var voteItem={};
-        voteItem.electionID=req.params.election_id;
+        voteItem.electionID=req.params.electionID;
         //Insert the vote
         citizen.votes.push(voteItem);
         //Save the vote

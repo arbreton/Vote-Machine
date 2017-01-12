@@ -164,7 +164,7 @@ function($http,$window, $location) {
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
-			return payload.electoral_code;
+			return payload.electoralCode;
 		}
 	};
 
@@ -179,7 +179,7 @@ function($http,$window, $location) {
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
-			return payload.birth_date;
+			return payload.birthDate;
 		}
 	};
 	auth.currentGender = function() {
@@ -193,14 +193,14 @@ function($http,$window, $location) {
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
-			return payload.province_code;
+			return payload.provinceCode;
 		}
 	};
-	auth.currentethnic_group = function() {
+	auth.currentEthnicGroup = function() {
 		if (auth.isLoggedIn()) {
 			var token = auth.getToken();
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
-			return payload.ethnic_group;
+			return payload.ethnicGroup;
 		}
 	};
 
@@ -254,12 +254,12 @@ function($scope, $location, auth, $window) {
 	$scope.isAdmin = auth.isAdmin;
 	if(auth.isLoggedIn()==true){
 	$scope.name = auth.payload().name;
-	$scope.first_lastname = auth.payload().first_lastname;
-	$scope.second_lastname = auth.payload().second_lastname;
+	$scope.firstLastName = auth.payload().firstLastName;
+	$scope.secondLastName = auth.payload().secondLastName;
 	$scope.province = auth.payload().province;
 	$scope.canton = auth.payload().canton;
 	$scope.district = auth.payload().district;
-	$scope.birth_date = auth.payload().birth_date;
+	$scope.birthDate = auth.payload().birthDate;
 	$scope.image = auth.payload().image;
 	}
 
