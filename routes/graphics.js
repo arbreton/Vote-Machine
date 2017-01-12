@@ -119,7 +119,7 @@ app.post('/citizens', function(req, res) {
     Election.aggregate([
     {  
         $match: 
-            { "electionDay": new Date("2017-01-11T00:00:00.000Z") }
+            { "electionDay": new Date("2017-01-12T00:00:00.000Z") }
     },          
     {
         $unwind:
@@ -147,6 +147,7 @@ app.post('/citizens', function(req, res) {
     ]).exec(function(err, election) {
         if (err)
             res.send(err);
+        console.log(election);
         res.json(election);
     });
 })
@@ -156,7 +157,7 @@ app.post('/citizens', function(req, res) {
     Election.aggregate([
     { 
         $match: 
-            { "electionDay": new Date("2017-01-11T00:00:00.000Z") }
+            { "electionDay": new Date("2017-01-12T00:00:00.000Z") }
     },
     {
         $unwind:
@@ -185,7 +186,7 @@ app.post('/citizens', function(req, res) {
     Election.aggregate([
     { 
         $match: 
-            { "electionDay": new Date("2017-01-11T00:00:00.000Z") }
+            { "electionDay": new Date("2017-01-12T00:00:00.000Z") }
     },
     {
         $unwind: 
@@ -216,7 +217,7 @@ app.post('/citizens', function(req, res) {
     Election.aggregate([
     {
         $match: 
-            { "electionDay": new Date("2017-01-11T00:00:00.000Z") }
+            { "electionDay": new Date("2017-01-12T00:00:00.000Z") }
     },
     {
         $unwind:
@@ -246,7 +247,7 @@ app.post('/citizens', function(req, res) {
     Election.aggregate([
     {
         $match: 
-            { "electionDay": new Date("2017-01-11T00:00:00.000Z") }
+            { "electionDay": new Date("2017-01-12T00:00:00.000Z") }
     },
     {
         $unwind: 
