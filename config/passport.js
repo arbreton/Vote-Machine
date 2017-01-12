@@ -9,8 +9,8 @@ var app = express();
 
 
 passport.use(new LocalStrategy(
-  function(electoral_code, password, done) {
-    User.findOne({ electoral_code: electoral_code }, function (err, user) {
+  function(electoralCode, password, done) {
+    User.findOne({ electoralCode: electoralCode }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
