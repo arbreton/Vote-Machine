@@ -21,8 +21,10 @@ var CitizensSchema = new mongoose.Schema({
   password: String,
   ethnicGroup:String,
   role: { id: String, description: String },
-  votes:[{electionID:String}],
-  candidates: {presidential:[{name:String, firstLastName:String, secondLastName:String,proposals:String, party: {code:String,description:String},election_date:String, vote_status:{vote_date:String,vote_hour:String,voted:Boolean},others:String}]},
+  votes:[{electionID:String}]
+
+  //candidates: {presidential:[{name:String, first_lastname:String, second_lastname:String,proposals:String, party: {code:String,description:String},election_date:String, vote_status:{vote_date:String,vote_hour:String,voted:Boolean},others:String}]},
+
   //hash: String,
   //salt: String
 });
