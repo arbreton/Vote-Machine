@@ -47,8 +47,8 @@ router.post('/candidate',function(req, res)
           //info of candidate
           var e = { province: { canton:{}, district: {} } };
           e.name = item.name;
-          e.first_last_name = item.first_last_name;
-          e.second_last_name = item.second_last_name;
+          e.firstLastName = item.firstLastName;
+          e.secondLastName = item.secondLastName;
           e.proposal = item.proposal;
           e.gender = item.gender;
           e.image = item.image;
@@ -93,8 +93,8 @@ router.put('/candidate-update/:id',function (req, res)
     var update =
     {
       name : req.body.name,
-      first_last_name : req.body.first_last_name,
-      second_last_name : req.body.second_last_name,
+      firstLastName : req.body.firstLastName,
+      secondLastName : req.body.secondLastName,
       proposal : req.body.proposal,
       gender : req.body.gender,
       //image: req.body.image,

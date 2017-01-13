@@ -22,64 +22,50 @@
  <hr>
  <div id="page-content-wrapper">
     <div class="container-fluid">
-
       <form name="saveForm" ng-submit="saveForm.$valid && saveItem()" class="form-inline row-magin buttons">
         <!--home row -->
         <div class="row">
-            <div class="col-md-3">
+          <div class="col-md-3">
               <label for="fecha-eleccion">From: </label>
               <p class="input-group">
-                <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.initial_election" is-open="popup.from" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <input type="text" class="form-control" placeholder="Election Date" uib-datepicker-popup ng-model="election.initialElection" is-open="popup.from" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="openFrom()"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
               </p>
-          </div>
+          </div><!--endo col -->
           <div class="col-md-3">
             <label for="fecha-eleccion">To: </label>
             <p class="input-group">
-              <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.final_election" is-open="popup.to" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <input type="text" class="form-control"  placeholder="Election Date" uib-datepicker-popup ng-model="election.finalElection" is-open="popup.to" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="openTo()"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
             </p>
-        </div>
-        <div class="col-md-4">
-          <label for="fecha-eleccion">Election Day: </label>
-          <p class="input-group">
-            <input type="text" class="form-control" id="election_day" placeholder="Election Date" uib-datepicker-popup ng-model="election.election_day" is-open="popup.day" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="openDay()"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-          </p>
-        </div>
+          </div><!--endo col -->
+          <div class="col-md-3">
+            <label for="fecha-eleccion">Election Day: </label>
+            <p class="input-group">
+              <input type="text" class="form-control"  placeholder="Election Date" ng-change="select(election.electionDay)" uib-datepicker-popup ng-model="election.electionDay" is-open="popup.day"  datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openDay()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+            <div class="alert alert-danger" ng-show="status.electionDay" role="alert">The election ready exists!</div>
+        </div><!--endo col -->
       </div><!--end row -->
+      <!--home row -->
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div ng-if="status.request" class="alert alert-success success-request-fixed" role="alert">
+            <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
+          </div>
 
-        <!--home row -->
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <button class="btn btn-success" ng-disabled="!saveForm.$valid"  type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-            <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
-          </div><!--end col-->
-        </div><!--end row -->
-
+          <button class="btn btn-success" ng-disabled="!saveForm.$valid"  type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+          <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
+        </div><!--end col-->
+      </div><!--end row -->
       </form><!--end form -->
-
-      <!--table datatable="0">
-        <thead>
-          <tr>
-            <th>Initial election</th>
-            <th>Final election</th>
-            <th>Day election</th>
-        </thead>
-        <tbody>
-          <tr ng-repeat="election in elections">
-            <td>{{election.initial_election}}</td>
-            <td>{{election.final_election}}</td>
-            <td>{{election.election_day}}</td>
-          </tr>
-        </tbody>
-      </table -->
     </div>
   </div>
 </div>
