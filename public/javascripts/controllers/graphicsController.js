@@ -1,4 +1,16 @@
-app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','$window', function($scope,Vote,$state,$filter,auth,$window){
+app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','$window','election','chartService', function($scope,Vote,$state,$filter,auth,$window,election,chartService){
+
+
+        var that = $scope;
+        that.elections = [];
+        that.currentElection='';
+
+        election.getElection2().then(function(data)
+        {
+            that.elections = data;
+            that.currentIndex=that.elections.length-1;
+            that.election=that.elections[that.currentIndex];
+        });
 
         $scope.generalChart=true;
         $scope.hourChart=false;
@@ -8,8 +20,71 @@ app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','
         $scope.genderChart=false;
         $scope.provinces={};
 
+
         $scope.startCharts=function(chart){
-            generalChartFunction();
+            $scope.generalChartFunction(that.election.electionDay);
+        };
+
+        $scope.makeVotes=function(){
+
+            
+        };
+
+        $scope.generalChartFunction=function(date){
+            chartService.getGeneralChart().then(function(data){
+                var myData = (data);
+                loader1.style.visibility = "hidden";
+                hourChartFunction();
+                Array.prototype.mapProperty = function(property) {
+                    return this.map(function (obj) {
+                        return obj[property];
+                    });
+                };
+                barChartData = {
+                    labels : myData.mapProperty('_id'),
+                    datasets : [
+                    {   
+                        label: "Men",
+                        hidden: true,   
+                        backgroundColor:"rgba(0, 0, 255, 0.5)",
+                        data : myData.mapProperty("menTotal") //actual value (which becomes the graph)
+                    },
+                    {
+   label: "Women",
+   hidden: true,
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("womenTotal") //actual value (which becomes the graph)
+  }
+  ,
+  {
+   label: "Total",
+   backgroundColor:"rgba(0, 0, 0, 0.5)",
+   data : myData.mapProperty("Total") //actual value (which becomes the graph)
+  }
+       ]
+  };
+ var ctx = document.getElementById("canvas").getContext("2d");
+
+
+ var myNewChart = new Chart(ctx , {
+    type: "bar",
+    data: barChartData,
+    options:{
+      scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
+});
+ //}  
+ }); 
         };
         $scope.showChart = function(chart) {
             switch(chart)
@@ -80,9 +155,9 @@ app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','
         
 }]);
 
-function generalChartFunction(){
+function generalChartFunction(date){
  //$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
-  $.ajax({url:"http://localhost:3000/api/elections/graph/votes",dataType:"json"})
+  $.ajax({url:"http://localhost:3000/api/elections/graph/"+date+"/votes",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
