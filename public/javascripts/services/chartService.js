@@ -19,6 +19,14 @@ app.factory('chartService', ['$http', function($http){
 			
 		})
 	};
+
+	o.getHourChart=function(date){
+		return $http.get("/api/elections/graph/"+date+"/time").then(function(res){
+			return res.data;
+			
+		})
+	};
+
 	o.getElectionUserData=function(temporalItem){
 		return $http.get('/api/currentElection3/'+temporalItem.electionID+"/"+temporalItem.citizenID).then(function(res){
 			return res.data;
