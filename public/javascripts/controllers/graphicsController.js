@@ -1,4 +1,16 @@
-app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','$window', function($scope,Vote,$state,$filter,auth,$window){
+app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','$window','election','chartService', function($scope,Vote,$state,$filter,auth,$window,election,chartService){
+
+
+        var that = $scope;
+        that.elections = [];
+        that.currentElection='';
+
+        election.getElection2().then(function(data)
+        {
+            that.elections = data;
+            that.currentIndex=that.elections.length-1;
+            that.election=that.elections[that.currentIndex];
+        });
 
         $scope.generalChart=true;
         $scope.hourChart=false;
@@ -8,9 +20,118 @@ app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','
         $scope.genderChart=false;
         $scope.provinces={};
 
+
         $scope.startCharts=function(chart){
-            generalChartFunction();
+            $scope.generalChartFunction(that.election.electionDay);
         };
+
+        $scope.makeVotes=function(){
+
+            
+        };
+
+        $scope.generalChartFunction=function(date){
+            chartService.getGeneralChart(date).then(function(data){
+                console.log(data);
+                var myData = (data);
+                loader1.style.visibility = "hidden";
+                $scope.hourChartFunction(date);
+                Array.prototype.mapProperty = function(property) {
+                    return this.map(function (obj) {
+                        return obj[property];
+                    });
+                };
+                barChartData = {
+                    labels : myData.mapProperty('_id'),
+                    datasets : [
+                    {   
+                        label: "Men",
+                        hidden: true,   
+                        backgroundColor:"rgba(0, 0, 255, 0.5)",
+                        data : myData.mapProperty("menTotal") //actual value (which becomes the graph)
+                    },
+                    {
+                        label: "Women",
+                        hidden: true,
+                        backgroundColor:"rgba(253, 91, 232, 0.5)",
+                        data : myData.mapProperty("womenTotal") //actual value (which becomes the graph)
+                    },
+                    {
+                        label: "Total",
+                        backgroundColor:"rgba(0, 0, 0, 0.5)",
+                        data : myData.mapProperty("Total") //actual value (which becomes the graph)
+                    }
+                    ]
+                };
+                var ctx = document.getElementById("canvas").getContext("2d");
+                var myNewChart = new Chart(ctx , {
+                    type: "bar",
+                    data: barChartData,
+                    options:{
+                        scales: { 
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });  
+            }); 
+        };
+
+        $scope.hourChartFunction=function(date){
+            chartService.getHourChart(date).then(function(data){
+                var myData = (data);
+                loader2.style.visibility = "hidden";
+                ageChartFunction();
+                Array.prototype.mapProperty = function(property) {
+                    return this.map(function (obj) {
+                        return obj[property];
+                    });
+                };
+
+// Example: myData.mapProperty('rank') to get an array of all ranks 
+ barChartData1 = {
+    labels : myData.mapProperty('_id'),//Labels
+     datasets : [
+       {
+   label: "Men",
+
+   backgroundColor:"rgba(0, 0, 255, 0.5)",
+   data : myData.mapProperty("menTotal") //actual value (which becomes the graph)
+  },
+  {
+   label: "Women",
+   backgroundColor:"rgba(253, 91, 232, 0.5)",
+   data : myData.mapProperty("womenTotal") //actual value (which becomes the graph)
+  }
+       ]
+  };
+ var ctx = document.getElementById("canvas1").getContext("2d");
+
+
+ var myNewChart = new Chart(ctx , {
+    type: "bar",
+    data: barChartData1,
+    options:{
+      scales: {
+         
+          yAxes: [{
+
+              
+               ticks: {
+                  beginAtZero:true
+              }
+
+          }]
+      }
+    }
+});
+ //}  
+ }); 
+        };
+
         $scope.showChart = function(chart) {
             switch(chart)
             {
@@ -80,9 +201,10 @@ app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','
         
 }]);
 
-function generalChartFunction(){
+/*
+function generalChartFunction(date){
  //$.ajax({url:"http://localhost:3000/api/citizens/graph/vote2",dataType:"json"})
-  $.ajax({url:"http://localhost:3000/api/elections/graph/votes",dataType:"json"})
+  $.ajax({url:"http://localhost:3000/api/elections/graph/"+date+"/votes",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
   .done(function(data){
   var myData = (data);
@@ -145,6 +267,7 @@ Array.prototype.mapProperty = function(property) {
  }); 
 }
 
+
 function hourChartFunction(){
  $.ajax({url:"http://localhost:3000/api/elections/graph/gender/time",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
@@ -199,7 +322,7 @@ Array.prototype.mapProperty = function(property) {
 });
  //}  
  }); }
-
+*/
   function ageChartFunction(){
  $.ajax({url:"http://localhost:3000/api/elections/graph/age",dataType:"json"})
   .fail(function(){alert("There has been an error, please check your internet connection")})
@@ -263,7 +386,6 @@ $.ajax({url:"http://localhost:3000/api/elections/graph/votes/10",dataType:"json"
   var myData = (data);
   loader4.style.visibility = "hidden";
   lateChartFunction();
-  console.log(myData[0].nombre);
 Array.prototype.mapProperty = function(property) {
       return this.map(function (obj) {
        return obj[property];
@@ -290,7 +412,6 @@ Array.prototype.mapProperty = function(property) {
 
  //window.onload = function(){
 //console.log("cheerio")
-console.log(data)
  var ctx = document.getElementById("canvas3").getContext("2d");
 
 
@@ -345,8 +466,7 @@ Array.prototype.mapProperty = function(property) {
   };
 
  //window.onload = function(){
-//console.log("cheerio")
-console.log(data)
+
  var ctx = document.getElementById("canvas4").getContext("2d");
 
 
@@ -402,8 +522,7 @@ Array.prototype.mapProperty = function(property) {
   };
 
  //window.onload = function(){
-//console.log("cheerio")
-console.log(data)
+
  var ctx = document.getElementById("canvas5").getContext("2d");
 
 

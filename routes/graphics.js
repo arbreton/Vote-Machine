@@ -153,11 +153,11 @@ app.post('/citizens', function(req, res) {
 })
 
 //Get the number of votes per hour, separated by gender
-.get('/elections/graph/gender/time',function(req, res) {
+.get('/elections/graph/:electionDate/time',function(req, res) {
     Election.aggregate([
     { 
         $match: 
-            { "electionDay": new Date("2017-01-12T00:00:00.000Z") }
+            { "electionDay": new Date(req.params.electionDate) }
     },
     {
         $unwind:
@@ -182,11 +182,11 @@ app.post('/citizens', function(req, res) {
 })
 
 //Get the votes for each candidate in an election
-.get('/elections/graph/votes',function(req, res) {
+.get('/elections/graph/:electionDate/votes',function(req, res) {
     Election.aggregate([
     { 
         $match: 
-            { "electionDay": new Date("2017-01-12T00:00:00.000Z") }
+            { "electionDay": new Date(req.params.electionDate) }
     },
     {
         $unwind: 
