@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
-
 <div  id="presidencial" class="container-fluid" ng-hide="votingavailable" ng-show="isLoggedIn()" ng-controller="AdminController">
 	  <!-- Sidebar -->
       <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
@@ -53,7 +52,7 @@
         		<span ng-show="cand1"></span>
 
 
-        		<button class="btn-primary" ng-click="confirmationVote(1,display_name_candidate1)" ng-bind="msgPresCand1" id = "img1"></button>
+        		<button class="btn-primary" ng-click="confirmationVote(1,display_name_candidate1)" ng-bind="msgPresCand1"></button>
 
         	</div>
         	</div>
@@ -65,7 +64,7 @@
  		<div class="col-md-3" ng-show="isLoggedIn()" ng-controller="AdminController">
  			<div ng-show="candpres2">
 				<div id="container">
-    				<div id="main_image"><img class="candidate" src="{{cand2img}}" style = "border: 10px solid white;" id = "img2"></div>
+    				<div id="main_image"><img class="candidate" src="{{cand2img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part2img}}"></div>
 				</div>
     			<p class="CenterName" ng-bind="display_name_candidate2"></p>

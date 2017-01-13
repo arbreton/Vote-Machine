@@ -31,7 +31,7 @@ require('./config/passport');
 require('./models/Election');
 require('./models/Province');
 require('./models/Parties');
-require('./models/Election');
+require('./models/election');
 
 var routes = require('./routes/index');
 var citizens = require('./routes/citizens');
