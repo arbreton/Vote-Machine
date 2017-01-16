@@ -17,7 +17,6 @@ function($scope, $location, auth, $window) {
 	}
 	//setting title to blank here to prevent empty posts
 	$scope.title = '';
-	//console.log(auth.payload());
 //setting the loading spinner when the user logs in
 $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
     if (toState.resolve) {
