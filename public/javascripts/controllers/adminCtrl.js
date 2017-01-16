@@ -1,7 +1,6 @@
 var app = angular.module('adminCtrl', []);
 app.controller('AdminController', ['$scope', '$location', 'auth', '$window',
 function($scope, $location, auth, $window) {
-
 	$scope.isLoggedIn = auth.isLoggedIn;
 	$scope.isnotLoggedIn = auth.isnotLoggedIn;
 	$scope.isAdmin = auth.isAdmin;
@@ -33,12 +32,10 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 	{
 			$location.url("/admin/candidate");
 	};
-
 	$scope.newParty = function()
 	{
 			$location.url("/admin/party");
 	};
-
 	$scope.showCharts = function()
 	{
 			$location.url("/graphics");
@@ -48,17 +45,14 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 	{
 			$location.url("/admin/candidates");
 	};
-
 	$scope.showParties = function ()
 	{
 			$location.url("/admin/parties");
 	};
-
 	$scope.voteNow = function()
 	{
 			$location.url("/voting");
 	};
-
 	$scope.showElection = function ()
 	{
 		$location.url("/admin/election");

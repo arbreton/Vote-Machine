@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
-
 var electionSchema = new Schema({
  initialElection: Date,
  finalElection: Date,
@@ -38,10 +36,6 @@ var electionSchema = new Schema({
        description: String
      }
    }
-
  }]
-
 });
-
-
 module.exports = mongoose.model('Election', electionSchema);
