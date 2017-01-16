@@ -83,6 +83,7 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
   that.cantones = [];
   that.districts = [];
   that.candidate = item;
+  console.log(item);
   that.candidate.img = item.image;
   $('#election_day').text( $filter('date')(new Date(item.election_day), 'yyyy-MM-dd'));
   that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
@@ -151,6 +152,7 @@ app.controller('modalCandidateController', ['$scope','$uibModalInstance', 'item'
         $uibModalInstance.close(that.candidate);
       });
   };
+
 }]);
 //end controller
 
