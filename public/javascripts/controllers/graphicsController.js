@@ -32,7 +32,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
                     return obj[property];
                 });
             };
-            barChartData = {
+            var barChartData = {
                 labels : myData.mapProperty('_id'),
                 datasets : [
                 {   
@@ -81,7 +81,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
                     return obj[property];
                 });
             };
-            barChartData1 = {
+            var barChartData1 = {
                 labels : myData.mapProperty('_id'),
                 datasets : [ 
                 {
@@ -123,7 +123,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
                     return obj[property];
                 });
             };
-            barChartData2 = {
+            var barChartData2 = {
                 labels : myData.mapProperty('_id'),
                 datasets : [
                 {
@@ -165,7 +165,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
                     return obj[property];
                 });
             };
-            barChartData3 = {
+            var barChartData3 = {
                 labels : myData.mapProperty('_id'),
                 datasets : [
                 {
@@ -206,7 +206,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
                     return obj[property];
                 });
             };
-            barChartData4 = {
+            var barChartData4 = {
                 labels : myData.mapProperty('_id'),
                 datasets : [
                 {
@@ -305,7 +305,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
 }]);
 
 
-
+/*
 
   function interactiveChartFunction(){
 $.ajax({url:"http://localhost:3000/api/elections/graph/ethnic_group",dataType:"json"})
@@ -358,3 +358,4 @@ Array.prototype.mapProperty = function(property) {
 });
  //}  
  }); }
+ */
