@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
-
 <div  id="presidencial" class="container-fluid" ng-hide="votingavailable" ng-show="isLoggedIn()" ng-controller="AdminController">
 	  <!-- Sidebar -->
       <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
@@ -36,7 +35,7 @@
  		 	
 			<div ng-show="candPres1">
 				<div id="container">
-    				<div id="main_image"><img class="candidate" src="{{cand1img}}" style = "border: 10px solid white;" id = "img1"></div>
+    				<div id="main_image"><img class="candidate" src="{{cand1img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part1img}}"></div>
 				</div>
 				
@@ -52,9 +51,7 @@
         		</span>
         		<span ng-show="cand1"></span>
 
-
-        		<button class="btn-primary" ng-click="confirmationVote(1,displayNameCandidate1)" ng-bind="msgPresCand1" onclick= "document.getElementById('img1').style.borderColor='#4B79A1';"></button>
-
+        		<button class="btn-primary" ng-click="confirmationVote(1,displayNameCandidate1)" ng-bind="msgPresCand1"></button>
         	</div>
         	</div>
         	<br>
@@ -65,7 +62,7 @@
  		<div class="col-md-3" ng-show="isLoggedIn()" ng-controller="AdminController">
  			<div ng-show="candPres2">
 				<div id="container">
-    				<div id="main_image"><img class="candidate" src="{{cand2img}}" style = "border: 10px solid white;" id = "img2"></div>
+    				<div id="main_image"><img class="candidate" src="{{cand2img}}"></div>
     				<div id="overlay_image"><img class="party" src="{{part2img}}"></div>
 				</div>
     			<p class="CenterName" ng-bind="displayNameCandidate2"></p>
@@ -240,7 +237,6 @@
   </div>
   <center><h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can vote.</h3></center>
   </div>
-<!--<script src="/javascripts/controllers/votingController.js" type="text/javascript"></script>-->
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 
 
