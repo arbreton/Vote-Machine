@@ -24,8 +24,9 @@
 
       <!-- Page Content -->
        <div class="title" >Charts</div>
-       <div class="buttonlabel">
-           <button type="button" class="btn btn-default smallbutton" ng-click="showChart('General')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+       <hr>
+       <div class="buttonlabel" style = "margin-left: 200px;">
+           <button type="button" class="btn btn-default smallbutton" ng-click="showChart('General')" id= "button1"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
            <p>General</p>
         </div>
         <div class="buttonlabel">
@@ -51,10 +52,10 @@
         <div class="buttonlabel">
             <button type="button" class="btn btn-default smallbutton" ng-click="startCharts()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
             <p>Start</p>
-        </div>
-         <div class="form-group"> <label>Select Election: </label><select ng-options="election.electionDay for election in elections" ng-model="election" class="form-control"></select></div>
-
-       <hr>
+        </div> <br><br>
+         <div class="form-group col-xs-offset-1 col-lg-9"> <label>Select Election: </label><select ng-options="election.electionDay for election in elections" ng-model="election" class="form-control"></select></div>
+         <br><br><br>
+         <hr>
 
       <div id="page-content-wrapper" ng-view>
           <div class="container-fluid">
