@@ -1,4 +1,4 @@
-var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty','adminListParty', 'ViewCharts','capitalizeFilter', 'authFactory', 'mainCtrl', 'authCtrl', 'navCtrl' , 'adminCtrl', 'election']);
+var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty','adminListParty','capitalizeFilter', 'authFactory', 'mainCtrl', 'authCtrl', 'navCtrl' , 'adminCtrl', 'election']);
 
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
