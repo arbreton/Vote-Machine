@@ -19,10 +19,16 @@ app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','
         $scope.lateChart=false;
         $scope.genderChart=false;
         $scope.provinces={};
+        $scope.chart1={};
+        $scope.chart2={};
+        $scope.chart3={};
+        $scope.chart4={};
+        $scope.chart5={};
+        $scope.chart6={};
 
 
         $scope.startCharts=function(chart){
-            $scope.generalChartFunction(that.election.electionDay);
+            $scope.generalChartFunction(that.election.electionDay,$scope.chart1,$scope.chart2,$scope.chart3,$scope.chart4,$scope.chart5,$scope.chart6);
         };
 
         $scope.makeVotes=function(){
@@ -30,11 +36,17 @@ app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','
             
         };
 
-        $scope.generalChartFunction=function(date){
+        $scope.generalChartFunction=function(date, chart1){
             chartService.getGeneralChart(date).then(function(data){
                 console.log(data);
                 var myData = (data);
                 loader1.style.visibility = "hidden";
+                chart1 && chart1.destroy1 && chart1.destroy();
+                chart2 && chart2.destroy && chart2.destroy()
+                chart3 && chart3.destroy && chart3.destroy()
+                chart4 && chart4.destroy && chart4.destroy()
+                chart5 && chart5.destroy && chart5.destroy()
+                chart6 && chart6.destroy && chart6.destroy()
                 $scope.hourChartFunction(date);
                 Array.prototype.mapProperty = function(property) {
                     return this.map(function (obj) {
@@ -64,7 +76,7 @@ app.controller('graphicsController',['$scope','Vote','$state','$filter','auth','
                     ]
                 };
                 var ctx = document.getElementById("canvas").getContext("2d");
-                var myNewChart = new Chart(ctx , {
+                chart1 = new Chart(ctx , {
                     type: "bar",
                     data: barChartData,
                     options:{
