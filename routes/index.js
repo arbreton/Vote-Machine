@@ -24,7 +24,7 @@ router.post('/register', function(req, res, next){
 
   var user = new User();
 
-  user.clave_electoral = req.body.username;
+  user.claveElectoral = req.body.username;
 
   user.setPassword(req.body.password)
 

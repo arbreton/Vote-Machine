@@ -1,8 +1,8 @@
-//'use strict';
+'use strict';
 
-var app = angular.module('adminListCandidate', ['datatables','ui.bootstrap' , 'serviceProvince', 'serviceParty', 'ngFileUpload', 'serviceElection' ]);
+var app = angular.module('adminListCandidate', ['ui.bootstrap' , 'serviceProvince', 'serviceParty', 'ngFileUpload', 'serviceElection', 'serviceCandidate' ]);
 
-app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$timeout', 'DTOptionsBuilder', 'DTColumnBuilder', 'election', '$filter', function($scope, $http, $uibModal, $timeout, DTOptionsBuilder, DTColumnBuilder, election, $filter)
+app.controller('listCandidateController', ['$scope', '$http', '$uibModal', '$timeout',  'election', '$filter', 'candidate', function($scope, $http, $uibModal, $timeout, election, $filter, candidate)
 {
   var that = $scope;
   that.candidates = [];
@@ -15,16 +15,17 @@ app.controller('listCandidateController', [ '$scope', '$http', '$uibModal', '$ti
     that.elections = data;
   });
 
-  $scope.deleteItem = function (index,candidate)
+  $scope.deleteItem = function (index, obj)
   {
-    $http.put('/api/candidate-delete/'+ candidate._id , candidate ).success(function (data)
+    candidate.deleteCandidate(obj).then(function (data)
     {
       that.response = data;
       that.candidates.splice(index, 1);
-      $timeout(function (){$(".success-request").show().delay(2000).fadeOut();},1000);
-    });
+      $timeout(function ()
+      {
+        $(".success-request").show().delay(2000).fadeOut();},1000);
+      });
   };
-
 
   $scope.editItem = function (index, obj)
    {

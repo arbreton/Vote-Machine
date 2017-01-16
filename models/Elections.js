@@ -10,10 +10,10 @@ var electionSchema = new Schema({
    {
      name:String,
      gender:String,
-     province_code:String,
+     provinceCode:String,
      age: Number,
      hour:String,
-     ethnic_group:String}],
+     ethnicGroup:String}],
  candidates: [{
    name : String,
    firstLastName: String,

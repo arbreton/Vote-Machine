@@ -1,51 +1,13 @@
 'use strict';
 
-var app = angular.module('adminParty', ['ngFileUpload', 'serviceParty', 'serviceProvince']);
+var app = angular.module('adminParty', ['ngFileUpload', 'serviceParty']);
 
-app.controller('registerPartyController', [ '$scope', '$http', 'Upload', '$timeout', 'party', 'province', function($scope, $http, Upload, $timeout, party, province)
+app.controller('registerPartyController', [ '$scope', '$http', 'Upload', '$timeout', 'party', function($scope, $http, Upload, $timeout, party)
 {
   var that = $scope;
   that.party = {};
-  that.date_election_i = {};
-  that.date_election_e = {};
-  that.initial_elections = [{id: 1, date:"2000"}, {id: 2, date: "2005"}, {id: 3, date:"2010"}, {id: 4, date:"2015"}];
-  that.final_elections = [{id: 1, date:"2005"}, {id: 2, date: "2010"}, {id: 3, date:"2015"}, {id: 4, date:"2020"}];
-  that.cantones = [];
-  that.final_election = {};
-  that.initial_election = {};
-  that.districts = [];
-  that.parties = [];
-  that.provinces = [];
-  $scope.file = {};
-  that.request = {};
-  that.requestImage = {};
+  that.status = {};
   that.parties = [{}];
-
-  party.getParties().then(function (data)
-  {
-    that.parties = data;
-  });
-
-  province.getProvinces().then(function (data)
-  {
-    that.provinces = data
-  });
-
-
-  $scope.showCantones = function (cantones)
-  {
-     return that.cantones = cantones;
-  };
-
-  $scope.showMatch = function (index, obj)
-  {
-    return  that.parties[index].img_party= obj.image;
-  };
-
-  $scope.showDistricts = function(districts)
-  {
-    return that.districts = districts;
-  };
 
   $scope.clearItem = function()
   {
@@ -55,55 +17,46 @@ app.controller('registerPartyController', [ '$scope', '$http', 'Upload', '$timeo
   $scope.restForm = function()
   {
     that.party = {};
+    $scope.restStatus();
   };
+
+  $scope.restStatus = function ()
+  {
+      that.status.requestImage = false;
+  };
+
   $scope.restForm();
-  $scope.uploadFile = function (file, index)
+  $scope.uploadFile = function (party)
   {
     Upload.upload({
-      url: 'api/file',
+      url: 'api/upload-file-party',
       method: 'POST',
-      data: { image: file}
-    }).then(function (resp)
-    {
-      $scope.addItemByIndex(index, resp.data);
-      that.requestImage = resp;
-    }, function (resp)
-    {
-    }, function (evt)
+      data: { image: party}
+    }).then(function (res){
+      if(res.status == 200)
+      {
+        that.path = '/uploads/parties/' + res.data.filename;
+        that.party.path = that.path;
+        that.status.requestImage = true;
+      }
+    },
+     function (res){
+    },
+    function (evt)
     {
     });
   };
 
-    $scope.addNewChoice = function() {
-    var newItemNo = that.parties.length+1;
-    that.parties.push(that.party);
-  };
-
-  $scope.removeChoice = function() {
-    var lastItem = $scope.parties.length-1;
-    that.parties.splice(lastItem);
-  };
-
-  $scope.addItemByIndex = function(index, resImage)
-  {
-    if(index != null)
-    {
-      let path ='/uploads/'+resImage.filename;
-      return that.parties[index].image = path;
-    }
-  }
   $scope.saveItem = function ()
   {
-    var c = that.parties.map(function (obj, index)
+    party.addParty(that.party).then(function (data)
     {
-         that.parties[index].initial_election = that.initial_election
-         that.parties[index].final_election = that.final_election;
-    });
-    c= that.parties;
-    $http.post('api/party', c).success(function(data)
-    {
-      that.request = data;
-      $timeout(function (){$('.success-request-fixed').show().delay(2000).fadeOut(); },100);
+      if(data.status==200)
+      {
+        that.status.request = true;
+        $timeout(function (){$('.success-request-fixed').show().delay(2000).fadeOut(); },100);
+        $scope.clearItem();
+      }
     });
   };
 

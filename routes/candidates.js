@@ -89,14 +89,13 @@ router.post('/candidate',function(req, res)
 router.put('/candidate-update/:id',function (req, res)
 {
   var id = req.body._id;
-  console.log(id);
   Election.find().elemMatch("candidates", {_id: id}).exec(function (err, data)
   {
     console.log(data)
   });
   if(id !='')
   {
-  /*  var query = {  _id: id};
+   var query = {  _id: id};
     var update =
     {
       name : req.body.name,
@@ -114,7 +113,7 @@ router.put('/candidate-update/:id',function (req, res)
     {
       if(err){console.log('Error in update');}
       res.json({status: 200,message: 'Was updated successfully'});
-    });*/
+    });
   }
 });
 
@@ -123,11 +122,18 @@ router.put('/candidate-delete/:id', function (req, res)
   var id = req.body._id;
   if( id !='')
   {
-      var query = { _id: id};
-      var update = {status: false};
-      Candidate.findOneAndUpdate(query, update, function (err, data)
+      var query = {
+        _id: id
+      };
+      var update = {
+        status: false
+      };
+      Election.findOneAndUpdate(query, update, function (err, data)
       {
-        if(err){ res.json({status: 400 ,message: 'Can not delete the register'});}
+        if(err)
+        {
+          res.json({status: 400 ,message: 'Can not delete the register'});
+        }
         res.json({status: 200, message: 'Was deleted successfully'});
       });
   }
