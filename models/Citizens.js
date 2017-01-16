@@ -45,9 +45,12 @@ CitizensSchema.methods.generateJWT = function() {
 CitizensSchema.methods.setPassword = function(password){
 };
 CitizensSchema.methods.validPassword = function(password) {
-  var decipher = crypto.createDecipher('aes-256-cbc', key);
-  var dec = decipher.update(this.password,'base64','utf8');
-  dec += decipher.final('utf8');
-  return dec;
+  var cipher = crypto.createCipher('aes-256-cbc', key);
+  console.log(password);
+  var dec = cipher.update(password,'utf8','base64');
+  dec += cipher.final('base64');
+  console.log(dec);
+  console.log(this.password);
+  return this.password === dec;
 };
 mongoose.model('Citizen', CitizensSchema);

@@ -152,6 +152,44 @@ app.post('/citizens', function(req, res) {
     });
 })
 
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/:electionDate/:chartType/:filter',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.provinceCode": req.params.filter }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    },
+    { 
+        $sort: 
+            { "Total": -1 }
+    },
+    {   
+        $limit:5
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
 //Get the number of votes per hour, separated by gender
 .get('/elections/graph/:electionDate/time',function(req, res) {
     Election.aggregate([
