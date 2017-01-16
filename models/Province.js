@@ -8,7 +8,5 @@ var provinceSchema = new Schema({
        districts: [{ id: String, description: String } ]
     }
    ]
-
 });
-
 mongoose.model('Province', provinceSchema);
