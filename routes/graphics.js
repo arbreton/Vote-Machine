@@ -115,11 +115,11 @@ app.post('/citizens', function(req, res) {
 })
 
 //Get the votes for each candidate in an election during a specific hour
-.get('/elections/graph/votes/:time',function(req, res) {
+.get('/elections/graph/:electionDate/votes/:time',function(req, res) {
     Election.aggregate([
     {  
         $match: 
-            { "electionDay": new Date("2017-01-12T00:00:00.000Z") }
+            { "electionDay": new Date(req.params.electionDate) }
     },          
     {
         $unwind:
@@ -213,11 +213,11 @@ app.post('/citizens', function(req, res) {
 })
 
 //Get the votes by age in an election
-.get('/elections/graph/age',function(req, res) {
+.get('/elections/graph/:electionDate/age',function(req, res) {
     Election.aggregate([
     {
         $match: 
-            { "electionDay": new Date("2017-01-12T00:00:00.000Z") }
+            { "electionDay": new Date(req.params.electionDate) }
     },
     {
         $unwind:

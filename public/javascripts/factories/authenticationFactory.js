@@ -2,7 +2,6 @@ var app = angular.module('authFactory', []);
 app.factory('auth', ['$http', '$window', '$location',
 function($http,$window, $location) {
 	var auth = {};
-
 	auth.saveToken = function(token) {
 		$window.localStorage['votingApp-token'] = token;
 	};
@@ -22,7 +21,6 @@ function($http,$window, $location) {
 //Verifying if the user is not logged in
 	auth.isnotLoggedIn = function() {
 		var token = auth.getToken();
-
 		if (token) {
 			var payload = JSON.parse($window.atob(token.split('.')[1]));
 			return false;

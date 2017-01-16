@@ -1,5 +1,4 @@
 var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty','adminListParty','capitalizeFilter', 'authFactory', 'mainCtrl', 'authCtrl', 'navCtrl' , 'adminCtrl', 'election']);
-
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
@@ -78,11 +77,4 @@ function($stateProvider, $urlRouterProvider) {
 	;
 	$urlRouterProvider.otherwise('home');
 }]);
-//App factory for authentication
-/*
-app.filter('capitalize', function() {
-    return function(input) {
-      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
-    }
-});*/
 
