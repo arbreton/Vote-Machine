@@ -1,5 +1,5 @@
 'use strict'
-app.controller('graphicsController',['$scope','$state','$filter','$window','auth','election','chartService', function($scope,$state,$filter,$window,auth,election,chartService){
+app.controller('graphicsController',['$scope','$state','$filter','$window','auth','election','chartService','province', function($scope,$state,$filter,$window,auth,election,chartService,province){
     
     $scope.elections = [];
     $scope.currentElection='';
@@ -15,12 +15,31 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     $scope.earlyChart=false;
     $scope.lateChart=false;
     $scope.genderChart=false;
-    $scope.provinces={};
+    province.getProvinces().then(function(data)
+    {
+        $scope.provinces=data;
+    });
     
     $scope.startCharts=function(chart){
         $scope.generalChartFunction($scope.election.electionDay);
     };
     
+    $scope.showCantones = function (cantones)
+    {
+        return $scope.cantones = cantones;
+    };
+
+    $scope.showDistricts = function(districts)
+    {
+        return $scope.districts = districts;
+    };
+
+    $scope.getCode = function(id)
+    {
+        //Add District, age, votehour and ethnic group
+        $scope.interactiveChartFunction($scope.election.electionDay,'provinceCode',id);
+    };
+
     $scope.generalChartFunction=function(date){
         chartService.getGeneralChart(date).then(function(data){
             console.log(data);
@@ -238,6 +257,47 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
         });
     };
 
+    $scope.interactiveChartFunction=function(date,chartType,filter){
+        chartService.getInteractiveChart(date,chartType,filter).then(function(data){
+            var myData = (data);
+            loader5.style.visibility = "hidden";
+            Array.prototype.mapProperty = function(property) {
+                return this.map(function (obj) {
+                    return obj[property];
+                });
+            };
+            var barChartData5 = {
+                labels : myData.mapProperty('_id'),
+                datasets : [
+                {
+                    label: "Men",
+                    backgroundColor:"rgba(0, 0, 255, 0.5)",
+                    data : myData.mapProperty("menTotal")
+                },
+                {
+                    label: "Women",
+                    backgroundColor:"rgba(253, 91, 232, 0.5)",
+                    data : myData.mapProperty("womenTotal")
+                }
+                ]
+            };
+            var ctx = document.getElementById("canvas5").getContext("2d");
+            var myNewChart5 = new Chart(ctx , {
+                type: "bar",
+                data: barChartData5, 
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    };
+
     $scope.showChart = function(chart) {
         switch(chart)
         {
@@ -304,58 +364,3 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     };       
 }]);
 
-
-/*
-
-  function interactiveChartFunction(){
-$.ajax({url:"http://localhost:3000/api/elections/graph/ethnic_group",dataType:"json"})
-  .fail(function(){alert("There has been an error, please check your internet connection")})
-  .done(function(data){
-  var myData = (data);
-  loader6.style.visibility = "hidden";
-  
-Array.prototype.mapProperty = function(property) {
-      return this.map(function (obj) {
-       return obj[property];
-      });
-
-     };
-
- barChartData5 = {
-    labels : myData.mapProperty('_id'),
-     datasets : [
-       {
-   label: "Men",
-   backgroundColor:"rgba(0, 0, 255, 0.5)",
-   data : myData.mapProperty("menTotal") 
-  },
-  {
-   label: "Women",
-   backgroundColor:"rgba(253, 91, 232, 0.5)",
-   data : myData.mapProperty("womenTotal")
-  }
-       ]
-  };
- var ctx = document.getElementById("canvas5").getContext("2d");
-
-
- var myNewChart5 = new Chart(ctx , {
-    type: "bar",
-    data: barChartData5, 
-    options:{
-      scales: {
-         
-          yAxes: [{
-
-              
-               ticks: {
-                  beginAtZero:true
-              }
-
-          }]
-      }
-    }
-});
- //}  
- }); }
- */

@@ -1,11 +1,11 @@
 <div id="wrapper">
     <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
-      <div class="header-logo"> 
+      <div class="header-logo">
         <img ng-src="{{image}}">
       </div>
       <div class="info-people-container">
           <div class="info-poeple">
-            <h3>{{name | capitalize}} {{first_lastname | capitalize}} {{second_lastname | capitalize}}</h3>
+            <h3>{{name | capitalize}} {{firstLastname | capitalize}} {{secondLastname | capitalize}}</h3>
             <hr width="170px">
             <h4>Canton: {{canton}}</h4>
             <hr width="170px">
@@ -13,7 +13,7 @@
             <hr width="170px">
             <h4>Province: {{province}}</h4>
             <hr width="170px">
-            <h4>Birth Date: {{birth_date}}</h4>
+            <h4>Birth Date: {{birthDate}}</h4>
         </div>
       </div>
       </div>
@@ -22,106 +22,50 @@
  <hr>
 
 <fieldset >
+  <form name="saveForm" ng-submit="saveForm.$valid && saveItem()">
+  <!--home row -->
+  <div class="row form-group-select2">
+    <!--home col -->
+    <div class="col-md-3 col-md-offset-3">
+      <div class="form-group">
+        <label for="label-nombre" class="col-md-6">Description: </label>
+        <input type="text" class="form-control col-md-6" placeholder="Description" ng-model="party.name" required=""/>
+      </div>
+    </div><!--end col -->
 
-        <!--home row -->
-        <div class="row form-group-block">
-          <div class="col-md-12">
-              <div class="form-group">
-               
-              </div>
-              <div class="form-group">
-                
-              </div>
-              <div class="form-group">
-               
-              </div>
-          </div>
-        </div><!--end row -->
-
-        <!--home row -->
-        <div class="row form-group-select2">
-         <div class="col-md-3">
-         </div>
-          <div class="col-md-4">
-              <div class="form-group">
-                 <label for="label-nombre" class="col-md-6">Description: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Description" ng-model="party.name"/>
-              </div>
-          </div><!--end col -->
-
-          <div class="col-md-4">
-            <div class="form-group">
-               <div class="preview-img"> <img ngf-thumbnail="party.img"></div>
-              <div class="button-avatar">
-                <div class="button"
-                  ngf-select="uploadFile(party.img, $index)"
-                  ng-model="party.img"
-                  name="file"
-                  ngf-pattern="'image/*'"
-                  ngf-accept="'image/*'"
-                  ngf-max-size="1MB" ngf-min-height="150"
-                  ngf-resize="{width: 150, height: 150}">Image party</div>
-            </div>
-          </div><!--end col -->
-
-          <div class="col-md-4">
-            <div class="form-group">
-             
-              </div>
-              <i class="fa fa-check check-request" ng-if="requestImage.status==200" aria-hiden="true"></i>
-            </div>
-          </div><!--end col -->
-
-        </div><!--end row -->
-
-        <!--home row -->
-        <div class="row no-margin">
-          <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 form-group-md">
-              <div class="form-group">
-                
-
-              </div>
-
-              <div class="form-group">
-               
-              </div>
-
-              <div class="form-group">
-                
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-6"> </div>
-                <div class="col-md-6">
-                 
-                </div><!--end col -->
-              </div>
-          </div><!--end col -->
-
-          <div class="col-md-7">
-            
-          </div><!--end col -->
-        </div><!--end row -->
-
-        <div class="row text-right">
-          <div class="col-md-12"> </div>
+    <!--home col -->
+    <div class="col-md-2 col-md-offset-2">
+      <div class="form-group">
+        <div class="preview-img"><img ngf-thumbnail="party.image"></div>
+        <div class="button-avatar no-margin-top">
+          <div class="button"
+          ngf-select="uploadFile($file)"
+          ng-model="party.image"
+          name="file"
+          ngf-pattern="'image/*'"
+          ngf-accept="'image/*'"
+          ngf-max-size="1MB" ngf-min-height="150"
+          ngf-resize="{width: 150, height: 150}">Image party</div>
         </div>
-
-          <div ng-if="request.status==200" class="alert alert-success success-request-fixed" role="alert">
-            <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
-          </div>
+        <i class="fa fa-check check-request check-selected" ng-if="status.requestImage" aria-hiden="true"></i>
+      </div><!--end form-group -->
+    </div><!--end col -->
+  </div><!--end row -->
 
 </fieldset>
 
-        <!--home row -->
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <button class="btn btn-success"  type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-            <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
-          </div>
-        </div><!--end row -->
+  <!--home row -->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button class="btn btn-success" type="button" ng-click="saveItem()" disabled="!saveForm.$valid"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+      <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
 
-      </form><!--end form -->
+      <div ng-if="status.request" class="alert alert-success success-request-fixed" role="alert">
+        <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
+      </div>
+    </div>
+  </div><!--end row -->
+</form><!--end form -->
 
     </div>
   </div>

@@ -4,9 +4,11 @@ app.factory('chartService', ['$http', function($http){
 	o.addVote = function(voteInfo) {
 		return $http.put('/api/elections/'+voteInfo.electionID+'/'+voteInfo.candidateID+'/'+voteInfo.citizenID,voteInfo);
 	};
+
 	o.addVoteCit = function(voteInfo) {
 		return $http.put('/api/elections/vote/'+voteInfo.electionID+'/'+voteInfo.candidateID+'/'+voteInfo.citizenID,voteInfo);
 	};
+
 	o.getGeneralChart=function(date){
 		return $http.get("/api/elections/graph/"+date+"/votes").then(function(res){
 			return res.data;
@@ -35,6 +37,12 @@ app.factory('chartService', ['$http', function($http){
 		})
 	};
 
+	o.getInteractiveChart=function(date,chartType,filter){
+		return $http.get("/api/elections/graph/interactive/"+date+"/"+chartType+"/"+filter).then(function(res){
+			return res.data;
+			
+		})
+	};
 
 	o.getElectionUserData=function(temporalItem){
 		return $http.get('/api/currentElection3/'+temporalItem.electionID+"/"+temporalItem.citizenID).then(function(res){
@@ -42,5 +50,7 @@ app.factory('chartService', ['$http', function($http){
 			
 		})
 	};
+
+
 	return o;
 }]);
