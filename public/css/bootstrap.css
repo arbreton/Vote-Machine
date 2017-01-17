@@ -1,13 +1,4 @@
-/*!
-<<<<<<< HEAD
- * Bootstrap v3.3.5 (http://getbootstrap.com)
-=======
- * Bootstrap v3.3.6 (http://getbootstrap.com)
->>>>>>> login
- * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -4397,14 +4388,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: 0;
   border-width: 1px 0 0;
 }
-.navbar-brand {
+a.navbar-brand {
   float: left;
   height: 50px;
   width: 130px;
-  padding: 15px 15px;
+  padding: 2px 15px !important;
   font-size: 18px;
   line-height: 20px;
 }
+
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
