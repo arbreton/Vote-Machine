@@ -1,6 +1,6 @@
 app.controller('votingController',['$scope','Vote','$state','$filter','auth','$uibModal','$window', function($scope,Vote,$state,$filter,auth,$uibModal,$window){
 
-        
+
         $scope.voteInfo={};
         $scope.voteInfo.citizenID=auth.currentID();
         $scope.voteInfo.BD=auth.currentBD();
@@ -35,11 +35,11 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
 
         $scope.part1img="https://pac.cr/wp-content/uploads/2015/05/pac15_y1.png";
         Vote.getElectionData().then(function(data){
-            console.log(data);
-            $scope.electionInfo=data;   
+            $scope.electionInfo=data;
+            console.log($scope.electionInfo);
             $scope.voteInfo.electionID=$scope.electionInfo[0]._id;
             if($scope.electionInfo.length>0){
-            
+
                 if($scope.electionInfo[0].candidates.length>0){
                     $scope.candPres1 = true;
                     $scope.candidateName1=$scope.electionInfo[0].candidates[0].name;
@@ -114,7 +114,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     $scope.cand5img=$scope.electionInfo[0].candidates[4].image;
                     $scope.part5img=$scope.electionInfo[0].candidates[4].party.image;
                 }
-                
+
                 if($scope.electionInfo[0].candidates.length>5){
                     $scope.candPres6 = true;
                     $scope.candidateName6=$scope.electionInfo[0].candidates[5].name;
@@ -137,14 +137,14 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
             Vote.getElectionUserData($scope.temporalItem).then(function(data){
                 console.log(data);
                 if(data.length>0){
-                    
+
                     $window.alert("You have already voted and will be disconected");
                     auth.logOut();;
-                    
+
                 }
             });
         });
-        
+
 
         //Initial messages of the vote buttons
         $scope.msgPresCand1="Vote";
@@ -214,7 +214,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
         $scope.prop3candPres6="China is dumping steel all over & killing steel companies. (Oct 2016)";
 
 
-        
+
         $scope.show = function(number) {
             switch(number){
                 case 1:
@@ -242,7 +242,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
         };
 
 
-        
+
         $scope.part2img="http://alwaght.com/upload/logo/201629_6/20162935839245.jpg";
         $scope.part3img="http://4.bp.blogspot.com/-A3wXqdiplpw/Vc04v_vxECI/AAAAAAAAAMI/EeEMHCkaJcY/s1600/FRENTE%2BAMPLIO%2Blogo%2Bflor.jpg";
         $scope.part4img="http://2.bp.blogspot.com/-Bsjb-8D54f4/UEqPvGPlFLI/AAAAAAAABO4/PreBVEsTt5U/s1600/48820_100000625261389_313_n.jpg";
@@ -250,7 +250,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
         $scope.part6img="http://www.crwflags.com/fotw/images/c/cr%7Dpn.gif";
 
 
-        
+
         $scope.showOther=function(){
 
         }
@@ -259,12 +259,25 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
 
         }
 
-        
 
-                    
+
+
 
         $scope.votepres = function(number) {
             $scope.voteInfo.candidate_id=(number-1);
+            var candidate = $scope.electionInfo[0].candidates[number]
+            $scope.voteInfo.name=candidate.name;
+            $scope.voteInfo.firstLastName=candidate.firstLastNameCandidate1;
+            $scope.voteInfo.secondLastName=candidate.secondLastNameCandidate1;
+            $scope.voteInfo.proposals=candidate.proposal;
+            $scope.voteInfo.code=$scope.partyCodeCandidate1;
+            $scope.voteInfo.description=$scope.partyCodeCandidate1;
+            $scope.voteInfo.electionDate='12-13-2016';
+            $scope.voteInfo.voteDate='12-13-2016';
+            $scope.voteInfo.voted=true;
+            $scope.voteInfo.others="asdas";
+            $scope.$parent.voteInfo=$scope.voteInfo;
+
 
             switch(number){
                 case 1:
@@ -279,14 +292,14 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     $scope.voteInfo.voted=true;
                     $scope.voteInfo.others="asdas";
                     $scope.$parent.voteInfo=$scope.voteInfo;
-                   
+
                     $scope.msgPresCand1="Selected";
                     $scope.msgPresCand2="Change vote";
                     $scope.msgPresCand3="Change vote";
                     $scope.msgPresCand4="Change vote";
                     $scope.msgPresCand5="Change vote";
                     $scope.msgPresCand6="Change vote";
-                    
+
                 break;
                 case 2:
                     $scope.voteInfo.name=$scope.displayNameCandidate2;
@@ -300,7 +313,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     $scope.voteInfo.voted=true;
                     $scope.voteInfo.others="asdas";
                     $scope.$parent.voteInfo=$scope.voteInfo;
-                    
+
                     $scope.msgPresCand1="Change vote";
                     $scope.msgPresCand2="Selected";
                     $scope.msgPresCand3="Change vote";
@@ -412,7 +425,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                 default:
                 break;
             }
-            
+
             console.log($scope.voteInfo);
         }
 
@@ -439,7 +452,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
   };
 
         $scope.registerVote=function(){
-            
+
             console.log($scope.electionInfo);
             $scope.voteInfo.voteHour=new Date;
             $scope.voteInfo.name=$scope.voteInfo.name+" "+$scope.voteInfo.secondLastName;
@@ -454,7 +467,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     $window.alert("Thanks for voting ");
                     auth.logOut();
                 });
-                
+
             });
         }
 }]);

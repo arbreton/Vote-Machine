@@ -93,7 +93,7 @@ function($http,$window, $location) {
 	};
 	auth.register = function(user) {
 		return $http.post('/register', user).success(function(data) {
-			auth.saveToken(data.token);
+			$location.url("/home");
 		});
 	};
 
