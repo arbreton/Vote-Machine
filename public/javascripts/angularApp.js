@@ -34,7 +34,7 @@ function($stateProvider, $urlRouterProvider) {
 		}]
 	}).state('register', {
 		url : '/register',
-		templateUrl : '/register.html',
+		templateUrl : 'views/register.html',
 		controller : 'AuthCtrl',
 		onEnter : ['$state', 'auth',
 		function($state, auth) {
