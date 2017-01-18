@@ -2,12 +2,11 @@
 
 var app = angular.module('adminParty', ['ngFileUpload', 'serviceParty']);
 
-app.controller('registerPartyController', [ '$scope', '$http', 'Upload', '$timeout', 'party', function($scope, $http, Upload, $timeout, party)
+app.controller('registerPartyCtrl', [ '$scope', '$timeout', 'Upload', 'party', function($scope, $timeout,Upload, party)
 {
-  var that = $scope;
-  that.party = {};
-  that.status = {};
-  that.parties = [{}];
+  $scope.party = {};
+  $scope.status = {};
+  $scope.parties = [{}];
 
   $scope.clearItem = function()
   {
@@ -16,13 +15,13 @@ app.controller('registerPartyController', [ '$scope', '$http', 'Upload', '$timeo
 
   $scope.restForm = function()
   {
-    that.party = {};
+    $scope.party = {};
     $scope.restStatus();
   };
 
   $scope.restStatus = function ()
   {
-      that.status.requestImage = false;
+      $scope.status.requestImage = false;
   };
 
   $scope.restForm();
@@ -35,9 +34,9 @@ app.controller('registerPartyController', [ '$scope', '$http', 'Upload', '$timeo
     }).then(function (res){
       if(res.status == 200)
       {
-        that.path = '/uploads/parties/' + res.data.filename;
-        that.party.path = that.path;
-        that.status.requestImage = true;
+        $scope.path = '/uploads/parties/' + res.data.filename;
+        $scope.party.path = $scope.path;
+        $scope.status.requestImage = true;
       }
     },
      function (res){
@@ -49,11 +48,11 @@ app.controller('registerPartyController', [ '$scope', '$http', 'Upload', '$timeo
 
   $scope.saveItem = function ()
   {
-    party.addParty(that.party).then(function (data)
+    party.addParty($scope.party).then(function (data)
     {
       if(data.status==200)
       {
-        that.status.request = true;
+        $scope.status.request = true;
         $timeout(function (){$('.success-request-fixed').show().delay(2000).fadeOut(); },100);
         $scope.clearItem();
       }
