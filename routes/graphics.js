@@ -163,22 +163,22 @@ app.post('/citizens', function(req, res) {
         $unwind:
             "$votes"
     },
-    //{
-    //    $match:
-    //        { "votes.provinceCode": req.params.provinceCode }
-    //},
+    {
+        $match:
+            { "votes.provinceCode": req.params.provinceCode }
+    },
     { 
         $match: 
-            { 'votes.age':req.params.age } 
+            { 'votes.age': parseInt(req.params.age) } 
     },
- //   {
-  //      $match:
- //           { "votes.hour": req.params.hour }
- //   },
- //   {
- //       $match:
- //           { "votes.ethnicGroup": req.params.ethnicGroup }
- //   },
+    {
+        $match:
+            { "votes.hour": req.params.hour }
+    },
+    {
+        $match:
+            { "votes.ethnicGroup": req.params.ethnicGroup }
+    },
     { 
         $group: { 
             _id: "$votes.name",
@@ -186,10 +186,6 @@ app.post('/citizens', function(req, res) {
             menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
             Total: { $sum: 1 }
         }
-    },
-    { 
-        $sort: 
-            { "Total": -1 }
     }
     ]).exec(function(err, election) {
         if (err)

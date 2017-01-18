@@ -111,8 +111,8 @@
                 <label for="label-canton">Canton: </label><br>
                 <select class="form-control" ng-options="canton.description for canton in cantones" ng-model="province.canton" ng-change="showDistricts(province.canton.districts)" required=""></select>
               </div>
-              <div class="form-group">
-                <label for="label-distritos">Disctrict: </label>
+              <div class="form-group form-group-sm">
+                <label for="label-distritos">Disctrict: </label><br>
                 <select class="form-control" ng-options="district.description for district in districts" ng-model="province.canton.district" ng-change="getCodes(province.id + province.canton.id + province.canton.district.id)" required=""></select>
               </div>
           </div>
@@ -124,8 +124,8 @@
   <div ng-show="ageFilter">
   <!--home row -->
         <div class="row form-group-block">
-          <div class="col-md-12">
-              <div class="form-group">
+          <div class="col-md-">
+              <div class="form-group-sm">
                 <label for="label-distritos">Age: </label>
                 <select class="form-control" ng-options="ageGroup for ageGroup in ageGroups" ng-model="interactiveChartItem.age" ng-change="setAge(interactiveChartItem.age)" required=""></select>
               </div>
@@ -137,9 +137,9 @@
    <!--Hour filter -->
   <div ng-show="hourFilter">
   <!--home row -->
-        <div class="row form-group-block">
+        <div class="row form-group-block-hourf" >
           <div class="col-md-12">
-              <div class="form-group">
+              <div class="form-group-sm">
                 <label for="label-distritos">Vote hour: </label>
                 <select class="form-control" ng-options="voteHour for voteHour in voteHours" ng-model="interactiveChartItem.hour" ng-change="setHour(interactiveChartItem.hour)" required=""></select>
               </div>
@@ -151,9 +151,9 @@
    <!--Ethnic group filter -->
   <div ng-show="ethnicFilter">
   <!--home row -->
-        <div class="row form-group-block">
+        <div class="row form-group-block-ethf">
           <div class="col-md-12">
-              <div class="form-group">
+              <div class="form-group-sm">
                 <label for="label-distritos">Ethnic group: </label>
                 <select class="form-control" ng-options="voteEthnicGroup for voteEthnicGroup in ethnicGroups" ng-model="interactiveChartItem.ethnicGroup" ng-change="setEthnicGroup(interactiveChartItem.ethnicGroup)" required=""></select>
 
@@ -181,7 +181,29 @@
 }
 
 .form-inline{
-  margin-left: 250px;
+  margin-top: -110px;
+  float: right;
+  position: relative;
 }
 
+.form-group-block .form-group-sm{
+  float: right;
+  margin-top: -50px;
+  margin-right: 582px;
+  width:150px;
+}
+
+.form-group-block-hourf .form-group-sm{
+  float: right;
+  margin-top: -55px;
+  margin-right: 410px;
+  width: 150px;
+}
+
+.form-group-block-ethf .form-group-sm{
+  float: right;
+  margin-top: -56px;
+  margin-right: 257px;
+  width:150px;
+}
 <style>
