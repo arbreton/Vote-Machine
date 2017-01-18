@@ -86,7 +86,21 @@
  <br>
 </div>
 <div ng-show="genderChart" style = "width: 75%;" id="chartCanvas5">
-  
+
+<div class="checkbox">
+  <label><input type="checkbox" value="" ng-model="districtFilter">District</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="" ng-model="ageFilter">Age</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="" ng-model="hourFilter">Vote hour</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="" ng-model="ethnicFilter">Ethnic Group</label>
+</div>
+  <!--District filter -->
+  <div ng-show="districtFilter">
   <!--home row -->
         <div class="row form-group-block">
           <div class="col-md-12">
@@ -100,11 +114,54 @@
               </div>
               <div class="form-group">
                 <label for="label-distritos">Disctrict: </label>
-                <select class="form-control" ng-options="district.description for district in districts" ng-model="province.canton.district" ng-change="getCode(province.id + province.canton.id + province.canton.district.id)" required=""></select>
+                <select class="form-control" ng-options="district.description for district in districts" ng-model="province.canton.district" ng-change="getCodes(province.id + province.canton.id + province.canton.district.id)" required=""></select>
               </div>
           </div>
         </div>
   <!--end row -->
+  </div>
+
+   <!--Age filter -->
+  <div ng-show="ageFilter">
+  <!--home row -->
+        <div class="row form-group-block">
+          <div class="col-md-12">
+              <div class="form-group">
+                <label for="label-distritos">Age: </label>
+                <select class="form-control" ng-options="ageGroup for ageGroup in ageGroups" ng-model="interactiveChartItem.age" ng-change="setAge(interactiveChartItem.age)" required=""></select>
+              </div>
+          </div>
+        </div>
+  <!--end row -->
+  </div>
+
+   <!--Hour filter -->
+  <div ng-show="hourFilter">
+  <!--home row -->
+        <div class="row form-group-block">
+          <div class="col-md-12">
+              <div class="form-group">
+                <label for="label-distritos">Vote hour: </label>
+                <select class="form-control" ng-options="voteHour for voteHour in voteHours" ng-model="interactiveChartItem.hour" ng-change="setHour(interactiveChartItem.hour)" required=""></select>
+              </div>
+          </div>
+        </div>
+  <!--end row -->
+  </div>
+
+   <!--Ethnic group filter -->
+  <div ng-show="ethnicFilter">
+  <!--home row -->
+        <div class="row form-group-block">
+          <div class="col-md-12">
+              <div class="form-group">
+                <label for="label-distritos">Ethnic group: </label>
+                <select class="form-control" ng-options="voteEthnicGroup for voteEthnicGroup in ethnicGroups" ng-model="interactiveChartItem.ethnicGroup" ng-change="setEthnicGroup(interactiveChartItem.ethnicGroup)" required=""></select>
+              </div>
+          </div>
+        </div>
+  <!--end row -->
+  </div>
 
   <div class="loader" id = "loader6"></div>
  <canvas id="canvas5"></canvas>

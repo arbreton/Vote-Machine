@@ -153,7 +153,7 @@ app.post('/citizens', function(req, res) {
 })
 
 //Get the votes for each candidate in an election during a specific hour
-.get('/elections/graph/interactive/:electionDate/:chartType/:filter',function(req, res) {
+.get('/elections/graph/interactive/:electionDate/:provinceCode/:age/:hour/:ethnicGroup',function(req, res) {
     Election.aggregate([
     {  
         $match: 
@@ -163,10 +163,22 @@ app.post('/citizens', function(req, res) {
         $unwind:
             "$votes"
     },
-    {
-        $match:
-            { "votes.provinceCode": req.params.filter }
+    //{
+    //    $match:
+    //        { "votes.provinceCode": req.params.provinceCode }
+    //},
+    { 
+        $match: 
+            { 'votes.age':req.params.age } 
     },
+ //   {
+  //      $match:
+ //           { "votes.hour": req.params.hour }
+ //   },
+ //   {
+ //       $match:
+ //           { "votes.ethnicGroup": req.params.ethnicGroup }
+ //   },
     { 
         $group: { 
             _id: "$votes.name",
@@ -178,9 +190,6 @@ app.post('/citizens', function(req, res) {
     { 
         $sort: 
             { "Total": -1 }
-    },
-    {   
-        $limit:5
     }
     ]).exec(function(err, election) {
         if (err)

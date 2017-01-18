@@ -37,7 +37,14 @@ app.factory('chartService', ['$http', function($http){
 		})
 	};
 
-	o.getInteractiveChart=function(date,chartType,filter){
+	o.getInteractiveChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/"+date+"/"+interactiveChartItem.provinceCode+"/"+interactiveChartItem.age+"/"+interactiveChartItem.hour+"/"+interactiveChartItem.ethnicGroup).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveChart2=function(date,chartType,filter){
 		return $http.get("/api/elections/graph/interactive/"+date+"/"+chartType+"/"+filter).then(function(res){
 			return res.data;
 			
