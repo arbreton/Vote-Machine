@@ -126,8 +126,9 @@
         <div class="row form-group-block">
           <div class="col-md-">
               <div class="form-group-sm">
-                <label for="label-distritos">Age: </label>
-                <select class="form-control" ng-options="ageGroup for ageGroup in ageGroups" ng-model="interactiveChartItem.age" ng-change="setAge(interactiveChartItem.age)" required=""></select>
+                <label for="label-distritos">Age: </label><br>
+                <input type = "text" ng-model="interactiveChartItem.age" required="">
+                <!--<select class="form-control" ng-options="ageGroup for ageGroup in ageGroups" ng-model="interactiveChartItem.age" ng-change="setAge(interactiveChartItem.age)" required=""></select>-->
               </div>
           </div>
         </div>
@@ -189,8 +190,8 @@
 .form-group-block .form-group-sm{
   float: right;
   margin-top: -50px;
-  margin-right: 582px;
-  width:150px;
+  margin-right: 500px;
+  width:230px;
 }
 
 .form-group-block-hourf .form-group-sm{
