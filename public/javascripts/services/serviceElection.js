@@ -18,6 +18,14 @@ app.factory('election', ['$http', '$filter', function($http, $filter)
     });
   }; //end funcion getElection
 
+  this.election.addElection= function(obj)
+  {
+    return $http.post('/api/election', obj).then(function (res)
+    {
+      return res.data;
+    });
+  };
+
   this.election.getElection2 = function ()
   {
     return  $http.get('/api/election').then( function (res)

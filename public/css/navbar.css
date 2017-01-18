@@ -58,7 +58,7 @@
 .check-request { position: absolute; transform: translate(50%); top: 0px; right: -15px; font-size: 25px !important; color: green;}
 .input-day input[type="text"]{margin-bottom: 0px;}
 .no-padding-left,.input-day { padding-left: 0px;}
-.odd {display: none;}
+/*.odd {display: none;}*/
 .uib-daypicker tr > td > button {width: 36px !important;}
 .uib-button-bar  button { width: 52px !important; margin: 0px !important;}
 .uib-month button {width: 92px !important; }
@@ -67,3 +67,4 @@
 .item-check {display: block;}
 .item-check i {     position: static; display: inline-block;}
 i.selected-item  {color: #008000;   top: 0; left: -37px; font-size: 23px; background: #ccc;}
+.image-party {width: 80px; height: 80px;}
