@@ -8,10 +8,10 @@ h1,label{
 </style>
 <center>
   
-  <form ng-submit = "logIn()">
+  <form ng-submit = "register()">
   <div class = "login-form">
-    <img src="../images/LogoVM.png" height = "80px">
-    <h1><center>Login to VoteMachine</center></h1>
+    <img src="../images/LogoVM.png" height = "80">
+    <h1><center>Contact the Administrator</center></h1>
     <div class = "form-horizontal">
       <div class="form-group">
         <label for = "inputuser" class = "col-sm-4 control-label">Electoral Code</label>
@@ -25,7 +25,7 @@ h1,label{
       </div>
       <div class = "form-horizontal">
       <div class="form-group">
-        <label for = "inputPassword" class = "col-xs-offset-1 col-sm-2 control-label">Password</label>
+        <label for = "inputPassword" class = "col-xs-offset-1 col-sm-2 control-label">Email</label>
         <br>
         <div class="col-xs-offset-1 col-sm-10">
         <input type="password"
@@ -37,9 +37,12 @@ h1,label{
       <div ng-show = "error" class = "alert alert-danger row">
     <span>{{ error.message }}</span>
   </div>
+  <div ng-show = "success" class = "alert alert-success row">
+    <span>{{ error.message }}</span>
+  </div>
       <div class="form-group">
         <div class="col-xs-offset-3 col-sm-4">
-         <button type="submit" class="btn btn-primary">Log In</button>
+         <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </div>
       </div>

@@ -58,7 +58,7 @@ background-size: cover;
   -moz-border-radius:2px;
   -webkit-border-radius:2px;
   margin:50px auto;
-  margin-right: 110px;
+  margin-right: 100px;
 }
 
 /*other vote div*/
@@ -71,6 +71,6 @@ background-size: cover;
   -moz-border-radius:2px;
   -webkit-border-radius:2px;
   margin:50px auto;
-  margin-left: 10px;
+  margin-left: 0px;
   float: left;
 }

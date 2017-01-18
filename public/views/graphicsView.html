@@ -102,14 +102,13 @@
   <!--District filter -->
   <div ng-show="districtFilter">
   <!--home row -->
-        <div class="row form-group-block">
-          <div class="col-md-12">
-              <div class="form-group">
-                <label for="label-provincia">Provincia: </label>
+       <div class="row-form-group form-inline">
+              <div class="form-group form-group-sm">
+                <label for="label-provincia">Provincia: </label><br>
                 <select class="form-control" ng-options="province.description for province in provinces" ng-model="province" ng-change="showCantones(province.cantones)" required=""></select>
               </div>
-              <div class="form-group">
-                <label for="label-canton">Canton: </label>
+              <div class="form-group form-group-sm">
+                <label for="label-canton">Canton: </label><br>
                 <select class="form-control" ng-options="canton.description for canton in cantones" ng-model="province.canton" ng-change="showDistricts(province.canton.districts)" required=""></select>
               </div>
               <div class="form-group">
@@ -157,8 +156,8 @@
               <div class="form-group">
                 <label for="label-distritos">Ethnic group: </label>
                 <select class="form-control" ng-options="voteEthnicGroup for voteEthnicGroup in ethnicGroups" ng-model="interactiveChartItem.ethnicGroup" ng-change="setEthnicGroup(interactiveChartItem.ethnicGroup)" required=""></select>
+
               </div>
-          </div>
         </div>
   <!--end row -->
   </div>
@@ -176,4 +175,13 @@
 .buttonlabel{
   margin-left: 40px;
 }
+/*Interactive forms*/
+.form-inline .form-control{
+  width: 150px;
+}
+
+.form-inline{
+  margin-left: 250px;
+}
+
 <style>

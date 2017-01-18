@@ -19,13 +19,14 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="label-provincia">Province: </label>
-                <select class="form-control" ng-options="province.description for province in provinces track by province.id" ng-model="candidate.province" ng-change="showCantones(candidate.province.cantones)" required=""></select>
+                <select class="form-control" ng-options="province.description for province in provinces track by province.id" ng-model="candidate.province.id" ng-change="showCantones(candidate.province.cantones)" required=""></select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-canton">Canton: </label>
                 <select class="form-control" ng-options="canton.description for canton in cantones track by canton.id" ng-model="candidate.canton" ng-change="showDistricts(candidate.canton.districts)" required=""></select>
+
               </div>
             </div>
             <div class="col-md-4">

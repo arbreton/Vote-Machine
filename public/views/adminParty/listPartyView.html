@@ -1,11 +1,11 @@
 <div id="wrapper">
     <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
-      <div class="header-logo"> 
+      <div class="header-logo">
         <img ng-src="{{image}}">
       </div>
       <div class="info-people-container">
           <div class="info-poeple">
-            <h3>{{name | capitalize}} {{first_lastname | capitalize}} {{second_lastname | capitalize}}</h3>
+            <h3>{{name | capitalize}} {{firstLastname | capitalize}} {{secondLastname | capitalize}}</h3>
             <hr width="170px">
             <h4>Canton: {{canton}}</h4>
             <hr width="170px">
@@ -13,12 +13,13 @@
             <hr width="170px">
             <h4>Province: {{province}}</h4>
             <hr width="170px">
-            <h4>Birth Date: {{birth_date}}</h4>
+            <h4>Birth Date: {{birthDate}}</h4>
         </div>
       </div>
       </div>
 
  <div class="title">Candidates</div>
+ <hr>
 
    <div ng-if="response.status==200" class="alert alert-success success-request" role="alert">
      <h4>{{response.message}}</h4>
@@ -29,7 +30,7 @@
         <table datatable="" class="row-border hover">
           <thead>
             <tr>
-              <th>FullName</th>
+              <th>Party</th>
               <th>Province</th>
               <th>Canton</th>
               <th>District</th>
