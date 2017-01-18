@@ -1,0 +1,92 @@
+<div class="modal-header">
+      <h3 class="modal-title" id="modal-title">Update candidate</h3>
+  </div>
+
+<div class="modal-body" id="modal-body">
+  <form name="saveForm" ng-submit="saveForm.$valid && updateItem()" class="form-inline row-magin-modal buttons">
+    <!--home row -->
+    <div class="row form-group-modal">
+      <div class="form-group"><label>Select Party</label></div>
+      <div class="col-md-2" ng-repeat="party in parties">
+          <div class="form-group">
+            <div class="preview-img-modal"><img  ng-src="{{party.image}}" ng-model="candidate.party" ng-click="getParty(party, $index)"> </div>
+          </div>
+      </div>
+    </div><!--end row -->
+
+        <!--home row -->
+        <div class="row form-group-modal">
+          <div class="col-md-4">
+              <div class="form-group">
+                <label for="label-provincia">Province: </label>
+                <select class="form-control" ng-options="province.description for province in provinces track by province.id" ng-model="candidate.province.id" ng-change="showCantones(candidate.province.cantones)" required=""></select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="label-canton">Canton: </label>
+                <select class="form-control" ng-options="canton.description for canton in provinces.cantones track by candidate.canton.id" ng-model="candidate.canton" ng-change="showDistricts(candidate.canton.districts)" required=""></select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="label-distritos">Disctrict: </label>
+                <select class="form-control" ng-options="district.description for district in districts" ng-model="candidate.district" required=""></select>
+              </div>
+          </div>
+        </div><!--end row -->
+
+        <!--home row -->
+        <div class="row form-group-select  label-modal">
+          <div class="col-md-3">
+            <div class="form-group text-center">
+              <div class="preview-img-modal"> <img ngf-thumbnail="candidate.img"> </div>
+              <div class="button-avatar">
+                <div ngf-select="uploadFile($file)" ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.img" ngf-min-width="150"  ngf-min-height="150"
+                ngf-resize="{width: 150, height: 150}">Select image</div>
+              </div>
+            </div>
+          </div><!--end col -->
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="label-nombre" class="col-md-6">Name: </label>
+                <input type="text" class="form-control col-md-6" placeholder="Name" ng-model="candidate.name"/>
+              </div>
+
+              <div class="form-group">
+                <label for="label-last-name" class="col-md-6">First Last Name: </label>
+                <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.firstLastName"/>
+              </div>
+
+              <div class="form-group">
+                <label for="label-second-name" class="col-md-6">Second Last Name: </label>
+                <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.secondLastName" />
+              </div>
+
+              <div class="form-group">
+                <label for="genere" class="col-md-6">Gender:</label>
+                <div class="col-md-6">
+                  <div class="radio"><label><input type="radio" ng-model="candidate.gender" value="1">Female</label></div>
+                  <div class="radio"><label> <input type="radio" ng-model="candidate.gender" value="2">Masculine </label></div>
+                </div><!--end col -->
+              </div>
+          </div><!--end col -->
+        </div><!--end row -->
+
+        <!--home row -->
+        <div class="row no-margin">
+          <div class="col-md-12">
+            <textarea class="form-control" placeholder="Propuestas" rows="5" cols="50" ng-model="candidate.proposal" required=""></textarea>
+          </div><!--end col -->
+        </div><!--end row -->
+ </div>
+<div class="modal-footer">
+    <!--home row -->
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button class="btn btn-success" ng-disabled="!saveForm.$valid" type="button" ng-click="updateItem()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update</button>
+        <button class="btn btn-danger" type="button" ng-click="cancel()"><i class="fa fa-ban" aria-hidden="true"></i> Cancel</button>
+      </div>
+    </div><!--end row -->
+    </form><!--end form -->
+  </div>

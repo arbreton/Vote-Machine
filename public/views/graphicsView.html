@@ -24,8 +24,9 @@
 
       <!-- Page Content -->
        <div class="title" >Charts</div>
-       <div class="buttonlabel">
-           <button type="button" class="btn btn-default smallbutton" ng-click="showChart('General')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+       <hr>
+       <div class="buttonlabel" style = "margin-left: 200px;">
+           <button type="button" class="btn btn-default smallbutton" ng-click="showChart('General')" id= "button1"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
            <p>General</p>
         </div>
         <div class="buttonlabel">
@@ -51,9 +52,10 @@
         <div class="buttonlabel">
             <button type="button" class="btn btn-default smallbutton" ng-click="startCharts()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
             <p>Start</p>
-        </div>
-
-       <hr>
+        </div> <br><br>
+         <div class="form-group col-xs-offset-1 col-lg-9"> <label>Select Election: </label><select ng-options="election.electionDay for election in elections" ng-model="election" class="form-control"></select></div>
+         <br><br><br>
+         <hr>
 
       <div id="page-content-wrapper" ng-view>
           <div class="container-fluid">
@@ -86,25 +88,24 @@
 <div ng-show="genderChart" style = "width: 75%;" id="chartCanvas5">
   
   <!--home row -->
-        <div class="row form-group-block">
+       <div class="form-inline">
           <div class="col-md-12">
-              <div class="form-group">
+              <div class="form-group col-xs-offset-2" id= "provform">
                 <label for="label-provincia">Provincia: </label>
-                <select class="form-control" ng-options="province.description for province in provinces" ng-model="candidate.province" ng-change="showCantones(candidate.province.cantones)" required=""></select>
+                <select class="form-control" ng-options="province.description for province in provinces" ng-model="province" ng-change="showCantones(province.cantones)" required=""></select>
               </div>
-              <div class="form-group">
+              <div class="form-group col-xs-offset-2">
                 <label for="label-canton">Canton: </label>
-                <select class="form-control" ng-options="canton.description for canton in cantones" ng-model="candidate.canton" ng-change="showDistricts(candidate.canton.districts)" required=""></select>
+                <select class="form-control" ng-options="canton.description for canton in cantones" ng-model="province.canton" ng-change="showDistricts(province.canton.districts)" required=""></select>
               </div>
-              <div class="form-group">
+              <div class="form-group col-xs-offset-2">
                 <label for="label-distritos">Disctrict: </label>
-                <select class="form-control" ng-options="district.description for district in districts" ng-model="candidate.district" required=""></select>
+                <select class="form-control" ng-options="district.description for district in districts" ng-model="province.canton.district" ng-change="getCode(province.id + province.canton.id + province.canton.district.id)" required=""></select>
               </div>
           </div>
         </div>
   <!--end row -->
 
-  
   <div class="loader" id = "loader6"></div>
  <canvas id="canvas5"></canvas>
  <br>
@@ -112,3 +113,14 @@
       </div>
   </div>
 </div>
+
+<!--graphicsViews buttons-->
+<style>
+.buttonlabel{
+  margin-left: 40px;
+}
+
+.form-inline .form-control{
+  width: 100%;
+}
+<style>

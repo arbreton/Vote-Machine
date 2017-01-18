@@ -18,7 +18,7 @@
       </div>
       </div>
 
- <div class="title">Candidates</div>
+ <div class="title">Parties</div>
 
    <div ng-if="response.status==200" class="alert alert-success success-request" role="alert">
      <h4>{{response.message}}</h4>
@@ -26,26 +26,19 @@
 
  <div id="page-content-wrapper">
     <div class="container-fluid">
-        <table datatable="" class="row-border hover">
+      <div class="">
+        <table class="row-border hover vertical-alig-middle"  datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" >
           <thead>
             <tr>
-              <th>Party</th>
-              <th>Province</th>
-              <th>Canton</th>
-              <th>District</th>
-              <th>Party</th>
-              <th>Election Date</th>
+              <th>Name</th>
+              <th>Image</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="candidate in candidates">
-                <td>{{candidate.name +" " + candidate.first_last_name + " " + candidate.second_last_name}}</td>
-                <td>{{candidate.province.description}}</td>
-                <td>{{candidate.province.canton.description}}</td>
-                <td>{{candidate.province.district.description}}</td>
-                <td>{{candidate.match.description}}</td>
-                <td>{{candidate.election_date.date}}</td>
+            <tr ng-repeat="party in persons">
+                <td>{{party.description}}</td>
+                <td><img class="image-party" ng-src="{{party.image}}" /></td>
                 <td>
                   <button class="btn btn-success" ng-click="editItem($index,candidate)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                   <button class="btn btn-danger" type="submit" ng-click="confirmationDelete($index, candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
@@ -53,6 +46,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   </div>

@@ -119,7 +119,7 @@
         </div><!--end row -->
 
         <div class="row text-right">
-          <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="$last" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+          <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="false" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
         </div>
 
           <div ng-if="request.status==200" class="alert alert-success success-request-fixed" role="alert">
@@ -127,7 +127,7 @@
           </div>
 
 </fieldset>
- <button class="btn btn-success circle-button flotante" ng-click="addNewChoice()"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+ <button class="btn btn-success circle-button flotante" ng-click="addNewChoice()" ng-show="false"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
         <!--home row -->
         <div class="row">
           <div class="col-md-12 text-center">

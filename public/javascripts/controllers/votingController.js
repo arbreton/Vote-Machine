@@ -35,9 +35,9 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
 
         $scope.part1img="https://pac.cr/wp-content/uploads/2015/05/pac15_y1.png";
         Vote.getElectionData().then(function(data){
-            console.log(data);
+
             $scope.electionInfo=data;
-            console.log(data);
+
             $scope.voteInfo.electionID=$scope.electionInfo[0]._id;
             if($scope.electionInfo.length>0){
 
@@ -54,9 +54,8 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     $scope.prop3candPres1="Opposes Common Core. (Feb 2015)";
                     $scope.cand1img=$scope.electionInfo[0].candidates[0].image;
                     $scope.part1img=$scope.electionInfo[0].candidates[0].party.image;
-
-
                 }
+
                 if($scope.electionInfo[0].candidates.length>1){
                     $scope.candPres2 = true;
                     $scope.candidateName2=$scope.electionInfo[0].candidates[1].name;
@@ -71,6 +70,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     $scope.cand2img=$scope.electionInfo[0].candidates[1].image;
                     $scope.part2img=$scope.electionInfo[0].candidates[1].party.image;
                 }
+
                 if($scope.electionInfo[0].candidates.length>2){
                     $scope.candPres3 = true;
                     $scope.candidateName3=$scope.electionInfo[0].candidates[2].name;
@@ -85,6 +85,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     $scope.cand3img=$scope.electionInfo[0].candidates[2].image;
                     $scope.part3img=$scope.electionInfo[0].candidates[2].party.image;
                 }
+
                 if($scope.electionInfo[0].candidates.length>3){
                     $scope.candPres4 = true;
                     $scope.candidateName4=$scope.electionInfo[0].candidates[3].name;
@@ -99,6 +100,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     $scope.cand4img=$scope.electionInfo[0].candidates[3].image;
                     $scope.part4img=$scope.electionInfo[0].candidates[3].party.image;
                 }
+
                 if($scope.electionInfo[0].candidates.length>4){
                     $scope.candPres5 = true;
                     $scope.candidateName5=$scope.electionInfo[0].candidates[4].name;
@@ -113,6 +115,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     $scope.cand5img=$scope.electionInfo[0].candidates[4].image;
                     $scope.part5img=$scope.electionInfo[0].candidates[4].party.image;
                 }
+
                 if($scope.electionInfo[0].candidates.length>5){
                     $scope.candPres6 = true;
                     $scope.candidateName6=$scope.electionInfo[0].candidates[5].name;
@@ -263,6 +266,19 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
 
         $scope.votepres = function(number) {
             $scope.voteInfo.candidate_id=(number-1);
+            var candidate = $scope.electionInfo[0].candidates[number]
+            $scope.voteInfo.name=candidate.name;
+            $scope.voteInfo.firstLastName=candidate.firstLastNameCandidate1;
+            $scope.voteInfo.secondLastName=candidate.secondLastNameCandidate1;
+            $scope.voteInfo.proposals=candidate.proposal;
+            $scope.voteInfo.code=$scope.partyCodeCandidate1;
+            $scope.voteInfo.description=$scope.partyCodeCandidate1;
+            $scope.voteInfo.electionDate='12-13-2016';
+            $scope.voteInfo.voteDate='12-13-2016';
+            $scope.voteInfo.voted=true;
+            $scope.voteInfo.others="asdas";
+            $scope.$parent.voteInfo=$scope.voteInfo;
+
 
             switch(number){
                 case 1:

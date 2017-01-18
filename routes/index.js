@@ -8,7 +8,7 @@ var jwt = require('express-jwt');
 //var Comment = mongoose.model('Comment');
 var User = mongoose.model('Citizen');
 
-var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
+var auth = jwt({secret: 'SECRETZ', userProperty: 'payload'});
 
 
 /* GET home page. */

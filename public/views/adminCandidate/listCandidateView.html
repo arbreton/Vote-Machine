@@ -19,6 +19,7 @@
       </div>
 
  <div class="title">Candidates</div>
+ <hr>
 
    <div ng-if="response.status==200" class="alert alert-success success-request" role="alert">
      <h4>{{response.message}}</h4>
@@ -27,6 +28,7 @@
  <div id="page-content-wrapper">
     <div class="container-fluid">
       <div class="form-group"> <label>Select Election: </label><select ng-options="election.electionDay for election in elections" ng-model="election" class="form-control"></select><div>
+      <br>
         <table  class=" table row-border hover">
           <thead>
             <tr>

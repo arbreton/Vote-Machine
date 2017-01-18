@@ -18,6 +18,28 @@ app.factory('election', ['$http', '$filter', function($http, $filter)
     });
   }; //end funcion getElection
 
+  this.election.addElection= function(obj)
+  {
+    return $http.post('/api/election', obj).then(function (res)
+    {
+      return res.data;
+    });
+  };
+
+  this.election.getElection2 = function ()
+  {
+    return  $http.get('/api/election').then( function (res)
+    {
+      res.data.map(function(item)
+      {
+        item._id = item._id;
+        item.electionDay =item.electionDay;
+
+      });
+       return res.data;
+    });
+  }; //end funcion getElection
+
   this.election.filterElection = function (elections, selectDate)
   {
     elections.filter(function(item)
