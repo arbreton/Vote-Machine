@@ -35,8 +35,9 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
 
         $scope.part1img="https://pac.cr/wp-content/uploads/2015/05/pac15_y1.png";
         Vote.getElectionData().then(function(data){
+
             $scope.electionInfo=data;
-            console.log($scope.electionInfo);
+
             $scope.voteInfo.electionID=$scope.electionInfo[0]._id;
             if($scope.electionInfo.length>0){
 

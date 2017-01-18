@@ -5,7 +5,7 @@
       </div>
       <div class="info-people-container">
           <div class="info-poeple">
-            <h3>{{name | capitalize}} {{first_lastname | capitalize}} {{second_lastname | capitalize}}</h3>
+            <h3>{{name | capitalize}} {{firstLastname | capitalize}} {{secondLastname | capitalize}}</h3>
             <hr width="170px">
             <h4>Canton: {{canton}}</h4>
             <hr width="170px">
@@ -13,7 +13,7 @@
             <hr width="170px">
             <h4>Province: {{province}}</h4>
             <hr width="170px">
-            <h4>Birth Date: {{birth_date}}</h4>
+            <h4>Birth Date: {{birthDate}}</h4>
         </div>
       </div>
       </div>
@@ -59,11 +59,12 @@
         <!--home row -->
         <div class="row form-group-select select-item">
           <label class="title-label">Parties</label>
-
           <div class="col-md-2"  ng-repeat="party in parties">
             <div class="form-group">
-              <div class="preview-img"><img  ng-src="{{party.image}}" ng-model="candidate.party" ng-click="getParty(party, $index)"> </div>
-              <i  class="fa fa-check  selected-item" ng-if="party.selectItem" aria-hiden="true"></i>
+              <div class="preview-img">
+                <i  class="fa fa-check selected-item" ng-if="party.selectItem" aria-hiden="true"></i>
+                <img  ng-src="{{party.image}}" ng-model="candidate.party" ng-click="getParty(party, $index, $parent.$index)">
+              </div>
             </div>
           </div><!--end col -->
 
@@ -118,7 +119,7 @@
         </div><!--end row -->
 
         <div class="row text-right">
-          <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="$last" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+          <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="false" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
         </div>
 
           <div ng-if="request.status==200" class="alert alert-success success-request-fixed" role="alert">
@@ -126,7 +127,7 @@
           </div>
 
 </fieldset>
- <button class="btn btn-success circle-button flotante" ng-click="addNewChoice()"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+ <button class="btn btn-success circle-button flotante" ng-click="addNewChoice()" ng-show="false"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
         <!--home row -->
         <div class="row">
           <div class="col-md-12 text-center">

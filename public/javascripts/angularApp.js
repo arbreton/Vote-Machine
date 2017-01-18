@@ -50,20 +50,20 @@ function($stateProvider, $urlRouterProvider) {
 	{
 		url: '/admin/candidate',
 		templateUrl: 'views/adminCandidate/registerCandidateView.html',
-		controller: 'registerCandidateController'
+		controller: 'registerCandidateCtrl'
 	}).state('party',
 	{
 		url: '/admin/party',
 		templateUrl: 'views/adminParty/registerPartyView.html',
-		controller: 'registerPartyController'
+		controller: 'registerPartyCtrl'
 	}).state('candidates', {
 		url: '/admin/candidates',
 		templateUrl: 'views/adminCandidate/listCandidateView.html',
-		controller: 'listCandidateController'
+		controller: 'listCandidateCtrl'
 	}).state('parties', {
 		url: '/admin/parties',
 		templateUrl: 'views/adminParty/listPartyView.html',
-		controller: 'listPartyController'
+		controller: 'listPartyCtrl'
 	}).state('graphics', {
 		url: '/graphics',
 		templateUrl: 'views/graphicsView.html',
@@ -72,9 +72,8 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('election', {
 		url: '/admin/election',
 		templateUrl: 'views/election/electionView.html',
-		controller: 'electionController'
+		controller: 'electionCtrl'
 	})
 	;
 	$urlRouterProvider.otherwise('home');
 }]);
-
