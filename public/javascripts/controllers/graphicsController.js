@@ -3,6 +3,10 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     
     $scope.elections = [];
     $scope.currentElection='';
+    $scope.interactiveChartItem={};
+    $scope.ageGroups=[10,25,30];
+    $scope.voteHours=['10','11','12','13','14','15','16','17','18','19'];
+    $scope.ethnicGroups=["Blanco / Mestizo", "Mulatos", "Amerindios", "Afrocostarricenses", "Asiaticos", "Ninguno", "Otros"];
     election.getElection2().then(function(data)
     {
         $scope.elections = data;
@@ -34,10 +38,38 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
         return $scope.districts = districts;
     };
 
-    $scope.getCode = function(id)
+    $scope.getCode=function(id)
+    {
+        $scope.getChart();
+    };
+
+    $scope.getCodes=function(id)
+    {
+        $scope.interactiveChartItem.provinceCode=id;
+        $scope.getChart();
+    };
+
+    $scope.setAge=function(id){
+        $scope.interactiveChartItem.age=id;
+        $scope.getChart();
+    };
+
+    $scope.setHour=function(id){
+        $scope.interactiveChartItem.hour=id;
+        console.log($scope.interactiveChartItem);
+        $scope.$parent.interactiveChartItem=$scope.interactiveChartItem;
+    };
+
+    $scope.setEthnicGroup=function(id){
+        $scope.interactiveChartItem.ethnicGroup=id;
+        console.log($scope.interactiveChartItem);
+    };
+
+    $scope.getChart = function()
     {
         //Add District, age, votehour and ethnic group
-        $scope.interactiveChartFunction($scope.election.electionDay,'provinceCode',id);
+        console.log($scope.interactiveChartItem);
+        $scope.interactiveChartFunction($scope.election.electionDay,$scope.interactiveChartItem);
     };
 
     $scope.generalChartFunction=function(date){

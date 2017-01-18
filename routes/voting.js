@@ -82,7 +82,7 @@ app.post('/citizens', function(req, res) {
         voteItem.provinceCode=req.body.provinceCode;
         voteItem.age=req.body.age;
         voteItem.hour=req.body.hour;
-        voteItem.ethnicity=req.body.ethnicity;
+        voteItem.ethnicGroup=req.body.ethnicGroup;
         election.votes.push(voteItem);
         election.save(function(err) {
             if (err){
