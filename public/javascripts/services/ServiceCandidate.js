@@ -23,9 +23,19 @@ app.factory('candidate', ['$http', function ($http)
     {
       return $http.put('/api/candidate-delete/'+ obj._id , obj ).then(function (res)
       {
-        return that.res = data;
+        return res.data;
       });
     };
+
+    this.candidate.updateCandidate = function (obj)
+    {
+      return $http.put('/api/candidate-update/'+ obj._id, obj.candidate).then(function (res)
+      {
+          return res.data;
+      });
+    };
+
+
 
     return this.candidate;
 }]);

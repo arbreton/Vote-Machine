@@ -5,11 +5,9 @@ var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, callback){
     callback(null, './public/uploads/parties');
-    console.log(file);
   },
   filename: function (req, file, callback){
     callback(null, file.originalname);
-    console.log(file.originalname);
   }
 });
 
@@ -27,7 +25,6 @@ router.route('/parties')
 })
 .post(function (req, res)
 {
-  console.log(req)
     var party = new Party();
     party.description = req.body.name;
     party.image = req.body.path;
@@ -47,23 +44,52 @@ router.route('/parties')
 
 .put(function (req, res)
 {
+  console.log(req.body);
+  console.log("test");
   var id = req.body._id;
   var query = { _id : id};
   var update =
   {
      description: req.body.description,
+     image: req.body.image
   };
   Party.findOneAndUpdate(query, update, function (err, data)
   {
-    if(err){ res.json({status: 500 ,message:'Error in updated of the register' }); }
-    else { res.json({status: 200, message: 'The register was updated successfully'});  console.log(req.body)}
-  })
+    if(err)
+    {
+      res.json({status: 500 ,message:'Error in updated of the register' });
+     }
+    else
+    {
+      res.json({status: 200, message: 'The register was updated successfully'});
+    }
+  });
 
 });
 
+router.put('/party-delete',function (req, res)
+{
+  var id = req.body._id;
+  var query = { _id : id};
+  var update =
+  {
+     status: false,
+  };
+  Party.findOneAndUpdate(query, update, function (err, data)
+  {
+    if(err)
+    {
+      res.json({status: 500 ,message:'Error in updated of the register' });
+     }
+    else
+    {
+      res.json({status: 200, message: 'The register was updated successfully'});
+    }
+  });
+
+});
 router.post('/upload-file-party', function(req, res)
 {
-  console.log(req)
   upload(req, res, function (err){
     if(err)
     {
@@ -76,6 +102,5 @@ router.post('/upload-file-party', function(req, res)
   });
 
 });
-
 
 module.exports = router;

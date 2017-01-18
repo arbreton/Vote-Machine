@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('adminListParty', ['datatables','ui.bootstrap', 'serviceProvince', 'ngFileUpload', 'serviceParty']);
+var app = angular.module('adminListParty', ['datatables','ui.bootstrap', 'serviceProvince', 'ngFileUpload', 'serviceParty', 'moduleParty', 'confirmation']);
 
 app.controller('listPartyCtrl', [ '$scope', '$uibModal', '$timeout', 'party', 'DTOptionsBuilder', 'DTColumnDefBuilder', function($scope, $uibModal, $timeout, party, DTOptionsBuilder, DTColumnDefBuilder)
 {
@@ -18,37 +18,14 @@ app.controller('listPartyCtrl', [ '$scope', '$uibModal', '$timeout', 'party', 'D
        DTColumnDefBuilder.newColumnDef(1),
        DTColumnDefBuilder.newColumnDef(2).notSortable()
    ];
-   /*$scope.person2Add = _buildPerson2Add(1);
-   $scope.addPerson = addPerson;
-   $scope.modifyPerson = modifyPerson;
-   $scope.removePerson = removePerson;
 
-   function _buildPerson2Add(id) {
-       return {
-           id: id,
-           description: 'Foo' + id,
-           image: 'Bar' + id
-       };
-   }
-   function addPerson() {
-       $scope.persons.push(angular.copy($scope.person2Add));
-       $scope.person2Add = _buildPerson2Add($scope.person2Add.id + 1);
-   }
-   function modifyPerson(index) {
-       $scope.persons.splice(index, 1, angular.copy($scope.person2Add));
-       $scope.person2Add = _buildPerson2Add($scope.person2Add.id + 1);
-   }
-   function removePerson(index) {
-       $scope.persons.splice(index, 1);
-   }*/
-
-  $scope.deleteItem = function (index,party)
+  $scope.deleteItem = function (index, obj)
   {
-    party.deleteItem(party).then(function (data)
+    party.deleteItem(obj).then(function (data)
     {
       $scope.response = data;
       $scope.parties.splice(index, 1);
-      $timeout(function (){$(".success-request").show().delay(2000).fadeOut();},1000);
+      $timeout(function (){$(".success-request").show().delay(4000).fadeOut();},1000);
     });
   };
 
@@ -56,12 +33,15 @@ app.controller('listPartyCtrl', [ '$scope', '$uibModal', '$timeout', 'party', 'D
    {
      var modalInstance = $uibModal.open({
        animation: $scope.animationsEnabled,
-       templateUrl: 'views/adminparty/modalparty.html',
-       controller: 'modalpartyController',
+       templateUrl: 'views/adminParty/modalPartyView.html',
+       controller: 'modalPartyController',
        size: 'lg',
        resolve:
        {
-         item: function () { return obj;}
+         item: function ()
+         {
+            return obj;
+        }
        }
      });
 
@@ -70,7 +50,7 @@ app.controller('listPartyCtrl', [ '$scope', '$uibModal', '$timeout', 'party', 'D
        if(data != null || undefined )
        {
          $scope.response = data.request;
-         $timeout(function (){$(".success-request").show().delay(2000).fadeOut();},1000);
+         $timeout(function (){$(".success-request").show().delay(4000).fadeOut();},1000);
           $scope.parties[index] = data;
        }
      });
@@ -79,8 +59,8 @@ app.controller('listPartyCtrl', [ '$scope', '$uibModal', '$timeout', 'party', 'D
 $scope.confirmationDelete = function (index,party)
 {
   var modalIntance = $uibModal.open({
-    templateUrl: 'views/adminparty/modalConfirmation.html',
-    controller: 'modalConfirmationController',
+    templateUrl: 'views/adminParty/modalConfirmationView.html',
+    controller: 'modalConfirmationCtrl',
     size: 'sm',
     resolve: {
       item: function (){

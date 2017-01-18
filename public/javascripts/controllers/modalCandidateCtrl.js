@@ -1,6 +1,6 @@
-var app = angular.module('modalCandidate', []);
+var app = angular.module('modalCandidate', ['serviceCandidate']);
 
-app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', 'item', 'province', 'party','$http', 'Upload', '$filter', function ($scope, $uibModalInstance, item, province, party, $http, Upload, $filter)
+app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', 'item', 'province', 'party', 'Upload', 'candidate', function ($scope, $uibModalInstance, $filter, item, province, party, Upload, candidate)
 {
   $scope.provinces = [];
   $scope.cantones = [];
@@ -58,7 +58,7 @@ app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', 'item', 'pro
 
   $scope.updateItem = function ()
   {
-      $http.put('/api/candidate-update/'+ $scope.candidate._id, $scope.candidate).success(function (data)
+      candidate.updateCandidate($scope.candidate).then(function (data)
       {
         $scope.candidate.request = data;
         $uibModalInstance.close($scope.candidate);

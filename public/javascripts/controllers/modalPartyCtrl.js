@@ -1,51 +1,37 @@
-var app = angular.module('moduleParty', []);
-app.controller('modalPartyController', ['$scope','$uibModalInstance', 'item', 'party', 'Upload', function ($scope, $uibModalInstance, item, party, Upload)
+var app = angular.module('moduleParty', ['ui.bootstrap', 'serviceParty']);
+app.controller('modalPartyController', ['$scope','$uibModalInstance', 'item', 'Upload', 'party', function ($scope, $uibModalInstance, item, Upload, party)
 {
-  that.party.img = item.image;
-  that.parties = [];
-
+  $scope.party = item;
+$scope.requestImage = {};
   $scope.uploadFile = function (file)
   {
     if(file !='')
     {
       Upload.upload({
-        url: 'api/file',
+        url: 'api/upload-file-party',
         method: 'POST',
         data: { image: file}
-      }).then(function (resp){
-        that.requestImage = resp;
-        let path ='/uploads/'+ resp.data.filename;
-        that.party.image = path;
-      }, function (resp){
-      }, function (evt){
+      }).then(function (resp)
+      {
+        $scope.requestImage = resp;
+        let path ='/uploads/parties/'+ resp.data.filename;
+        $scope.party.image = path;
+      },
+      function (resp){
+      },
+      function (evt){
       });
     }
-  };
-
-  province.getProvinces().then(function (data)
-  {
-    that.provinces = data;
-  });
-
-  $scope.showCantones = function (cantones)
-  {
-     return $scope.cantones = cantones;
-  };
-
-  $scope.showDistricts = function(districts)
-  {
-    return that.districts = districts;
   };
 
   $scope.cancel = function() {  $uibModalInstance.dismiss('Cancel'); }
 
   $scope.updateItem = function ()
   {
-    that.party.election_date = {id: that.election_date_ini.id, date: that.election_date_ini.date + ' ' + that.election_date_end.date};
-      $http.put('/api/party-update/'+ that.party._id, that.party).success(function (data)
+      party.updateParty($scope.party).then(function (data)
       {
-        that.party.request = data;
-        $uibModalInstance.close(that.party);
+        $scope.party.request = data;
+        $uibModalInstance.close($scope.party);
       });
   };
 }]);

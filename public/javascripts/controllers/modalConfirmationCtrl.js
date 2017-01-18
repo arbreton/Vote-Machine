@@ -2,7 +2,7 @@
 var app = angular.module('confirmation', []);
 app.controller('modalConfirmationCtrl', ['$scope', '$uibModalInstance', 'item', function ($scope, $uibModalInstance, item)
 {
-  $scope.candidate = item;
+  $scope.confirm = item;
   $scope.confirmation = {yes: true, no: false};
   $scope.cancel = function()
   {

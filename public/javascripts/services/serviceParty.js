@@ -19,11 +19,19 @@ app.factory('party', ['$http', function ($http)
       });
     };
 
-    this.party.deleteParty = function (obj)
+    this.party.deleteItem = function (obj)
     {
-      return $http.put('/api/party-delete/'+ obj._id , obj ).then(function (res)
+      return $http.put('/api/party-delete', obj ).then(function (res)
       {
-        return that.res = data;
+        return res.data;
+      });
+    };
+
+    this.party.updateParty = function (obj)
+    {
+      return $http.put('/api/parties', obj).then(function (res)
+      {
+          return res.data;
       });
     };
 
