@@ -17,21 +17,25 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
         $scope.electionInfo.candidates={};
 
         Vote.getElectionData().then(function(data){
-
             $scope.electionInfo=data;
+            if(data.length>0){
+                $scope.voteInfo.electionID=$scope.electionInfo[0]._id;
+                $scope.temporalItem={};
+                $scope.temporalItem.citizenID=$scope.voteInfo.citizenID;
+                $scope.temporalItem.electionID=$scope.voteInfo.electionID;
+                Vote.getElectionUserData($scope.temporalItem).then(function(data){
+                    if(data.length>0){
+                        $window.alert("You have already voted and will be disconected");
+                        auth.logOut();;
 
-            $scope.voteInfo.electionID=$scope.electionInfo[0]._id;
-            $scope.temporalItem={};
-            $scope.temporalItem.citizenID=$scope.voteInfo.citizenID;
-            $scope.temporalItem.electionID=$scope.voteInfo.electionID;
-            Vote.getElectionUserData($scope.temporalItem).then(function(data){
-                if(data.length>0){
-
-                    $window.alert("You have already voted and will be disconected");
-                    auth.logOut();;
-
-                }
-            });
+                    }
+                });
+            }
+            else
+            {
+                $window.alert("There is no current election, you will be disconected");
+                auth.logOut();;
+            }
         });
 
 
