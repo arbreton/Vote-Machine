@@ -19,19 +19,19 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="label-provincia">Province: </label>
-                <select class="form-control" ng-options="province.description for province in provinces track by province.id" ng-model="candidate.province.id" ng-change="showCantones(candidate.province.cantones)" required=""></select>
+                <select class="form-control" ng-options="province.description for province in provinces track by province.id" ng-model="candidate.province.id" ng-change="showCantones(candidate.province.cantones)" required="" ng-readonly="candidate.read"></select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-canton">Canton: </label>
-                <select class="form-control" ng-options="canton.description for canton in provinces.cantones track by candidate.canton.id" ng-model="candidate.canton" ng-change="showDistricts(candidate.canton.districts)" required=""></select>
+                <select class="form-control" ng-options="canton.description for canton in provinces.cantones track by candidate.canton.id" ng-model="candidate.canton" ng-change="showDistricts(candidate.canton.districts)" required="" ng-readonly="candidate.read"></select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-distritos">Disctrict: </label>
-                <select class="form-control" ng-options="district.description for district in districts" ng-model="candidate.district" required=""></select>
+                <select class="form-control" ng-options="district.description for district in districts" ng-model="candidate.district" required="" ng-readonly="candidate.read"></select>
               </div>
           </div>
         </div><!--end row -->
@@ -42,7 +42,7 @@
             <div class="form-group text-center">
               <div class="preview-img-modal"> <img ngf-thumbnail="candidate.img"> </div>
               <div class="button-avatar">
-                <div ngf-select="uploadFile($file)" ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.img" ngf-min-width="150"  ngf-min-height="150"
+                <div ngf-select="uploadFile($file)" ngf-select-disabled="candidate.read" ngf-pattern="'image/*'" ngf-accept="'image/*'"  ng-model="candidate.img" ngf-min-width="150"  ngf-min-height="150"
                 ngf-resize="{width: 150, height: 150}">Select image</div>
               </div>
             </div>
@@ -50,24 +50,24 @@
           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
               <div class="form-group">
                 <label for="label-nombre" class="col-md-6">Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Name" ng-model="candidate.name"/>
+                <input type="text" class="form-control col-md-6" placeholder="Name" ng-model="candidate.name" ng-readonly="candidate.read"/>
               </div>
 
               <div class="form-group">
                 <label for="label-last-name" class="col-md-6">First Last Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.firstLastName"/>
+                <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.firstLastName" ng-readonly="candidate.read"/>
               </div>
 
               <div class="form-group">
                 <label for="label-second-name" class="col-md-6">Second Last Name: </label>
-                <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.secondLastName" />
+                <input type="text" class="form-control col-md-6" placeholder="Second last name" ng-model="candidate.secondLastName"  ng-readonly="candidate.read"/>
               </div>
 
               <div class="form-group">
                 <label for="genere" class="col-md-6">Gender:</label>
                 <div class="col-md-6">
-                  <div class="radio"><label><input type="radio" ng-model="candidate.gender" value="1">Female</label></div>
-                  <div class="radio"><label> <input type="radio" ng-model="candidate.gender" value="2">Masculine </label></div>
+                  <div class="radio"><label><input type="radio" ng-model="candidate.gender" value="1" ng-disabled="candidate.read">Female</label></div>
+                  <div class="radio"><label> <input type="radio" ng-model="candidate.gender" value="2" ng-disabled="candidate.read">Masculine </label></div>
                 </div><!--end col -->
               </div>
           </div><!--end col -->
@@ -76,7 +76,7 @@
         <!--home row -->
         <div class="row no-margin">
           <div class="col-md-12">
-            <textarea class="form-control" placeholder="Propuestas" rows="5" cols="50" ng-model="candidate.proposal" required=""></textarea>
+            <textarea class="form-control" placeholder="Propuestas" rows="5" cols="50" ng-model="candidate.proposal" required="" ng-readonly="candidate.read"></textarea>
           </div><!--end col -->
         </div><!--end row -->
  </div>

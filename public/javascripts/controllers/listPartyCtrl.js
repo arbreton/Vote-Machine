@@ -2,7 +2,7 @@
 
 var app = angular.module('adminListParty', ['datatables','ui.bootstrap', 'serviceProvince', 'ngFileUpload', 'serviceParty', 'moduleParty', 'confirmation']);
 
-app.controller('listPartyCtrl', [ '$scope', '$uibModal', '$timeout', 'party', 'DTOptionsBuilder', 'DTColumnDefBuilder', function($scope, $uibModal, $timeout, party, DTOptionsBuilder, DTColumnDefBuilder)
+app.controller('listPartyCtrl', [ '$scope', '$uibModal', '$timeout', 'party',  function($scope, $uibModal, $timeout, party)
 {
   $scope.parties = [];
   $scope.response = {};
@@ -10,14 +10,7 @@ app.controller('listPartyCtrl', [ '$scope', '$uibModal', '$timeout', 'party', 'D
   party.getParties().then( function (data)
   {
       $scope.parties = data;
-      $scope.persons = data;
   });
-    $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
-    $scope.dtColumnDefs = [
-       DTColumnDefBuilder.newColumnDef(0),
-       DTColumnDefBuilder.newColumnDef(1),
-       DTColumnDefBuilder.newColumnDef(2).notSortable()
-   ];
 
   $scope.deleteItem = function (index, obj)
   {
