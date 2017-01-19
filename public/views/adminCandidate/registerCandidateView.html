@@ -4,17 +4,17 @@
         <img ng-src="{{image}}">
       </div>
       <div class="info-people-container">
-          <div class="info-poeple">
-            <h3>{{name | capitalize}} {{firstLastname | capitalize}} {{secondLastname | capitalize}}</h3>
-            <hr width="170px">
-            <h4>Canton: {{canton}}</h4>
-            <hr width="170px">
-            <h4>District: {{district}}</h4>
-            <hr width="170px">
-            <h4>Province: {{province}}</h4>
-            <hr width="170px">
-            <h4>Birth Date: {{birthDate}}</h4>
-        </div>
+        <div class="info-poeple">
+          <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
+          <hr width="170px">
+          <h4>Canton: {{canton}}</h4>
+          <hr width="170px">
+          <h4>District: {{district}}</h4>
+          <hr width="170px">
+          <h4>Province: {{province}}</h4>
+          <hr width="170px">
+          <h4>Birth Date: {{birthDate}}</h4>
+      </div>
       </div>
       </div>
 
@@ -26,7 +26,7 @@
       <form name="saveForm" ng-submit="saveForm.$valid && saveItem()" class="form-inline row-magin buttons">
         <!--home row -->
         <div class="row form-group-block-full">
-          <div class="col-md-7">
+          <div class="col-md-offset-3 col-md-8">
               <div class="form-group">
                 <label for="fecha-eleccion">Election: </label>
                 <select class="form-control" ng-options="election.electionDay for election in elections"  ng-model="electionDay" required=""></select>
@@ -69,7 +69,7 @@
           </div><!--end col -->
 
         </div><!--end row -->
-
+<hr>
         <!--home row -->
         <div class="row no-margin">
           <div class="col-md-2">

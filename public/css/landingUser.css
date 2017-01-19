@@ -21,13 +21,6 @@
 	background-color: #e9ebee
 }
 
-body {
-background-image: url(../images/bg.PNG);
-background-repeat: no-repeat;
-background-size: cover;
-background-attachment: fixed;
-}
-
 #FixedImage{
 	margin-left: 20px;
 	position: fixed;
@@ -67,7 +60,6 @@ p.CenterParty{
 img.candidate{
 	width: 200px;
 	height: 200px;
-	border: 10px solid #FFFFFF;
 }
 
 img.party{

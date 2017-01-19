@@ -83,7 +83,7 @@ router.put('/party-delete',function (req, res)
      }
     else
     {
-      res.json({status: 200, message: 'The register was updated successfully'});
+      res.json({status: 200, message: 'The register was deleted successfully'});
     }
   });
 
