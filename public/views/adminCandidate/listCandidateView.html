@@ -4,17 +4,17 @@
         <img ng-src="{{image}}">
       </div>
       <div class="info-people-container">
-          <div class="info-poeple">
-            <h3>{{name | capitalize}} {{firstLastname | capitalize}} {{secondLastname | capitalize}}</h3>
-            <hr width="170px">
-            <h4>Canton: {{canton}}</h4>
-            <hr width="170px">
-            <h4>District: {{district}}</h4>
-            <hr width="170px">
-            <h4>Province: {{province}}</h4>
-            <hr width="170px">
-            <h4>Birth Date: {{birthDate}}</h4>
-          </div>
+        <div class="info-poeple">
+          <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
+          <hr width="170px">
+          <h4>Canton: {{canton}}</h4>
+          <hr width="170px">
+          <h4>District: {{district}}</h4>
+          <hr width="170px">
+          <h4>Province: {{province}}</h4>
+          <hr width="170px">
+          <h4>Birth Date: {{birthDate}}</h4>
+      </div>
       </div>
       </div>
 
@@ -31,9 +31,10 @@
         <br>
         <hr>
       <br>
-        <table  class=" table row-border hover">
+        <table  class=" table row-border hover" datatable="ng" >
           <thead>
             <tr>
+              <th>#</th>
               <th>FullName</th>
               <th>Province</th>
               <th>Canton</th>
@@ -44,6 +45,7 @@
           </thead>
           <tbody>
             <tr ng-repeat="candidate in election.candidates">
+              <td>{{$index+1}}</td>
                 <td>{{candidate.name +" " + candidate.firstLastName + " " + candidate.secondLastName}}</td>
                 <td>{{candidate.province.description}}</td>
                 <td>{{candidate.province.canton.description}}</td>
@@ -51,7 +53,8 @@
                 <td>{{candidate.party.description}}</td>
                 <td>
                   <button class="btn btn-success" ng-click="editItem($index,candidate)" ng-disabled="election.electionDay<dateNow"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                  <button class="btn btn-danger" ng-click="confirmationDelete($index,candidate)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                  <button class="btn btn-danger" ng-click="confirmationDelete($index,candidate)" ng-disabled="election.electionDay<dateNow"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                  <button class="btn btn-success" ng-click="readOnly(candidate, true)" ng-show="election.electionDay<dateNow"><i class="fa fa-eye" aria-hidden="true"></i></button>
                 </td>
             </tr>
           </tbody>

@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('adminListCandidate', ['ui.bootstrap' , 'serviceProvince', 'serviceParty', 'ngFileUpload', 'serviceElection', 'serviceCandidate', 'modalCandidate', 'confirmation' ]);
+var app = angular.module('adminListCandidate', ['ui.bootstrap', 'datatables', 'serviceProvince', 'serviceParty', 'ngFileUpload', 'serviceElection', 'serviceCandidate', 'modalCandidate', 'confirmation' ]);
 
 app.controller('listCandidateCtrl', ['$scope', '$http', '$uibModal', '$timeout',  'election', '$filter', 'candidate', function($scope, $http, $uibModal, $timeout, election, $filter, candidate)
 {
@@ -29,6 +29,7 @@ app.controller('listCandidateCtrl', ['$scope', '$http', '$uibModal', '$timeout',
 
   $scope.editItem = function (index, obj)
    {
+     obj.read=false;
      var modalInstance = $uibModal.open({
        animation: $scope.animationsEnabled,
        templateUrl: 'views/adminCandidate/modalCandidateView.html',
@@ -52,6 +53,33 @@ app.controller('listCandidateCtrl', ['$scope', '$http', '$uibModal', '$timeout',
        }
      });
    };
+
+   $scope.readOnly = function (obj, value)
+    {
+      obj.read=value;
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'views/adminCandidate/modalCandidateView.html',
+        controller: 'modalCandidateCtrl',
+        size: 'lg',
+        resolve:
+        {
+          item: function () {
+            return obj;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (data)
+      {
+        if(data != null || undefined )
+        {
+          $scope.response = data.request;
+          $timeout(function (){$(".success-request").show().delay(2000).fadeOut();},1000);
+           $scope.candidates[index] = data;
+        }
+      });
+    };
 
   $scope.confirmationDelete = function (index, obj)
   {
