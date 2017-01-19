@@ -54,9 +54,14 @@
     <center><img src="../images/LogoVM.png" height = "100"></center>
   </div>
   <div ng-hide="isLoggedIn()">
-  <center><h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Check Registration</a> before you can vote.</h3></center>
+  <center><h3 style = "color: #214f64">You need to <a href="/#/login">Log In</a> or <a href="/#/register">Check Registration</a> before you can vote.</h3></center>
   </div>
 </script>
+<style>
+body{
+   background-image: url(../images/voteimg.jpg);
+}
+</style>
     <!--Librerias -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
