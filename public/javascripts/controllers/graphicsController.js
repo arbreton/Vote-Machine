@@ -2,6 +2,9 @@
 app.controller('graphicsController',['$scope','$state','$filter','$window','auth','election','chartService','province', function($scope,$state,$filter,$window,auth,election,chartService,province){
     
     $scope.elections = [];
+    $scope.chartFunction=function(){
+
+    };
     $scope.currentElection='';
     $scope.interactiveChartItem={};
     $scope.ageGroups=[10,25,30];
@@ -67,9 +70,74 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
 
     $scope.getChart = function()
     {
-        //Add District, age, votehour and ethnic group
-        console.log($scope.interactiveChartItem);
+        $scope.requestedChart=0;
+        if($scope.districtFilter)
+            $scope.requestedChart+=1;
+        
+        if($scope.ageFilter)
+            $scope.requestedChart+=10;
+            
+        if($scope.hourFilter)
+            $scope.requestedChart+=100;
+
+        if($scope.ethnicFilter)
+            $scope.requestedChart+=1000;
+        $scope.chooseChart($scope.requestedChart);
+    };
+
+    $scope.chooseChart=function(chart){
+        switch(chart){
+            case 1:
+            $scope.chartFunction=chartService.getInteractiveDistrictChart;
+            break;
+            case 10:
+            $scope.chartFunction=chartService.getInteractiveAgeChart;
+            break
+            case 11:
+            $scope.chartFunction=chartService.getInteractiveDistrictAgeChart;
+            break;
+            case 100:
+            $scope.chartFunction=chartService.getInteractiveHourChart;
+            break;
+            case 101:
+            $scope.chartFunction=chartService.getInteractiveDistrictHourChart;
+            break;
+            case 110:
+            $scope.chartFunction=chartService.getInteractiveAgeHourChart;
+            break;
+            case 111:
+            $scope.chartFunction=chartService.getInteractiveDistrictAgeHourChart;
+            break;
+            case 1000:
+            $scope.chartFunction=chartService.getInteractiveEthnicChart;
+            break;
+            case 1001:
+            $scope.chartFunction=chartService.getInteractiveDistrictEthnicChart;
+            break;
+            case 1010:
+            $scope.chartFunction=chartService.getInteractiveAgeEthnicChart;
+            break;
+            case 1011:
+            $scope.chartFunction=chartService.getInteractiveDistrictAgeEthnicChart;
+            break;
+            case 1100:
+            $scope.chartFunction=chartService.getInteractiveHourEthnicChart;
+            break;
+            case 1101:
+            $scope.chartFunction=chartService.getInteractiveDistrictHourEthnicChart;
+            break;
+            case 1110:
+            $scope.chartFunction=chartService.getInteractiveAgeHourEthnicChart;
+            break;
+            case 1111:
+            $scope.chartFunction=chartService.getInteractiveChart;
+            
+            break;
+            default:
+            break;
+        }
         $scope.interactiveChartFunction($scope.election.electionDay,$scope.interactiveChartItem);
+        
     };
 
     $scope.generalChartFunction=function(date){
@@ -290,7 +358,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     };
 
     $scope.interactiveChartFunction=function(date,chartType,filter){
-        chartService.getInteractiveChart(date,chartType,filter).then(function(data){
+        $scope.chartFunction(date,chartType,filter).then(function(data){
             var myData = (data);
             loader5.style.visibility = "hidden";
             Array.prototype.mapProperty = function(property) {

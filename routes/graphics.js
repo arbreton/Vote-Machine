@@ -153,6 +153,496 @@ app.post('/citizens', function(req, res) {
 })
 
 //Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/district/:electionDate/:provinceCode',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.provinceCode": req.params.provinceCode }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/age/:electionDate/:age',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    { 
+        $match: 
+            { 'votes.age': parseInt(req.params.age) } 
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/districtAge/:electionDate/:provinceCode/:age',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.provinceCode": req.params.provinceCode }
+    },
+    { 
+        $match: 
+            { 'votes.age': parseInt(req.params.age) } 
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/hour/:electionDate/:hour',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.hour": req.params.hour }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/districtHour/:electionDate/:provinceCode/:hour',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.provinceCode": req.params.provinceCode }
+    },
+    {
+        $match:
+            { "votes.hour": req.params.hour }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/ageHour/:electionDate/:age/:hour',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    { 
+        $match: 
+            { 'votes.age': parseInt(req.params.age) } 
+    },
+    {
+        $match:
+            { "votes.hour": req.params.hour }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/districtAgeHour/:electionDate/:provinceCode/:age/:hour',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.provinceCode": req.params.provinceCode }
+    },
+    { 
+        $match: 
+            { 'votes.age': parseInt(req.params.age) } 
+    },
+    {
+        $match:
+            { "votes.hour": req.params.hour }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/ethnic/:electionDate/:ethnicGroup',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.ethnicGroup": req.params.ethnicGroup }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/districtEthnic/:electionDate/:provinceCode/:ethnicGroup',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.provinceCode": req.params.provinceCode }
+    },
+    {
+        $match:
+            { "votes.ethnicGroup": req.params.ethnicGroup }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/ageEthnic/:electionDate/:age/:ethnicGroup',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    { 
+        $match: 
+            { 'votes.age': parseInt(req.params.age) } 
+    },
+    {
+        $match:
+            { "votes.ethnicGroup": req.params.ethnicGroup }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/districtAgeEthnic/:electionDate/:provinceCode/:age/:ethnicGroup',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.provinceCode": req.params.provinceCode }
+    },
+    { 
+        $match: 
+            { 'votes.age': parseInt(req.params.age) } 
+    },
+    {
+        $match:
+            { "votes.ethnicGroup": req.params.ethnicGroup }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/hourEthnic/:electionDate/:hour/:ethnicGroup',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.hour": req.params.hour }
+    },
+    {
+        $match:
+            { "votes.ethnicGroup": req.params.ethnicGroup }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/districtHourEthnic/:electionDate/:provinceCode/:hour/:ethnicGroup',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    {
+        $match:
+            { "votes.provinceCode": req.params.provinceCode }
+    },
+    {
+        $match:
+            { "votes.hour": req.params.hour }
+    },
+    {
+        $match:
+            { "votes.ethnicGroup": req.params.ethnicGroup }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
+.get('/elections/graph/interactive/ageHourEthnic/:electionDate/:age/:hour/:ethnicGroup',function(req, res) {
+    Election.aggregate([
+    {  
+        $match: 
+            { "electionDay": new Date(req.params.electionDate) }
+    },          
+    {
+        $unwind:
+            "$votes"
+    },
+    { 
+        $match: 
+            { 'votes.age': parseInt(req.params.age) } 
+    },
+    {
+        $match:
+            { "votes.hour": req.params.hour }
+    },
+    {
+        $match:
+            { "votes.ethnicGroup": req.params.ethnicGroup }
+    },
+    { 
+        $group: { 
+            _id: "$votes.name",
+            womenTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "2"] } , 1, 0 ] } },
+            menTotal: { $sum: { $cond: [ { $eq: [ "$votes.gender", "1"] } , 1, 0 ] } },
+            Total: { $sum: 1 }
+        }
+    }
+    ]).exec(function(err, election) {
+        if (err)
+            res.send(err);
+        console.log(election);
+        res.json(election);
+    });
+})
+
+//Get the votes for each candidate in an election during a specific hour
 .get('/elections/graph/interactive/:electionDate/:provinceCode/:age/:hour/:ethnicGroup',function(req, res) {
     Election.aggregate([
     {  

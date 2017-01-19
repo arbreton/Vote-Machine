@@ -44,6 +44,104 @@ app.factory('chartService', ['$http', function($http){
 		})
 	};
 
+	o.getInteractiveDistrictChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/district/"+date+"/"+interactiveChartItem.provinceCode).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveAgeChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/age/"+date+"/"+interactiveChartItem.age).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveDistrictAgeChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/districtAge/"+date+"/"+interactiveChartItem.provinceCode+"/"+interactiveChartItem.age).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveHourChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/hour/"+date+"/"+interactiveChartItem.hour).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveDistrictHourChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/districtHour/"+date+"/"+interactiveChartItem.provinceCode+"/"+interactiveChartItem.hour).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveAgeHourChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/ageHour/"+date+"/"+interactiveChartItem.age+"/"+interactiveChartItem.hour).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveDistrictAgeHourChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/districtAgeHour/"+date+"/"+interactiveChartItem.provinceCode+"/"+interactiveChartItem.age+"/"+interactiveChartItem.hour).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveEthnicChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/ethnic/"+date+"/"+interactiveChartItem.ethnicGroup).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveDistrictEthnicChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/districtEthnic/"+date+"/"+interactiveChartItem.provinceCode+"/"+interactiveChartItem.ethnicGroup).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveAgeEthnicChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/ageEthnic/"+date+"/"+interactiveChartItem.age+"/"+interactiveChartItem.ethnicGroup).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveDistrictAgeEthnicChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/districtAgeEthnic/"+date+"/"+interactiveChartItem.provinceCode+"/"+interactiveChartItem.age+"/"+interactiveChartItem.ethnicGroup).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveHourEthnicChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/hourEthnic/"+date+"/"+interactiveChartItem.hour+"/"+interactiveChartItem.ethnicGroup).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveDistrictHourEthnicChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/districtHourEthnic/"+date+"/"+interactiveChartItem.provinceCode+"/"+interactiveChartItem.hour+"/"+interactiveChartItem.ethnicGroup).then(function(res){
+			return res.data;
+			
+		})
+	};
+
+	o.getInteractiveAgeHourEthnicChart=function(date,interactiveChartItem){
+		return $http.get("/api/elections/graph/interactive/ageHourEthnic/"+date+"/"+interactiveChartItem.age+"/"+interactiveChartItem.hour+"/"+interactiveChartItem.ethnicGroup).then(function(res){
+			return res.data;
+			
+		})
+	};
+
 	o.getInteractiveChart2=function(date,chartType,filter){
 		return $http.get("/api/elections/graph/interactive/"+date+"/"+chartType+"/"+filter).then(function(res){
 			return res.data;
