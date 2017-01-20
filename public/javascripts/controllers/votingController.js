@@ -2,6 +2,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
 
 
         $scope.voteInfo={};
+        $scope.independentCandidateText='';
         $scope.voteInfo.citizenID=auth.currentID();
         $scope.voteInfo.BD=auth.currentBD();
         $scope.voteInfo.gender=auth.currentGender();
@@ -17,14 +18,13 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
             $scope.electionInfo=data;
             if(data.length>0){
                 $scope.voteInfo.electionID=$scope.electionInfo[0]._id;
-                $scope.stemporalItem={};
+                $scope.temporalItem={};
                 $scope.temporalItem.citizenID=$scope.voteInfo.citizenID;
                 $scope.temporalItem.electionID=$scope.voteInfo.electionID;
                 Vote.getElectionUserData($scope.temporalItem).then(function(data){
                     if(data.length>0){
                         $window.alert("You have already voted and will be disconected");
                         auth.logOut();;
-
                     }
                 });
             }
@@ -38,7 +38,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
 
         $scope.showOther=function(){
 
-        }
+        };
 
         $scope.nullvote=function(){
             $scope.voteInfo.candidate_id=0;
@@ -49,9 +49,18 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
             $scope.voteInfo.code='null';
             $scope.voteInfo.description='null';
             $scope.$parent.voteInfo=$scope.voteInfo;
-        }
+        };
 
-
+        $scope.othervote=function(name){
+            $scope.voteInfo.candidate_id=0;
+            $scope.voteInfo.name=name;
+            $scope.voteInfo.firstLastName='null';
+            $scope.voteInfo.secondLastName='null';
+            $scope.voteInfo.proposals='null';
+            $scope.voteInfo.code='null';
+            $scope.voteInfo.description='null';
+            $scope.$parent.voteInfo=$scope.voteInfo;
+        };
 
 
 
@@ -73,7 +82,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     {$scope.electionInfo[0].candidates[i].selected=false;   }
             }
 
-        }
+        };
 
         $scope.confirmationVote = function (index,obj)
         {
@@ -95,6 +104,29 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
                     $scope.votepres(index);
             }
         });
+        };
+
+
+        $scope.confirmationOtherVote = function (obj)
+        {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'views/vote/modalVoteConfirmation.html',
+                controller: 'modalVoteConfirmactionController',
+                size: 'sm',
+                resolve:
+                {
+                    item: function(){
+                    return obj;
+                    }
+                }
+            });
+            modalInstance.result.then( function(data)
+            {
+                if(data)
+                {
+                    $scope.othervote(obj);
+                }
+            });
         };
 
         $scope.confirmationNullVote = function (obj)
