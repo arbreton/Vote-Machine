@@ -44,7 +44,17 @@
                     <p>No federal government profit from student loans. (Nov 2015)</p>
                     <p>Opposes Common Core. (Feb 2015)</p>
                     </span>
-                    <button class="btn-primary" ng-click="confirmationVote($index, candidate.name + ' ' + candidate.firsLasttName)">Vote</button>
+                    <button class="btn-primary" ng-click="confirmationVote($index, candidate.name + ' ' + candidate.firsLasttName)">
+                    <div ng-if="candidate.selected == null">
+                    Vote
+                    </div>
+                    <div ng-if="candidate.selected == true">
+                    Selected
+                    </div>
+                    <div ng-if="candidate.selected == false">
+                    Change vote
+                    </div>
+                    </button>
                   </div>
             </div>
           </div>

@@ -10,9 +10,6 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
         $scope.today = new Date();
         $scope.nowyear = $scope.today.getFullYear();
         $scope.voteInfo.age=parseInt($scope.nowyear)-parseInt($scope.voteInfo.BD.substring(0,4));
-
-
-
         $scope.electionInfo={};
         $scope.electionInfo.candidates={};
 
@@ -20,7 +17,7 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
             $scope.electionInfo=data;
             if(data.length>0){
                 $scope.voteInfo.electionID=$scope.electionInfo[0]._id;
-                $scope.temporalItem={};
+                $scope.stemporalItem={};
                 $scope.temporalItem.citizenID=$scope.voteInfo.citizenID;
                 $scope.temporalItem.electionID=$scope.voteInfo.electionID;
                 Vote.getElectionUserData($scope.temporalItem).then(function(data){
@@ -60,7 +57,9 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
 
         $scope.votepres = function(number) {
             $scope.voteInfo.candidate_id=(number);
+            $scope.electionInfo[0].candidates[number].selected=true;
             var candidate = $scope.electionInfo[0].candidates[number];
+
             $scope.voteInfo.name=candidate.name+' '+candidate.firstLastName+' '+ candidate.secondLastName;
             $scope.voteInfo.firstLastName=candidate.firstLastNameCandidate;
             $scope.voteInfo.secondLastName=candidate.secondLastNameCandidate;
@@ -68,6 +67,12 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
             $scope.voteInfo.code=candidate.party.image;
             $scope.voteInfo.description=candidate.party.description;
             $scope.$parent.voteInfo=$scope.voteInfo;
+
+            for (i = 0; i < $scope.electionInfo[0].candidates.length; i++) {
+                if(i!=number) 
+                    {$scope.electionInfo[0].candidates[i].selected=false;   }
+            }
+
         }
 
         $scope.confirmationVote = function (index,obj)
