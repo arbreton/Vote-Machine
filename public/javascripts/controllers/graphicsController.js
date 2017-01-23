@@ -13,7 +13,10 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     var myNewChart5={};
     $scope.currentElection='';
     $scope.interactiveChartItem={};
-    $scope.ageGroups=[10,25,30];
+    $scope.ageGroups=[];
+    for (var i = 18; i <= 105; i++) {
+    $scope.ageGroups.push(i);
+}
     $scope.voteHours=['10','11','12','13','14','15','16','17','18','19'];
     $scope.ethnicGroups=["Blancos y Mestizos", "Mulatos", "Amerindios", "Afrocostarricenses", "Asiaticos", "Ninguno", "Otros"];
     election.getElection2().then(function(data)
