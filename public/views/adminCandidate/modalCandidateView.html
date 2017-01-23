@@ -22,19 +22,19 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="label-provincia">Province: </label>
-                <select class="form-control" ng-options="province as province.description for province in provinces track by province.id" ng-model="candidate.province" ng-change="showCantones(candidate.province.cantones)" required="" ng-readonly="candidate.read" id="ddProvince"></select>
+                <select class="form-control" ng-options="province as province.description for province in provinces track by province.id" ng-model="candidate.province" ng-change="showCantones(candidate.province.cantones)" required="" ng-disabled="candidate.read" id="ddProvince"></select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-canton">Canton: </label>
-                <select class="form-control" ng-options="canton as canton.description for canton in cantones track by canton.id" ng-model="candidate.province.canton" ng-change="showDistricts(candidate.province.canton.districts)" required="" ng-readonly="candidate.read"></select>
+                <select class="form-control" ng-options="canton as canton.description for canton in cantones track by canton.id" ng-model="candidate.province.canton" ng-change="showDistricts(candidate.province.canton.districts)" required="" ng-disabled="candidate.read"></select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-distritos">Disctrict: </label>
-                <select class="form-control" ng-options="distrinct as district.description for district in districts track by district.id" ng-model="candidate.province.district" required="" ng-readonly="candidate.read"></select>
+                <select class="form-control" ng-options="distrinct as district.description for district in districts track by district.id" ng-model="candidate.province.district" required="" ng-disabled="candidate.read"></select>
               </div>
           </div>
         </div><!--end row -->
