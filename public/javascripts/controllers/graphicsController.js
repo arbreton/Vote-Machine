@@ -5,6 +5,12 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     $scope.chartFunction=function(){
 
     };
+    var myNewChart={};
+    var myNewChart1={};
+    var myNewChart2={};
+    var myNewChart3={};
+    var myNewChart4={};
+    var myNewChart5={};
     $scope.currentElection='';
     $scope.interactiveChartItem={};
     $scope.ageGroups=[10,25,30];
@@ -142,6 +148,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
 
     $scope.generalChartFunction=function(date){
         chartService.getGeneralChart(date).then(function(data){
+            myNewChart && myNewChart.destroy && myNewChart.destroy();
             console.log(data);
             var myData = (data);
             loader1.style.visibility = "hidden";
@@ -174,7 +181,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
                 ]
             };
             var ctx = document.getElementById("canvas").getContext("2d");
-            var myNewChart = new Chart(ctx , {
+            myNewChart = new Chart(ctx , {
                 type: "bar",
                 data: barChartData,
                 options: {
@@ -192,6 +199,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
         
     $scope.hourChartFunction=function(date){
         chartService.getTimeChart(date).then(function(data){
+            myNewChart1 && myNewChart1.destroy && myNewChart1.destroy();
             var myData = (data);
             loader2.style.visibility = "hidden";
             $scope.ageChartFunction(date);
@@ -216,7 +224,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
                 ]
             };
             var ctx = document.getElementById("canvas1").getContext("2d");
-            var myNewChart = new Chart(ctx , {
+            var myNewChart1 = new Chart(ctx , {
                 type: "bar",
                 data: barChartData1,
                 options: {
@@ -234,6 +242,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
         
     $scope.ageChartFunction=function(date){
         chartService.getAgeChart(date).then(function(data){
+            myNewChart2 && myNewChart2.destroy && myNewChart2.destroy();
             var myData = (data);
             loader3.style.visibility = "hidden";
             $scope.earlyChartFunction(date);
@@ -258,7 +267,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
                 ]
             };
             var ctx = document.getElementById("canvas2").getContext("2d");
-            var myNewChart = new Chart(ctx , {
+            var myNewChart2 = new Chart(ctx , {
                 type: "bar",
                 data: barChartData2,
                 options:{
@@ -276,6 +285,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
 
     $scope.earlyChartFunction=function(date){
         chartService.getHourChart(date,10).then(function(data){
+            myNewChart3 && myNewChart3.destroy && myNewChart3.destroy();
             var myData = (data);
             loader4.style.visibility = "hidden";
             $scope.lateChartFunction(date);
@@ -318,6 +328,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
 
     $scope.lateChartFunction=function(date){
         chartService.getHourChart(date,19).then(function(data){
+            myNewChart4 && myNewChart4.destroy && myNewChart4.destroy();
             var myData = (data);
             loader5.style.visibility = "hidden";
             Array.prototype.mapProperty = function(property) {
@@ -359,6 +370,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
 
     $scope.interactiveChartFunction=function(date,chartType,filter){
         $scope.chartFunction(date,chartType,filter).then(function(data){
+            myNewChart5 && myNewChart5.destroy && myNewChart5.destroy();
             var myData = (data);
             loader6.style.visibility = "hidden";
             Array.prototype.mapProperty = function(property) {
@@ -382,7 +394,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
                 ]
             };
             var ctx = document.getElementById("canvas5").getContext("2d");
-            var myNewChart5 = new Chart(ctx , {
+            myNewChart5 = new Chart(ctx , {
                 type: "bar",
                 data: barChartData5, 
                 options: {
