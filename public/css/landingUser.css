@@ -60,6 +60,13 @@ p.CenterParty{
 img.candidate{
 	width: 200px;
 	height: 200px;
+	border: solid white 10px;
+}
+
+img.candidateelec{
+	width: 200px;
+	height: 200px;
+	border: solid green 10px;
 }
 
 img.party{

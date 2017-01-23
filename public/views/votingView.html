@@ -39,7 +39,7 @@
                     <div id="main_image"><img class="candidate" src="{{candidate.image}}"></div>
                     </div>
                     <div ng-if="candidate.selected == true">
-                    <div id="main_image"><img class="candidate" src="{{candidate.image}}"></div>
+                    <div id="main_image"><img class="candidateelec" src="{{candidate.image}}"></div>
                     </div>
                     <div ng-if="candidate.selected == false">
                     <div id="main_image"><img class="candidate" src="{{candidate.image}}"></div>
@@ -84,7 +84,10 @@
 		<h3><center>Independent candidate name</center><h3>
 		<div class="col-xs-offset-1 col-md-6">
 		<input  type="text" ng-model="independentCandidateText">
+    <br>
+    <div class = "col-xs-offset-1 col-md-8">
     <button class="btn-info" ng-click="confirmationOtherVote(independentCandidateText)">Independent</button></center>
+    </div>
 		</div>
 		</div>
 
