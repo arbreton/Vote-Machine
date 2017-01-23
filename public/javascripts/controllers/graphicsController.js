@@ -360,7 +360,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     $scope.interactiveChartFunction=function(date,chartType,filter){
         $scope.chartFunction(date,chartType,filter).then(function(data){
             var myData = (data);
-            loader5.style.visibility = "hidden";
+            loader6.style.visibility = "hidden";
             Array.prototype.mapProperty = function(property) {
                 return this.map(function (obj) {
                     return obj[property];
