@@ -40,11 +40,14 @@
 .row-magin-modal div {margin-bottom: 10px;}
 .row-magin-modal textarea {width:100% !important;}
 .row-magin-modal input[type='text'], input[type='radio'] { margin-bottom: 10px;}
+.selected-item input[type="radio"] {float: right; margin-bottom: 0PX;}
+div.selected-item {cursor: pointer; }
+.selected-item .checked-item {border: 3px solid #5c6061; }
 .label-modal label { padding-left: 0px; }
 .button-avatar {display: inline-block; background: #ccc; border-radius: 5px; font-weight: 800; cursor:pointer; box-shadow: 0px 1px 5px #383535; }
 .button-avatar:hover { background: rgba(183, 179, 179, 0.88);}
 .button-avatar > div { margin-bottom:  0px; padding: 10px;}
-.preview-img-modal { display: inline-block; height: 115px; width: 115px; border: 1px solid #ccc;}
+.preview-img-modal { display: inline-block; height: 115px; width: 115px; border: 1px solid #ccc; cursor: pointer;}
 .preview-img-modal img{ width: 115px; height: 115px;}
 .success-request{ position: absolute; top: 0; left:  50%;}
 .success-request h4 { margin-bottom: 0px;}
@@ -63,7 +66,8 @@
 .uib-month button {width: 92px !important; }
 .title-label{ display: block; padding: 10px;}
 .select-item img{ cursor:pointer;}
-.item-check {display: block;}
-.item-check i {     position: static; display: inline-block;}
+i.item-check  { font-size: 25px; top: 0; color: #0e6908; float: right; background: #ccc;}
 i.selected-item  {color: #008000;   top: 0; left: -37px; font-size: 23px; background: #ccc;}
 .image-party {width: 80px; height: 80px;}
+/*.selected-item-modal  { cursor: pointer; border: 3px solid #ccc;}*/
+.container-icon { text-align: right; width: 115px; height: 15px; position: absolute; top: 0;}

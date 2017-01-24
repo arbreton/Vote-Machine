@@ -13,6 +13,7 @@ app.controller('listCandidateCtrl', ['$scope', '$http', '$uibModal', '$timeout',
   election.getElection().then(function(data)
   {
     $scope.elections = data;
+    $scope.election=data[0];
   });
 
   $scope.deleteItem = function (index, obj)
@@ -27,9 +28,10 @@ app.controller('listCandidateCtrl', ['$scope', '$http', '$uibModal', '$timeout',
       });
   };
 
-  $scope.editItem = function (index, obj)
+  $scope.editItem = function (index, obj, idElection)
    {
      obj.read=false;
+     obj.idElection = idElection;
      var modalInstance = $uibModal.open({
        animation: $scope.animationsEnabled,
        templateUrl: 'views/adminCandidate/modalCandidateView.html',

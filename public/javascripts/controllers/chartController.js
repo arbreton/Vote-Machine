@@ -1,5 +1,5 @@
 'use strict'
-app.controller('graphicsController',['$scope','$state','$filter','$window','auth','election','chartService','province', function($scope,$state,$filter,$window,auth,election,chartService,province){
+app.controller('ChartCtrl',['$scope','$state','$filter','$window','auth','election','serviceChart','province', function($scope,$state,$filter,$window,auth,election,serviceChart,province){
     
     $scope.elections = [];
     $scope.chartFunction=function(){
@@ -14,9 +14,11 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     $scope.currentElection='';
     $scope.interactiveChartItem={};
     $scope.ageGroups=[];
-    for (var i = 18; i <= 105; i++) {
+    
+    for (var i = 18; i <= 105; i=i+10) {
     $scope.ageGroups.push(i);
-}
+    };
+    
     $scope.voteHours=['10','11','12','13','14','15','16','17','18','19'];
     $scope.ethnicGroups=["Blancos y Mestizos", "Mulatos", "Amerindios", "Afrocostarricenses", "Asiaticos", "Ninguno", "Otros"];
     election.getElection2().then(function(data)
@@ -58,6 +60,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     $scope.getCodes=function(id)
     {
         $scope.interactiveChartItem.provinceCode=id;
+        $scope.$parent.interactiveChartItem=$scope.interactiveChartItem;
         $scope.getChart();
     };
 
@@ -97,49 +100,49 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     $scope.chooseChart=function(chart){
         switch(chart){
             case 1:
-            $scope.chartFunction=chartService.getInteractiveDistrictChart;
+            $scope.chartFunction=serviceChart.getInteractiveDistrictChart;
             break;
             case 10:
-            $scope.chartFunction=chartService.getInteractiveAgeChart;
+            $scope.chartFunction=serviceChart.getInteractiveAgeChart;
             break
             case 11:
-            $scope.chartFunction=chartService.getInteractiveDistrictAgeChart;
+            $scope.chartFunction=serviceChart.getInteractiveDistrictAgeChart;
             break;
             case 100:
-            $scope.chartFunction=chartService.getInteractiveHourChart;
+            $scope.chartFunction=serviceChart.getInteractiveHourChart;
             break;
             case 101:
-            $scope.chartFunction=chartService.getInteractiveDistrictHourChart;
+            $scope.chartFunction=serviceChart.getInteractiveDistrictHourChart;
             break;
             case 110:
-            $scope.chartFunction=chartService.getInteractiveAgeHourChart;
+            $scope.chartFunction=serviceChart.getInteractiveAgeHourChart;
             break;
             case 111:
-            $scope.chartFunction=chartService.getInteractiveDistrictAgeHourChart;
+            $scope.chartFunction=serviceChart.getInteractiveDistrictAgeHourChart;
             break;
             case 1000:
-            $scope.chartFunction=chartService.getInteractiveEthnicChart;
+            $scope.chartFunction=serviceChart.getInteractiveEthnicChart;
             break;
             case 1001:
-            $scope.chartFunction=chartService.getInteractiveDistrictEthnicChart;
+            $scope.chartFunction=serviceChart.getInteractiveDistrictEthnicChart;
             break;
             case 1010:
-            $scope.chartFunction=chartService.getInteractiveAgeEthnicChart;
+            $scope.chartFunction=serviceChart.getInteractiveAgeEthnicChart;
             break;
             case 1011:
-            $scope.chartFunction=chartService.getInteractiveDistrictAgeEthnicChart;
+            $scope.chartFunction=serviceChart.getInteractiveDistrictAgeEthnicChart;
             break;
             case 1100:
-            $scope.chartFunction=chartService.getInteractiveHourEthnicChart;
+            $scope.chartFunction=serviceChart.getInteractiveHourEthnicChart;
             break;
             case 1101:
-            $scope.chartFunction=chartService.getInteractiveDistrictHourEthnicChart;
+            $scope.chartFunction=serviceChart.getInteractiveDistrictHourEthnicChart;
             break;
             case 1110:
-            $scope.chartFunction=chartService.getInteractiveAgeHourEthnicChart;
+            $scope.chartFunction=serviceChart.getInteractiveAgeHourEthnicChart;
             break;
             case 1111:
-            $scope.chartFunction=chartService.getInteractiveChart;
+            $scope.chartFunction=serviceChart.getInteractiveChart;
             
             break;
             default:
@@ -150,7 +153,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     };
 
     $scope.generalChartFunction=function(date){
-        chartService.getGeneralChart(date).then(function(data){
+        serviceChart.getGeneralChart(date).then(function(data){
             myNewChart && myNewChart.destroy && myNewChart.destroy();
             console.log(data);
             var myData = (data);
@@ -201,7 +204,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     };
         
     $scope.hourChartFunction=function(date){
-        chartService.getTimeChart(date).then(function(data){
+        serviceChart.getTimeChart(date).then(function(data){
             myNewChart1 && myNewChart1.destroy && myNewChart1.destroy();
             var myData = (data);
             loader2.style.visibility = "hidden";
@@ -244,7 +247,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     };
         
     $scope.ageChartFunction=function(date){
-        chartService.getAgeChart(date).then(function(data){
+        serviceChart.getAgeChart(date).then(function(data){
             myNewChart2 && myNewChart2.destroy && myNewChart2.destroy();
             var myData = (data);
             loader3.style.visibility = "hidden";
@@ -287,7 +290,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     };
 
     $scope.earlyChartFunction=function(date){
-        chartService.getHourChart(date,10).then(function(data){
+        serviceChart.getHourChart(date,10).then(function(data){
             myNewChart3 && myNewChart3.destroy && myNewChart3.destroy();
             var myData = (data);
             loader4.style.visibility = "hidden";
@@ -330,7 +333,7 @@ app.controller('graphicsController',['$scope','$state','$filter','$window','auth
     };
 
     $scope.lateChartFunction=function(date){
-        chartService.getHourChart(date,19).then(function(data){
+        serviceChart.getHourChart(date,19).then(function(data){
             myNewChart4 && myNewChart4.destroy && myNewChart4.destroy();
             var myData = (data);
             loader5.style.visibility = "hidden";

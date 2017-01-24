@@ -1,17 +1,3 @@
-/*divs de prueba en charts.html*/
-#div1,#div2,#div3, #div4, #div5, #div6 {
-	margin-top: 100px;
-}
-
-#div1, #div3, #div5{
-	float: left;
-	margin-left: 500px; 
-}
-#div2, #div4, #div6{
-	float: left;
-	margin-left: 80px;
-}
-
 /*Login*/
 .login-form{
   width:500px;
@@ -22,8 +8,6 @@
   -webkit-border-radius:4px;
   margin:150px auto;
 }
-
-
 /*loader*/
 .loader {
   position: absolute;
@@ -36,13 +20,11 @@
   height: 120px;
   animation: spin 2s linear infinite;
 }
-
 /*spinner animation for loader*/
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
 /*null vote div*/
 .null-vote{
   width:300px;
@@ -55,7 +37,6 @@
   margin:50px auto;
   margin-right: 100px;
 }
-
 /*other vote div*/
 .other-vote{
   width:370px;

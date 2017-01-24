@@ -1,43 +1,40 @@
 <div id="wrapper">
-    <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
-      <div class="header-logo">
-        <img ng-src="{{image}}">
+  <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+    <div class="header-logo">
+      <img ng-src="{{image}}">
+    </div>
+    <div class="info-people-container">
+      <div class="info-poeple">
+        <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
+        <hr width="170px">
+        <h4>Canton: {{canton}}</h4>
+        <hr width="170px">
+        <h4>District: {{district}}</h4>
+        <hr width="170px">
+        <h4>Province: {{province}}</h4>
+        <hr width="170px">
+        <h4>Birth Date: {{birthDate}}</h4>
       </div>
-      <div class="info-people-container">
-        <div class="info-poeple">
-          <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
-          <hr width="170px">
-          <h4>Canton: {{canton}}</h4>
-          <hr width="170px">
-          <h4>District: {{district}}</h4>
-          <hr width="170px">
-          <h4>Province: {{province}}</h4>
-          <hr width="170px">
-          <h4>Birth Date: {{birthDate}}</h4>
-      </div>
-      </div>
-      </div>
+    </div>
+  </div>
 
- <div class="title">New Election Registration</div>
- <hr>
- <div id="page-content-wrapper">
+  <div class="title">New Election Registration</div>
+  <hr>
+  <div id="page-content-wrapper">
     <div class="container-fluid">
 
       <form name="saveForm" ng-submit="saveForm.$valid && saveItem()" class="form-inline row-magin buttons">
         <!--home row -->
         <div class="row form-group-block-full">
           <div class="col-md-offset-3 col-md-8">
-              <div class="form-group">
-                <label for="fecha-eleccion">Election: </label>
-                <select class="form-control" ng-options="election.electionDay for election in elections"  ng-model="electionDay" required=""></select>
-              </div>
+            <div class="form-group">
+              <label for="fecha-eleccion">Election: </label>
+              <select class="form-control" ng-options="election.electionDay for election in elections"  ng-model="electionDay" required=""></select>
+            </div>
           </div>
-
         </div><!--end row -->
-<fieldset  ng-repeat="candidate in candidates">
-
-<div class="title2">Candidate #{{$index+1}}</div>
- <hr>
+        <fieldset  ng-repeat="candidate in candidates">
+        <hr>
         <!--home row -->
         <div class="row form-group-block">
           <div class="col-md-12">
@@ -54,43 +51,34 @@
                 <select class="form-control" ng-options="district.description for district in districts" ng-model="candidate.district" required=""></select>
               </div>
           </div>
-        </div><!--end row -->
+          </div><!--end row -->
 
-        <!--home row -->
-        <div class="row form-group-select select-item">
-          <label class="title-label">Parties</label>
-          <div class="col-md-2"  ng-repeat="party in parties">
-            <div class="form-group">
-              <div class="preview-img">
-                <i  class="fa fa-check selected-item" ng-if="party.selectItem" aria-hiden="true"></i>
-                <img  ng-src="{{party.image}}" ng-model="candidate.party" ng-click="getParty(party, $index, $parent.$index)">
+          <!--home row -->
+          <div class="row form-group-select select-item">
+            <label class="title-label">Parties</label>
+            <div class="col-md-2"  ng-repeat="party in parties">
+              <div class="form-group">
+                <div class="preview-img">
+                  <i  class="fa fa-check selected-item" ng-if="party.selectItem" aria-hiden="true"></i>
+                  <img  ng-src="{{party.image}}" ng-model="candidate.party" ng-click="getParty(party, $index, $parent.$index)">
+                </div>
               </div>
-            </div>
-          </div><!--end col -->
-
-        </div><!--end row -->
-<hr>
-        <!--home row -->
-        <div class="row no-margin">
-          <div class="col-md-2">
-            <div class="form-group">
-              <div class="preview-img"> <img ngf-thumbnail="candidate.img"></div>
-              <div class="button-avatar">
-                <div class="button"
-                  ngf-select="uploadFile(candidate.img, $index)"
-                  ng-model="candidate.img"
-                  name="file"
-                  ngf-pattern="'image/*'"
-                  ngf-accept="'image/*'"
-                  ngf-max-size="1MB" ngf-min-height="150"
-                  ngf-resize="{width: 150, height: 150}">Image candidate</div>
+            </div><!--end col -->
+          </div><!--end row -->
+          <hr>
+          <!--home row -->
+          <div class="row no-margin">
+            <div class="col-md-2">
+              <div class="form-group">
+                <div class="preview-img"> <img ngf-thumbnail="candidate.img"></div>
+                <div class="button-avatar">
+                  <div class="button" ngf-select="uploadFile(candidate.img, $index)" ng-model="candidate.img" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB" ngf-min-height="150" ngf-resize="{width: 150, height: 150}">Image candidate</div>
+                </div>
+                <i class="fa fa-check check-request check-selected" ng-if="requestImage.status==200" aria-hiden="true"></i>
               </div>
-              <i class="fa fa-check check-request check-selected" ng-if="requestImage.status==200" aria-hiden="true"></i>
-            </div>
-          </div><!--end col -->
-
-          <div class="col-md-10">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group-md">
+            </div><!--end col -->
+            <div class="col-md-10">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group-md">
                 <div class="form-group">
                   <label for="label-nombre" class="col-md-6">Name: </label>
                   <input type="text" class="form-control col-md-6" placeholder="Name" ng-model="candidate.name"/>
@@ -98,7 +86,7 @@
 
                 <div class="form-group">
                   <label for="label-last-name" class="col-md-6">First Last Name: </label>
-                  <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.firstLastName"/>
+                  <input type="text" class="form-control col-md-6" placeholder="First last name" ng-model="candidate.firstLastName"/>
                 </div>
 
                 <div class="form-group">
@@ -113,31 +101,28 @@
                     <div class="radio"><label> <input type="radio" ng-model="candidate.gender" value="2">Masculine </label></div>
                   </div><!--end col -->
                 </div>
+              </div><!--end col -->
+              <textarea class="form-control" placeholder="Propuestas" rows="8" cols="80" ng-model="candidate.proposal" required=""></textarea>
             </div><!--end col -->
-            <textarea class="form-control" placeholder="Propuestas" rows="8" cols="80" ng-model="candidate.proposal" required=""></textarea>
-          </div><!--end col -->
-        </div><!--end row -->
+          </div><!--end row -->
 
-        <div class="row text-right">
-          <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="false" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
-        </div>
+          <div class="row text-right">
+            <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="false" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+          </div>
 
           <div ng-if="request.status==200" class="alert alert-success success-request-fixed" role="alert">
             <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
           </div>
-
-</fieldset>
- <button class="btn btn-success circle-button flotante" ng-click="addNewChoice()" ng-show="false"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+        </fieldset>
+        <button class="btn btn-success circle-button flotante" ng-click="addNewChoice()" ng-show="false"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
         <!--home row -->
         <div class="row">
           <div class="col-md-12 text-center">
-            <button class="btn btn-success" ng-disabled="!saveForm.$valid"  type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-            <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
+            <button class="btn btn-success" ng-disabled="!saveForm.$valid"  type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+            <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancel</button>
           </div>
         </div><!--end row -->
-
       </form><!--end form -->
-
     </div>
   </div>
 </div>

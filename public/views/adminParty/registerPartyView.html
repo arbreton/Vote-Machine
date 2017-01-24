@@ -1,72 +1,61 @@
 <div id="wrapper">
-    <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
-      <div class="header-logo">
-        <img ng-src="{{image}}">
-      </div>
-      <div class="info-people-container">
-        <div class="info-poeple">
-          <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
-          <hr width="170px">
-          <h4>Canton: {{canton}}</h4>
-          <hr width="170px">
-          <h4>District: {{district}}</h4>
-          <hr width="170px">
-          <h4>Province: {{province}}</h4>
-          <hr width="170px">
-          <h4>Birth Date: {{birthDate}}</h4>
-      </div>
-      </div>
-      </div>
-
- <div class="title">Party Registration</div>
- <hr>
-
-<fieldset >
-  <form name="saveForm" ng-submit="saveForm.$error && saveItem()" novalidate >
-  <!--home row -->
-  <div class="row form-group-select2">
-    <!--home col -->
-    <div class="col-md-3 col-md-offset-3">
-      <div class="form-group">
-        <label for="label-nombre" class="col-md-6">Description: </label>
-        <input type="text" class="form-control col-md-6" placeholder="Description" ng-model="party.name" required />
-      </div>
-    </div><!--end col -->
-
-    <!--home col -->
-    <div class="col-md-2 col-md-offset-2">
-      <div class="form-group">
-        <div class="preview-img"><img ngf-thumbnail="party.image"></div>
-        <div class="button-avatar no-margin-top">
-          <div class="button"
-          ngf-select="uploadFile($file)"
-          ng-model="party.image"
-          name="file"
-          ngf-pattern="'image/*'"
-          ngf-accept="'image/*'"
-          ngf-max-size="1MB" ngf-min-height="150"
-          ngf-resize="{width: 150, height: 150}">Image party</div>
-        </div>
-        <i class="fa fa-check check-request check-selected" ng-if="status.requestImage" aria-hiden="true"></i>
-      </div><!--end form-group -->
-    </div><!--end col -->
-  </div><!--end row -->
-
-</fieldset>
-
-  <!--home row -->
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <button class="btn btn-success" type="submit" ng-click="saveItem()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-      <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
-
-      <div ng-if="status.request" class="alert alert-success success-request-fixed" role="alert">
-        <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
-      </div>
+  <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+    <div class="header-logo">
+      <img ng-src="{{image}}">
     </div>
-  </div><!--end row -->
-</form><!--end form -->
-
+    <div class="info-people-container">
+      <div class="info-poeple">
+        <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
+        <hr width="170px">
+        <h4>Canton: {{canton}}</h4>
+        <hr width="170px">
+        <h4>District: {{district}}</h4>
+        <hr width="170px">
+        <h4>Province: {{province}}</h4>
+        <hr width="170px">
+        <h4>Birth Date: {{birthDate}}</h4>
+      </div>
     </div>
   </div>
+
+  <div class="title">Party Registration</div>
+  <hr>
+  <fieldset>
+    <form name="saveForm" ng-submit="saveForm.$error && saveItem()" novalidate >
+      <!--home row -->
+      <div class="row form-group-select2">
+        <!--home col -->
+        <div class="col-md-3 col-md-offset-3">
+          <div class="form-group">
+            <label for="label-nombre" class="col-md-6">Description: </label>
+            <input type="text" class="form-control col-md-6" placeholder="Description" ng-model="party.name" required />
+          </div>
+        </div><!--end col -->
+
+        <!--home col -->
+        <div class="col-md-2 col-md-offset-2">
+          <div class="form-group">
+            <div class="preview-img"><img ngf-thumbnail="party.image"></div>
+              <div class="button-avatar no-margin-top">
+                <div class="button" ngf-select="uploadFile($file)" ng-model="party.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB" ngf-min-height="150" ngf-resize="{width: 150, height: 150}">Image party</div>
+              </div>
+            <i class="fa fa-check check-request check-selected" ng-if="status.requestImage" aria-hiden="true"></i>
+          </div><!--end form-group -->
+        </div><!--end col -->
+      </div><!--end row -->
+  </fieldset>
+      <!--home row -->
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <button class="btn btn-success" type="submit" ng-click="saveItem()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+          <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
+
+          <div ng-if="status.request" class="alert alert-success success-request-fixed" role="alert">
+            <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
+          </div>
+        </div>
+      </div><!--end row -->
+    </form><!--end form -->
+</div>
+</div>
 </div>

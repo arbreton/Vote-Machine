@@ -17,7 +17,7 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('voting', {
 		url : '/voting',
 		templateUrl : 'views/votingView.html',
-		controller : 'votingController'
+		controller : 'VotingCtrl'
 	}).state('login', {
 		url : '/login',
 		templateUrl : 'views/login.html',
@@ -71,7 +71,7 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('graphics', {
 		url: '/graphics',
 		templateUrl: 'views/graphicsView.html',
-		controller: 'graphicsController'
+		controller: 'ChartCtrl'
 
 	}).state('election', {
 		url: '/admin/election',

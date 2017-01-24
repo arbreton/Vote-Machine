@@ -29,7 +29,7 @@ app.factory('candidate', ['$http', function ($http)
 
     this.candidate.updateCandidate = function (obj)
     {
-      return $http.put('/api/candidate-update/'+ obj._id, obj.candidate).then(function (res)
+      return $http.put('/api/candidate-update/'+ obj.idElection, obj).then(function (res)
       {
           return res.data;
       });

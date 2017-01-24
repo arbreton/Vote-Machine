@@ -1,50 +1,40 @@
 <div class="modal-header">
-      <h3 class="modal-title" id="modal-title">Update Party</h3>
-  </div>
+  <h3 class="modal-title" id="modal-title">Update Party</h3>
+</div>
 
 <div class="modal-body" id="modal-body">
   <form name="saveForm" ng-submit="saveForm.$error && saveItem()" novalidate >
-  <!--home row -->
-  <div class="row form-group-select2">
-    <!--home col -->
-    <div class="col-md-3">
-      <div class="form-group">
-        <label for="label-nombre" class="col-md-6">Description: </label>
-        <input type="text" class="form-control col-md-6" placeholder="Description" ng-model="party.description" required />
-      </div>
-    </div><!--end col -->
-
-    <!--home col -->
-    <div class="col-md-2 col-md-offset-2">
-      <div class="form-group">
-        <div class="preview-img"><img ngf-thumbnail="party.image"></div>
-        <div class="button-avatar no-margin-top">
-          <div class="button"
-          ngf-select="uploadFile(party.image)"
-          ng-model="party.image"
-          name="file"
-          ngf-pattern="'image/*'"
-          ngf-accept="'image/*'"
-          ngf-max-size="1MB" ngf-min-height="150"
-          ngf-resize="{width: 150, height: 150}">Image party</div>
+    <!--home row -->
+    <div class="row form-group-select2">
+      <!--home col -->
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="label-nombre" class="col-md-6">Description: </label>
+          <input type="text" class="form-control col-md-6" placeholder="Description" ng-model="party.description" required />
         </div>
-        <i class="fa fa-check check-request check-selected" ng-if="status.requestImage" aria-hiden="true"></i>
-      </div><!--end form-group -->
-    </div><!--end col -->
-  </div><!--end row -->
+      </div><!--end col -->
 
-  </fieldset>
+      <!--home col -->
+      <div class="col-md-2 col-md-offset-2">
+        <div class="form-group">
+          <div class="preview-img"><img ngf-thumbnail="party.image"></div>
+          <div class="button-avatar no-margin-top">
+            <div class="button" ngf-select="uploadFile(party.image)" ng-model="party.image" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB" ngf-min-height="150" ngf-resize="{width: 150, height: 150}">Image party</div>
+          </div>
+          <i class="fa fa-check check-request check-selected" ng-if="status.requestImage" aria-hiden="true"></i>
+        </div><!--end form-group -->
+      </div><!--end col -->
+    </div><!--end row -->
+    <!--home row -->
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button class="btn btn-success" type="submit" ng-click="updateItem()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update</button>
+        <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancel</button>
 
-  <!--home row -->
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <button class="btn btn-success" type="submit" ng-click="updateItem()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update</button>
-      <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancel</button>
-
-      <div ng-if="status.request" class="alert alert-success success-request-fixed" role="alert">
-        <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
+        <div ng-if="status.request" class="alert alert-success success-request-fixed" role="alert">
+          <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
+        </div>
       </div>
-    </div>
-  </div><!--end row -->
+    </div><!--end row -->
   </form><!--end form -->
-  </div>
+</div>
