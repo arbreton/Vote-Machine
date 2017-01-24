@@ -196,7 +196,7 @@ app.post('/citizens', function(req, res) {
     },
     {
         $match:
-            { 'votes.age': parseInt(req.params.age) }
+            { 'votes.age': {$gte: parseInt(req.params.age), $lt: parseInt(req.params.age)+10} }
     },
     {
         $group: {
@@ -231,7 +231,7 @@ app.post('/citizens', function(req, res) {
     },
     {
         $match:
-            { 'votes.age': parseInt(req.params.age) }
+            { 'votes.age': {$gte: parseInt(req.params.age), $lt: parseInt(req.params.age)+10} }
     },
     {
         $group: {
@@ -328,7 +328,7 @@ app.post('/citizens', function(req, res) {
     },
     {
         $match:
-            { 'votes.age': parseInt(req.params.age) }
+            { 'votes.age': {$gte: parseInt(req.params.age), $lt: parseInt(req.params.age)+10} }
     },
     {
         $match:
@@ -367,7 +367,7 @@ app.post('/citizens', function(req, res) {
     },
     {
         $match:
-            { 'votes.age': parseInt(req.params.age) }
+            { 'votes.age': {$gte: parseInt(req.params.age), $lt: parseInt(req.params.age)+10} }
     },
     {
         $match:
@@ -468,7 +468,7 @@ app.post('/citizens', function(req, res) {
     },
     {
         $match:
-            { 'votes.age': parseInt(req.params.age) }
+            { 'votes.age': {$gte: parseInt(req.params.age), $lt: parseInt(req.params.age)+10} }
     },
     {
         $match:
@@ -507,7 +507,7 @@ app.post('/citizens', function(req, res) {
     },
     {
         $match:
-            { 'votes.age': parseInt(req.params.age) }
+            { 'votes.age': {$gte: parseInt(req.params.age), $lt: parseInt(req.params.age)+10} }
     },
     {
         $match:
@@ -616,7 +616,7 @@ app.post('/citizens', function(req, res) {
     },
     {
         $match:
-            { 'votes.age': parseInt(req.params.age) }
+            { 'votes.age': {$gte: parseInt(req.params.age), $lt: parseInt(req.params.age)+10} }
     },
     {
         $match:
@@ -659,7 +659,7 @@ app.post('/citizens', function(req, res) {
     },
     {
         $match:
-            { 'votes.age': parseInt(req.params.age) }
+            { 'votes.age': {$gte: parseInt(req.params.age), $lt: parseInt(req.params.age)+10} }
     },
     {
         $match:

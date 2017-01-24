@@ -15,9 +15,9 @@ app.controller('ChartCtrl',['$scope','$state','$filter','$window','auth','electi
     $scope.interactiveChartItem={};
     $scope.ageGroups=[];
     
-    for (var i = 18; i <= 105; i++) {
+    for (var i = 18; i <= 105; i=i+10) {
     $scope.ageGroups.push(i);
-    }
+    };
     
     $scope.voteHours=['10','11','12','13','14','15','16','17','18','19'];
     $scope.ethnicGroups=["Blancos y Mestizos", "Mulatos", "Amerindios", "Afrocostarricenses", "Asiaticos", "Ninguno", "Otros"];
@@ -60,6 +60,7 @@ app.controller('ChartCtrl',['$scope','$state','$filter','$window','auth','electi
     $scope.getCodes=function(id)
     {
         $scope.interactiveChartItem.provinceCode=id;
+        $scope.$parent.interactiveChartItem=$scope.interactiveChartItem;
         $scope.getChart();
     };
 
