@@ -1,4 +1,4 @@
-var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty','adminListParty','capitalizeFilter', 'authFactory', 'mainCtrl', 'authCtrl', 'navCtrl' , 'adminCtrl', 'election']);
+var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty','adminListParty','capitalizeFilter' , 'provinceFactory' ,'authFactory', 'mainCtrl', 'registerCtrl' ,'authCtrl', 'navCtrl' , 'adminCtrl', 'election', 'formly', 'formlyBootstrap']);
 app.config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
@@ -45,6 +45,10 @@ function($stateProvider, $urlRouterProvider) {
 	}).state('admin', {
 		url : '/admin',
 		templateUrl : 'views/adminDash.html',
+		controller : 'AdminController',
+	}).state('adminregister', {
+		url : '/admin/register',
+		templateUrl : 'views/adminRegister.html',
 		controller : 'AdminController',
 	}).state('candidate',
 	{

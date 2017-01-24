@@ -57,4 +57,8 @@ $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, 
 	{
 		$location.url("/admin/election");
 	};
+	$scope.showRegister = function ()
+	{
+		$location.url("/admin/register");
+	};
 }]);

@@ -1,0 +1,53 @@
+ <link href="css/adminregister.css" rel="stylesheet">
+
+ <div id="wrapper" ng-app="dashboard.candidatos">
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper" ng-show="isAdmin()">
+      <div class="header-logo">
+        <img ng-src="{{image}}">
+      </div>
+      <div class="info-people-container">
+          <div class="info-poeple">
+            <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
+            <hr width="170px">
+            <h4>Canton: {{canton}}</h4>
+            <hr width="170px">
+            <h4>District: {{district}}</h4>
+            <hr width="170px">
+            <h4>Province: {{province}}</h4>
+            <hr width="170px">
+            <h4>Birth Date: {{birthDate}}</h4>
+        </div>
+      </div>
+      </div>
+      <!-- /#sidebar-wrapper -->
+      <!--Nav bar -->
+
+      <!-- Page Content -->
+
+
+<div id="register-content">
+
+    <div  id="container-register" ng-controller="RegisterController as vm" class="container col-md-4 col-md-offset-4">
+
+        <form novalidate>
+            <h1>Register Form</h1>
+            <formly-form model="vm.rental" fields="vm.rentalFields" form="vm.rentalForm">
+                <button type="submit" class="btn btn-primary" ng-disabled="vm.rentalForm.$invalid">Submit</button>
+            </formly-form>
+        </form> 
+</div>
+
+</div>
+
+
+
+
+
+<div ng-hide="isAdmin()">
+
+<div class="page-header">
+    <center><h1>VoteMachine.IO</h1></center>
+  </div>
+  <center><h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can vote.</h3></center>
+  </div>
