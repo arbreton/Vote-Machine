@@ -1,4 +1,4 @@
-app.controller('votingController',['$scope','Vote','$state','$filter','auth','$uibModal','$window', function($scope,Vote,$state,$filter,auth,$uibModal,$window){
+app.controller('VotingCtrl',['$scope','$state','$filter','$uibModal','$window','auth','Vote', function($scope,$state,$filter,$uibModal,$window,auth,Vote){
 
 
         $scope.voteInfo={};
@@ -161,9 +161,9 @@ app.controller('votingController',['$scope','Vote','$state','$filter','auth','$u
             $scope.voteInfo.voteDate=$filter('date')($scope.voteInfo.voteDate, 'shortDate');
             console.log($scope.voteInfo);
             Vote.addVote($scope.voteInfo).then(function(){
-                $window.alert("Your vote has been registered");
+                
                 Vote.addVoteCit($scope.voteInfo).then(function(){
-                    $window.alert("Thanks for voting ");
+                    $window.alert("Thanks for voting, you will now be disconected");
                     auth.logOut();
                 });
 
