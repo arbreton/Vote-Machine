@@ -86,12 +86,69 @@ router.post('/candidate',function(req, res)
 
 });
 
-router.put('/candidate-update/:id',function (req, res)
+router.put('/candidate-update/:idElection',function (req, res)
 {
   var id = req.body._id;
-  Election.find().elemMatch("candidates", {_id: id}).exec(function (err, data)
+  console.log("id client: "+id);
+  /*Election.find().elemMatch("candidates", {_id: id}).exec(function (err, data)
   {
     console.log(data)
+  });*/
+  Election.aggregate(
+  {
+      $match:
+          { "_id": mongoose.Types.ObjectId(req.body.idElection) }
+  }
+/*  {
+      $unwind:
+          "$candidates"
+  },
+  {
+      $match:
+          { "candidates._id": mongoose.Types.ObjectId(req.body._id)}
+  }
+*/
+).exec(function(err, election) {
+      if (err)
+      {
+        res.send(err);
+      }
+      else
+      {
+          console.log(election);
+         var query = {  _id: id};
+           var update =
+           {
+             name : req.body.name,
+             firstLastName : req.body.firstLastName,
+             secondLastName : req.body.secondLastName,
+             proposal : req.body.proposal,
+             gender : req.body.gender,
+             image: req.body.image,
+             party: {
+                _id : req.body.party._id,
+                description: req.body.party.description
+              },
+             province:
+             {
+               id : req.body.province.id,
+               description: req.body.province.description,
+               canton: {
+                 id : req.body.province.canton.id,
+                 description : req.body.province.canton.description
+               },
+               district:{
+                 id : req.body.province.district.id,
+                 description : req.body.province.district.description
+               }
+             }
+           };
+           election[0].findOneAndUpdate(query, update, function (err, data)
+           {
+             if(err){console.log('Error in update');}
+             res.json({status: 200,message: 'Was updated successfully'});
+           });
+      }
   });
   if(id !='')
   {
@@ -103,11 +160,24 @@ router.put('/candidate-update/:id',function (req, res)
       secondLastName : req.body.secondLastName,
       proposal : req.body.proposal,
       gender : req.body.gender,
-      //image: req.body.image,
-      //party: { _id : req.body.party._id, description: req.body.party.description },
-      province: { id : req.body.province.id, description: req.body.province.description,
-        canton: { id : req.body.canton.id, description : req.body.canton.description },
-        district:{ id : req.body.district.id, description : req.body.district.description } }
+      image: req.body.image,
+      party: {
+         _id : req.body.party._id,
+         description: req.body.party.description
+       },
+      province:
+      {
+        id : req.body.province.id,
+        description: req.body.province.description,
+        canton: {
+          id : req.body.province.canton.id,
+          description : req.body.province.canton.description
+        },
+        district:{
+          id : req.body.province.district.id,
+          description : req.body.province.district.description
+        }
+      }
     };
     Election.findOneAndUpdate(query, update, function (err, data)
     {

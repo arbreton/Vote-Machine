@@ -2,7 +2,7 @@ var app = angular.module('modalCandidate', ['serviceCandidate', 'serviceProvince
 
 app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', 'item', 'province', 'party', 'Upload', 'candidate', function ($scope, $uibModalInstance, $filter, item, province, party, Upload, candidate)
 {
-
+  console.log(item)
   province.getProvinces().then(function (data)
   {
     $scope.cantones = [];
@@ -10,7 +10,6 @@ app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', '
 
     $scope.candidate = item;
     $scope.candidate.img = item.image;
-
     $scope.provinces = [];
     $scope.provinces = data;
 
@@ -33,9 +32,39 @@ app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', '
     $scope.parties = data;
   });
 
-  $scope.getParty = function (obj)
+  $scope.getParty = function (value, index, indexCandidate)
   {
-    console.log(obj)
+    $scope.indexPrevious;
+    if($scope.parties[index].selectItem == undefined)
+    {
+      $scope.parties[index].selectItem = true;
+      if($scope.indexPrevious != undefined)
+      {
+        $scope.parties[$scope.indexPrevious].selectItem = false;
+        $scope.indexPrevious = index;
+        //$scope.addPartyCandidate(value, indexCandidate);
+      }
+      else
+      {
+        $scope.indexPrevious = index;
+        //$scope.addPartyCandidate(value, indexCandidate);
+      }
+    }
+    else
+    {
+      if($scope.parties[index] == $scope.indexPrevious)
+      {
+        $scope.parties[index].selectItem = true;
+        //$scope.addPartyCandidate(value, indexCandidate);
+      }
+      else
+      {
+        $scope.parties[$scope.indexPrevious].selectItem = false;
+        $scope.parties[index].selectItem = true;
+        $scope.indexPrevious = index;
+        //$scope.addPartyCandidate(value, indexCandidate);
+      }
+    }
   };
 
   $scope.uploadFile = function (file)

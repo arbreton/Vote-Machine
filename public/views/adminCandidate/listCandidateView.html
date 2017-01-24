@@ -27,7 +27,12 @@
 
  <div id="page-content-wrapper">
     <div class="container-fluid">
-      <div class="form-group"> <label>Select Election: </label><select ng-options="election.electionDay for election in elections" ng-model="election" class="form-control"></select><div>
+      <div class="form-group">
+        <label class="col-md-2">Select Election: </label>
+        <div class="col-md-4">
+          <select  ng-options="election.electionDay for election in elections" ng-model="election"  class="form-control"></select>
+        </div>
+      </div>
         <br>
         <hr>
       <br>
@@ -52,7 +57,7 @@
                 <td>{{candidate.province.district.description}}</td>
                 <td>{{candidate.party.description}}</td>
                 <td>
-                  <button class="btn btn-success" ng-click="editItem($index,candidate)" ng-disabled="election.electionDay<dateNow"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                  <button class="btn btn-success" ng-click="editItem($index,candidate,election._id)" ng-disabled="election.electionDay<dateNow"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                   <button class="btn btn-danger" ng-click="confirmationDelete($index,candidate)" ng-disabled="election.electionDay<dateNow"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                   <button class="btn btn-success" ng-click="readOnly(candidate, true)" ng-show="election.electionDay<dateNow"><i class="fa fa-eye" aria-hidden="true"></i></button>
                 </td>

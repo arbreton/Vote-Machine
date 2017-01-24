@@ -34,12 +34,10 @@
           </div>
         </div><!--end row -->
         <fieldset  ng-repeat="candidate in candidates">
-
-          <div class="title2">Candidate #{{$index+1}}</div>
-          <hr>
-          <!--home row -->
-          <div class="row form-group-block">
-            <div class="col-md-12">
+        <hr>
+        <!--home row -->
+        <div class="row form-group-block">
+          <div class="col-md-12">
               <div class="form-group">
                 <label for="label-provincia">Provincia: </label>
                 <select class="form-control" ng-options="province.description for province in provinces" ng-model="candidate.province" ng-change="showCantones(candidate.province.cantones)" required=""></select>
@@ -52,7 +50,7 @@
                 <label for="label-distritos">Disctrict: </label>
                 <select class="form-control" ng-options="district.description for district in districts" ng-model="candidate.district" required=""></select>
               </div>
-            </div>
+          </div>
           </div><!--end row -->
 
           <!--home row -->
@@ -88,7 +86,7 @@
 
                 <div class="form-group">
                   <label for="label-last-name" class="col-md-6">First Last Name: </label>
-                  <input type="text" class="form-control col-md-6" placeholder="Fist last name" ng-model="candidate.firstLastName"/>
+                  <input type="text" class="form-control col-md-6" placeholder="First last name" ng-model="candidate.firstLastName"/>
                 </div>
 
                 <div class="form-group">
@@ -120,8 +118,8 @@
         <!--home row -->
         <div class="row">
           <div class="col-md-12 text-center">
-            <button class="btn btn-success" ng-disabled="!saveForm.$valid"  type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-            <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
+            <button class="btn btn-success" ng-disabled="!saveForm.$valid"  type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+            <button class="btn btn-danger" type="button" ng-click="clearItem()"><i class="fa fa-ban" aria-hidden="true"></i> Cancel</button>
           </div>
         </div><!--end row -->
       </form><!--end form -->
