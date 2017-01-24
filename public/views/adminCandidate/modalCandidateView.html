@@ -12,6 +12,7 @@
             <div class="preview-img-modal selected-item-modal">
               <img  ng-src="{{party.image}}" ng-model="candidate.party" ng-click="getParty(party, $index)">
               <div class="container-icon"> <i class="fa fa-check item-check" ng-if="party.selectItem || party._id==candidate.party._id"  ng-model="checkItem" aria-hidden="true"></i></div>
+
             </div>
           </div>
       </div>
@@ -92,4 +93,4 @@
       </div>
     </div><!--end row -->
     </form><!--end form -->
-  </div>
+</div>

@@ -1,4 +1,4 @@
-app.factory('chartService', ['$http', function($http){
+app.factory('serviceChart', ['$http', function($http){
 	var o = {	};
 
 	o.addVote = function(voteInfo) {
