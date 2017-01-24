@@ -1,29 +1,29 @@
 <div id="wrapper">
-    <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
-      <div class="header-logo">
-        <img ng-src="{{image}}">
+  <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+    <div class="header-logo">
+      <img ng-src="{{image}}">
+    </div>
+    <div class="info-people-container">
+      <div class="info-poeple">
+        <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
+        <hr width="170px">
+        <h4>Canton: {{canton}}</h4>
+        <hr width="170px">
+        <h4>District: {{district}}</h4>
+        <hr width="170px">
+        <h4>Province: {{province}}</h4>
+        <hr width="170px">
+        <h4>Birth Date: {{birthDate}}</h4>
       </div>
-      <div class="info-people-container">
-        <div class="info-poeple">
-          <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
-          <hr width="170px">
-          <h4>Canton: {{canton}}</h4>
-          <hr width="170px">
-          <h4>District: {{district}}</h4>
-          <hr width="170px">
-          <h4>Province: {{province}}</h4>
-          <hr width="170px">
-          <h4>Birth Date: {{birthDate}}</h4>
-      </div>
-      </div>
-      </div>
- <div class="title">Parties</div>
+    </div>
+  </div>
+  <div class="title">Parties</div>
 
-   <div ng-if="response.status==200" class="alert alert-success success-request" role="alert">
-     <h4>{{response.message}}</h4>
-   </div>
+  <div ng-if="response.status==200" class="alert alert-success success-request" role="alert">
+    <h4>{{response.message}}</h4>
+  </div>
 
- <div id="page-content-wrapper">
+  <div id="page-content-wrapper">
     <div class="container-fluid">
       <div class="">
         <table class="row-border hover vertical-alig-middle"  datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" >
@@ -36,16 +36,16 @@
           </thead>
           <tbody>
             <tr ng-repeat="party in parties">
-                <td>{{party.description}}</td>
-                <td><img class="image-party" ng-src="{{party.image}}" /></td>
-                <td>
-                  <button class="btn btn-success" ng-click="editItem($index, party)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                  <button class="btn btn-danger" type="submit" ng-click="confirmationDelete($index, party)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                </td>
+              <td>{{party.description}}</td>
+              <td><img class="image-party" ng-src="{{party.image}}" /></td>
+              <td>
+                <button class="btn btn-success" ng-click="editItem($index, party)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                <button class="btn btn-danger" type="submit" ng-click="confirmationDelete($index, party)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              </td>
             </tr>
           </tbody>
         </table>
-        </div>
       </div>
     </div>
   </div>
+</div>

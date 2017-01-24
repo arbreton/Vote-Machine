@@ -1,108 +1,107 @@
- <div id="wrapper">
-      <!-- Sidebar -->
-        <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
-      <div class="header-logo"> 
-        <img ng-src="{{image}}">
+<div id="wrapper">
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+    <div class="header-logo"> 
+      <img ng-src="{{image}}">
+    </div>
+    <div class="info-people-container">
+      <div class="info-poeple">
+        <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
+        <hr width="170px">
+        <h4>Canton: {{canton}}</h4>
+        <hr width="170px">
+        <h4>District: {{district}}</h4>
+        <hr width="170px">
+        <h4>Province: {{province}}</h4>
+        <hr width="170px">
+        <h4>Birth Date: {{birthDate}}</h4>
       </div>
-      <div class="info-people-container">
-          <div class="info-poeple">
-            <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
-            <hr width="170px">
-            <h4>Canton: {{canton}}</h4>
-            <hr width="170px">
-            <h4>District: {{district}}</h4>
-            <hr width="170px">
-            <h4>Province: {{province}}</h4>
-            <hr width="170px">
-            <h4>Birth Date: {{birthDate}}</h4>
-        </div>
-      </div>
-      </div>
-      <!-- /#sidebar-wrapper -->
-      <!--Nav bar -->
+    </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+  <!--Nav bar -->
 
-      <!-- Page Content -->
-       <div class="title" >Charts</div>
-       <hr>
-       <div class="buttonlabel" style = "margin-left: 200px;">
-           <button type="button" class="btn btn-default btn-lg" ng-click="showChart('General')" id= "button1"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
-           <p>General</p>
+  <!-- Page Content -->
+  <div class="title" >Charts</div>
+    <hr>
+    <div class="buttonlabel" style = "margin-left: 200px;">
+      <button type="button" class="btn btn-default btn-lg" ng-click="showChart('General')" id= "button1"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+      <p>General</p>
+    </div>
+    <div class="buttonlabel">
+      <button type="button" class="btn btn-default btn-lg" ng-click="showChart('Hour')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+      <p>Hour</p>
+    </div>
+    <div class="buttonlabel">
+      <button type="button" class="btn btn-default btn-lg" ng-click="showChart('Age')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+      <p>Age</p>
+    </div>
+    <div class="buttonlabel">
+      <button type="button" class="btn btn-default btn-lg" ng-click="showChart('Early')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+      <p>Early</p>
+    </div>
+    <div class="buttonlabel">
+      <button type="button" class="btn btn-default btn-lg" ng-click="showChart('Late')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+      <p>Late</p>
+    </div>
+    <div class="buttonlabel">
+      <button type="button" class="btn btn-default btn-lg" ng-click="showChart('Interactive')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+      <p>Interactive</p>
+    </div>
+    <div class="buttonlabel">
+      <button type="button" class="btn btn-default btn-lg" ng-click="startCharts()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
+      <p>Start</p>
+    </div> <br><br>
+    <div class="form-group col-xs-offset-1 col-lg-9"> <label>Select Election: </label><select ng-options="election.electionDay for election in elections" ng-model="election" class="form-control"></select></div>
+    <br><br><br>
+    <hr>
+    <div id="page-content-wrapper" ng-view>
+      <div class="container-fluid">
+        <!--votes div-->
+        <div ng-show="generalChart" style = "width: 75%;" id="chartCanvas">
+          <div class="loader" id = "loader1"></div>
+          <canvas id="canvas"></canvas>
+          <br>
         </div>
-        <div class="buttonlabel">
-            <button type="button" class="btn btn-default btn-lg" ng-click="showChart('Hour')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
-            <p>Hour</p>
+        <div ng-show="hourChart" style = "width: 75%;" id="chartCanvas1">
+          <div class="loader" id = "loader2"></div>
+          <canvas id="canvas1"></canvas>
+          <br>
         </div>
-        <div class="buttonlabel">
-            <button type="button" class="btn btn-default btn-lg" ng-click="showChart('Age')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
-            <p>Age</p>
+        <div ng-show="ageChart" style = "width: 75%;" id="chartCanvas2">
+          <div class="loader" id = "loader3"></div>
+          <canvas id="canvas2"></canvas>
+          <br>
         </div>
-        <div class="buttonlabel">
-            <button type="button" class="btn btn-default btn-lg" ng-click="showChart('Early')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
-            <p>Early</p>
+        <div ng-show="earlyChart" style = "width: 75%;" id="chartCanvas3">
+          <div class="loader" id = "loader4"></div>
+          <canvas id="canvas3"></canvas>
+          <br>
         </div>
-        <div class="buttonlabel">
-            <button type="button" class="btn btn-default btn-lg" ng-click="showChart('Late')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
-            <p>Late</p>
+        <div ng-show="lateChart" style = "width: 75%;" id="chartCanvas4">
+          <div class="loader" id = "loader5"></div>
+          <canvas id="canvas4"></canvas>
+          <br>
         </div>
-        <div class="buttonlabel">
-            <button type="button" class="btn btn-default btn-lg" ng-click="showChart('Interactive')"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
-            <p>Interactive</p>
-        </div>
-        <div class="buttonlabel">
-            <button type="button" class="btn btn-default btn-lg" ng-click="startCharts()"><i class="fa fa-bar-chart" aria-hidden="true"></i></button>
-            <p>Start</p>
-        </div> <br><br>
-         <div class="form-group col-xs-offset-1 col-lg-9"> <label>Select Election: </label><select ng-options="election.electionDay for election in elections" ng-model="election" class="form-control"></select></div>
-         <br><br><br>
-         <hr>
+        <div ng-show="genderChart" style = "width: 75%;" id="chartCanvas5">
+          <div class="loader" id = "loader6"></div>
 
-      <div id="page-content-wrapper" ng-view>
-          <div class="container-fluid">
-            <!--votes div-->
-<div ng-show="generalChart" style = "width: 75%;" id="chartCanvas">
-  <div class="loader" id = "loader1"></div>
- <canvas id="canvas"></canvas>
- <br>
-</div>
-<div ng-show="hourChart" style = "width: 75%;" id="chartCanvas1">
-    <div class="loader" id = "loader2"></div>
- <canvas id="canvas1"></canvas>
- <br>
-</div>
-<div ng-show="ageChart" style = "width: 75%;" id="chartCanvas2">
-    <div class="loader" id = "loader3"></div>
- <canvas id="canvas2"></canvas>
- <br>
-</div>
-<div ng-show="earlyChart" style = "width: 75%;" id="chartCanvas3">
-    <div class="loader" id = "loader4"></div>
- <canvas id="canvas3"></canvas>
- <br>
-</div>
-<div ng-show="lateChart" style = "width: 75%;" id="chartCanvas4">
-    <div class="loader" id = "loader5"></div>
- <canvas id="canvas4"></canvas>
- <br>
-</div>
-<div ng-show="genderChart" style = "width: 75%;" id="chartCanvas5">
-<div class="loader" id = "loader6"></div>
-
-<div class="checkbox">
-  <label><input type="checkbox" value="" ng-model="districtFilter">District</label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value="" ng-model="ageFilter">Age</label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value="" ng-model="hourFilter">Vote hour</label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value="" ng-model="ethnicFilter">Ethnic Group</label>
-</div>
-  <!--District filter -->
-  <div ng-show="districtFilter">
-  <!--home row -->
-       <div class="row-form-group form-inline">
+          <div class="checkbox">
+            <label><input type="checkbox" value="" ng-model="districtFilter">District</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" value="" ng-model="ageFilter">Age</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" value="" ng-model="hourFilter">Vote hour</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" value="" ng-model="ethnicFilter">Ethnic Group</label>
+          </div>
+          <!--District filter -->
+          <div ng-show="districtFilter">
+            <!--home row -->
+            <div class="row-form-group form-inline">
               <div class="form-group form-group-sm">
                 <label for="label-provincia">Provincia: </label><br>
                 <select class="form-control" ng-options="province.description for province in provinces" ng-model="province" ng-change="showCantones(province.cantones)" required=""></select>
@@ -115,60 +114,58 @@
                 <label for="label-distritos">Disctrict: </label><br>
                 <select class="form-control" ng-options="district.description for district in districts" ng-model="province.canton.district" ng-change="getCodes(province.id + province.canton.id + province.canton.district.id)" required=""></select>
               </div>
+            </div>
           </div>
+        <!--end row -->
         </div>
-  <!--end row -->
-  </div>
 
-   <!--Age filter -->
-  <div ng-show="ageFilter">
-  <!--home row -->
-        <div class="row form-group-block">
-          <div class="col-md-">
+        <!--Age filter -->
+        <div ng-show="ageFilter">
+          <!--home row -->
+          <div class="row form-group-block">
+            <div class="col-md-">
               <div class="form-group-sm">
                 <label for="label-distritos">Age: </label><br>
                 <!--<input type = "text" ng-model="interactiveChartItem.age" required="">-->
                 <select class="form-control" ng-options="ageGroup for ageGroup in ageGroups" ng-model="interactiveChartItem.age" ng-change="setAge(interactiveChartItem.age)" required=""></select>
               </div>
+            </div>
           </div>
+        <!--end row -->
         </div>
-  <!--end row -->
-  </div>
 
-   <!--Hour filter -->
-  <div ng-show="hourFilter">
-  <!--home row -->
-        <div class="row form-group-block-hourf" >
-          <div class="col-md-12">
+        <!--Hour filter -->
+        <div ng-show="hourFilter">
+          <!--home row -->
+          <div class="row form-group-block-hourf" >
+            <div class="col-md-12">
               <div class="form-group-sm">
                 <label for="label-distritos">Vote hour: </label>
                 <select class="form-control" ng-options="voteHour for voteHour in voteHours" ng-model="interactiveChartItem.hour" ng-change="setHour(interactiveChartItem.hour)" required=""></select>
               </div>
+            </div>
           </div>
+        <!--end row -->
         </div>
-  <!--end row -->
-  </div>
 
-   <!--Ethnic group filter -->
-  <div ng-show="ethnicFilter">
-
-  <!--home row -->
-        <div class="row form-group-block-ethf">
-          <div class="col-md-12">
+        <!--Ethnic group filter -->
+        <div ng-show="ethnicFilter">
+          <!--home row -->
+          <div class="row form-group-block-ethf">
+            <div class="col-md-12">
               <div class="form-group-sm">
                 <label for="label-distritos">Ethnic group: </label>
                 <select class="form-control" ng-options="voteEthnicGroup for voteEthnicGroup in ethnicGroups" ng-model="interactiveChartItem.ethnicGroup" ng-change="setEthnicGroup(interactiveChartItem.ethnicGroup)" required=""></select>
-
               </div>
+            </div>
+          <!--end row -->
+          </div>
         </div>
-  <!--end row -->
-  </div>
-</div>
 
- <canvas id="canvas5"></canvas>
- <br>
+        <canvas id="canvas5"></canvas>
+        <br>
       </div>
-  </div>
+    </div>
 </div>
 
 <!--graphicsViews buttons-->

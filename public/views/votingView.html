@@ -1,55 +1,53 @@
 <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
 <div id="wrapper">
 <div  id="presidencial" class="container-fluid" ng-hide="votingavailable" ng-show="isLoggedIn()" ng-controller="AdminController">
-	  <!-- Sidebar -->
-      <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
-        <div class="header-logo">
-          <img ng-src="{{image}}">
-        </div>
-        <div class="info-people-container">
-             <div class="info-poeple">
-              <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
-              <hr width="170px">
-              <h4>Canton: {{canton}}</h4>
-              <hr width="170px">
-              <h4>District: {{district}}</h4>
-              <hr width="170px">
-              <h4>Province: {{province}}</h4>
-              <hr width="170px">
-              <h4>Birth Date: {{birthDate}}</h4>
-          </div>
-        </div>
+	<!-- Sidebar -->
+  <div id="sidebar-wrapper" ng-show="isLoggedIn()" ng-controller="AdminController">
+    <div class="header-logo">
+      <img ng-src="{{image}}">
+    </div>
+    <div class="info-people-container">
+      <div class="info-poeple">
+        <h3>{{name | capitalize}} {{firstLastName | capitalize}} {{secondLastName | capitalize}}</h3>
+        <hr width="170px">
+        <h4>Canton: {{canton}}</h4>
+        <hr width="170px">
+        <h4>District: {{district}}</h4>
+        <hr width="170px">
+        <h4>Province: {{province}}</h4>
+        <hr width="170px">
+        <h4>Birth Date: {{birthDate}}</h4>
       </div>
-      <!-- /#sidebar-wrapper -->
-      <!--Nav bar -->
+    </div>
+  </div>
+<!-- /#sidebar-wrapper -->
+<!--Nav bar -->
 <div id="page-content-wrapper">
-   <div class="container-fluid">
-      <div class="row" ng-show="isLoggedIn()" ng-controller="AdminController">
-      <center class="electionType">Presidential Elections</center>
-      <hr>
+  <div class="container-fluid">
+    <div class="row" ng-show="isLoggedIn()" ng-controller="AdminController">
+    <center class="electionType">Presidential Elections</center>
+    <hr>
 
-        <div class="row"  >
-          <div ng-repeat="candidate in electionInfo[0].candidates track by $index">
+      <div class="row"  >
+        <div ng-repeat="candidate in electionInfo[0].candidates track by $index">
           <div class="clearfix" ng-if="$index % 3 == 0"></div>
-          <div class="col-md-4">
-              <div id="container">
-                  
-                  <div ng-if="candidate.selected == null">
+            <div class="col-md-4">
+              <div id="container">      
+                <div ng-if="candidate.selected == null">
                   <!--En este orden: Cuando nadie esta seleccionado, cuando el actual esta seleccionado y cuando el actual no lo esta -->
-                    <div id="main_image"><img class="candidate" src="{{candidate.image}}"></div>
-                    </div>
-                    <div ng-if="candidate.selected == true">
-                    <div id="main_image"><img class="candidateelec" src="{{candidate.image}}"></div>
-                    </div>
-                    <div ng-if="candidate.selected == false">
-                    <div id="main_image"><img class="candidate" src="{{candidate.image}}"></div>
-                    </div>
-                  
-                  <div id="overlay_image"><img class="party" src="{{candidate.party.image}}"></div>
+                  <div id="main_image"><img class="candidate" src="{{candidate.image}}"></div>
+                </div>
+                <div ng-if="candidate.selected == true">
+                  <div id="main_image"><img class="candidateelec" src="{{candidate.image}}"></div>
+                </div>
+                <div ng-if="candidate.selected == false">
+                  <div id="main_image"><img class="candidate" src="{{candidate.image}}"></div>
+                </div>  
+                <div id="overlay_image"><img class="party" src="{{candidate.party.image}}"></div>
               </div>
                 <p class="CenterName">{{candidate.name +' '+ candidate.firstLastName}}</p>
-                  <button class="btn-light" ng-click="showDetails = ! showDetails">Campaign Promises</button>
-                  <div>
+                <button class="btn-light" ng-click="showDetails = ! showDetails">Campaign Promises</button>
+                <div>
                     <span ng-show="showDetails">
                     <p>{{candidate.proposal}}</p>
                     <p>No federal government profit from student loans. (Nov 2015)</p>
@@ -66,40 +64,36 @@
                     Change vote
                     </div>
                     </button>
-                  </div>
+                </div>
             </div>
-          </div>
         </div>
+      </div>
     </div>
-
-	<!-- Other candidate and null vote options -->
-	<div class="row" ng-show="isLoggedIn()" ng-controller="AdminController">
+	 <!-- Other candidate and null vote options -->
+	 <div class="row" ng-show="isLoggedIn()" ng-controller="AdminController">
 		<!-- Spacing column-->
 		<div class="col-md-3">
-
-		</div><br><br>
-
+    </div><br><br>
 		<!-- Other-->
 		<div class = "other-vote">
-		<h3><center>Independent candidate name</center><h3>
-		<div class="col-xs-offset-1 col-md-6">
-		<input  type="text" ng-model="independentCandidateText">
-    <br>
-    <div class = "col-xs-offset-1 col-md-8">
-    <button class="btn-info" ng-click="confirmationOtherVote(independentCandidateText)">Independent</button></center>
-    </div>
+		  <h3><center>Independent candidate name</center><h3>
+		  <div class="col-xs-offset-1 col-md-6">
+		    <input  type="text" ng-model="independentCandidateText">
+        <br>
+        <div class = "col-xs-offset-1 col-md-8">
+        <button class="btn-info" ng-click="confirmationOtherVote(independentCandidateText)">Independent</button></center>
+        </div>
+		  </div>
 		</div>
-		</div>
-
-		<!-- Null vote-->
+    <!-- Null vote-->
 		<div class = "null-vote">
-		<h3><center>Null vote</center></h3>
-		<center><div class="col-xs-offset-1 col-md-3">
-		<button class="btn-info" ng-click="confirmationNullVote('No candidate')">Null Vote</button></center>
+		  <h3><center>Null vote</center></h3>
+		  <center><div class="col-xs-offset-1 col-md-3">
+		  <button class="btn-info" ng-click="confirmationNullVote('No candidate')">Null Vote</button></center>
+		  </div>
 		</div>
-		</div>
-	</div>
-</div>
+	 </div>
+  </div>
 
 <!--Section 4 (confirm vote) -->
 <div id="finalizar" class="container-fluid">
@@ -107,7 +101,6 @@
 		<!--Spacing column-->
 		<div class="col-md-4">
 		</div>
-
 		<div class="col-md-3" ng-show="isLoggedIn()" ng-controller="AdminController">
 			<!--Confirm vote button -->
 			<button class="btn-primary" ng-click="registerVote()">Finish</button>
@@ -119,12 +112,11 @@
 </div>
 
 <div ng-hide="isLoggedIn()" ng-controller="AdminController">
-
  <div class="page-header">
     <center><h1>VoteMachine.IO</h1></center>
   </div>
   <center><h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can vote.</h3></center>
-  </div>
+</div>
 </div>
 </div>
 </div>
