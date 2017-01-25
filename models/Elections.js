@@ -20,6 +20,7 @@ var electionSchema = new Schema({
    secondLastName: String,
    proposal: String,
    gender: String,
+   status: Boolean,
    image: String,
    party: {
      _id: String,

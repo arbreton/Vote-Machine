@@ -58,7 +58,7 @@
                 <td>{{candidate.party.description}}</td>
                 <td>
                   <button class="btn btn-success" ng-click="editItem($index,candidate,election._id)" ng-disabled="election.electionDay<dateNow"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                  <button class="btn btn-danger" ng-click="confirmationDelete($index,candidate)" ng-disabled="election.electionDay<dateNow"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                  <button class="btn btn-danger" ng-click="confirmationDelete(election, $index,candidate, election._id)" ng-disabled="election.electionDay<dateNow"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                   <button class="btn btn-success" ng-click="readOnly(candidate, true)" ng-show="election.electionDay<dateNow"><i class="fa fa-eye" aria-hidden="true"></i></button>
                 </td>
             </tr>

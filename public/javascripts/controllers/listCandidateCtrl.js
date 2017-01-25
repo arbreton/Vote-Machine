@@ -18,10 +18,11 @@ app.controller('listCandidateCtrl', ['$scope', '$http', '$uibModal', '$timeout',
 
   $scope.deleteItem = function (index, obj)
   {
+    console.log($scope.elections)
     candidate.deleteCandidate(obj).then(function (data)
     {
       $scope.response = data;
-      $scope.candidates.splice(index, 1);
+      $scope.elections[0].canditates.splice(index, 1);
       $timeout(function ()
       {
         $(".success-request").show().delay(2000).fadeOut();},1000);
@@ -83,8 +84,10 @@ app.controller('listCandidateCtrl', ['$scope', '$http', '$uibModal', '$timeout',
       });
     };
 
-  $scope.confirmationDelete = function (index, obj)
+  $scope.confirmationDelete = function (indexElection, indexCandidate,obj, idElection)
   {
+    console.log($scope.elections)
+    obj.idElection= idElection;
     var modalInstance = $uibModal.open({
       templateUrl: 'views/adminCandidate/modalConfirmationView.html',
       controller: 'modalConfirmationCtrl',
@@ -100,7 +103,8 @@ app.controller('listCandidateCtrl', ['$scope', '$http', '$uibModal', '$timeout',
     {
       if(data)
       {
-        $scope.deleteItem(index, obj);
+
+        $scope.deleteItem(indexElection, indexCandidate,obj);
       }
     });
   };

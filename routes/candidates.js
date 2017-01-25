@@ -99,6 +99,7 @@ router.put('/candidate-update/:idElection',function (req, res)
     proposal : req.body.proposal,
     gender : req.body.gender,
     image: req.body.image,
+    status: true,
     party: {
        _id : req.body.party._id,
        description: req.body.party.description,
@@ -138,23 +139,25 @@ router.put('/candidate-update/:idElection',function (req, res)
 
 router.put('/candidate-delete/:id', function (req, res)
 {
+  console.log(req.body)
   var id = req.body._id;
   if( id !='')
   {
-      var query = {
-        _id: id
-      };
-      var update = {
-        status: false
-      };
-      Election.findOneAndUpdate(query, update, function (err, data)
-      {
-        if(err)
+      Election.findOneAndUpdate(
         {
-          res.json({status: 400 ,message: 'Can not delete the register'});
-        }
-        res.json({status: 200, message: 'Was deleted successfully'});
-      });
+          "_id": mongoose.Types.ObjectId(req.body.idElection),"candidates._id": mongoose.Types.ObjectId(req.body._id)
+        },
+        {
+          "candidates.$.status": false
+        },
+        function (err, data)
+        {
+          if(err)
+          {
+            res.json({status: 400 ,message: 'Can not delete the register'});
+          }
+          res.json({status: 200, message: 'Was deleted successfully'});
+        });
   }
 });
 

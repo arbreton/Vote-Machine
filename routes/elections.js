@@ -4,10 +4,31 @@ var app = express.Router();
 var Election = mongoose.model('Election');
 
 app.route('/election')
-  .get( function (req, res){
-    Election.find({}).exec(function (err, data){
-      if(err){}
-      else{ res.json(data); }
+  .get( function (req, res)
+  {
+    /*Election.aggregate(    {
+            $unwind:
+                "$candidates"
+        },
+        {
+            $match:
+                { "candidates.status": true }
+        }, function (err,data)
+        {
+          if(err) {res.send(err);}
+          console.log(data);
+        })*/
+    Election.find({"candidates.$.status": true}).exec(function (err, data)
+    {
+      if(err)
+      {
+          res.send(err);
+      }
+      else
+      {
+        res.json(data);
+        console.log(data)
+      }
     });
   })
   .post( function (req, res){
@@ -15,7 +36,7 @@ app.route('/election')
     election._id = new mongoose.Types.ObjectId;
     election.initialElection = req.body.initialElection;
     election.finalElection = req.body.finalElection;
-    election.electionDay = req.body.electionDay;
+    election.electionDay = new Date(req.body.electionDay);
     election.save( function(err)
     {
       if(err){ res.json({status:500, message: 'Error saved the register'});}
