@@ -26,6 +26,7 @@ app.controller('ChartCtrl',['$scope','$state','$filter','$window','auth','electi
         $scope.elections = data;
         $scope.currentIndex=$scope.elections.length-1;
         $scope.election=$scope.elections[$scope.currentIndex];
+        $scope.generalChartFunction($scope.election.electionDay);
     });
     $scope.generalChart=true;
     $scope.hourChart=false;

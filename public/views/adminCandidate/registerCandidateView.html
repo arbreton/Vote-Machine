@@ -33,8 +33,9 @@
             </div>
           </div>
         </div><!--end row -->
+
         <fieldset  ng-repeat="candidate in candidates">
-        <hr>
+
         <!--home row -->
         <div class="row form-group-block">
           <div class="col-md-12">
@@ -53,6 +54,7 @@
           </div>
           </div><!--end row -->
         <!--home row -->
+                <hr>
         <div class="row form-group-select select-item">
           <label class="title-label">Parties</label>
           <div class="col-md-2"  ng-repeat="party in parties">
@@ -63,9 +65,19 @@
               </div>
             </div><!--end col -->
           </div><!--end row -->
-          <hr>
           <!--home row -->
-          <div class="row no-margin">
+          
+
+          <div class="row text-right">
+            <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="false" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+          </div>
+
+          <div ng-if="request.status==200" class="alert alert-success success-request-fixed" role="alert">
+            <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
+          </div>
+        </fieldset>
+        <hr>
+        <div class="row no-margin">
             <div class="col-md-2">
               <div class="form-group">
                 <div class="preview-img"> <img ngf-thumbnail="candidate.img"></div>
@@ -104,14 +116,6 @@
             </div><!--end col -->
           </div><!--end row -->
 
-          <div class="row text-right">
-            <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="false" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
-          </div>
-
-          <div ng-if="request.status==200" class="alert alert-success success-request-fixed" role="alert">
-            <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
-          </div>
-        </fieldset>
         <button class="btn btn-success circle-button flotante" ng-click="addNewChoice()" ng-show="false"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
         <!--home row -->
         <div class="row">
