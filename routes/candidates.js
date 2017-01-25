@@ -88,103 +88,64 @@ router.post('/candidate',function(req, res)
 
 router.put('/candidate-update/:idElection',function (req, res)
 {
+  console.log(req.body)
   var id = req.body._id;
-  console.log("id client: "+id);
-  /*Election.find().elemMatch("candidates", {_id: id}).exec(function (err, data)
+  var update =
   {
-    console.log(data)
-  });*/
-  Election.aggregate(
-  {
-      $match:
-          { "_id": mongoose.Types.ObjectId(req.body.idElection) }
-  }
-/*  {
-      $unwind:
-          "$candidates"
-  },
-  {
-      $match:
-          { "candidates._id": mongoose.Types.ObjectId(req.body._id)}
-  }
-*/
-).exec(function(err, election) {
-      if (err)
-      {
-        res.send(err);
+    name : req.body.name,
+    firstLastName : req.body.firstLastName,
+    secondLastName : req.body.secondLastName,
+    proposal : req.body.proposal,
+    gender : req.body.gender,
+    image: req.body.image,
+    party: {
+       _id : req.body.party._id,
+       description: req.body.party.description,
+       image: req.body.party.image
+     },
+    province:
+    {
+      id : req.body.province.id,
+      description: req.body.province.description,
+      canton: {
+        id : req.body.province.canton.id,
+        description : req.body.province.canton.description
+      },
+      district:{
+        id : req.body.province.district.id,
+        description : req.body.province.district.description
       }
-      else
-      {
-          console.log(election);
-         var query = {  _id: id};
-           var update =
-           {
-             name : req.body.name,
-             firstLastName : req.body.firstLastName,
-             secondLastName : req.body.secondLastName,
-             proposal : req.body.proposal,
-             gender : req.body.gender,
-             image: req.body.image,
-             party: {
-                _id : req.body.party._id,
-                description: req.body.party.description
-              },
-             province:
-             {
-               id : req.body.province.id,
-               description: req.body.province.description,
-               canton: {
-                 id : req.body.province.canton.id,
-                 description : req.body.province.canton.description
-               },
-               district:{
-                 id : req.body.province.district.id,
-                 description : req.body.province.district.description
-               }
-             }
-           };
-           election[0].findOneAndUpdate(query, update, function (err, data)
-           {
-             if(err){console.log('Error in update');}
-             res.json({status: 200,message: 'Was updated successfully'});
-           });
-      }
+    }
+  };
+  Election.findOneAndUpdate(
+    {
+      "_id": mongoose.Types.ObjectId(req.body.idElection), "candidates._id": mongoose.Types.ObjectId(req.body._id)
+    },
+    {
+      "candidates.$.name" : update.name,
+      "candidates.$.firstLastName" : update.firstLastName,
+      "candidates.$.secondLastName" : update.secondLastName,
+      "candidates.$.proposal" : update.proposal,
+      "candidates.$.gender" : update.gender,
+      "candidates.$.image" : update.image,
+      "candidates.$.party._id" : update.party._id,
+      "candidates.$.party.description" : update.party.description,
+      "candidates.$.party.image" : update.party.image
+      /*"candidates.$.province.id" : update.province.id,
+      "candidates.$.province.description" : update.province.description,
+      "candidates.$.province.canton.id" : update.province.canton.id,
+      "candidates.$.province.canton.description" : update.province.canton.description,*/
+      /*"candidates.$.province.district.id" : update.province.district.id,
+      "candidates.$.province.district.description" : update.province.district.description*/
+    }).exec(function (err, election)
+    {
+    if(err)
+    {
+      res.send('Error');
+    }
+    res.json({status: 200,message: 'Was updated successfully'});
   });
-  if(id !='')
-  {
-   var query = {  _id: id};
-    var update =
-    {
-      name : req.body.name,
-      firstLastName : req.body.firstLastName,
-      secondLastName : req.body.secondLastName,
-      proposal : req.body.proposal,
-      gender : req.body.gender,
-      image: req.body.image,
-      party: {
-         _id : req.body.party._id,
-         description: req.body.party.description
-       },
-      province:
-      {
-        id : req.body.province.id,
-        description: req.body.province.description,
-        canton: {
-          id : req.body.province.canton.id,
-          description : req.body.province.canton.description
-        },
-        district:{
-          id : req.body.province.district.id,
-          description : req.body.province.district.description
-        }
-      }
-    };
-    Election.findOneAndUpdate(query, update, function (err, data)
-    {
-      if(err){console.log('Error in update');}
-      res.json({status: 200,message: 'Was updated successfully'});
-    });
-  }
+
 });
 
 router.put('/candidate-delete/:id', function (req, res)

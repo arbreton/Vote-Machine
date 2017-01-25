@@ -71,3 +71,4 @@ i.selected-item  {color: #008000;   top: 0; left: -37px; font-size: 23px; backgr
 .image-party {width: 80px; height: 80px;}
 /*.selected-item-modal  { cursor: pointer; border: 3px solid #ccc;}*/
 .container-icon { text-align: right; width: 115px; height: 15px; position: absolute; top: 0;}
+.container-icon-register { text-align: right; width: 150px; height: 15px; position: absolute; top: 0;}

@@ -2,12 +2,10 @@ var app = angular.module('modalCandidate', ['serviceCandidate', 'serviceProvince
 
 app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', 'item', 'province', 'party', 'Upload', 'candidate', function ($scope, $uibModalInstance, $filter, item, province, party, Upload, candidate)
 {
-  console.log(item)
   province.getProvinces().then(function (data)
   {
     $scope.cantones = [];
     $scope.districts = [];
-
     $scope.candidate = item;
     $scope.candidate.img = item.image;
     $scope.provinces = [];
@@ -24,6 +22,7 @@ app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', '
    })
 
     $scope.districts = canton[0].districts;
+
   });
 
   $scope.parties = [];
@@ -32,7 +31,7 @@ app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', '
     $scope.parties = data;
   });
 
-  $scope.getParty = function (value, index, indexCandidate)
+  $scope.getParty = function (value, index)
   {
     $scope.indexPrevious;
     if($scope.parties[index].selectItem == undefined)
@@ -42,12 +41,12 @@ app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', '
       {
         $scope.parties[$scope.indexPrevious].selectItem = false;
         $scope.indexPrevious = index;
-        //$scope.addPartyCandidate(value, indexCandidate);
+        $scope.addPartyCandidate(value);
       }
       else
       {
         $scope.indexPrevious = index;
-        //$scope.addPartyCandidate(value, indexCandidate);
+        $scope.addPartyCandidate(value);
       }
     }
     else
@@ -55,16 +54,21 @@ app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', '
       if($scope.parties[index] == $scope.indexPrevious)
       {
         $scope.parties[index].selectItem = true;
-        //$scope.addPartyCandidate(value, indexCandidate);
+        $scope.addPartyCandidate(value);
       }
       else
       {
         $scope.parties[$scope.indexPrevious].selectItem = false;
         $scope.parties[index].selectItem = true;
         $scope.indexPrevious = index;
-        //$scope.addPartyCandidate(value, indexCandidate);
+        $scope.addPartyCandidate(value);
       }
     }
+  };
+
+  $scope.addPartyCandidate = function (obj)
+  {
+    $scope.candidate.party = obj;
   };
 
   $scope.uploadFile = function (file)
@@ -90,10 +94,10 @@ app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', '
        return $scope.cantones = cantones;
     };
 
-    $scope.showDistricts = function(districts)
-    {
-      return $scope.districts = districts;
-    };
+  $scope.showDistricts = function(districts)
+  {
+    return $scope.districts = districts;
+  };
 
   $scope.cancel = function()
   {
@@ -107,6 +111,11 @@ app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', '
         $scope.candidate.request = data;
         $uibModalInstance.close($scope.candidate);
       });
+  };
+
+  $scope.getDistrict = function (obj)
+  {
+    console.log(obj)
   };
 }]);
 //end controller

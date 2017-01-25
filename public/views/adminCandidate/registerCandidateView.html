@@ -60,7 +60,8 @@
           <div class="col-md-2"  ng-repeat="party in parties">
             <div class="form-group">
               <div class="preview-img">
-                <i  class="fa fa-check selected-item" ng-if="party.selectItem" aria-hiden="true"></i>
+                <div class="container-icon-register"> <i class="fa fa-check item-check" ng-if="party.selectItem"  ng-model="checkItem" aria-hidden="true"></i></div>
+                <!--i  class="fa fa-check selected-item" ng-if="party.selectItem" aria-hiden="true"></i-->
                 <img  ng-src="{{party.image}}" ng-model="candidate.party" ng-click="getParty(party, $index, $parent.$index)">
               </div>
             </div>
