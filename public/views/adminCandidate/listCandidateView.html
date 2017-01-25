@@ -39,7 +39,6 @@
         <table  class=" table row-border hover" datatable="ng" >
           <thead>
             <tr>
-              <th>#</th>
               <th>FullName</th>
               <th>Province</th>
               <th>Canton</th>
@@ -49,8 +48,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="candidate in election.candidates">
-              <td>{{$index+1}}</td>
+            <tr ng-repeat="candidate in election.candidates" ng-if="candidate.status==true">
                 <td>{{candidate.name +" " + candidate.firstLastName + " " + candidate.secondLastName}}</td>
                 <td>{{candidate.province.description}}</td>
                 <td>{{candidate.province.canton.description}}</td>
