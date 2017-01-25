@@ -40,7 +40,7 @@ app.controller('electionCtrl', ['$scope', '$http' , '$filter', '$timeout', 'elec
   $scope.select = function (date)
   {
     $scope.minDateDisabled();
-    var selectDate = $filter('date')(new Date(date), 'yyyy-MM-dd');
+    var selectDate = $filter('date')(new Date(date), 'yyyy-MM-dd HH-mm-ss Z');
 
     for(var i = 0; i<$scope.elections.length; i++)
     {
