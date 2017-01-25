@@ -18,6 +18,7 @@ app.route('/election')
     election.initialElection = req.body.initialElection;
     election.finalElection = req.body.finalElection;
     election.electionDay = new Date(req.body.electionDay);
+    election.electionDay.setHours(-8,0,0,0);
     election.save( function(err)
     {
       if(err){ res.json({status:500, message: 'Error saved the register'});}
