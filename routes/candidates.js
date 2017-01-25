@@ -46,6 +46,7 @@ router.post('/candidate',function(req, res)
         {
           //info of candidate
           var e = {
+            _id : new mongoose.Types.ObjectId,
             party: {} ,
             province:
             {
@@ -88,10 +89,10 @@ router.post('/candidate',function(req, res)
 
 router.put('/candidate-update/:idElection',function (req, res)
 {
-  console.log(req.body)
   var id = req.body._id;
   var update =
   {
+    _id:req.body. _id,
     name : req.body.name,
     firstLastName : req.body.firstLastName,
     secondLastName : req.body.secondLastName,
@@ -119,31 +120,18 @@ router.put('/candidate-update/:idElection',function (req, res)
   };
   Election.findOneAndUpdate(
     {
-      "_id": mongoose.Types.ObjectId(req.body.idElection), "candidates._id": mongoose.Types.ObjectId(req.body._id)
+       "_id": mongoose.Types.ObjectId(req.body.idElection),"candidates._id": mongoose.Types.ObjectId(req.body._id)
     },
     {
-      "candidates.$.name" : update.name,
-      "candidates.$.firstLastName" : update.firstLastName,
-      "candidates.$.secondLastName" : update.secondLastName,
-      "candidates.$.proposal" : update.proposal,
-      "candidates.$.gender" : update.gender,
-      "candidates.$.image" : update.image,
-      "candidates.$.party._id" : update.party._id,
-      "candidates.$.party.description" : update.party.description,
-      "candidates.$.party.image" : update.party.image
-      /*"candidates.$.province.id" : update.province.id,
-      "candidates.$.province.description" : update.province.description,
-      "candidates.$.province.canton.id" : update.province.canton.id,
-      "candidates.$.province.canton.description" : update.province.canton.description,*/
-      /*"candidates.$.province.district.id" : update.province.district.id,
-      "candidates.$.province.district.description" : update.province.district.description*/
-    }).exec(function (err, election)
+      "candidates.$" : update
+    },function (err, election)
     {
-    if(err)
-    {
-      res.send('Error');
-    }
-    res.json({status: 200,message: 'Was updated successfully'});
+      if(err)
+      {
+        res.send('Error');
+      }
+      console.log(election)
+      res.json({status: 200,message: 'Was updated successfully'});
   });
 
 });

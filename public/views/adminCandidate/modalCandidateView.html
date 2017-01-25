@@ -34,7 +34,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="label-distritos">Disctrict: </label>
-                <select class="form-control" ng-options="distrinct as district.description for district in districts track by district.id" ng-model="candidate.province.district" required="" ng-disabled="candidate.read"></select>
+                <select class="form-control" ng-options="district as district.description for district in districts track by district.id" ng-model="candidate.province.district" required="" ng-disabled="candidate.read"></select>
               </div>
           </div>
         </div><!--end row -->

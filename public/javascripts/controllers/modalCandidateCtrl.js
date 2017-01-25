@@ -2,11 +2,11 @@ var app = angular.module('modalCandidate', ['serviceCandidate', 'serviceProvince
 
 app.controller('modalCandidateCtrl', ['$scope','$uibModalInstance', '$filter', 'item', 'province', 'party', 'Upload', 'candidate', function ($scope, $uibModalInstance, $filter, item, province, party, Upload, candidate)
 {
+  $scope.candidate = item;
   province.getProvinces().then(function (data)
   {
     $scope.cantones = [];
     $scope.districts = [];
-    $scope.candidate = item;
     $scope.candidate.img = item.image;
     $scope.provinces = [];
     $scope.provinces = data;

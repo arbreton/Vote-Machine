@@ -12,6 +12,7 @@ app.route('/election')
   })
   .post( function (req, res){
     var election = new Election();
+    election._id = new mongoose.Types.ObjectId;
     election.initialElection = req.body.initialElection;
     election.finalElection = req.body.finalElection;
     election.electionDay = req.body.electionDay;
