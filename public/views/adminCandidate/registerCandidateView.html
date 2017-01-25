@@ -16,13 +16,12 @@
         <h4>Birth Date: {{birthDate}}</h4>
       </div>
     </div>
-  </div>
+  </div><!--END sidebar-wrapper -->
 
-  <div class="title">New Election Registration</div>
+<div class="title">New Election Registration</div>
   <hr>
   <div id="page-content-wrapper">
     <div class="container-fluid">
-
       <form name="saveForm" ng-submit="saveForm.$valid && saveItem()" class="form-inline row-magin buttons">
         <!--home row -->
         <div class="row form-group-block-full">
@@ -33,8 +32,6 @@
             </div>
           </div>
         </div><!--end row -->
-
-        <fieldset  ng-repeat="candidate in candidates">
 
         <!--home row -->
         <div class="row form-group-block">
@@ -51,38 +48,37 @@
                 <label for="label-distritos">Disctrict: </label>
                 <select class="form-control" ng-options="district.description for district in districts" ng-model="candidate.district" required=""></select>
               </div>
-          </div>
+            </div><!-- end col -->
           </div><!--end row -->
         <!--home row -->
-                <hr>
+        <hr>
         <div class="row form-group-select select-item">
           <label class="title-label">Parties</label>
           <div class="col-md-2"  ng-repeat="party in parties">
             <div class="form-group">
               <div class="preview-img">
                 <div class="container-icon-register"> <i class="fa fa-check item-check" ng-if="party.selectItem"  ng-model="checkItem" aria-hidden="true"></i></div>
-                <img  ng-src="{{party.image}}" ng-model="candidate.party" ng-click="getParty(party, $index, $parent.$index)">
+                <img  ng-src="{{party.image}}" ng-model="candidate.party" ng-click="getParty(party, $index)">
               </div>
-            </div><!--end col -->
-          </div><!--end row -->
+            </div><!--end group -->
+          </div><!--end col -->
+        </div><!--end row-->
           <!--home row -->
-          
+        <div class="row text-right">
+          <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="false" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+        </div>
 
-          <div class="row text-right">
-            <div class="col-md-12"> <button class="btn btn-danger circle-button" ng-show="false" ng-click="removeChoice()"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
-          </div>
+        <div ng-if="request.status==200" class="alert alert-success success-request-fixed" role="alert">
+          <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
+        </div>
 
-          <div ng-if="request.status==200" class="alert alert-success success-request-fixed" role="alert">
-            <div class="container-success"><i class="fa fa-check"></i> <h4> Register saved...</h4></div>
-          </div>
-        </fieldset>
         <hr>
         <div class="row no-margin">
             <div class="col-md-2">
               <div class="form-group">
                 <div class="preview-img"> <img ngf-thumbnail="candidate.img"></div>
                 <div class="button-avatar">
-                  <div class="button" ngf-select="uploadFile(candidate.img, $index)" ng-model="candidate.img" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB" ngf-min-height="150" ngf-resize="{width: 150, height: 150}">Image candidate</div>
+                  <div class="button" ngf-select="uploadFile(candidate.img)" ng-model="candidate.img" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB" ngf-min-height="150" ngf-resize="{width: 150, height: 150}">Image candidate</div>
                 </div>
                 <i class="fa fa-check check-request check-selected" ng-if="requestImage.status==200" aria-hiden="true"></i>
               </div>

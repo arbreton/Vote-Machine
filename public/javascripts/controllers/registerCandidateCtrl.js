@@ -18,13 +18,8 @@ function($scope, $timeout, $filter, Upload, party, province, election, candidate
   $scope.file = {};
   $scope.request = {};
   $scope.requestImage = {};
-  $scope.candidates = [{}];
   $scope.election_day = {};
   $scope.electionCandidate = {};
-  $scope.popup =
-  {
-    opened: false
-  };
 
   party.getParties().then(function (data)
   {
@@ -35,7 +30,8 @@ function($scope, $timeout, $filter, Upload, party, province, election, candidate
   {
         $scope.elections = data;
   });
-  $scope.getParty = function (value, index, indexCandidate)
+
+  $scope.getParty = function (value, index)
   {
     $scope.indexPrevious;
     if($scope.parties[index].selectItem == undefined)
@@ -45,12 +41,12 @@ function($scope, $timeout, $filter, Upload, party, province, election, candidate
       {
         $scope.parties[$scope.indexPrevious].selectItem = false;
         $scope.indexPrevious = index;
-        $scope.addPartyCandidate(value, indexCandidate);
+        $scope.addPartyCandidate(value);
       }
       else
       {
         $scope.indexPrevious = index;
-        $scope.addPartyCandidate(value, indexCandidate);
+        $scope.addPartyCandidate(value);
       }
     }
     else
@@ -58,24 +54,21 @@ function($scope, $timeout, $filter, Upload, party, province, election, candidate
       if($scope.parties[index] == $scope.indexPrevious)
       {
         $scope.parties[index].selectItem = true;
-        $scope.addPartyCandidate(value, indexCandidate);
+        $scope.addPartyCandidate(value);
       }
       else
       {
         $scope.parties[$scope.indexPrevious].selectItem = false;
         $scope.parties[index].selectItem = true;
         $scope.indexPrevious = index;
-        $scope.addPartyCandidate(value, indexCandidate);
+        $scope.addPartyCandidate(value);
       }
     }
   };
-  $scope.addPartyCandidate = function (value, indexCandidate)
+
+  $scope.addPartyCandidate = function (obj)
   {
-    $scope.candidates[indexCandidate].party = value;
-  };
-  $scope.open = function()
-  {
-    $scope.popup.opened = true;
+    $scope.candidate.party = obj;
   };
 
   province.getProvinces().then(function (data)
@@ -106,7 +99,7 @@ function($scope, $timeout, $filter, Upload, party, province, election, candidate
 
   $scope.restForm = function()
   {
-    $scope.candidates = [{}];
+    $scope.candidate = {};
     $scope.requestImage = {};
     $scope.select_item = { status:false};
   };
@@ -119,7 +112,7 @@ function($scope, $timeout, $filter, Upload, party, province, election, candidate
       data: { image: file}
     }).then(function (resp)
     {
-      $scope.addItemByIndex(index, resp.data);
+      $scope.addItemByIndex( resp.data);
       $scope.requestImage = resp;
     },
     function (resp){
@@ -128,29 +121,17 @@ function($scope, $timeout, $filter, Upload, party, province, election, candidate
     });
   };
 
-    $scope.addNewChoice = function() {
-    var newItemNo = $scope.candidates.length+1;
-    $scope.candidates.push($scope.candidate);
-  };
-
-  $scope.removeChoice = function() {
-    var lastItem = $scope.candidates.length-1;
-    $scope.candidates.splice(lastItem);
-  };
-
-  $scope.addItemByIndex = function(index, resImage)
+  $scope.addItemByIndex = function(resImage)
   {
-    if(index != null)
-    {
       let path ='/uploads/'+resImage.filename;
-      return $scope.candidates[index].image = path;
-    }
+      return $scope.candidate.image = path;
   }
   $scope.saveItem = function ()
   {
-    $scope.electionCandidate.candidates = $scope.candidates;
-    $scope.electionCandidate.election = $scope.electionDay._id;
-    candidate.addCandidate($scope.electionCandidate).then(function(data)
+    /*$scope.electionCandidate.candidates = $scope.candidates;
+    $scope.electionCandidate.election =*/
+    $scope.candidate.election= $scope.electionDay._id;
+    candidate.addCandidate($scope.candidate).then(function(data)
     {
       $scope.request = data;
       $timeout(function ()
