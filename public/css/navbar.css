@@ -51,7 +51,7 @@ div.selected-item {cursor: pointer; }
 .preview-img-modal img{ width: 115px; height: 115px;}
 .success-request{ position: absolute; top: 0; left:  50%;}
 .success-request h4 { margin-bottom: 0px;}
-.success-request-fixed { position: fixed; background: #5cb85c; color:#fff; top: 50%; left: 50%;}
+.success-request-fixed { position: fixed; background: #5cb85c; color:#fff; top: 50%; left: 50%; z-index: 1;}
 .success-request-fixed h4 { margin-bottom: 0px; display: inline-block;}
 .success-request-fixed .container-success {margin-bottom: 0px;}
 .success-request-fixed .container-success i{ font-size: 30px;}

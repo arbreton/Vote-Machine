@@ -39,11 +39,13 @@ router.post('/candidate',function(req, res)
   var idElection = req.body.election;
     Election.findById(idElection).exec( function (err, election)
     {
-      if(err){ console.log('Error al buscar la eleccion');}
+      if(err)
+      {
+        console.log('Error al buscar la eleccion');
+      }
       else
       {
-        req.body.candidates.forEach( function(item, index)
-        {
+        console.log(election)
           //info of candidate
           var e = {
             _id : new mongoose.Types.ObjectId,
@@ -54,33 +56,30 @@ router.post('/candidate',function(req, res)
               district: {}
             }
           };
-          e.name = item.name;
-          e.firstLastName = item.firstLastName;
-          e.secondLastName = item.secondLastName;
-          e.proposal = item.proposal;
-          e.gender = item.gender;
-          e.image = item.image;
+          e.name = req.body.name;
+          e.firstLastName = req.body.firstLastName;
+          e.secondLastName = req.body.secondLastName;
+          e.proposal = req.body.proposal;
+          e.gender = req.body.gender;
+          e.image = req.body.image;
           e.status = true;
           //province
-          e.party._id = item.party._id;
-          e.party.description = item.party.description;
-          e.party.image = item.party.image;
-          e.province.id = item.province.id;                                                                                                                                                                                                   5
-          e.province.description = item.province.description;
-          e.province.canton.id = item.canton.id;
-          e.province.canton.description = item.canton.description;
-          e.province.district.id = item.district.id;
-          e.province.district.description = item.district.description;
+          e.party._id = req.body.party._id;
+          e.party.description = req.body.party.description;
+          e.party.image = req.body.party.image;
+          e.province.id = req.body.province.id;                                                                                                                                                                                                   5
+          e.province.description = req.body.province.description;
+          e.province.canton.id = req.body.canton.id;
+          e.province.canton.description = req.body.canton.description;
+          e.province.district.id = req.body.district.id;
+          e.province.district.description = req.body.district.description;
           election.candidates.push(e);
-        });
         //save item
-        election.save().then( function (can)
-        {
-          res.json({status: 200,message: 'The register was saved successfully'});
-        }, function (err)
-        {
-          if(err) { return handleError(err);}
-        });
+          election.save( function (err)
+          {
+            if(err) { return handleError(err);}
+            res.json({status: 200,message: 'The register was saved successfully'});
+          });
       }//end else
     });
 
