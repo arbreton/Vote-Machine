@@ -6,29 +6,10 @@ var Election = mongoose.model('Election');
 app.route('/election')
   .get( function (req, res)
   {
-    /*Election.aggregate(    {
-            $unwind:
-                "$candidates"
-        },
-        {
-            $match:
-                { "candidates.status": true }
-        }, function (err,data)
-        {
-          if(err) {res.send(err);}
-          console.log(data);
-        })*/
-    Election.find({"candidates.$.status": true}).exec(function (err, data)
+    Election.find().exec(function (err, candidate)
     {
-      if(err)
-      {
-          res.send(err);
-      }
-      else
-      {
-        res.json(data);
-        console.log(data)
-      }
+      if(err){ res.send('Error');}
+      else { res.json(candidate); }
     });
   })
   .post( function (req, res){
