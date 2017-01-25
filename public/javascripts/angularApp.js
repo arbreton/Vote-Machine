@@ -1,6 +1,34 @@
 var app = angular.module('votingApp', ['angular-loading-bar','ui.router',  'adminCandidate', 'adminListCandidate', 'adminParty','adminListParty','capitalizeFilter' , 'provinceFactory' ,'authFactory', 'mainCtrl', 'registerCtrl' ,'authCtrl', 'navCtrl' , 'adminCtrl', 'election', 'formly', 'formlyBootstrap']);
-app.config(['$stateProvider', '$urlRouterProvider',
-function($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider','formlyConfigProvider',
+function($stateProvider, $urlRouterProvider, formlyConfigProvider) {
+
+formlyConfigProvider.setType({ 
+          name: 'datepicker', 
+          template: '<input  id="{{id}}" class="form-control" ng-click="open($event)" ng-model="model[options.key  || index]" is-open="to.isOpen" ng-click="to.isOpen = true" datepicker-options="to.datepickerOptions" />', 
+          wrapper: ['bootstrapLabel', 'bootstrapHasError'], 
+          controller: ['$scope', function($scope) { 
+             $scope.open = function($event) { 
+              $event.preventDefault(); 
+              $event.stopPropagation(); 
+              $scope.opened = true; 
+            }; 
+           }], 
+          defaultOptions: { 
+            templateOptions: { 
+              addonLeft: { 
+                class: 'glyphicon glyphicon-calendar', 
+                onClick: function(options, scope) { 
+                  options.templateOptions.isOpen = !options.templateOptions.isOpen; 
+                } 
+              },        
+              onFocus: function($viewValue, $modelValue, scope) { 
+                scope.to.isOpen = !scope.to.isOpen; 
+              }, 
+              datepickerOptions: {} 
+            } 
+          } 
+        }); 
+
 	$stateProvider.state('home', {
 		url : '/home',
 		templateUrl : '/home.html',

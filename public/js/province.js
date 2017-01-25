@@ -1,11 +1,11 @@
 	'use strict';
 
 		var app = angular.module('provinceFactory',[]);
-        app.factory('province', province);
+        app.factory('registerData', registerData);
 
-	function province() {
+	function registerData() {
 
-		function getProvinces() {
+		function getRegisterData() {
 			return [
 				{
 					"name": "Alberta",
@@ -63,6 +63,6 @@
 		}
 
 		return {
-			getProvinces: getProvinces
+			registerData: registerData
 		}
 	}
