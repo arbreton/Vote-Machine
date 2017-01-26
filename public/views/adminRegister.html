@@ -26,7 +26,7 @@
       <!-- Page Content -->
 
 
-<div id="register-content">
+<!--<div id="register-content">
 
     <div  id="container-register" ng-controller="RegisterController as vm" class="container col-md-9 col-md-offset-2">
 
@@ -37,8 +37,135 @@
             </formly-form>
         </form> 
 </div>
-
+</div>-->
+ 
+  <form class = "register-form-content">
+    <div class = "register-form-container">
+      <h1>New User Registration</h1><br><br>
+      <!--Div Electoral code-->
+      <div class="form-inline">
+        <div class="form-group form-group-sm">
+          <div class = "col-xs-offset-1">
+          <label for = "inputuser">Electoral Code/ Username *</label>
+          <br>
+            <input type="text" class="form-control" style= "width:250px;" placeholder="Enter your electoral code"></input>
+        </div>
+      </div><br><br>
+      <!--Div inline-->
+      <!--Div Password-->
+      <div class="form-inline">
+          <div class="form-group form-group-sm">
+            <div class="col-xs-offset-1">
+              <label for = "inputPassword">Password *</label>
+            <input type="password" class="form-control" placeholder="Enter your password" style = "width:250px;"></input>
+            </div>
+          </div>
+          <!--Div Birth date-->
+          <div class ="form-group form-group-sm" style = "margin-top:10px;">
+          <div class="col-md-offset-2 col-md-8">
+              <label for="birthdate">Birth Date *</label>
+              <p class="input-group">
+                <input type="text" class="form-control"/>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" style = "height: 30px;" ng-click="openFrom()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+          </div>
+        </div>
+        <!--div inline-->
+        </div><br>
+        <!--Div gender-->
+        <div class = "radio" style = "margin-left:45px;">
+          <b> Gender *</b>
+          <br>
+          <label>
+          <input type = "radio" name = "Masculine" value = "option1">
+          Masculine
+        </label><br>
+        <label>
+          <input type = "radio" name = "Female" value = "option2">
+          Female
+        </label>
+        </div><br><br>
+        <!--Form Name-->
+     <form class="form-inline">
+  <div class="form-group form-group-sm">
+    <div class = "col-xs-offset-1">
+    <label for="InputName">Name *</label><br>
+    <input type="text" class="form-control" style = "width:250px;" placeholder="Enter your Name">
+  </div>
 </div>
+  <div class="form-group form-group-sm">
+    <div class = "col-xs-offset-2">
+    <label for="InputFSN">First Surname *</label><br>
+    <input type="text" class="form-control" style = "width:250px;" placeholder="Enter your fisrt Surname">
+  </div>
+</div>
+   <div class="form-group form-group-sm">
+    <div class = "col-xs-offset-3">
+    <label for="InputSSN">Second Surname</label><br>
+    <input type="text" class="form-control" style = "width:250px;" placeholder="Enter your Second Surname">
+  </div>
+</div>
+</form><br><br>
+<!--Form Province-->
+     <form class="form-inline">
+  <div class="form-group form-group-sm">
+    <div class = "col-xs-offset-1">
+    <label for="InputProv">Province </label><br>
+    <select class="form-control" style = "width:250px;"></select>
+  </div>
+</div>
+  <div class="form-group form-group-sm">
+    <div class = "col-xs-offset-2">
+    <label for="InputCan">Canton </label><br>
+    <select class="form-control" style = "width:250px;"></select>
+  </div>
+</div>
+   <div class="form-group form-group-sm">
+    <div class = "col-xs-offset-3">
+    <label for="InputDis">District</label><br>
+    <select class="form-control" style = "width:250px;"></select>
+  </div>
+</div>
+</form>
+<!--Form-->
+ <form class="form-inline">
+  <div class="form-group form-group-sm">
+    <div class = "col-xs-offset-1">
+    <label for="InputEth">Ethnic Group </label><br>
+    <select class="form-control" style = "width:250px;"></select>
+  </div>
+</div>
+ <div class ="form-group form-group-sm" style = "margin-top:10px;">
+          <div class="col-md-offset-2 col-md-8">
+              <label for="birthdate">Expiration Date *</label>
+              <p class="input-group">
+                <input type="text" class="form-control"/>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" style = "height: 30px;" ng-click="openFrom()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+          </div>
+        </div>
+</form><br><br>
+<!--checkbox-->
+<div class = "checkbox" style = "margin-left:20px;">
+  <label><input type = "checkbox">Are you an Admin? </label>
+</div><br><br>
+<!--submit-->
+<div class="form-group">
+  <div class="col-xs-offset-1 col-sm-4">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+    </div>
+  </div>
+  </form>
+
+  <style>
+  </style>
+
 
 
 

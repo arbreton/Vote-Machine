@@ -1,9 +1,25 @@
-#register-content {
+#register-content{
 	padding-top:100px; 
 	margin-left:-80px; 
 }
-#container-register {
+#container-register{
    	background-color: #f2f2f2;
+	border: 1px solid #ccc;
+	padding: 20px;
+	top: 20px;
+	-webkit-box-shadow: 0 2px 2px 1px rgba(0,0,0,0.2);
+	box-shadow: 0 2px 2px 1px rgba(0,0,0,0.2);
+}
+.register-form-content{
+	padding-top:100px; 
+	margin-left:100px; 
+	margin-bottom: 100px;
+}
+
+.register-form-container{
+	width: 900px;
+	height: 780px;
+	background-color: #f2f2f2;
 	border: 1px solid #ccc;
 	padding: 20px;
 	top: 20px;
