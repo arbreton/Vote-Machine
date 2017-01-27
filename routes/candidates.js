@@ -14,7 +14,6 @@ var storage =   multer.diskStorage({
     callback(null, Date.now() + file.originalname );
   }
 });
-
 var upload = multer({ storage : storage}).single('image');
 
 router.post('/file',function(req, res)
@@ -24,8 +23,6 @@ router.post('/file',function(req, res)
         else{  res.json(req.file);  console.log('Imagen subida...'); }
     });
 });
-
-
 router.get('/canditates', function (req, res)
 {
   Candidate.find({status:true}).exec(function (err, candidate)
